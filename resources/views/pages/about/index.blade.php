@@ -189,8 +189,8 @@
                             <div class="panel-heading">
                                 <h5 class="panel-title">
                                     <a class="collapsed" role="button" data-bs-toggle="collapse"
-                                        data-bs-target="#faq-collapse2" aria-expanded="false"
-                                        aria-controls="faq-collapse2"> <span class="button-faq"></span>More Than 30
+                                        data-bs-target="#faq-collapse2" aria-expanded="false" aria-controls="faq-collapse2">
+                                        <span class="button-faq"></span>More Than 30
                                         Years In The Business</a>
                                 </h5>
                             </div>
@@ -289,7 +289,8 @@
                                                                 alt=""></a>
                                                     </div>
                                                     <div class="testimonial_author">
-                                                        <p><a href="#">Rebecka Filson</a> / <span>CEO of CSC</span></p>
+                                                        <p><a href="#">Rebecka Filson</a> / <span>CEO of CSC</span>
+                                                        </p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -331,7 +332,8 @@
                                                                 alt=""></a>
                                                     </div>
                                                     <div class="testimonial_author">
-                                                        <p><a href="#">Lindsy Neloms</a> / <span>CEO of SFD</span></p>
+                                                        <p><a href="#">Lindsy Neloms</a> / <span>CEO of SFD</span>
+                                                        </p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -347,5 +349,17 @@
         </div>
     </div>
     <!--testimonial area end-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+    <script>
+        $(document).ready(function() {
+            console.log('i ran');
+
+            // Remove active class from all li elements
+            $('nav ul li a').removeClass('active');
+
+            // Add active class to the clicked li element
+            $('#about a').addClass('active');
+        });
+    </script>
 @endsection

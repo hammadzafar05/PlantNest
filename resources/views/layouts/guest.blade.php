@@ -93,56 +93,48 @@
                             <div class="main_menu menu_position">
                                 <nav>
                                     <ul>
-                                        <li><a class="active" href="index.html">home<i class="fa fa-angle-down"></i></a>
-                                            <ul class="sub_menu">
-                                                <li><a href="{{route('user.home')}}">Home</a></li>
+                                        <li id="home"><a class="" id="home" href="{{route('user.home')}}">home</a>
+                                            
+                                        </li>
+                                        {{-- @foreach ($categories as $category )
+                                        
+                                        <li id="shop"><a href="blog.html">{{$category->name}}<i class="fa fa-angle-down"></i></a>
+                                            <ul class="sub_menu pages">
+                                                
+                                                @foreach ($category->children as $subCategory )
+                                                <li><a href="blog-details.html">{{$subCategory->name}}</a></li>
+                                                
+                                            
+                                            @endforeach
+                                            
                                             </ul>
                                         </li>
-                                        <li class="mega_items"><a href="shop.html">shop<i
-                                                    class="fa fa-angle-down"></i></a>
+                                           
+                                        @endforeach --}}
+                                        <li class="mega_items"><a id="shop" href="">shop<i class="fa fa-angle-down"></i></a>
                                             <div class="mega_menu">
                                                 <ul class="mega_menu_inner">
-                                                    <li><a href="#">Shop Layouts</a>
+                                                    @foreach ($categories as $category )
+                                                    <li><a href="#">{{$category->name}}</a>
                                                         <ul>
-                                                            <li><a href="{{route('shop.index')}}">shop</a></li>
+                                                            @foreach ($category->children as $subCategory )
+                                                            <li><a href="">{{$subCategory->name}}</a></li>
+                                                            @endforeach
                                                             
                                                         </ul>
                                                     </li>
-                                                    <li><a href="#">other Pages</a>
-                                                        <ul>
-                                                            <li><a href="{{route('cart.index')}}">cart</a></li>
-                                                            <li><a href="{{route('wishlist.index')}}">Wishlist</a></li>
-                                                            <li><a href="{{route('checkout.index')}}">Checkout</a></li>
-                                                            <li><a href="{{route('account.index')}}">my account</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="#">Product Types</a>
-                                                        <ul>
-                                                            <li><a href="{{route('shop.detail')}}">product details</a></li>
-                                                            <
-                                                            </li>
-
-                                                        </ul>
-                                                    </li>
+                                                        
+                                                    @endforeach
+                                                   
                                                 </ul>
                                             </div>
                                         </li>
-                                        <li><a href="blog.html">blog<i class="fa fa-angle-down"></i></a>
-                                            <ul class="sub_menu pages">
-                                                <li><a href="blog-details.html">blog details</a></li>
-                                                <li><a href="blog-fullwidth.html">blog fullwidth</a></li>
-                                                <li><a href="blog-sidebar.html">blog sidebar</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="#">pages <i class="fa fa-angle-down"></i></a>
-                                            <ul class="sub_menu pages">
-                                                <li><a href="{{route('about.index')}}">About Us</a></li>
-                                                <li><a href="{{route('faq.index')}}">Frequently Questions</a></li>
-                                                <li><a href="{{route('contact.index')}}">contact</a></li>
-                                                <li><a href="login.html">login</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="{{route('contact.index')}}"> Contact Us</a></li>
+                                        
+                                        
+                                       
+                                        <li id="faq"><a href="{{route('faq.index')}}"> Faq</a></li>
+                                        <li id="about"><a href="{{route('about.index')}}"> About Us</a></li>
+                                        <li id="contact"><a href="{{route('contact.index')}}"> Contact Us</a></li>
                                     </ul>
                                 </nav>
                             </div>
