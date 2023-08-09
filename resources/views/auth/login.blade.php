@@ -31,16 +31,16 @@
                         @csrf
                         <p>
                             <label>Email <span>*</span></label>
-                            <input type="email" name="email" value="{{ old('email') }}">
+                            <input type="email" name="email" value="{{ old('email') }}" autocomplete="off">
                             @error('email')
-                            <span class="error">{{ $message }}</span>
+                            <span class="text-error">{{ $message }}</span>
                             @enderror
                         </p>
                         <p>
                             <label>Passwords <span>*</span></label>
-                            <input type="password" name="password">
+                            <input type="password" name="password" autocomplete="off">
                             @error('password')
-                            <span class="error">{{ $message }}</span>
+                            <span class="text-error">{{ $message }}</span>
                             @enderror
                         </p>
                         <div class="login_submit">
