@@ -50,6 +50,7 @@ Route::get('/faq',[FaqController::class,'index'])->name('faq.index');
 Route::get('/shop',[ShopController::class,'index'])->name('shop.index');
 Route::get('/shop/product/detail',[ShopController::class,'detail'])->name('shop.detail');
 
+
 //Admin Routes
 Route::middleware(['auth','isAdmin'])->prefix('admin')->name('admin.')->group(function () {
 

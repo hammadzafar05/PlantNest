@@ -137,7 +137,7 @@
                                                             name="id_gender"> Mrs.</span>
                                                 </div> <br>
                                                 <label>First Name</label>
-                                                <input type="text" name="first-name">
+                                                <input type="text" name="first-name" value="{{ Auth::user()->name }}">
                                                 <label>Last Name</label>
                                                 <input type="text" name="last-name">
                                                 <label>Email</label>

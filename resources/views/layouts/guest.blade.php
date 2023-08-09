@@ -153,10 +153,16 @@
                                 <div class="header_account-list top_links">
                                     <a href="#"><i class="icon-users"></i></a>
                                     <ul class="dropdown_links">
+                                        @auth
                                         <li><a href="{{route('checkout.index')}}">Checkout </a></li>
-                                        <li><a href="{{route('account.index')}}">My Account </a></li>
                                         <li><a href="{{route('cart.index')}}">Shopping Cart</a></li>
                                         <li><a href="{{route('wishlist.index')}}">Wishlist</a></li>
+                                        <li><a href="{{route('account.index')}}">My Account </a></li>
+                                        <li><a href="{{route('logout')}}">logout</a></li>
+                                        @endauth
+                                        @guest
+                                        <li><a href="{{route('login')}}">Login</a></li>
+                                        @endguest
                                     </ul>
                                 </div>
                                 <div class="header_account-list header_wishlist">
@@ -509,7 +515,4 @@
 
 
 </body>
-
-
-<!-- Mirrored from htmldemo.net/lukani/lukani/index-5.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 08 Aug 2023 18:49:03 GMT -->
 </html>
