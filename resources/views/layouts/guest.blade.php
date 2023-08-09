@@ -154,6 +154,7 @@
                                         @endauth
                                         @guest
                                         <li><a href="{{route('login')}}">Login</a></li>
+                                        <li><a href="{{route('register')}}">Signup</a></li>
                                         @endguest
                                     </ul>
                                 </div>
