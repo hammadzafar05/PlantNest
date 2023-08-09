@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Shipping extends Model
 {
     use HasFactory;
+protected $fillable = ['delivery_id', 'from', 'to', /* ... */];
+
+public function delivery()
+{
+    return $this->belongsTo(Delivery::class);
+}
 }
