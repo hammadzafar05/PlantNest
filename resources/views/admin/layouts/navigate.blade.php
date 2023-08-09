@@ -2,7 +2,6 @@
 <div id="sidebar-menu">
     <!-- Left Menu Start -->
     <ul class="metismenu list-unstyled" id="side-menu">
-        <li class="menu-title">Menu</li>
         <li>
             <a href="{{url('admin/dashboard')}}">
                 <i class="uil-home-alt">
