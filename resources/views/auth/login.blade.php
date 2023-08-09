@@ -1,4 +1,72 @@
-<x-guest-layout>
+@extends('layouts.guest')
+<title>{{ config('app.name', 'PlantNest|Login') }}</title>
+@section('content') 
+<!--breadcrumbs area start-->
+<div class="breadcrumbs_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_content">
+                    <h3>My Account</h3>
+                    <ul>
+                        <li><a href="index.html">home</a></li>
+                        <li>My account</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--breadcrumbs area end-->
+
+<!-- customer login start -->
+<div class="customer_login">
+    <div class="container">
+        <div class="row">
+            <!--login area start-->
+            <div class="col-lg-6 col-md-6 offset-3">
+                <div class="account_form">
+                    <h2>login</h2>
+                    <form method="POST" action="{{ route('login') }}">
+                        @csrf
+                        <p>
+                            <label>Email <span>*</span></label>
+                            <input type="email" name="email" value="{{ old('email') }}">
+                            @error('email')
+                            <span class="error">{{ $message }}</span>
+                            @enderror
+                        </p>
+                        <p>
+                            <label>Passwords <span>*</span></label>
+                            <input type="password" name="password">
+                            @error('password')
+                            <span class="error">{{ $message }}</span>
+                            @enderror
+                        </p>
+                        <div class="login_submit">
+                            @if (Route::has('password.request'))
+                            <a href="{{ route('password.request') }}">Lost your password?</a>
+                            @endif
+                            <label for="remember">
+                                <input id="remember" type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
+                                Remember me
+                            </label>
+                            <button type="submit">Login</button>
+                        </div>
+                    </form>
+                    
+                </div>
+            
+            </div>
+            <!--login area start-->
+
+        </div>
+    </div>
+</div>
+<!-- customer login end -->
+
+@endsection
+{{-- <x-guest-layout>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
@@ -44,4 +112,4 @@
             </x-primary-button>
         </div>
     </form>
-</x-guest-layout>
+</x-guest-layout> --}}
