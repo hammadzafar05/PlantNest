@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 //Home Controller
 Route::controller(HomeController::class)->name('user.')->group(function () {
 
-    Route::get('/','index');
+    Route::get('/','index')->name('home');
     Route::get('home','index');
 
     //authenticated routes
