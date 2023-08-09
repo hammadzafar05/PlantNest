@@ -58,13 +58,14 @@ Route::middleware([])->prefix('admin')->name('admin.')->group(function () {
 
     //Dashboard Controller
     Route::controller(DashboardController::class)->group(function () {
-        Route::get('/','index');
-        Route::get('dashboard','adminDashboard');
+        
+        Route::get('/','index')->name('dashboard');
+        Route::get('dashboard','index')->name('dashboard');
 
     });
     //User Controller
     Route::controller(UserController::class)->group(function () {
-        Route::get('/users','index');
+        Route::get('/users','index')->name('user');
         // Route::get('dashboard','dashboard');
 
     });

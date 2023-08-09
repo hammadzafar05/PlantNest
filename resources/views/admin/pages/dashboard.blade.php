@@ -1,256 +1,187 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Dashboard')
-
+@section('admin_title','Admin | Dashboard')
 @section('content')
-    <div class="row">
 
-        <div class="col-xl-3 col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <div class="dropdown float-end">
-                        <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            <i class="mdi mdi-dots-vertical"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end">
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">Action</a>
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">Another action</a>
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">Something else</a>
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">Separated link</a>
-                        </div>
-                    </div>
+                    <div class="container-fluid">
 
-                    <h4 class="header-title mt-0 mb-4">Total Revenue</h4>
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box d-flex align-items-center justify-content-between">
+                                    <h4 class="mb-0">Dashboard</h4>
 
-                    <div class="widget-chart-1">
-                        <div class="widget-chart-box-1 float-start" dir="ltr">
-                            <input data-plugin="knob" data-width="70" data-height="70" data-fgColor="#f05050 "
-                                data-bgColor="#F9B9B9" value="58" data-skin="tron" data-angleOffset="180"
-                                data-readOnly=true data-thickness=".15" />
-                        </div>
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            {{-- <li class="breadcrumb-item"><a href="javascript: void(0);">Thrift Fashion</a></li> --}}
+                                            <li class="breadcrumb-item active">Dashboard</li>
+                                        </ol>
+                                    </div>
 
-                        <div class="widget-detail-1 text-end">
-                            <h2 class="fw-normal pt-2 mb-1"> 256 </h2>
-                            <p class="text-muted mb-1">Revenue today</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div><!-- end col -->
-
-        <div class="col-xl-3 col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <div class="dropdown float-end">
-                        <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            <i class="mdi mdi-dots-vertical"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end">
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">Action</a>
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">Another action</a>
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">Something else</a>
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">Separated link</a>
-                        </div>
-                    </div>
-
-                    <h4 class="header-title mt-0 mb-3">Sales Analytics</h4>
-
-                    <div class="widget-box-2">
-                        <div class="widget-detail-2 text-end">
-                            <span class="badge bg-success rounded-pill float-start mt-3">32% <i
-                                    class="mdi mdi-trending-up"></i> </span>
-                            <h2 class="fw-normal mb-1"> 8451 </h2>
-                            <p class="text-muted mb-3">Revenue today</p>
-                        </div>
-                        <div class="progress progress-bar-alt-success progress-sm">
-                            <div class="progress-bar bg-success" role="progressbar" aria-valuenow="77" aria-valuemin="0"
-                                aria-valuemax="100" style="width: 77%;">
-                                <span class="visually-hidden">77% Complete</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div><!-- end col -->
+                        <!-- end page title -->
 
-        <div class="col-xl-3 col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <div class="dropdown float-end">
-                        <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            <i class="mdi mdi-dots-vertical"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end">
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">Action</a>
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">Another action</a>
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">Something else</a>
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">Separated link</a>
+                        <div class="row">
+                            <div class="col-md-6 col-xl-3">
+                                <div class="card">
+                                    <div class="card-body bg-primary  text-center">
+
+
+
+                                        <div >
+                                            <h4 class="mb-1 mt-1 text-white"><span data-plugin="counterup">
+                                                
+                                            </span></h4>
+                                            <p class="text-white mb-0">Total Users</p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div> <!-- end col-->
+
+                            <div class="col-md-6 col-xl-3">
+                                <div class="card">
+                                    <div class="card-body text-center">
+
+                                        <div>
+                                       
+
+                                            <h4 class="mb-1 mt-1"><span data-plugin="counterup">   </span></h4>
+                                            <p class="text-muted mb-0">Orders</p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div> <!-- end col-->
+
+                            <div class="col-md-6 col-xl-3">
+                                <div class="card">
+                                    <div class="card-body text-white bg-primary text-center">
+
+                                        <div>
+                                      
+                                            <h4 class="mb-1 mt-1 text-white"><span data-plugin="counterup"></span></h4>
+                                            <p class="text-white mb-0">Products</p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div> <!-- end col-->
+
+                            <div class="col-md-6 col-xl-3">
+
+                                <div class="card">
+                                    <div class="card-body text-center">
+                                    
+                                        <div>
+                                            <h4 class="mb-1 mt-1 text-center"> + $<span data-plugin="counterup">  </span></h4>
+                                            <p class="text-muted mb-0">Total Revenue</p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div> <!-- end col-->
+                        </div> <!-- end row-->
+
+
+
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="float-end">
+
+                                        </div>
+                                        <h4 class="card-title mb-4">Latest Users</h4>
+
+                                        <div data-simplebar="init" style="max-height: 339px;"><div class="simplebar-wrapper" style="margin: 0px;"><div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask"><div class="simplebar-offset" style="right: -16.6667px; bottom: 0px;"><div class="simplebar-content-wrapper" style="height: auto; overflow: hidden scroll;"><div class="simplebar-content" style="padding: 0px;">
+                                            <div class="table-responsive">
+                                                <table class="table table-borderless table-centered table-nowrap">
+                                                    <tbody>
+                                                        {{-- @foreach($users as $user)
+                                                        <tr>
+                                                            <td style="width: 20px;"><img src="{{asset('assets/images/users/avatar-4.png')}}" class="avatar-xs rounded-circle " alt="..."></td>
+                                                            <td>
+                                                                <h6 class="font-size-15 mb-1 fw-normal">{{$user->name}}</h6>
+                                                                <p class="text-muted font-size-13 mb-0"><i class="mdi mdi-map-marker"></i> {{$user->email}}</p>
+                                                            </td>
+
+                                                            <td><span class="badge bg-soft-danger font-size-12">
+                                                                @if($user->role == 1)
+                                                                    User
+                                                                @elseif($user->role == 2)
+                                                                    Admin
+
+                                                                @endif
+
+                                                        </span></td>
+                                                            <td class="text-muted fw-semibold text-end"><i class="icon-xs icon me-2 text-success" data-feather="trending-up"></i>{{$user->phone}}</td>
+                                                        </tr>
+                                                       @endforeach --}}
+                                                    </tbody>
+                                                </table>
+                                            </div> <!-- enbd table-responsive-->
+                                        </div></div></div></div><div class="simplebar-placeholder" style="width: auto; height: 503px;"></div></div><div class="simplebar-track simplebar-horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar" style="transform: translate3d(0px, 0px, 0px); display: none;"></div></div><div class="simplebar-track simplebar-vertical" style="visibility: visible;"><div class="simplebar-scrollbar" style="height: 228px; transform: translate3d(0px, 0px, 0px); display: block;"></div></div></div> <!-- data-sidebar-->
+                                    </div><!-- end card-body-->
+                                </div> <!-- end card-->
+                            </div><!-- end col -->
+
+
+
+
                         </div>
-                    </div>
+                        <!-- end row -->
 
-                    <h4 class="header-title mt-0 mb-4">Statistics</h4>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title mb-4">Latest Orders</h4>
+                                        <div class="table-responsive">
+                                            <table class="table table-centered table-nowrap mb-0">
+                                                <thead class="table-light">
+                                                    <tr>
+                                                        {{-- <th style="width: 20px;">
+                                                            <div class="form-check font-size-16">
+                                                                <input type="checkbox" class="form-check-input" id="customCheck1">
+                                                                <label class="form-check-label" for="customCheck1">&nbsp;</label>
+                                                            </div>
+                                                        </th> --}}
+                                                        <th>Order ID</th>
+                                                        <th>Customer Name</th>
+                                                        <th>Date</th>
+                                                        <th>Total</th>
 
-                    <div class="widget-chart-1">
-                        <div class="widget-chart-box-1 float-start" dir="ltr">
-                            <input data-plugin="knob" data-width="70" data-height="70" data-fgColor="#ffbd4a"
-                                data-bgColor="#FFE6BA" value="80" data-skin="tron" data-angleOffset="180"
-                                data-readOnly=true data-thickness=".15" />
-                        </div>
-                        <div class="widget-detail-1 text-end">
-                            <h2 class="fw-normal pt-2 mb-1"> 4569 </h2>
-                            <p class="text-muted mb-1">Revenue today</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div><!-- end col -->
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {{-- @foreach($orders as $order)
+                                                    <tr>
+                                                        <td><a href="javascript: void(0);" class="text-body fw-bold">{{$order->id}}</a> </td>
+                                                        <td>{{$order->user->name}}</td>
+                                                        <td>
+                                                        {{$order->order_date}}
+                                                        </td>
+                                                        <td>
+                                                       $ {{$order->total}}
+                                                        </td>
 
-        <div class="col-xl-3 col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <div class="dropdown float-end">
-                        <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            <i class="mdi mdi-dots-vertical"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end">
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">Action</a>
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">Another action</a>
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">Something else</a>
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">Separated link</a>
-                        </div>
-                    </div>
+                                                    </tr>
+                                                    @endforeach --}}
 
-                    <h4 class="header-title mt-0 mb-3">Daily Sales</h4>
-
-                    <div class="widget-box-2">
-                        <div class="widget-detail-2 text-end">
-                            <span class="badge bg-pink rounded-pill float-start mt-3">32% <i
-                                    class="mdi mdi-trending-up"></i> </span>
-                            <h2 class="fw-normal mb-1"> 158 </h2>
-                            <p class="text-muted mb-3">Revenue today</p>
-                        </div>
-                        <div class="progress progress-bar-alt-pink progress-sm">
-                            <div class="progress-bar bg-pink" role="progressbar" aria-valuenow="77" aria-valuemin="0"
-                                aria-valuemax="100" style="width: 77%;">
-                                <span class="visually-hidden">77% Complete</span>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!-- end table-responsive -->
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                        <!-- end row -->
+
+
+                    </div> <!-- container-fluid -->
                 </div>
-            </div>
-
-        </div><!-- end col -->
-
-    </div>
-    <!-- end row -->
-
-    <div class="row">
-        <div class="col-xl-4">
-            <div class="card">
-                <div class="card-body">
-                    <div class="dropdown float-end">
-                        <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            <i class="mdi mdi-dots-vertical"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end">
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">Action</a>
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">Another action</a>
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">Something else</a>
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">Separated link</a>
-                        </div>
-                    </div>
-
-                    <h4 class="header-title mt-0">Daily Sales</h4>
-
-                    <div class="widget-chart text-center">
-                        <div id="morris-donut-example" dir="ltr" style="height: 245px;" class="morris-chart"></div>
-                        <ul class="list-inline chart-detail-list mb-0">
-                            <li class="list-inline-item">
-                                <h5 style="color: #ff8acc;"><i class="fa fa-circle me-1"></i>Series A</h5>
-                            </li>
-                            <li class="list-inline-item">
-                                <h5 style="color: #5b69bc;"><i class="fa fa-circle me-1"></i>Series B</h5>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div><!-- end col -->
-
-        <div class="col-xl-4">
-            <div class="card">
-                <div class="card-body">
-                    <div class="dropdown float-end">
-                        <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            <i class="mdi mdi-dots-vertical"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end">
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">Action</a>
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">Another action</a>
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">Something else</a>
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">Separated link</a>
-                        </div>
-                    </div>
-                    <h4 class="header-title mt-0">Statistics</h4>
-                    <div id="morris-bar-example" dir="ltr" style="height: 280px;" class="morris-chart"></div>
-                </div>
-            </div>
-        </div><!-- end col -->
-
-        <div class="col-xl-4">
-            <div class="card">
-                <div class="card-body">
-                    <div class="dropdown float-end">
-                        <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            <i class="mdi mdi-dots-vertical"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end">
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">Action</a>
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">Another action</a>
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">Something else</a>
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">Separated link</a>
-                        </div>
-                    </div>
-                    <h4 class="header-title mt-0">Total Revenue</h4>
-                    <div id="morris-line-example" dir="ltr" style="height: 280px;" class="morris-chart"></div>
-                </div>
-            </div>
-        </div><!-- end col -->
-    </div>
-
 @endsection
