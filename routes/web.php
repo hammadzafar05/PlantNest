@@ -38,7 +38,7 @@ Route::controller(HomeController::class)->group(function () {
 
 //Admin Routes
 
-Route::middleware([])->prefix('admin')->group(function () {
+Route::middleware(['auth','isAdmin'])->prefix('admin')->group(function () {
 
     //Dashboard Controller
     Route::controller(DashboardController::class)->group(function () {
@@ -49,6 +49,7 @@ Route::middleware([])->prefix('admin')->group(function () {
     });
 
 });
+
 
 
 
