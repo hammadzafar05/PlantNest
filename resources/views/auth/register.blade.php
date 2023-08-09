@@ -1,4 +1,80 @@
-<x-guest-layout>
+@extends('layouts.guest')
+<title>{{ config('app.name', 'PlantNest|Login') }}</title>
+@section('content') 
+<!--breadcrumbs area start-->
+<div class="breadcrumbs_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_content">
+                    <h3>My Account</h3>
+                    <ul>
+                        <li><a href="index.html">home</a></li>
+                        <li>My account</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--breadcrumbs area end-->
+
+<!-- customer login start -->
+<div class="customer_login">
+    <div class="container">
+        <div class="row">
+            
+
+            <!--register area start-->
+            <div class="col-lg-6 col-md-6 offset-3">
+                <div class="account_form register">
+                    <h2>Register</h2>
+                    <form method="POST" action="{{ route('register') }}">
+                        @csrf
+                        <p>
+                            <label>Name <span>*</span></label>
+                            <input type="text" name="name" value="{{ old('name') }}">
+                            @error('name')
+                            <span class="error">{{ $message }}</span>
+                            @enderror
+                        </p>
+                        <p>
+                            <label>Email address <span>*</span></label>
+                            <input type="email" name="email" value="{{ old('email') }}">
+                            @error('email')
+                            <span class="error">{{ $message }}</span>
+                            @enderror
+                        </p>
+                        <p>
+                            <label>Passwords <span>*</span></label>
+                            <input type="password" name="password">
+                            @error('password')
+                            <span class="error">{{ $message }}</span>
+                            @enderror
+                        </p>
+                        <p>
+                            <label>Confirm Password <span>*</span></label>
+                            <input type="password" name="password_confirmation">
+                        </p>
+                        <div class="login_submit">
+                            <a class="" href="{{ route('login') }}">
+                                {{ __('Already registered?') }}
+                            </a>
+                            <button type="submit">Register</button>
+                        </div>
+                    </form>
+                    
+                </div>
+            </div>
+            <!--register area end-->
+        </div>
+    </div>
+</div>
+<!-- customer login end -->
+
+@endsection
+
+{{-- <x-guest-layout>
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
@@ -49,4 +125,4 @@
             </x-primary-button>
         </div>
     </form>
-</x-guest-layout>
+</x-guest-layout> --}}
