@@ -36,7 +36,6 @@ Route::controller(HomeController::class)->group(function () {
 
 });
 
-<<<<<<< Updated upstream
 //Admin Routes
 
 Route::middleware(['auth','isAdmin'])->prefix('admin')->group(function () {
@@ -53,7 +52,5 @@ Route::middleware(['auth','isAdmin'])->prefix('admin')->group(function () {
 
 
 
-=======
->>>>>>> Stashed changes
 
 require __DIR__.'/auth.php';
