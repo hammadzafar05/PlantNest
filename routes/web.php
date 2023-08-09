@@ -2,7 +2,15 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\User\AboutController;
+use App\Http\Controllers\User\AccountController;
+use App\Http\Controllers\User\CartController;
+use App\Http\Controllers\User\CheckoutController;
+use App\Http\Controllers\User\ContactController;
+use App\Http\Controllers\User\FaqController;
 use App\Http\Controllers\User\HomeController;
+use App\Http\Controllers\User\ShopController;
+use App\Http\Controllers\User\WhishListController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,6 +40,17 @@ Route::controller(HomeController::class)->name('user.')->group(function () {
     });
 
 });
+// cartController
+Route::get('/cart',[CartController::class,'index'])->name('cart.index');
+Route::get('/checkout',[CheckoutController::class,'index'])->name('checkout.index');
+Route::get('/wishlist',[WhishListController::class,'index'])->name('wishlist.index');
+Route::get('/account',[AccountController::class,'index'])->name('account.index');
+Route::get('/contact',[ContactController::class,'index'])->name('contact.index');
+Route::get('/about',[AboutController::class,'index'])->name('about.index');
+Route::get('/faq',[FaqController::class,'index'])->name('faq.index');
+Route::get('/shop',[ShopController::class,'index'])->name('shop.index');
+Route::get('/shop/product/detail',[ShopController::class,'detail'])->name('shop.detail');
+
 
 //Admin Routes
 Route::middleware([])->prefix('admin')->name('admin.')->group(function () {

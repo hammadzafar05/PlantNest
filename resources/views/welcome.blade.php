@@ -1490,7 +1490,7 @@
 <!--product area end-->
 
 <!--banner fullwidth area-->
-<div class="banner_fullwidth">
+{{-- <div class="banner_fullwidth">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -1503,7 +1503,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 <!--banner fullwidth end-->
 
 <!--testimonial area start-->
@@ -1903,7 +1903,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="section_title">
-                    <h2>Get <span>20% Off</span> Your Next Order</h2>
+                    <h2> <span>Subscribe</span> to our Newsletter!</h2>
                 </div>
                 <div class="newsletter_container">
                     <div class="subscribe_form">
