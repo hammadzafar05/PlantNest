@@ -95,11 +95,7 @@
                                     <ul>
                                         <li><a class="active" href="index.html">home<i class="fa fa-angle-down"></i></a>
                                             <ul class="sub_menu">
-                                                <li><a href="index.html">Home shop 1</a></li>
-                                                <li><a href="index-2.html">Home shop 2</a></li>
-                                                <li><a href="index-3.html">Home shop 3</a></li>
-                                                <li><a href="index-4.html">Home shop 4</a></li>
-                                                <li><a href="index-5.html">Home shop 5</a></li>
+                                                <li><a href="{{route('user.home')}}">Home</a></li>
                                             </ul>
                                         </li>
                                         <li class="mega_items"><a href="shop.html">shop<i
@@ -108,14 +104,8 @@
                                                 <ul class="mega_menu_inner">
                                                     <li><a href="#">Shop Layouts</a>
                                                         <ul>
-                                                            <li><a href="shop-fullwidth.html">Full Width</a></li>
-                                                            <li><a href="shop-fullwidth-list.html">Full Width list</a>
-                                                            </li>
-                                                            <li><a href="shop-right-sidebar.html">Right Sidebar </a>
-                                                            </li>
-                                                            <li><a href="shop-right-sidebar-list.html"> Right Sidebar
-                                                                    list</a></li>
-                                                            <li><a href="shop-list.html">List View</a></li>
+                                                            <li><a href="{{route('shop.index')}}">shop</a></li>
+                                                            
                                                         </ul>
                                                     </li>
                                                     <li><a href="#">other Pages</a>
@@ -128,10 +118,8 @@
                                                     </li>
                                                     <li><a href="#">Product Types</a>
                                                         <ul>
-                                                            <li><a href="product-details.html">product details</a></li>
-                                                            <li><a href="product-sidebar.html">product sidebar</a></li>
-                                                            <li><a href="product-grouped.html">product grouped</a></li>
-                                                            <li><a href="variable-product.html">product variable</a>
+                                                            <li><a href="{{route('shop.detail')}}">product details</a></li>
+                                                            <
                                                             </li>
 
                                                         </ul>

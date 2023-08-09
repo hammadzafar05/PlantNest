@@ -1,6 +1,5 @@
 @extends('layouts.guest')
 <title>{{ config('app.name', 'PlantNest|Checkout') }}</title>
-
 @section('content')
     <!--breadcrumbs area start-->
     <div class="breadcrumbs_area">
