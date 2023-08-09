@@ -120,11 +120,10 @@
                                                     </li>
                                                     <li><a href="#">other Pages</a>
                                                         <ul>
-                                                            <li><a href="cart.html">cart</a></li>
-                                                            <li><a href="wishlist.html">Wishlist</a></li>
-                                                            <li><a href="checkout.html">Checkout</a></li>
-                                                            <li><a href="my-account.html">my account</a></li>
-                                                            <li><a href="404.html">Error 404</a></li>
+                                                            <li><a href="{{route('cart.index')}}">cart</a></li>
+                                                            <li><a href="{{route('wishlist.index')}}">Wishlist</a></li>
+                                                            <li><a href="{{route('checkout.index')}}">Checkout</a></li>
+                                                            <li><a href="{{route('account.index')}}">my account</a></li>
                                                         </ul>
                                                     </li>
                                                     <li><a href="#">Product Types</a>
@@ -149,15 +148,13 @@
                                         </li>
                                         <li><a href="#">pages <i class="fa fa-angle-down"></i></a>
                                             <ul class="sub_menu pages">
-                                                <li><a href="about.html">About Us</a></li>
-                                                <li><a href="services.html">services</a></li>
-                                                <li><a href="faq.html">Frequently Questions</a></li>
-                                                <li><a href="contact.html">contact</a></li>
+                                                <li><a href="{{route('about.index')}}">About Us</a></li>
+                                                <li><a href="{{route('faq.index')}}">Frequently Questions</a></li>
+                                                <li><a href="{{route('contact.index')}}">contact</a></li>
                                                 <li><a href="login.html">login</a></li>
-                                                <li><a href="404.html">Error 404</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="contact.html"> Contact Us</a></li>
+                                        <li><a href="{{route('contact.index')}}"> Contact Us</a></li>
                                     </ul>
                                 </nav>
                             </div>
@@ -168,14 +165,14 @@
                                 <div class="header_account-list top_links">
                                     <a href="#"><i class="icon-users"></i></a>
                                     <ul class="dropdown_links">
-                                        <li><a href="checkout.html">Checkout </a></li>
-                                        <li><a href="my-account.html">My Account </a></li>
-                                        <li><a href="cart.html">Shopping Cart</a></li>
-                                        <li><a href="wishlist.html">Wishlist</a></li>
+                                        <li><a href="{{route('checkout.index')}}">Checkout </a></li>
+                                        <li><a href="{{route('account.index')}}">My Account </a></li>
+                                        <li><a href="{{route('cart.index')}}">Shopping Cart</a></li>
+                                        <li><a href="{{route('wishlist.index')}}">Wishlist</a></li>
                                     </ul>
                                 </div>
                                 <div class="header_account-list header_wishlist">
-                                    <a href="wishlist.html"><i class="icon-heart"></i></a>
+                                    <a href="{{route('wishlist.index')}}"><i class="icon-heart"></i></a>
                                 </div>
                                 <div class="header_account-list  mini_cart_wrapper">
                                     <a href="javascript:void(0)"><i class="icon-shopping-bag"></i><span
@@ -230,10 +227,10 @@
                                         </div>
                                         <div class="mini_cart_footer">
                                             <div class="cart_button">
-                                                <a href="cart.html"><i class="fa fa-shopping-cart"></i> View cart</a>
+                                                <a href="{{route('cart.index')}}"><i class="fa fa-shopping-cart"></i> View cart</a>
                                             </div>
                                             <div class="cart_button">
-                                                <a class="active" href="checkout.html"><i class="fa fa-sign-in"></i>
+                                                <a class="active" href="{{route('checkout.index')}}"><i class="fa fa-sign-in"></i>
                                                     Checkout</a>
                                             </div>
 
@@ -270,11 +267,11 @@
                             <h3>Information</h3>
                             <div class="footer_menu">
                                 <ul>
-                                    <li><a href="about.html">About Us</a></li>
-                                    <li><a href="checkout.html">Checkout</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
-                                    <li><a href="faq.html">Frequently Questions</a></li>
-                                    <li><a href="wishlist.html">Wishlist</a></li>
+                                    <li><a href="{{route('about.index')}}">About Us</a></li>
+                                    <li><a href="{{route('checkout.index')}}">Checkout</a></li>
+                                    <li><a href="{{route('contact.index')}}">Contact</a></li>
+                                    <li><a href="{{route('faq.index')}}">Frequently Questions</a></li>
+                                    <li><a href="{{route('wishlist.index')}}">Wishlist</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -282,7 +279,7 @@
                     <div class="col-lg-4 col-md-5">
                         <div class="widgets_container widget_app">
                             <div class="footer_logo">
-                                <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
+                                <a href="index.html"><img src="{{asset('assets/frontend/img/logo/logo.png')}}" alt=""></a>
                             </div>
                             <div class="footer_widgetnav_menu">
                                 <ul>
@@ -313,10 +310,10 @@
                             <h3>My Account</h3>
                             <div class="footer_menu">
                                 <ul>
-                                    <li><a href="my-account.html">My Account</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
-                                    <li><a href="cart.html">Shopping cart</a></li>
-                                    <li><a href="checkout.html">Checkout</a></li>
+                                    <li><a href="{{route('account.index')}}">My Account</a></li>
+                                    <li><a href="{{route('contact.index')}}">Contact</a></li>
+                                    <li><a href="{{route('cart.index')}}">Shopping cart</a></li>
+                                    <li><a href="{{route('checkout.index')}}">Checkout</a></li>
                                     <li><a href="shop.html">Shop</a></li>
                                     <li><a href="#">Order History</a></li>
                                 </ul>
@@ -328,11 +325,11 @@
                             <h3>Customer Service</h3>
                             <div class="footer_menu">
                                 <ul>
-                                    <li><a href="contact.html">Contact Us</a></li>
+                                    <li><a href="{{route('contact.index')}}">Contact Us</a></li>
                                     <li><a href="#">Terms of use</a></li>
                                     <li><a href="#">Privacy Policy</a></li>
-                                    <li><a href="contact.html">Site Map</a></li>
-                                    <li><a href="my-account.html">My Account</a></li>
+                                    <li><a href="{{route('contact.index')}}">Site Map</a></li>
+                                    <li><a href="{{route('account.index')}}">My Account</a></li>
                                     <li><a href="#">Returns</a></li>
                                 </ul>
                             </div>
