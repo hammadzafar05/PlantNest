@@ -8,10 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class PlantInfo extends Model
 {
     use HasFactory;
-protected $fillable = ['product_id', 'habits', 'lights', 'water_requirements', /* ... */];
+    protected $fillable = ['product_id', 'habits', 'lights', 'water_requirements', /* ... */];
 
-public function product()
-{
-    return $this->belongsTo(Product::class);
-}
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }

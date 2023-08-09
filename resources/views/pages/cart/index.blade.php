@@ -133,4 +133,17 @@
     </div>
 </div>
 <!--shopping cart area end -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            console.log('i ran');
+
+            // Remove active class from all li elements
+            $('nav ul li a').removeClass('active');
+
+            // Add active class to the clicked li element
+            $('#shop').addClass('active');
+        });
+    </script>
 @endsection
