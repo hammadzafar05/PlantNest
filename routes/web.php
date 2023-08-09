@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\User\AboutController;
 use App\Http\Controllers\User\AccountController;
 use App\Http\Controllers\User\CartController;
@@ -52,13 +53,19 @@ Route::get('/shop/product/detail',[ShopController::class,'detail'])->name('shop.
 
 
 //Admin Routes
-Route::middleware(['auth','isAdmin'])->prefix('admin')->name('admin.')->group(function () {
+Route::middleware([])->prefix('admin')->name('admin.')->group(function () {
+// Route::middleware(['auth','isAdmin'])->prefix('admin')->name('admin.')->group(function () {
 
     //Dashboard Controller
     Route::controller(DashboardController::class)->group(function () {
-
         Route::get('/','index');
-        Route::get('dashboard','index');
+        Route::get('dashboard','adminDashboard');
+
+    });
+    //User Controller
+    Route::controller(UserController::class)->group(function () {
+        Route::get('/users','index');
+        // Route::get('dashboard','dashboard');
 
     });
 
