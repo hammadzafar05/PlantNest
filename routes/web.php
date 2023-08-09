@@ -29,16 +29,22 @@ use Illuminate\Support\Facades\Route;
 //User Routes
 
 //Home Controller
-Route::controller(HomeController::class)->group(function () {
+Route::controller(HomeController::class)->name('user.')->group(function () {
 
     Route::get('/','index');
     Route::get('home','index');
 
+    //authenticated routes
+    Route::middleware(['auth'])->group(function(){
+
+        Route::get('home','index');
+
+    });
+
 });
 
 //Admin Routes
-
-Route::middleware(['auth','isAdmin'])->prefix('admin')->group(function () {
+Route::middleware(['auth','isAdmin'])->prefix('admin')->name('admin.')->group(function () {
 
     //Dashboard Controller
     Route::controller(DashboardController::class)->group(function () {
