@@ -326,6 +326,22 @@
 
             // Add active class to the clicked li element
             $('#shop').addClass('active');
+
+            $('.add_to_cart').click(function(){
+            if(localStorage.getItem('auth') == 'false')
+            {
+                Swal.fire({
+                title: 'You need to login First!',
+                text: 'Do you want to continue?',
+                icon: 'warning',
+                confirmButtonText: 'Login'
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location = "{{ route('login') }}";
+                }
+                })
+            }
+            })
         });
     </script>
 @endsection
