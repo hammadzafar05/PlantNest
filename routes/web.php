@@ -104,7 +104,8 @@ Route::middleware(['isAdmin','auth','prevent-back-history'])->prefix('admin')->n
     Route::controller(AdminProductController::class)->group(function () {
         //plant categories
         Route::get('product/allproducts','index')->name('showProducts');
-        Route::post('product/addProducts','store')->name('AddProducts');
+        Route::get('product/addProducts','create')->name('AddProducts');
+        Route::get('product/storeProducts','store')->name('StoreProducts');
         Route::get('product/product/edit/{category}','edit')->name('editProducts');
         Route::put('product/updateProducts','update')->name('UpdateProducts');
         Route::get('product/deleteProducts/{category}','destroy')->name('deleteProducts');

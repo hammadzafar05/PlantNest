@@ -43,7 +43,7 @@
                     <div class="navbar-brand-box">
                         <a href="{{ url('admin') }}" class="logo logo-dark">
                             <span class="logo-sm">
-                                <img src="{{ asset('assets/backend/images/logo-dark.png') }}" alt=""
+                                <img src="{{ asset('assets/backend/images/logo/logo-sm.png') }}" alt=""
                                     height="22">
                             </span>
                             <span class="logo-lg">
@@ -54,7 +54,7 @@
 
                         <a href="{{ url('admin') }}" class="logo logo-light">
                             <span class="logo-sm">
-                                <img src="{{ asset('assets/backend/images/logo-dark.png') }}" alt=""
+                                <img src="{{ asset('assets/backend/images/logo/logo-sm.png') }}" alt=""
                                     height="22">
                             </span>
                             <span class="logo-lg">
@@ -127,7 +127,7 @@
             <div class="navbar-brand-box">
                 <a href="{{ url('admin') }}" class="logo logo-dark">
                     <span class="logo-sm">
-                        <img src="{{ asset('assets/backend/logo/logo-light.png') }}" alt="" height="22">
+                        <img src="{{ asset('assets/backend/images/logo/logo-sm.png') }}" alt="" height="25">
                     </span>
                     <span class="logo-lg">
                         <img src="{{ asset('assets/backend/logo/logo.png') }}" alt="" height="40"

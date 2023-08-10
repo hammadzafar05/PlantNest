@@ -20,10 +20,9 @@ class ProductController extends Controller
 
     public function create()
     {
-        $categories = Category::all();
-        $discount=Discount::all();
-        $subcategory = Subcategory::all();
-        return view('admin.product.create', compact('categories','discount','subcategory'));
+        $_categories = Category::where('parent_id',0)->select('id','name','parent_id')->get();
+        // $_subcategory = Category::where('parent_id','!=',0)->select('id','name','parent_id')->get();
+        return view('admin.pages.product.create', ['_allCategories'=>$_categories]);
     }
 
     public function store(Request $request)

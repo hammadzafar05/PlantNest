@@ -20,7 +20,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->text('purpose')->nullable();
             $table->integer('stock');
-            $table->integer('status');
+            $table->integer('status')->default(1);
             $table->string('image_url')->nullable();
             $table->foreignId('category_id')->constrained('categories');
             $table->softDeletes();
