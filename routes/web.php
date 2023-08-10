@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\AccessoriesCategoryController;
+use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\PlantCategoriesController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\User\AboutController;
 use App\Http\Controllers\User\AccountController;
@@ -70,9 +73,27 @@ Route::middleware(['isAdmin','auth','prevent-back-history'])->prefix('admin')->n
     });
     //User Controller
     Route::controller(UserController::class)->group(function () {
-        Route::get('/users','index')->name('user');
-        // Route::get('dashboard','dashboard');
+        Route::get('usersList','index')->name('user');
+        Route::get('deleteUser/{user}','destroy')->name('deleteUsers');
 
+    });
+    //PLant Categories controller
+    Route::controller(PlantCategoriesController::class)->group(function () {
+        //plant categories
+        Route::get('categories/plantCategory','index')->name('showPlantCategories');
+        Route::post('categories/AddPlantCategory','store')->name('addPlantCategories');
+        Route::get('categories/editPlantCategory/{category}','edit')->name('editPlantCategories');
+        Route::put('categories/UpdatePlantCategory','update')->name('UpdatePlantCategories');
+        Route::get('categories/deletePlantCategory/{category}','destroy')->name('deletePlantCategories');
+    });
+    // PLant Categories controller
+    Route::controller(AccessoriesCategoryController::class)->group(function () {
+        //plant categories
+        Route::get('categories/AccessoryCategory','index')->name('showAccessoryCategories');
+        Route::post('categories/AddAccessoryCategory','store')->name('AddAccessoryCategories');
+        Route::get('categories/editAccessoryCategory/{category}','edit')->name('editAccessoryCategories');
+        Route::put('categories/UpdateAccessoryCategory','update')->name('UpdateAccessoryCategories');
+        Route::get('categories/deleteAccessoryCategory/{category}','destroy')->name('deleteAccessoryCategories');
     });
 
 });
