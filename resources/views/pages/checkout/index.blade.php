@@ -22,7 +22,7 @@
     <!--Checkout page section-->
     <div class="Checkout_section  mt-100" id="accordion">
         <div class="container">
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-12">
                     <div class="user-actions">
                         <h3>
@@ -74,7 +74,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <div class="checkout_form">
                 <div class="row">
                     <div class="col-lg-6 col-md-6">

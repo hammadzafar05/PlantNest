@@ -603,23 +603,23 @@ body[data-layout=horizontal] .footer {
 
 .mm-active>a {
     background-color: #f3f8fb;
-    color: #5b73e8 !important
+    color: #79a206 !important
 }
 
 .mm-active>a>i {
-    color: #5b73e8 !important
+    color: #79a206 !important
 }
 
 .mm-active .active {
-    color: #5b73e8 !important
+    color: #79a206 !important
 }
 
 .mm-active .active i {
-    color: #5b73e8 !important
+    color: #79a206 !important
 }
 
 .mm-active>i {
-    color: #5b73e8 !important
+    color: #79a206 !important
 }
 
 @media (max-width:992px) {

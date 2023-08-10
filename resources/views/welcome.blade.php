@@ -183,9 +183,9 @@
                                                                 class="icon-shopping-bag"></i></a></li>
                                                     <li class="compare"><a href="#" title="Add to Compare"><i
                                                                 class="icon-sliders"></i></a></li>
-                                                    <li class="wishlist"><a href="wishlist.html"
+                                                    {{-- <li class="wishlist"><a href="wishlist.html"
                                                             title="Add to Wishlist"><i class="icon-heart"></i></a>
-                                                    </li>
+                                                    </li> --}}
                                                     <li class="quick_button"><a href="#" data-bs-toggle="modal"
                                                             data-bs-target="#modal_box" title="quick view"> <i
                                                                 class="icon-eye"></i></a></li>

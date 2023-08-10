@@ -158,14 +158,13 @@
                                     <a href="#"><i class="icon-users"></i></a>
                                     <ul class="dropdown_links">
                                         @auth
+                                            @if (auth()->user()->role === 'xxsa')
+                                                <li><a href="{{ route('admin.dashboard') }}">Dashboard </a></li>
+                                            @endif
                                             <li><a href="{{ route('checkout.index') }}">Checkout </a></li>
                                             <li><a href="{{ route('cart.index') }}">Shopping Cart</a></li>
                                             <li><a href="{{ route('wishlist.index') }}">Wishlist</a></li>
-                                            @if (auth()->user()->role == 'xxca')
-                                                <li><a href="{{ route('account.index') }}">My Account </a></li>
-                                            @else
-                                                <li><a href="{{ route('admin.dashboard') }}">Dashboard </a></li>
-                                            @endif
+                                            <li><a href="{{ route('account.index') }}">My Account </a></li>
                                             <li><a href="{{ route('logout') }}">logout</a></li>
                                         @endauth
                                         @guest
