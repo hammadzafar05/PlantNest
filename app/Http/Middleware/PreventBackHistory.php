@@ -13,7 +13,7 @@ class PreventBackHistory
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle($request, Closure $next)
     {
         $response = $next($request);
         $response->headers->set('Cache-Control','nocache, no-store, max-age=0, must-revalidate');

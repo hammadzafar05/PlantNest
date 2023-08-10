@@ -1,19 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\user;
+use App\Models\category;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class AccessoriesCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('admin.pages.users',['users'=>User::get()]);
+        return view('admin.pages.categories.accessories.index', ['categories' => Category::get()]);
     }
 
     /**
@@ -35,7 +34,7 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(user $user)
+    public function show(category $category)
     {
         //
     }
@@ -43,7 +42,7 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(user $user)
+    public function edit(category $category)
     {
         //
     }
@@ -51,7 +50,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, user $user)
+    public function update(Request $request, category $category)
     {
         //
     }
@@ -59,12 +58,8 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(user $user)
+    public function destroy(category $category)
     {
-        
-        if($user->delete())
-        {
-            return redirect()->back()->with('success','User deleted successfully!');
-        }
+        //
     }
 }
