@@ -41,17 +41,38 @@ class Product extends Model
         return $this->hasMany(ProductImage::class);
     }
 
-    public function carts()
+    public function cartItems()
     {
-        return $this->belongsToMany(Cart::class);
+        return $this->belongsToMany(CartItem::class);
     }
+
+    public function plantInfo()
+    {
+        return $this->hasOne(PlantInfo::class);
+    }
+    
 
     public function orderItems()
     {
         return $this->hasMany(OrderItem::class);
     }
-    public function plantInfo()
+
+    public function reviews()
     {
-        return $this->hasOne(PlantInfo::class);
+        return $this->hasMany(Review::class);
+    }
+
+    public function searchFilters()
+    {
+        return $this->hasMany(SearchFilter::class);
+    }
+
+    public function wishlistItems()
+    {
+        return $this->hasMany(WishlistItem::class);
+    }
+    public function clickedItems()
+    {
+        return $this->hasMany(ClickedItem::class);
     }
 }
