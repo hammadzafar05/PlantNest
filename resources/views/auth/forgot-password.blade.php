@@ -35,9 +35,9 @@
                         @csrf
                         <p>
                             <label>Email <span>*</span></label>
-                            <input type="email" name="email" value="{{ old('email') }}">
+                            <input type="email" name="email" value="{{ old('email') }}" autocomplete="off" autofocus>
                             @error('email')
-                            <span class="error">{{ $message }}</span>
+                            <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </p>
                         <div class="login_submit">

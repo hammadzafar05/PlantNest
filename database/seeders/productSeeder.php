@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Category;
 use App\Models\PlantInfo;
 use App\Models\Product;
+use App\Models\ProductImage;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -40,7 +41,7 @@ class productSeeder extends Seeder
         $faker = \Faker\Factory::create();
 
         foreach ($categories as $category) {
-            for ($i = 1; $i <= 5; $i++) {
+            for ($i = 1; $i <= 35; $i++) {
                 $product = Product::create([
                     'name' => $faker->word,
                     'species' => $faker->word,
@@ -53,7 +54,16 @@ class productSeeder extends Seeder
                     'image_url' => $faker->imageUrl(),
                     'category_id' => $category->id,
                 ]);
+              
+                    $imageCount = rand(2, 4);
+                    for ($j = 0; $j < $imageCount; $j++) { // Use $j as the inner loop variable
+                        ProductImage::create([
+                            'product_id' => $product->id,
+                            'image_url' => $faker->imageUrl(),
+                        ]);
+                    }
 
+               
                 // Seed PlantInfo for plant products
                 if ($category->parent_id === $plantsCategory->id) {
                     PlantInfo::create([

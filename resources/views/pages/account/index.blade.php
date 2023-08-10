@@ -181,7 +181,7 @@
 
 <script>
     $(document).ready(function() {
-        console.log('i ran');
+        // console.log('i ran');
 
         // Remove active class from all li elements
         $('nav ul li a').removeClass('active');

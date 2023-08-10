@@ -51,8 +51,8 @@ Route::get('/account',[AccountController::class,'index'])->name('account.index')
 Route::get('/contact',[ContactController::class,'index'])->name('contact.index');
 Route::get('/about',[AboutController::class,'index'])->name('about.index');
 Route::get('/faq',[FaqController::class,'index'])->name('faq.index');
-Route::get('/shop',[ShopController::class,'index'])->name('shop.index');
-Route::get('/shop/product/detail',[ShopController::class,'detail'])->name('shop.detail');
+Route::get('/shop/{id?}',[ShopController::class,'index'])->name('shop.index');
+Route::get('/shop/product/detail/{id?}',[ShopController::class,'detail'])->name('shop.detail');
 
 
 //Admin Routes

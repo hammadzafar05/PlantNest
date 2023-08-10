@@ -20,13 +20,23 @@ class Product extends Model
         'image_url',
         'category_id',
     ];
+    protected $appends = ['discount_percentage'];
+
+    public function getDiscountPercentageAttribute()
+    {
+        if ($this->discount > 0 && $this->discount < 100) {
+            return round(($this->discount / $this->price) * 100);
+        }
+
+        return null;
+    }
 
     public function category()
     {
         return $this->belongsTo(Category::class);
     }
 
-    public function productImages()
+    public function images()
     {
         return $this->hasMany(ProductImage::class);
     }
@@ -39,5 +49,9 @@ class Product extends Model
     public function orderItems()
     {
         return $this->hasMany(OrderItem::class);
+    }
+    public function plantInfo()
+    {
+        return $this->hasOne(PlantInfo::class);
     }
 }

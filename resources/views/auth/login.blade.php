@@ -30,23 +30,23 @@
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                         <p>
-                            <label>Email <span>*</span></label>
-                            <input type="email" name="email" value="{{ old('email') }}" autocomplete="off">
+                            <label for="email">Email <span>*</span></label>
+                            <input type="email" id="email" name="email" value="{{ old('email') }}" autocomplete="off">
                             @error('email')
-                            <span class="text-error">{{ $message }}</span>
+                            <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </p>
                         <p>
-                            <label>Passwords <span>*</span></label>
-                            <input type="password" name="password" autocomplete="off">
+                            <label for="password">Passwords <span>*</span></label>
+                            <input type="password" id="password" name="password" autocomplete="off" required>
                             @error('password')
-                            <span class="text-error">{{ $message }}</span>
+                            <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </p>
                         <div class="login_submit">
-                            @if (Route::has('password.request'))
+                            {{-- @if (Route::has('password.request'))
                             <a href="{{ route('password.request') }}">Lost your password?</a>
-                            @endif
+                            @endif --}}
                             <label for="remember">
                                 <input id="remember" type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
                                 Remember me

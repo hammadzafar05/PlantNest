@@ -57,8 +57,10 @@
                     <div class="banner_thumb">
                         <a href="shop.html"><img src="{{asset('assets/frontend/img/bg/banner1.jpg')}}" alt=""></a>
                         <div class="banner_content">
-                            <h3>Big Sale Products</h3>
-                            <h2>Plants <br> For Interior</h2>
+                            {{-- {{$plantCategory}} --}}
+
+                            <h3> Products</h3>
+                            <h2>Plants <br> For Gardens</h2>
                             <a href="shop.html">Shop Now</a>
                         </div>
                     </div>
@@ -70,7 +72,9 @@
                         <a href="shop.html"><img src="{{asset('assets/frontend/img/bg/banner2.jpg')}}" alt=""></a>
                         <div class="banner_content">
                             <h3>Top Products</h3>
-                            <h2>Plants <br> For Healthy</h2>
+{{-- {{$accessortCategory}} --}}
+
+                            <h2>Shop <br> For Accessories</h2>
                             <a href="shop.html">Shop Now</a>
                         </div>
                     </div>
@@ -1796,7 +1800,7 @@
 <!--product area end-->
 
 <!--blog area start-->
-<section class="blog_section blog_five">
+{{-- <section class="blog_section blog_five">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -1894,7 +1898,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 <!--blog area end-->
 
 <!--newsletter area start-->
