@@ -35,21 +35,21 @@
                             <label>Name <span>*</span></label>
                             <input type="text" name="name" value="{{ old('name') }}">
                             @error('name')
-                            <span class="error">{{ $message }}</span>
+                            <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </p>
                         <p>
                             <label>Email address <span>*</span></label>
                             <input type="email" name="email" value="{{ old('email') }}">
                             @error('email')
-                            <span class="error">{{ $message }}</span>
+                            <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </p>
                         <p>
                             <label>Passwords <span>*</span></label>
                             <input type="password" name="password">
                             @error('password')
-                            <span class="error">{{ $message }}</span>
+                            <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </p>
                         <p>

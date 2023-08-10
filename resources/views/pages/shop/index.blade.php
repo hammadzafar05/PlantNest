@@ -90,7 +90,7 @@
 
                                 </ul>
                             </div>
-                            <div class="widget_list widget_color">
+                            {{-- <div class="widget_list widget_color">
                                 <h3>Select By SIze</h3>
                                 <ul>
                                     <li>
@@ -110,8 +110,8 @@
                                     </li>
 
                                 </ul>
-                            </div>
-                            <div class="widget_list widget_manu">
+                            </div> --}}
+                            {{-- <div class="widget_list widget_manu">
                                 <h3>Manufacturer</h3>
                                 <ul>
                                     <li>
@@ -131,7 +131,7 @@
                                     </li>
 
                                 </ul>
-                            </div>
+                            </div> --}}
                             <div class="widget_list tags_widget">
                                 <h3>Product tags</h3>
                                 <div class="tag_cloud">
@@ -145,7 +145,7 @@
                                     <a href="#">Shoes</a>
                                 </div>
                             </div>
-                            <div class="widget_list">
+                            {{-- <div class="widget_list">
                                 <h3>Compare</h3>
                                 <div class="shop_sidebar_product">
                                     <article class="single_product">
@@ -236,7 +236,7 @@
                                         </figure>
                                     </article>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </aside>
                     <!--sidebar widget end-->

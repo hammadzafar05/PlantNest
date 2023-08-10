@@ -53,7 +53,7 @@
             </ul>
         </li>
         <li>
-            <a href="" class=" waves-effect">
+            <a href="{{ route('admin.user') }}" class=" waves-effect">
                 <i class="fa fa-user"></i>
                 <span>Users</span>
             </a>
