@@ -9,7 +9,7 @@
                     <div class="breadcrumb_content">
                         <h3>Shop</h3>
                         <ul>
-                            <li><a href="index.html">home</a></li>
+                            <li><a href="{{route('user.home')}}">home</a></li>
                             <li>shop</li>
                         </ul>
                     </div>
@@ -284,7 +284,7 @@
                                             <a class="primary_img" href={{ route('shop.detail', $product->id) }}><img
                                                     src="{{ $product->image_url }}" alt=""></a>
                                             <div class="label_product">
-                                                @if ($product->discount_percentage !== null)
+                                                @if ($product->discount_percentage >0)
                                                     <span class="label_sale">- {{ $product->discount_percentage }}%</span>
                                                 @endif
                                             </div>
@@ -325,7 +325,7 @@
                                                         href={{ route('shop.detail', $product->id) }}>{{ $product->name }}</a>
                                                 </h4>
                                                 <div class="price_box">
-                                                    @if ($product->discount_percentage !== null)
+                                                    @if ($product->discount_percentage >0)
                                                         <span class="current_price">PKR
                                                             {{ $product->price - $product->discount }}</span>
                                                         <span class="old_price">PKR {{ $product->price }}</span>
@@ -349,7 +349,7 @@
                                                     href={{ route('shop.detail', $product->id) }}>{{ $product->name }}</a>
                                             </h4>
                                             <div class="price_box">
-                                                @if ($product->discount_percentage !== null)
+                                                @if ($product->discount_percentage >0)
                                                     <span class="current_price">PKR
                                                         {{ $product->price - $product->discount }}</span>
                                                     <span class="old_price">PKR {{ $product->price }}</span>
@@ -427,8 +427,8 @@
                                                                         <li>
                                                                             <a class="nav-link"
                                                                                 data-bs-toggle="tab{{ $image->id }}"
-                                                                                href="#tab4" role="tab"
-                                                                                aria-controls="tab4"
+                                                                                href="#tab{{$image->id}}" role="tab"
+                                                                                aria-controls="tab{{$image->id}}"
                                                                                 aria-selected="false"><img
                                                                                     src="{{ $image->image_url }}"
                                                                                     alt=""></a>
@@ -445,7 +445,7 @@
                                                                 <h2>{{ $product->name }}</h2>
                                                             </div>
                                                             <div class="modal_price mb-10">
-                                                                @if ($product->discount_percentage !== null)
+                                                                @if ($product->discount_percentage>0)
                                                                     <span class="current_price">PKR
                                                                         {{ $product->price - $product->discount }}</span>
                                                                     <span class="old_price">PKR

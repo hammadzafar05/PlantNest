@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 
 class ShopController extends Controller
 {
-    public function index($id=null){
+    public function index($id = null)
+    {
         $query = Product::query();
 
         if ($id !== null) {
@@ -16,12 +17,20 @@ class ShopController extends Controller
                 $subquery->where('id', $id);
             });
         }
-    
+
         $products = $query->with('plantInfo', 'category', 'images')
-                          ->paginate(12);
-        return view('pages.shop.index',compact('products'));
+            ->paginate(12);
+        return view('pages.shop.index', compact('products'));
     }
-    public function detail(){
-        return view('pages.shop.detail');
+    public function detail($id)
+    {
+        $product = Product::with('plantInfo', 'category', 'images')->find($id);
+
+        $relatedProducts = Product::with('plantInfo', 'category', 'images')
+            ->where('category_id', $product->category_id)->get()
+            ->take(8);
+
+            // dd($relatedProducts);
+        return view('pages.shop.detail', compact('product','relatedProducts'));
     }
 }
