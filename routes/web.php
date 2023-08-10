@@ -42,16 +42,21 @@ Route::controller(HomeController::class)->group(function () {
 });
 // cartController
 Route::get('/cart',[CartController::class,'index'])->name('cart.index');
+Route::post('/cart/add/{id}',[CartController::class,'add'])->name('cart.add');
+Route::post('/cart/updateQuantity/{id}',[CartController::class,'updateQuantity'])->name('cart.updateQuantity');
+
+
 Route::get('/checkout',[CheckoutController::class,'index'])->name('checkout.index');
-Route::get('/wishlist',[WhishListController::class,'index'])->name('wishlist.index');
-// Route::get('/account',[AccountController::class,'index'])->name('account.index');
+Route::get('/account',[AccountController::class,'index'])->name('account.index');
 Route::get('/contact',[ContactController::class,'index'])->name('contact.index');
 Route::get('/about',[AboutController::class,'index'])->name('about.index');
 Route::get('/faq',[FaqController::class,'index'])->name('faq.index');
 Route::get('/shop/{id?}',[ShopController::class,'index'])->name('shop.index');
 Route::get('/shop/product/detail/{id?}',[ShopController::class,'detail'])->name('shop.detail');
 
-
+Route::get('/wishlist',[WhishListController::class,'index'])->name('wishlist.index');
+Route::post('/wishlist/add/{id}', [WishlistControlle::class,'addToWishlist'])->name('wishlist.add');
+Route::post('/wishlist/remove/{id}', [WishlistControlle::class,'removeFromWishlist'])->name('wishlist.remove');
 //Admin Routes
 Route::middleware(['isAdmin','auth','prevent-back-history'])->prefix('admin')->name('admin.')->group(function () {
 // Route::middleware(['auth','isAdmin'])->prefix('admin')->name('admin.')->group(function () {
