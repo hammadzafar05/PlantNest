@@ -308,10 +308,9 @@
                             </div>
                             <div class="footer_app">
                                 <ul>
-                                    <li><a href="#"><img src="assets/img/icon/icon-app.jpg" alt=""></a>
+                                    <li><a href="#"><img src="{{ asset('assets/frontend/img/icon/icon-app.jpg') }}" alt=""></a>
                                     </li>
-                                    <li><a href="#"><img src="assets/img/icon/icon1-app.jpg"
-                                                alt=""></a></li>
+                                    <li><a href="#"><img src="{{ asset('assets/frontend/img/icon/icon1-app.jpg') }}" alt=""></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -377,7 +376,7 @@
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <div class="footer_payment">
-                            <a href="#"><img src="assets/img/icon/payment.png" alt=""></a>
+                            <a href="#"><img src="{{ asset('assets/frontend/img/icon/payment.png') }}" alt=""></a>
                         </div>
                     </div>
                 </div>
