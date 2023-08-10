@@ -21,7 +21,7 @@
                                 </div> --}}
                                 <div class="flex-1 overflow-hidden">
                                     <h5 class="font-size-16 mb-1">UPDATE SUB CATEGORY</h5>
-                                    <p class="text-muted text-truncate mb-0">Update plant sub category below</p>
+                                    <p class="text-muted text-truncate mb-0">Update accesory sub category below</p>
                                 </div>
                                 <i class="mdi mdi-chevron-up accor-down-icon font-size-24"></i>
                             </div>
@@ -31,7 +31,7 @@
     
                     <div id="addproduct-billinginfo-collapse" class="collapse show" data-bs-parent="#addproduct-accordion">
                         <div class="p-4 border-top">
-                            <form method="post" action="{{url('admin/categories/UpdatePlantCategory')}}" enctype="multipart/form-data">
+                            <form method="post" action="{{url('admin/categories/UpdateAccessoryCategory')}}" enctype="multipart/form-data">
                                 @method('PUT')
                                 @csrf
                                 <div class="row">

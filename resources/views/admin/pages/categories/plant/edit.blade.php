@@ -31,7 +31,7 @@
     
                     <div id="addproduct-billinginfo-collapse" class="collapse show" data-bs-parent="#addproduct-accordion">
                         <div class="p-4 border-top">
-                            <form method="post" action="{{url('admin/categories/UpdateAccessoryCategory')}}" enctype="multipart/form-data">
+                            <form method="post" action="{{url('admin/categories/UpdatePlantCategory')}}" enctype="multipart/form-data">
                                 @method('PUT')
                                 @csrf
                                 <div class="row">

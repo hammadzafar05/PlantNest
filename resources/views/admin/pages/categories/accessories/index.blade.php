@@ -92,7 +92,7 @@
                                     <th>Name</th>
                                     <th>Action</th>
                                 </tr>
-                                @foreach ($categories as $category)
+                                @foreach ($accessoriesCategories as $category)
                                     <tr>
                                         <td>{{ $i++ }}</td>
                                         <td>{{ $category->name }}</td>

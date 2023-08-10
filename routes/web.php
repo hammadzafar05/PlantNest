@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\AccessoriesCategoryController;
-use App\Http\Controllers\Admin\CategoriesController;
+use App\Http\Controllers\Admin\AccessoriesCategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PlantCategoriesController;
+use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\User\AboutController;
 use App\Http\Controllers\User\AccountController;
@@ -85,10 +85,19 @@ Route::middleware(['isAdmin','auth','prevent-back-history'])->prefix('admin')->n
     Route::controller(AccessoriesCategoryController::class)->group(function () {
         //plant categories
         Route::get('categories/AccessoryCategory','index')->name('showAccessoryCategories');
-        Route::post('categories/AddAccessoryCategory','store')->name('AddAccessoryCategories');
+        Route::post('categories/AddAccesoriesCategory','store')->name('AddAccessoryCategories');
         Route::get('categories/editAccessoryCategory/{category}','edit')->name('editAccessoryCategories');
         Route::put('categories/UpdateAccessoryCategory','update')->name('UpdateAccessoryCategories');
         Route::get('categories/deleteAccessoryCategory/{category}','destroy')->name('deleteAccessoryCategories');
+    });
+    // Produc controller
+    Route::controller(AdminProductController::class)->group(function () {
+        //plant categories
+        Route::get('product/allproducts','index')->name('showProducts');
+        Route::post('product/addProducts','store')->name('AddProducts');
+        Route::get('product/product/edit/{category}','edit')->name('editProducts');
+        Route::put('product/updateProducts','update')->name('UpdateProducts');
+        Route::get('product/deleteProducts/{category}','destroy')->name('deleteProducts');
     });
 
 });

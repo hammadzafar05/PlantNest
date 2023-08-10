@@ -10,6 +10,28 @@
                 <span>Dashboard</span>
             </a>
          </li>
+         <li>
+            <a href="javascript: void(0);" class="has-arrow waves-effect">
+                <i class="uil-store"></i>
+                <span>Product</span>
+            </a>
+            <ul class="sub-menu" aria-expanded="false">
+                <li><a href="{{url('admin/product/addProducts')}}">Add Product</a></li>
+                <li><a href="{{url('admin/product/allproducts')}}">Products</a></li>
+
+            </ul>
+        </li>
+        <li>
+            <a href="javascript: void(0);" class="has-arrow waves-effect">
+                <i class="uil-store"></i>
+                <span>Categories</span>
+            </a>
+            <ul class="sub-menu" aria-expanded="false">
+                <li><a href="{{url('admin/categories/plantCategory')}}">Plants</a></li>
+                <li><a href="{{url('admin/categories/AccessoryCategory')}}">Accesories</a></li>
+                
+            </ul>
+        </li>
         <li>
             <a href="{{url('admin/usersList')}}">
                 <i class="uil-home-alt">
@@ -18,49 +40,6 @@
                 <span>Users</span>
             </a>
          </li>
-         <li>
-            <a href="javascript: void(0);" class="has-arrow waves-effect">
-                <i class="uil-store"></i>
-                <span>Categories</span>
-            </a>
-            <ul class="sub-menu" aria-expanded="false">
-                <li><a href="{{url('admin/categories/plantCategory')}}">Plants</a></li>
-                <li><a href="{{url('admin/categories/AccessoryCategory')}}">Accesories</a></li>
-
-            </ul>
-        </li>
-       {{-- <li>
-            <a href="javascript: void(0);" class="has-arrow waves-effect">
-                <i class="uil-store"></i>
-                <span>Product</span>
-            </a>
-            <ul class="sub-menu" aria-expanded="false">
-                <li><a href="{{route('product.create')}}">Add Product</a></li>
-                <li><a href="{{route('product.index')}}">Products</a></li>
-
-            </ul>
-        </li>
-        <li>
-            <a href="javascript: void(0);" class="has-arrow waves-effect">
-            <i class="fa fa-list-alt"></i>
-              <span>Category</span>
-            </a>
-            <ul class="sub-menu" aria-expanded="false">
-                <li><a href="{{route('category.create')}}">Add Category</a></li>
-                <li><a href="{{route('category.index')}}">Category List</a></li>
-
-            </ul>
-        </li>
-        <li>
-            <a href="javascript: void(0);" class="has-arrow waves-effect">
-            <i class="fa fa-list"></i>
-            <span>SubCategory</span>
-            </a>
-            <ul class="sub-menu" aria-expanded="false">
-                <li><a href="{{route('subcategory.create')}}">Add SubCategory</a></li>
-                <li><a href="{{route('subcategory.index')}}">SubCategory List</a></li>
-
-            </ul>
         </li>
         <li>
             <a href="javascript: void(0);" class="has-arrow waves-effect">
@@ -68,38 +47,38 @@
                 <span>Discount</span>
             </a>
             <ul class="sub-menu" aria-expanded="false">
-                <li><a href="{{route('discount.create')}}">Add Discount</a></li>
-                <li><a href="{{route('discount.index')}}">Discount List</a></li>
+                <li><a href="">Add Discount</a></li>
+                <li><a href="">Discount List</a></li>
 
             </ul>
         </li>
         <li>
-            <a href="{{route('admin.userlist')}}" class=" waves-effect">
+            <a href="" class=" waves-effect">
                 <i class="fa fa-user"></i>
                 <span>Users</span>
             </a>
         </li>
 
         <li>
-            <a href="{{route('admin.orderlist')}}" class=" waves-effect">
+            <a href="" class=" waves-effect">
             <i class="fa-solid fa-cart-shopping"></i>
                 <span>Orders</span>
             </a>
         </li>
 
         <li>
-            <a href="{{route('admin.contact')}}" class=" waves-effect">
+            <a href="" class=" waves-effect">
             <i class="fa fa-envelope"></i>
                 <span>Contact Messages</span>
             </a>
         </li>
 
         <li>
-            <a href="{{route('admin.feedbacklist')}}" class=" waves-effect">
+            <a href="" class=" waves-effect">
                 <i class="fa fa-star"></i>
                 <span>Feedback</span>
             </a>
-        </li> --}}
+        </li> 
 
     </ul>
 </div>
