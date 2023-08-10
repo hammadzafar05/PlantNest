@@ -17,6 +17,11 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): View
     {
+        if(!session()->has('url.intended'))
+        {
+            session(['url.intended' => url()->previous()]);
+        }
+
         return view('auth.login');
     }
 
@@ -34,7 +39,8 @@ class AuthenticatedSessionController extends Controller
             return redirect()->intended(RouteServiceProvider::DASHBOARD);    
         }
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        return redirect(session()->get('url.intended'));
+        // return redirect()->intended(RouteServiceProvider::HOME);
     }
 
     /**

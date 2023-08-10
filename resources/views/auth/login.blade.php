@@ -31,7 +31,7 @@
                         @csrf
                         <p>
                             <label for="email">Email <span>*</span></label>
-                            <input type="email" id="email" name="email" value="{{ old('email') }}" autocomplete="off">
+                            <input type="email" id="email" name="email" value="{{ old('email') }}" autocomplete="off" autofocus>
                             @error('email')
                             <span class="text-danger">{{ $message }}</span>
                             @enderror
