@@ -93,7 +93,7 @@
                             <div class="main_menu menu_position">
                                 <nav>
                                     <ul>
-                                        <li id="home"><a class="" id="home" href="{{route('user.home')}}">home</a>
+                                        <li @if(Route::currentRouteName() == route('user.home')) class="active"  @endif id="home"><a class="" id="home" href="{{route('user.home')}}">home</a>
                                             
                                         </li>
                                         {{-- @foreach ($categories as $category )
@@ -132,9 +132,9 @@
                                         
                                         
                                        
-                                        <li id="faq"><a href="{{route('faq.index')}}"> Faq</a></li>
-                                        <li id="about"><a href="{{route('about.index')}}"> About Us</a></li>
-                                        <li id="contact"><a href="{{route('contact.index')}}"> Contact Us</a></li>
+                                        <li @if(Route::currentRouteName() == route('faq.index')) class="active"  @endif id="faq"><a href="{{route('faq.index')}}"> Faq</a></li>
+                                        <li @if(Route::currentRouteName() == route('about.index')) class="active"  @endif id="about"><a href="{{route('about.index')}}"> About Us</a></li>
+                                        <li @if(Route::currentRouteName() == route('contact.index')) class="active"  @endif id="contact"><a href="{{route('contact.index')}}"> Contact Us</a></li>
                                     </ul>
                                 </nav>
                             </div>
