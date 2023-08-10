@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Category;
 use App\Models\PlantInfo;
 use App\Models\Product;
+use App\Models\ProductImage;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -53,7 +54,17 @@ class productSeeder extends Seeder
                     'image_url' => $faker->imageUrl(),
                     'category_id' => $category->id,
                 ]);
+              
+                    $imageCount = rand(2, 4);
+                    for ($i=0; $i <= $imageCount ; $i++) { 
+                        # code...
+                        ProductImage::create([
+                            'product_id' => $product->id,
+                            'image_url' => $faker->imageUrl(),
+                        ]);
+                    }
 
+               
                 // Seed PlantInfo for plant products
                 if ($category->parent_id === $plantsCategory->id) {
                     PlantInfo::create([

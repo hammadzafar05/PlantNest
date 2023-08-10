@@ -151,15 +151,15 @@
                                     <article class="single_product">
                                         <figure>
                                             <div class="product_thumb">
-                                                <a class="primary_img" href="product-details.html"><img
+                                                <a class="primary_img" href="{{route('shop.detail',$product->id)}}"><img
                                                         src="{{ asset('assets/frontend/img/product/product10.jpg') }}"
                                                         alt=""></a>
-                                                <a class="secondary_img" href="product-details.html"><img
+                                                <a class="secondary_img" href="{{route('shop.detail',$product->id)}}"><img
                                                         src="{{ asset('assets/frontend/img/product/product2.jpg') }}"
                                                         alt=""></a>
                                             </div>
                                             <figcaption class="product_content">
-                                                <h4 class="product_name"><a href="product-details.html">Donec Non
+                                                <h4 class="product_name"><a href="{{route('shop.detail',$product->id)}}">Donec Non
                                                         Est</a></h4>
                                                 <div class="product_rating">
                                                     <ul>
@@ -180,16 +180,15 @@
                                     <article class="single_product">
                                         <figure>
                                             <div class="product_thumb">
-                                                <a class="primary_img" href="product-details.html"><img
+                                                <a class="primary_img" href="{{route('shop.detail',$product->id)}}"><img
                                                         src="{{ asset('assets/frontend/img/product/product9.jpg') }}"
                                                         alt=""></a>
-                                                <a class="secondary_img" href="product-details.html"><img
+                                                <a class="secondary_img" href="{{route('shop.detail',$product->id)}}"><img
                                                         src="{{ asset('assets/frontend/img/product/product3.jpg') }}"
                                                         alt=""></a>
                                             </div>
                                             <figcaption class="product_content">
-                                                <h4 class="product_name"><a href="product-details.html">Cas Meque
-                                                        Metus</a></h4>
+                                                <h4 class="product_name"><a href="{{route('shop.detail',$product->id)}}">{{$product->name}}</a></h4>
                                                 <div class="product_rating">
                                                     <ul>
                                                         <li><a href="#"><i class="icon-star"></i></a></li>
@@ -209,15 +208,15 @@
                                     <article class="single_product">
                                         <figure>
                                             <div class="product_thumb">
-                                                <a class="primary_img" href="product-details.html"><img
+                                                <a class="primary_img" href="{{route('shop.detail',$product->id)}}"><img
                                                         src="{{ asset('assets/frontend/img/product/product8.jpg') }}"
                                                         alt=""></a>
-                                                <a class="secondary_img" href="product-details.html"><img
+                                                <a class="secondary_img" href="{{route('shop.detail',$product->id)}}"><img
                                                         src="{{ asset('assets/frontend/img/product/product4.jpg') }}"
                                                         alt=""></a>
                                             </div>
                                             <figcaption class="product_content">
-                                                <h4 class="product_name"><a href="product-details.html"> commodo
+                                                <h4 class="product_name"><a href="{{route('shop.detail',$product->id)}}"> commodo
                                                         augue</a></h4>
                                                 <div class="product_rating">
                                                     <ul>
@@ -281,7 +280,7 @@
                                 <article class="single_product">
                                     <figure>
                                         <div class="product_thumb">
-                                            <a class="primary_img" href="product-details.html"><img
+                                            <a class="primary_img" href="{{route('shop.detail',$product->id)}}"><img
                                                     src="{{ asset('assets/frontend/img/product/product1.jpg') }}"
                                                     alt=""></a>
                                             <div class="label_product">
@@ -298,17 +297,18 @@
                                                     <li class="wishlist"><a href="wishlist.html"
                                                             title="Add to Wishlist"><i class="icon-heart"></i></a></li>
                                                     <li class="quick_button"><a href="#" data-bs-toggle="modal"
-                                                            data-bs-target="#modal_box" title="quick view"> <i
-                                                                class="icon-eye"></i></a></li>
+                                                            data-bs-target="#modal_box{{ $product->id }}"
+                                                            title="quick view"> <i class="icon-eye"></i></a></li>
                                                 </ul>
                                             </div>
                                             <div class="action_links list_action">
                                                 <ul>
                                                     <li class="quick_button"><a href="#" data-bs-toggle="modal"
-                                                            data-bs-target="#modal_box" title="quick view"> <i
-                                                                class="icon-eye"></i></a></li>
+                                                            data-bs-target="#modal_box{{ $product->id }}"
+                                                            title="quick view"> <i class="icon-eye"></i></a></li>
                                                 </ul>
                                             </div>
+
                                         </div>
                                         <div class="product_content grid_content">
                                             <div class="product_price_rating">
@@ -322,7 +322,7 @@
                                                     </ul>
                                                 </div>
                                                 <h4 class="product_name"><a
-                                                        href="product-details.html">{{ $product->name }}</a></h4>
+                                                        href="{{route('shop.detail',$product->id)}}">{{ $product->name }}</a></h4>
                                                 <div class="price_box">
                                                     @if ($product->discount_percentage !== null)
                                                         <span class="current_price">PKR
@@ -345,19 +345,19 @@
                                                 </ul>
                                             </div>
                                             <h4 class="product_name"><a
-                                                    href="product-details.html">{{ $product->name }}</a>
+                                                    href="{{route('shop.detail',$product->id)}}">{{ $product->name }}</a>
                                             </h4>
                                             <div class="price_box">
                                                 @if ($product->discount_percentage !== null)
-                                                <span class="current_price">PKR
-                                                    {{ $product->price - $product->discount }}</span>
-                                                <span class="old_price">PKR {{ $product->price }}</span>
-                                            @else
-                                                <span class="current_price">PKR {{ $product->price }}</span>
-                                            @endif
+                                                    <span class="current_price">PKR
+                                                        {{ $product->price - $product->discount }}</span>
+                                                    <span class="old_price">PKR {{ $product->price }}</span>
+                                                @else
+                                                    <span class="current_price">PKR {{ $product->price }}</span>
+                                                @endif
                                             </div>
                                             <div class="product_desc">
-                                                <p>{{$product->description}}</p>
+                                                <p>{{ $product->description }}</p>
                                             </div>
                                             <div class="action_links list_action_right">
                                                 <ul>
@@ -375,6 +375,145 @@
                                     </figure>
                                 </article>
                             </div>
+                            <!-- modal area start-->
+                            <div class="modal fade" id="modal_box{{ $product->id }}" tabindex="-1" role="dialog"
+                                aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <button type="button" class="close" data-bs-dismiss="modal"
+                                            aria-label="Close">
+                                            <span aria-hidden="true"><i class="icon-x"></i></span>
+                                        </button>
+                                        <div class="modal_body">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-lg-5 col-md-5 col-sm-12">
+                                                        <div class="modal_tab">
+                                                            <div class="tab-content product-details-large">
+                                                                <div class="tab-pane fade show active" id="tab1"
+                                                                    role="tabpanel">
+                                                                    <div class="modal_tab_img">
+                                                                        <a href="#"><img
+                                                                                src="{{ asset('assets/img/product/productbig1.jpg') }}"
+                                                                                alt=""></a>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="tab-pane fade" id="tab2"
+                                                                    role="tabpanel">
+                                                                    <div class="modal_tab_img">
+                                                                        <a href="#"><img
+                                                                                src="{{ asset('assets/img/product/productbig2.jpg') }}"
+                                                                                alt=""></a>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="tab-pane fade" id="tab3"
+                                                                    role="tabpanel">
+                                                                    <div class="modal_tab_img">
+                                                                        <a href="#"><img
+                                                                                src="{{ asset('assets/img/product/productbig3.jpg') }}"
+                                                                                alt=""></a>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="tab-pane fade" id="tab4"
+                                                                    role="tabpanel">
+                                                                    <div class="modal_tab_img">
+                                                                        <a href="#"><img
+                                                                                src="{{ asset('assets/img/product/productbig4.jpg') }}"
+                                                                                alt=""></a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal_tab_button">
+                                                                <ul class="nav product_navactive owl-carousel"
+                                                                    role="tablist">
+                                                                    <li>
+                                                                        <a class="nav-link active" data-bs-toggle="tab"
+                                                                            href="#tab1" role="tab"
+                                                                            aria-controls="tab1"
+                                                                            aria-selected="false"><img
+                                                                                src="{{ asset('assets/img/product/product1.jpg') }}"
+                                                                                alt=""></a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a class="nav-link" data-bs-toggle="tab"
+                                                                            href="#tab2" role="tab"
+                                                                            aria-controls="tab2"
+                                                                            aria-selected="false"><img
+                                                                                src="{{ asset('assets/img/product/product2.jpg') }}"
+                                                                                alt=""></a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a class="nav-link button_three"
+                                                                            data-bs-toggle="tab" href="#tab3"
+                                                                            role="tab" aria-controls="tab3"
+                                                                            aria-selected="false"><img
+                                                                                src="{{ asset('assets/img/product/product3.jpg') }}"
+                                                                                alt=""></a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a class="nav-link" data-bs-toggle="tab"
+                                                                            href="#tab4" role="tab"
+                                                                            aria-controls="tab4"
+                                                                            aria-selected="false"><img
+                                                                                src="{{ asset('assets/img/product/product8.jpg') }}"
+                                                                                alt=""></a>
+                                                                    </li>
+
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-7 col-md-7 col-sm-12">
+                                                        <div class="modal_right">
+                                                            <div class="modal_title mb-10">
+                                                                <h2>{{ $product->name }}</h2>
+                                                            </div>
+                                                            <div class="modal_price mb-10">
+                                                                @if ($product->discount_percentage !== null)
+                                                                    <span class="current_price">PKR
+                                                                        {{ $product->price - $product->discount }}</span>
+                                                                    <span class="old_price">PKR
+                                                                        {{ $product->price }}</span>
+                                                                @else
+                                                                    <span class="current_price">PKR
+                                                                        {{ $product->price }}</span>
+                                                                @endif
+                                                            </div>
+                                                            <div class="modal_description mb-15">
+                                                                <p>{{ $product->description }}</p>
+                                                            </div>
+                                                            <div class="variants_selects">
+                                                                @if ($product->plantInfo)
+                                                                    <div class="variants_size">
+                                                                        <h2>Habit</h2>
+                                                                       <p> {{ $product->plantInfo->habits }}</p>
+                                                                       <h2>Light</h2>
+                                                                       <p> {{ $product->plantInfo->lights }}</p>
+                                                                       <h2>Water Requiremet</h2>
+                                                                       <p> {{ $product->plantInfo->water_requirements }}</p>
+                                                             
+                                                                    </div>
+                                                                    
+                                                                @endif
+                                                                <div class="modal_add_to_cart">
+                                                                    <form action="#">
+                                                                        <input min="1" max="100"
+                                                                            step="2" value="1" type="number">
+                                                                        <button type="submit">add to
+                                                                            cart</button>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- modal area end-->
                         @endforeach
                     </div>
 

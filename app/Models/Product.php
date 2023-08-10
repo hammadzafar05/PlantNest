@@ -50,8 +50,8 @@ class Product extends Model
     {
         return $this->hasMany(OrderItem::class);
     }
-    public function plantInfo(){
+    public function plantInfo()
+    {
         return $this->hasOne(PlantInfo::class);
-
     }
 }
