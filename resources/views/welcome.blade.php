@@ -11,8 +11,8 @@
                     <div class="col-12">
                         <div class="slider_content">
                             <h1>Lovely Plants </h1>
-                            <p>Discount <span>20% Off </span> For Lukani Members </p>
-                            <a class="button" href="shop.html">Discover Now </a>
+                            <p>Discount <span>20% Off </span> For PlantNest Members </p>
+                            <a class="button" href="{{ route('shop.index') }}">Discover Now </a>
                         </div>
                     </div>
                 </div>
@@ -24,8 +24,8 @@
                     <div class="col-12">
                         <div class="slider_content">
                             <h1>BIG SALE</h1>
-                            <p>Discount <span>20% Off </span> For Lukani Members </p>
-                            <a class="button" href="shop.html">Discover Now </a>
+                            <p>Discount <span>20% Off </span> For PlantNest Members </p>
+                            <a class="button" href="{{ route('shop.index',1) }}">Discover Plants</a>
                         </div>
                     </div>
                 </div>
@@ -36,9 +36,9 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="slider_content">
-                            <h1>TOP SALE</h1>
-                            <p>Discount <span>20% Off </span> For Lukani Members </p>
-                            <a class="button" href="shop.html">Discover Now </a>
+                            <h1>All Accessories</h1>
+                            <p>Discount <span>20% Off </span> For PlantNest Members </p>
+                            <a class="button" href="{{ route('shop.index',2) }}">Discover Accessories</a>
                         </div>
                     </div>
                 </div>
@@ -75,7 +75,7 @@
 {{-- {{$accessortCategory}} --}}
 
                             <h2>Shop <br> For Accessories</h2>
-                            <a href="shop.html">Shop Now</a>
+                            <a href="{{ route('shop.index',2) }}">Shop Now</a>
                         </div>
                     </div>
                 </figure>
@@ -135,11 +135,11 @@
                                             </div>
                                             <div class="action_links">
                                                 <ul>
-                                                    <li class="add_to_cart"><a href="cart.html"
+                                                    <li class="add_to_cart"><a href="javascript:void(0)"
                                                             title="Add to cart"><i
                                                                 class="icon-shopping-bag"></i></a></li>
-                                                    <li class="compare"><a href="#" title="Add to Compare"><i
-                                                                class="icon-sliders"></i></a></li>
+                                                    {{-- <li class="compare"><a href="#" title="Add to Compare"><i
+                                                                class="icon-sliders"></i></a></li> --}}
                                                     <li class="wishlist"><a href="wishlist.html"
                                                             title="Add to Wishlist"><i class="icon-heart"></i></a>
                                                     </li>
@@ -1499,9 +1499,9 @@
         <div class="row">
             <div class="col-12">
                 <div class="banner_fullwidth_content">
-                    <h3>Amazing From Lukani</h3>
+                    <h3>Amazing From PlantNest</h3>
                     <h2>Plants The <br> Perfect Choice!</h2>
-                    <p>Discount 20% Off For Lukani Members</p>
+                    <p>Discount 20% Off For PlantNest Members</p>
                     <a href="#">Discover Now</a>
                 </div>
             </div>
@@ -1936,13 +1936,31 @@
 
 <script>
     $(document).ready(function() {
-        console.log('i ran');
+        // console.log('i ran');
 
         // Remove active class from all li elements
         $('nav ul li a').removeClass('active');
 
         // Add active class to the clicked li element
         $('#home').addClass('active');
+
+        $('.add_to_cart').click(function(){
+            if(localStorage.getItem('auth') == 'false')
+            {
+                Swal.fire({
+                title: 'You need to login First!',
+                text: 'Do you want to continue?',
+                icon: 'warning',
+                confirmButtonText: 'Login'
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location = "{{ route('login') }}";
+                }
+                })
+            }
+        })
+
     });
 </script>
+
 @endsection

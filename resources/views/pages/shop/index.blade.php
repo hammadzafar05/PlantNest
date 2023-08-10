@@ -9,7 +9,7 @@
                     <div class="breadcrumb_content">
                         <h3>Shop</h3>
                         <ul>
-                            <li><a href="index.html">home</a></li>
+                            <li><a href="{{route('user.home')}}">home</a></li>
                             <li>shop</li>
                         </ul>
                     </div>
@@ -284,7 +284,7 @@
                                             <a class="primary_img" href={{ route('shop.detail', $product->id) }}><img
                                                     src="{{ $product->image_url }}" alt=""></a>
                                             <div class="label_product">
-                                                @if ($product->discount_percentage !== null)
+                                                @if ($product->discount_percentage >0)
                                                     <span class="label_sale">- {{ $product->discount_percentage }}%</span>
                                                 @endif
                                             </div>
@@ -292,10 +292,6 @@
                                                 <ul>
                                                     <li class="add_to_cart"><a href="cart.html" title="Add to cart"><i
                                                                 class="icon-shopping-bag"></i></a></li>
-                                                    <li class="compare"><a href="#" title="Add to Compare"><i
-                                                                class="icon-sliders"></i></a></li>
-                                                    <li class="wishlist"><a href="wishlist.html" title="Add to Wishlist"><i
-                                                                class="icon-heart"></i></a></li>
                                                     <li class="quick_button"><a href="#" data-bs-toggle="modal"
                                                             data-bs-target="#modal_box{{ $product->id }}"
                                                             title="quick view"> <i class="icon-eye"></i></a></li>
@@ -325,7 +321,7 @@
                                                         href={{ route('shop.detail', $product->id) }}>{{ $product->name }}</a>
                                                 </h4>
                                                 <div class="price_box">
-                                                    @if ($product->discount_percentage !== null)
+                                                    @if ($product->discount_percentage >0)
                                                         <span class="current_price">PKR
                                                             {{ $product->price - $product->discount }}</span>
                                                         <span class="old_price">PKR {{ $product->price }}</span>
@@ -349,7 +345,7 @@
                                                     href={{ route('shop.detail', $product->id) }}>{{ $product->name }}</a>
                                             </h4>
                                             <div class="price_box">
-                                                @if ($product->discount_percentage !== null)
+                                                @if ($product->discount_percentage >0)
                                                     <span class="current_price">PKR
                                                         {{ $product->price - $product->discount }}</span>
                                                     <span class="old_price">PKR {{ $product->price }}</span>
@@ -427,8 +423,8 @@
                                                                         <li>
                                                                             <a class="nav-link"
                                                                                 data-bs-toggle="tab{{ $image->id }}"
-                                                                                href="#tab4" role="tab"
-                                                                                aria-controls="tab4"
+                                                                                href="#tab{{$image->id}}" role="tab"
+                                                                                aria-controls="tab{{$image->id}}"
                                                                                 aria-selected="false"><img
                                                                                     src="{{ $image->image_url }}"
                                                                                     alt=""></a>
@@ -445,7 +441,7 @@
                                                                 <h2>{{ $product->name }}</h2>
                                                             </div>
                                                             <div class="modal_price mb-10">
-                                                                @if ($product->discount_percentage !== null)
+                                                                @if ($product->discount_percentage>0)
                                                                     <span class="current_price">PKR
                                                                         {{ $product->price - $product->discount }}</span>
                                                                     <span class="old_price">PKR
@@ -537,6 +533,66 @@
 
             // Add active class to the clicked li element
             $('#shop').addClass('active');
+
+            $('.add_to_cart').click(function(){
+            if(localStorage.getItem('auth') == 'false')
+            {
+                Swal.fire({
+                title: 'You need to login First!',
+                text: 'Do you want to continue?',
+                icon: 'warning',
+                confirmButtonText: 'Login'
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location = "{{ route('login') }}";
+                }
+                })
+            }
+            })
         });
     </script>
+
+    <script>
+        function getHeaderCart(){
+
+            document.getElementById("getCart").innerHTML=``
+
+            $.ajax({
+                "type":"POST",
+                "url":baseURL+"/get-cart",
+                "data":{
+                    "_token":csrf,
+                    "user_id":userId
+                },
+                success:function(data){
+                    document.getElementById("cartCountArea").innerHTML=``
+                    // alert(data)
+                console.log(data)
+                    if(data.length>0){
+                        for(var eachItem of data){
+                            document.getElementById("getCart").innerHTML+=`
+                                <a href="#" class="text-reset notification-item">
+                                    <div class="d-flex align-items-start">
+                                        <img src="assets/images/product/${eachItem.img}"
+                                            class="me-3 avatar-xs" height="150px" alt="item-pic">
+                                        <div class="flex-1">
+                                            <h6 class="mt-0 mb-1">${eachItem.title}</h6>
+                                            <div class="font-size-12 text-muted">
+                                                <p class="mb-1">Quantity: ${eachItem.quantity}</p>
+                                                <p class="mb-0"><i class="mdi mdi-clock-outline"></i>Total: $${parseFloat(eachItem.p_price)*parseFloat(eachItem.quantity)}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            `
+                        }
+                        document.getElementById('cartCountArea').innerHTML = data.length
+                    }
+                }
+            })
+    }
+
+    getHeaderCart()
+    </script>
+
 @endsection

@@ -27,7 +27,7 @@ class RedirectIfAuthenticated
                     return redirect()->intended(RouteServiceProvider::DASHBOARD);
                 }
 
-                return redirect(RouteServiceProvider::HOME);
+                return redirect()->intended(RouteServiceProvider::HOME);
             }
         }
 

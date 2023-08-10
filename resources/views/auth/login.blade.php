@@ -9,7 +9,7 @@
                 <div class="breadcrumb_content">
                     <h3>My Account</h3>
                     <ul>
-                        <li><a href="index.html">home</a></li>
+                        <li><a href="{{route('user.home')}}">home</a></li>
                         <li>My account</li>
                     </ul>
                 </div>
@@ -31,7 +31,7 @@
                         @csrf
                         <p>
                             <label for="email">Email <span>*</span></label>
-                            <input type="email" id="email" name="email" value="{{ old('email') }}" autocomplete="off">
+                            <input type="email" id="email" name="email" value="{{ old('email') }}" autocomplete="off" autofocus>
                             @error('email')
                             <span class="text-danger">{{ $message }}</span>
                             @enderror

@@ -1,9 +1,6 @@
 <!doctype html>
 <html class="no-js" lang="en">
 
-
-<!-- Mirrored from htmldemo.net/lukani/lukani/index-5.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 08 Aug 2023 18:49:02 GMT -->
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -39,6 +36,18 @@
 
     <!--modernizr min js here-->
     <script src="{{ asset('assets/frontend/js/vendor/modernizr-3.7.1.min.js') }}"></script>
+
+    @guest
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @endguest
+
+    <script>
+        @if (auth()->check())
+        localStorage.setItem('auth', true);
+        @else
+        localStorage.setItem('auth', false);
+        @endif
+    </script>
 </head>
 
 <body>
@@ -135,7 +144,6 @@
                                         </li>
 
 
-
                                         <li id="faq"><a href="{{ route('faq.index') }}"> Faq</a></li>
                                         <li id="about"><a href="{{ route('about.index') }}"> About Us</a></li>
                                         <li id="contact"><a href="{{ route('contact.index') }}"> Contact Us</a></li>
@@ -171,7 +179,7 @@
                                 </div>
                                 <div class="header_account-list  mini_cart_wrapper">
                                     <a href="javascript:void(0)"><i class="icon-shopping-bag"></i><span
-                                            class="item_count">2</span></a>
+                                            class="item_count">0</span></a>
                                     <!--mini cart-->
                                     <div class="mini_cart">
                                         <div class="cart_gallery">
@@ -300,10 +308,9 @@
                             </div>
                             <div class="footer_app">
                                 <ul>
-                                    <li><a href="#"><img src="assets/img/icon/icon-app.jpg" alt=""></a>
+                                    <li><a href="#"><img src="{{ asset('assets/frontend/img/icon/icon-app.jpg') }}" alt=""></a>
                                     </li>
-                                    <li><a href="#"><img src="assets/img/icon/icon1-app.jpg"
-                                                alt=""></a></li>
+                                    <li><a href="#"><img src="{{ asset('assets/frontend/img/icon/icon1-app.jpg') }}" alt=""></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -369,7 +376,7 @@
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <div class="footer_payment">
-                            <a href="#"><img src="assets/img/icon/payment.png" alt=""></a>
+                            <a href="#"><img src="{{ asset('assets/frontend/img/icon/payment.png') }}" alt=""></a>
                         </div>
                     </div>
                 </div>
@@ -377,9 +384,6 @@
         </div>
     </footer>
     <!--footer area end-->
-
-    
-
     <!-- JS
 ============================================ -->
     <!--jquery min js-->
@@ -412,7 +416,7 @@
     <!-- Main JS -->
     <script src="{{ asset('assets/frontend/js/main.js') }}"></script>
 
-
+    @section('script')
 
 </body>
 
