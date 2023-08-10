@@ -9,7 +9,7 @@
                     <div class="breadcrumb_content">
                         <h3>About Us</h3>
                         <ul>
-                            <li><a href="index.html">home</a></li>
+                            <li><a href="{{route('user.home')}}">home</a></li>
                             <li>about us</li>
                         </ul>
                     </div>
