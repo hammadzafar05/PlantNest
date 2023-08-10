@@ -12,7 +12,6 @@ class CartItem extends Model
         'cart_id',
         'product_id',
         'quantity',
-        'user_id',
     ];
 
     public function cart()
@@ -23,9 +22,5 @@ class CartItem extends Model
     public function product()
     {
         return $this->belongsTo(Product::class);
-    }
-    public function user()
-    {
-        return $this->belongsTo(User::class);
     }
 }
