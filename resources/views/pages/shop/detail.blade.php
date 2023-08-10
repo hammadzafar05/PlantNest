@@ -96,7 +96,7 @@
                             <div class="product_variant quantity">
                                 <label>quantity</label>
                                 <input min="1" max="100" value="1" type="number">
-                                <button class="button" type="submit">add to cart</button>
+                                <button onclick="addToCart('{{$product->id}}')" class="button" type="submit">add to cart</button>
 
                             </div>
                             <div class=" product_d_action">
@@ -327,7 +327,7 @@
             // Add active class to the clicked li element
             $('#shop').addClass('active');
 
-            $('.add_to_cart').click(function(){
+            function addToCart(p_id){
             if(localStorage.getItem('auth') == 'false')
             {
                 Swal.fire({
@@ -341,7 +341,29 @@
                 }
                 })
             }
-            })
+            else
+            {
+                $.ajax({
+                    "type":"POST",
+                    "url":baseURL+"add-cart",
+                    "data":{
+                        "_token":"{{csrf_token()}}",
+                        "product_id":p_id,
+                        "product_quantity":$("#qnt").val(),
+                    },
+                    success:function(response){
+                        getCart()
+                        getHeaderCart()
+                        $("#qnt").val(1)
+                        $("#pd_alert").css("display","block")
+                        setTimeout(() => {
+                            $("#pd_alert").css("display","none")
+                        }, 3000);
+                    }
+                })
+            }
+        }
+
         });
     </script>
 @endsection

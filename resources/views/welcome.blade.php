@@ -61,7 +61,7 @@
 
                             <h3> Products</h3>
                             <h2>Plants <br> For Gardens</h2>
-                            <a href="shop.html">Shop Now</a>
+                            <a href="{{ route('shop.index',1) }}">Shop Now</a>
                         </div>
                     </div>
                 </figure>
@@ -75,7 +75,7 @@
 {{-- {{$accessortCategory}} --}}
 
                             <h2>Shop <br> For Accessories</h2>
-                            <a href="shop.html">Shop Now</a>
+                            <a href="{{ route('shop.index',2) }}">Shop Now</a>
                         </div>
                     </div>
                 </figure>

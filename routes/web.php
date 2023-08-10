@@ -35,6 +35,8 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/','index')->name('user.home');
     Route::get('home','index');
 
+    Route::post('/submit-contact', [ContactController::class, 'submit_contact'])->name('submit.contact');
+
     //authenticated routes
     Route::middleware(['auth','prevent-back-history'])->group(function(){
 
@@ -60,6 +62,9 @@ Route::get('/shop/product/detail/{id?}',[ShopController::class,'detail'])->name(
 Route::get('/wishlist',[WhishListController::class,'index'])->name('wishlist.index');
 Route::post('/wishlist/add/{id}', [WishlistControlle::class,'addToWishlist'])->name('wishlist.add');
 Route::post('/wishlist/remove/{id}', [WishlistControlle::class,'removeFromWishlist'])->name('wishlist.remove');
+
+
+
 //Admin Routes
 Route::middleware(['isAdmin','auth','prevent-back-history'])->prefix('admin')->name('admin.')->group(function () {
 // Route::middleware(['auth','isAdmin'])->prefix('admin')->name('admin.')->group(function () {

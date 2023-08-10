@@ -292,10 +292,6 @@
                                                 <ul>
                                                     <li class="add_to_cart"><a href="cart.html" title="Add to cart"><i
                                                                 class="icon-shopping-bag"></i></a></li>
-                                                    <li class="compare"><a href="#" title="Add to Compare"><i
-                                                                class="icon-sliders"></i></a></li>
-                                                    <li class="wishlist"><a href="wishlist.html" title="Add to Wishlist"><i
-                                                                class="icon-heart"></i></a></li>
                                                     <li class="quick_button"><a href="#" data-bs-toggle="modal"
                                                             data-bs-target="#modal_box{{ $product->id }}"
                                                             title="quick view"> <i class="icon-eye"></i></a></li>
@@ -555,4 +551,48 @@
             })
         });
     </script>
+
+    <script>
+        function getHeaderCart(){
+
+            document.getElementById("getCart").innerHTML=``
+
+            $.ajax({
+                "type":"POST",
+                "url":baseURL+"/get-cart",
+                "data":{
+                    "_token":csrf,
+                    "user_id":userId
+                },
+                success:function(data){
+                    document.getElementById("cartCountArea").innerHTML=``
+                    // alert(data)
+                console.log(data)
+                    if(data.length>0){
+                        for(var eachItem of data){
+                            document.getElementById("getCart").innerHTML+=`
+                                <a href="#" class="text-reset notification-item">
+                                    <div class="d-flex align-items-start">
+                                        <img src="assets/images/product/${eachItem.img}"
+                                            class="me-3 avatar-xs" height="150px" alt="item-pic">
+                                        <div class="flex-1">
+                                            <h6 class="mt-0 mb-1">${eachItem.title}</h6>
+                                            <div class="font-size-12 text-muted">
+                                                <p class="mb-1">Quantity: ${eachItem.quantity}</p>
+                                                <p class="mb-0"><i class="mdi mdi-clock-outline"></i>Total: $${parseFloat(eachItem.p_price)*parseFloat(eachItem.quantity)}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            `
+                        }
+                        document.getElementById('cartCountArea').innerHTML = data.length
+                    }
+                }
+            })
+    }
+
+    getHeaderCart()
+    </script>
+
 @endsection
