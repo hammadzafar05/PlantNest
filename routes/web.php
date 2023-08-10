@@ -33,7 +33,7 @@ Route::controller(HomeController::class)->name('user.')->group(function () {
     Route::get('home','index');
 
     //authenticated routes
-    Route::middleware(['auth'])->group(function(){
+    Route::middleware(['auth','prevent-back-history'])->group(function(){
 
         Route::get('home','index');
 
@@ -53,7 +53,7 @@ Route::get('/shop/product/detail/{id?}',[ShopController::class,'detail'])->name(
 
 
 //Admin Routes
-Route::middleware([])->prefix('admin')->name('admin.')->group(function () {
+Route::middleware(['isAdmin','auth','prevent-back-history'])->prefix('admin')->name('admin.')->group(function () {
 // Route::middleware(['auth','isAdmin'])->prefix('admin')->name('admin.')->group(function () {
 
     //Dashboard Controller
