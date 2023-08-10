@@ -41,7 +41,7 @@ class productSeeder extends Seeder
         $faker = \Faker\Factory::create();
 
         foreach ($categories as $category) {
-            for ($i = 1; $i <= 5; $i++) {
+            for ($i = 1; $i <= 35; $i++) {
                 $product = Product::create([
                     'name' => $faker->word,
                     'species' => $faker->word,
@@ -56,8 +56,7 @@ class productSeeder extends Seeder
                 ]);
               
                     $imageCount = rand(2, 4);
-                    for ($i=0; $i <= $imageCount ; $i++) { 
-                        # code...
+                    for ($j = 0; $j < $imageCount; $j++) { // Use $j as the inner loop variable
                         ProductImage::create([
                             'product_id' => $product->id,
                             'image_url' => $faker->imageUrl(),
