@@ -73,7 +73,7 @@
         $('nav ul li a').removeClass('active');
         
         // Add active class to the clicked li element
-        $('#contact a').addClass('active');
+        $('#feedback a').addClass('active');
     });
 </script>
     @endsection
