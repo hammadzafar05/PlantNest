@@ -439,7 +439,9 @@
                         title: 'You need to login First!',
                         text: 'Do you want to continue?',
                         icon: 'warning',
-                        confirmButtonText: 'Login'
+                        showCancelButton: true,
+                        confirmButtonText: 'Login',
+                        cancelButtonText: 'No'
                     }).then((result) => {
                         if (result.isConfirmed) {
                             window.location = "{{ route('login') }}";
