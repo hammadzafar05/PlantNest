@@ -57,8 +57,8 @@
                     <div class="product_d_right">
                         {{-- <form action="#"> --}}
 
-                            <h1><a href="#">{{ $product->name }}</a></h1>
-                            {{-- <div class="product_nav">
+                        <h1><a href="#">{{ $product->name }}</a></h1>
+                        {{-- <div class="product_nav">
                             <ul>
                                 <li class="prev"><a href="route('shop.detail',$product->id)"><i class="fa fa-angle-left"></i></a>
                                 </li>
@@ -66,52 +66,58 @@
                                             class="fa fa-angle-right"></i></a></li>
                             </ul>
                         </div> --}}
-                            <div class=" product_ratting">
-                                <ul>
-                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                    <li class="review"><a href="#"> (customer review ) </a></li>
-                                </ul>
+                        <div class=" product_ratting">
+                            <ul>
+                                <li><a href="#"><i class="icon-star"></i></a></li>
+                                <li><a href="#"><i class="icon-star"></i></a></li>
+                                <li><a href="#"><i class="icon-star"></i></a></li>
+                                <li><a href="#"><i class="icon-star"></i></a></li>
+                                <li><a href="#"><i class="icon-star"></i></a></li>
+                                <li class="review"><a href="#"> (customer review ) </a></li>
+                            </ul>
 
-                            </div>
-                            <div class="price_box">
-                                @if ($product->discount_percentage >0)
-                                    <span class="current_price">PKR
-                                        {{ $product->price - $product->discount }}</span>
-                                    <span class="old_price">PKR
-                                        {{ $product->price }}</span>
-                                @else
-                                    <span class="current_price">PKR
-                                        {{ $product->price }}</span>
-                                @endif
+                        </div>
+                        <div class="price_box">
+                            @if ($product->discount_percentage > 0)
+                                <span class="current_price">PKR
+                                    {{ $product->price - $product->discount }}</span>
+                                <span class="old_price">PKR
+                                    {{ $product->price }}</span>
+                            @else
+                                <span class="current_price">PKR
+                                    {{ $product->price }}</span>
+                            @endif
 
 
-                            </div>
-                            <div class="product_desc">
-                                <p>{{ $product->description }} </p>
-                            </div>
-                            <div class="product_variant quantity">
-                                <label>quantity</label>
-                                <input min="1" max="100"
-                                value="1" type="number" class="cart_quantity" onchange="updateDataQuantityDetail(this)" oninput="updateDataQuantityDetail(this)">
-                            <button type="submit" class="add_to_cart" data-product-id="{{$product->id}}" data-quantity="1">add to
+                        </div>
+                        <div class="product_desc">
+                            <p>{{ $product->description }} </p>
+                        </div>
+                        <div class="product_variant quantity">
+                            <label>quantity</label>
+                            <input min="1" max="100" value="1" type="number" class="cart_quantity"
+                                onchange="updateDataQuantityDetail(this)" oninput="updateDataQuantityDetail(this)">
+                            <button type="submit" class="add_to_cart" data-product-id="{{ $product->id }}"
+                                data-quantity="1">add to
                                 cart</button>
 
-                            </div>
-                            <div class="product_d_action">
-                                <ul>
-                                   
-                                    
-                                    <li class="wishlist"><a href="javascript:void(0)" title="Add to wishlist" data-product-id="{{ $product->id }}"
-                                        class="add-to-wishlist">+ Add to Wishlist</a></li>
-                                </ul>
-                            </div>
-                            <div class="product_meta">
-                                <span>Category: <a href="#">{{ $product->category->name }}</a></span>
-                            </div>
+                        </div>
+                        <div class="product_d_action">
+                            <ul>
+
+                                <li class="wishlist"><a href="javascript:void(0)" title="Add to wishlist"
+                                        data-product-id="{{ $product->id }}" class="add-to-wishlist">
+                                        @if ($product->in_wishlist == true)
+                                            Added to Wishlist
+                                        @else
+                                            + Add to Wishlist
+                                        @endif
+                                    </a></li>
+                            </ul>
+                        </div>
+                        <div class="product_meta">
+                            <span>Category: <a href="#">{{ $product->category->name }}</a></span>
+                        </div>
 
                         {{-- </form> --}}
 
@@ -258,75 +264,76 @@
             </div>
             <div class="row">
                 <div class="product_carousel product_column4 owl-carousel">
-                    @foreach ($relatedProducts as $product )
-                    <div class="col-lg-3">
-                        <article class="single_product">
-                            <figure>
-                                <div class="product_thumb">
-                                    <a class="primary_img" href="{{ route('shop.detail',$product->id) }}"><img
-                                            src="{{ $product->image_url }}"
-                                            alt=""></a>
-                                    <div class="label_product">
-                                        @if ($product->discount_percentage > 0)
-                                        <span class="label_sale">-{{ $product->discount_percentage }}%</span>
-                                    @endif
-                                                                        </div>
-                                    <div class="action_links">
-                                        <ul>
-                                            <li class="add_to_cart"  data-product-id="{{ $product->id }}" data-quantity="1" title="Add to cart"><i
+                    @foreach ($relatedProducts as $product)
+                        <div class="col-lg-3">
+                            <article class="single_product">
+                                <figure>
+                                    <div class="product_thumb">
+                                        <a class="primary_img" href="{{ route('shop.detail', $product->id) }}"><img
+                                                src="{{ $product->image_url }}" alt=""></a>
+                                        <div class="label_product">
+                                            @if ($product->discount_percentage > 0)
+                                                <span class="label_sale">-{{ $product->discount_percentage }}%</span>
+                                            @endif
+                                        </div>
+                                        <div class="action_links">
+                                            <ul>
+                                                <li class="add_to_cart" data-product-id="{{ $product->id }}"
+                                                    data-quantity="1" title="Add to cart"><i
                                                         class="icon-shopping-bag"></i></a></li>
-                                                        <li class="wishlist"><a href="" title="Add to Wishlist"
-                                                            data-product-id="{{ $product->id }}"
-                                                            class="add-to-wishlist">
-                                                            @if ($product->in_wishlist == 1)
-                                                                <i class="fa fa-heart"></i>
-                                                            @else
-                                                                <i class="icon-heart"></i>
-                                                            @endif
-                                                        </a>
-                                                    </li>
-                                            <li class="quick_button"><a href="#" data-bs-toggle="modal"
-                                                    data-bs-target="#modal_box" title="quick view"> <i
-                                                        class="icon-eye"></i></a></li>
-                                        </ul>
+                                                <li class="wishlist"><a href="" title="Add to Wishlist"
+                                                        data-product-id="{{ $product->id }}" class="add-to-wishlist">
+                                                        @if ($product->in_wishlist == 1)
+                                                            <i class="fa fa-heart"></i>
+                                                        @else
+                                                            <i class="icon-heart"></i>
+                                                        @endif
+                                                    </a>
+                                                </li>
+                                                <li class="quick_button"><a href="#" data-bs-toggle="modal"
+                                                        data-bs-target="#modal_box" title="quick view"> <i
+                                                            class="icon-eye"></i></a></li>
+                                            </ul>
+                                        </div>
                                     </div>
-                                </div>
-                                <figcaption class="product_content">
-                                    <div class="product_rating">
-                                        <ul>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <h4 class="product_name"><a href="{{route('shop.detail',$product->id)}}">{{$product->name}}</a></h4>
-                                    <div class="price_box">
-                                        @if ($product->discount_percentage >0)
-                                        <span class="current_price">PKR
-                                            {{ $product->price - $product->discount }}</span>
-                                        <span class="old_price">PKR
-                                            {{ $product->price }}</span>
-                                    @else
-                                        <span class="current_price">PKR
-                                            {{ $product->price }}</span>
-                                    @endif
-                                    </div>
-                                </figcaption>
-                            </figure>
-                        </article>
-                    </div>
+                                    <figcaption class="product_content">
+                                        <div class="product_rating">
+                                            <ul>
+                                                <li><a href="#"><i class="icon-star"></i></a></li>
+                                                <li><a href="#"><i class="icon-star"></i></a></li>
+                                                <li><a href="#"><i class="icon-star"></i></a></li>
+                                                <li><a href="#"><i class="icon-star"></i></a></li>
+                                                <li><a href="#"><i class="icon-star"></i></a></li>
+                                            </ul>
+                                        </div>
+                                        <h4 class="product_name"><a
+                                                href="{{ route('shop.detail', $product->id) }}">{{ $product->name }}</a>
+                                        </h4>
+                                        <div class="price_box">
+                                            @if ($product->discount_percentage > 0)
+                                                <span class="current_price">PKR
+                                                    {{ $product->price - $product->discount }}</span>
+                                                <span class="old_price">PKR
+                                                    {{ $product->price }}</span>
+                                            @else
+                                                <span class="current_price">PKR
+                                                    {{ $product->price }}</span>
+                                            @endif
+                                        </div>
+                                    </figcaption>
+                                </figure>
+                            </article>
+                        </div>
                     @endforeach
-                  
+
                 </div>
             </div>
         </div>
     </section>
     <!--product area end-->
-    @endsection
+@endsection
 
-    @section('script')
+@section('script')
     <script>
         $(document).ready(function() {
             console.log('i ran');
@@ -340,44 +347,40 @@
         });
     </script>
     <script>
-
-         function updateDataQuantityDetail(inputElement) {
+        function updateDataQuantityDetail(inputElement) {
             const quantity = parseInt(inputElement.value);
             const addToCartButton = inputElement.parentElement.querySelector('.detail_add_to_cart');
             addToCartButton.setAttribute('data-quantity', quantity);
         }
-        
-        function addToCart(p_id){
-            if(localStorage.getItem('auth') == 'false')
-            {
+
+        function addToCart(p_id) {
+            if (localStorage.getItem('auth') == 'false') {
                 Swal.fire({
-                title: 'You need to login First!',
-                text: 'Do you want to continue?',
-                icon: 'warning',
-                confirmButtonText: 'Login'
+                    title: 'You need to login First!',
+                    text: 'Do you want to continue?',
+                    icon: 'warning',
+                    confirmButtonText: 'Login'
                 }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location = "{{ route('login') }}";
-                }
+                    if (result.isConfirmed) {
+                        window.location = "{{ route('login') }}";
+                    }
                 })
-            }
-            else
-            {
+            } else {
                 $.ajax({
-                    "type":"POST",
-                    "url":baseURL+"add-cart",
-                    "data":{
-                        "_token":"{{csrf_token()}}",
-                        "product_id":p_id,
-                        "product_quantity":$("#qnt").val(),
+                    "type": "POST",
+                    "url": baseURL + "add-cart",
+                    "data": {
+                        "_token": "{{ csrf_token() }}",
+                        "product_id": p_id,
+                        "product_quantity": $("#qnt").val(),
                     },
-                    success:function(response){
+                    success: function(response) {
                         getCart()
                         getHeaderCart()
                         $("#qnt").val(1)
-                        $("#pd_alert").css("display","block")
+                        $("#pd_alert").css("display", "block")
                         setTimeout(() => {
-                            $("#pd_alert").css("display","none")
+                            $("#pd_alert").css("display", "none")
                         }, 3000);
                     }
                 })
@@ -385,11 +388,10 @@
         }
     </script>
     <script>
-    function updateDataQuantityDetail(inputElement) {
-       const quantity = parseInt(inputElement.value);
-       const addToCartButton = inputElement.parentElement.querySelector('.add_to_cart');
-       addToCartButton.setAttribute('data-quantity', quantity);
-   }
+        function updateDataQuantityDetail(inputElement) {
+            const quantity = parseInt(inputElement.value);
+            const addToCartButton = inputElement.parentElement.querySelector('.add_to_cart');
+            addToCartButton.setAttribute('data-quantity', quantity);
+        }
     </script>
-    
 @endsection
