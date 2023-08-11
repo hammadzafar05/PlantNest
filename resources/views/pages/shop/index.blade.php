@@ -536,7 +536,7 @@
     <script>
         function updateDataQuantity(inputElement) {
             const quantity = parseInt(inputElement.value);
-            const addToCartButton = inputElement.parentElement.querySelector('.detail_add_to_cart');
+            const addToCartButton = inputElement.parentElement.querySelector('.add_to_cart');
             addToCartButton.setAttribute('data-quantity', quantity);
         }
     </script>

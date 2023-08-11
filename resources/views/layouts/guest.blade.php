@@ -504,7 +504,7 @@
                             // mainCart
                             var row = `
                             <tr class="product_row">
-                                <td class="product_remove" data-cart-id="${cartItem.id}"><a href="#" onclick="removeCartItem(this)"><i class="fa fa-trash-o"></i></a>
+                                <td class="product_remove" data-cart-id="${cartItem.id}"><a href="#" onclick="removeCartItem(this)" ><i class="fa fa-trash-o"></i></a>
                                 </td>
                                 <td class="product_thumb"><a href="#"><img
                                             src="${image}" alt=""></a></td>
@@ -560,6 +560,7 @@
                     $(inputElement).closest('.product_row').find('.product_total').text(newTotal);
 
                     calculateTotalCartPrice();
+                    cart();
                     // var total = totalCartPrice.toFixed(2);
                     // $('.cart_amount').text('PKR ' + total);
                 },
@@ -627,6 +628,7 @@
                 success: function(response) {
                     $(iconElement).closest('.product_row').remove();
                     calculateTotalCartPrice();
+                    cart()
                     // console.log(totalCartPrice)
                     // var total = totalCartPrice.toFixed(2);
                     // $('.cart_amount').text('PKR ' + total);
