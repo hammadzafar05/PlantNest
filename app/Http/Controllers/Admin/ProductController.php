@@ -27,7 +27,6 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        // dd($this->storeFirstImageInProduct($request->file('image'),102));
         $request->validate([
             'name' => 'required|max:255|unique:products',
             'species' => 'required|max:255',
@@ -84,7 +83,7 @@ class ProductController extends Controller
     {
 
         $_product = Product::with(['images' => function ($query) {
-            $query->select('id','image_url', 'product_id'); // Select the columns you need
+            $query->select('id','image_url', 'product_id'); 
         },
         'category'=>function($query){
             $query->select('id','name','parent_id');
