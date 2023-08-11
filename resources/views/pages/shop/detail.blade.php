@@ -96,7 +96,7 @@
                             <div class="product_variant quantity">
                                 <label>quantity</label>
                                 <input min="1" max="100"
-                                step="2" value="1" type="number" class="cart_quantity" onchange="updateDataQuantityDetail(this)" oninput="updateDataQuantityDetail(this)">
+                                value="1" type="number" class="cart_quantity" onchange="updateDataQuantityDetail(this)" oninput="updateDataQuantityDetail(this)">
                             <button type="submit" class="add_to_cart" data-product-id="{{$product->id}}" data-quantity="1">add to
                                 cart</button>
 

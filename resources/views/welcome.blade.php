@@ -109,8 +109,8 @@
                                 </li>
                                 <li>
                                     <a data-bs-toggle="tab" href="#plant2" role="tab" aria-controls="plant2"
-                                    aria-selected="false">
-                                    Plants
+                                        aria-selected="false">
+                                        Plants
                                     </a>
                                 </li>
                                 <li>
@@ -157,7 +157,8 @@
                                                                     title="Add to Wishlist"><i class="icon-heart"></i></a>
                                                             </li>
                                                             <li class="quick_button"><a href="#"
-                                                                    data-bs-toggle="modal" data-bs-target="#modal_box"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#modal_box{{ $product->id }}"
                                                                     title="quick view"> <i class="icon-eye"></i></a></li>
                                                         </ul>
                                                     </div>
@@ -196,7 +197,7 @@
                 <div class="tab-pane fade" id="plant2" role="tabpanel">
                     <div class="row">
                         <div class="product_carousel product_column4 owl-carousel">
-                            @foreach ($Accessoriesproducts as $product)
+                            @foreach ($Plantsproducts as $product)
                                 <div class="col-lg-3">
                                     <div class="product_items">
                                         <article class="single_product">
@@ -261,6 +262,7 @@
                     </div>
                 </div>
                 <div class="tab-pane fade" id="plant3" role="tabpanel">
+                    {{$Accessoriesproducts}}
                     <div class="row">
                         <div class="product_carousel product_column4 owl-carousel">
                             @foreach ($Accessoriesproducts as $product)
@@ -323,9 +325,11 @@
                                     </div>
                                 </div>
                             @endforeach
+
                         </div>
                     </div>
                 </div>
+                
             </div>
         </div>
     </div>
@@ -621,7 +625,333 @@
         </div>
     </div>
     <!--newsletter area end-->
+    {{-- trending modal --}}
+    @foreach ($trendingProducts as $product)
+        <!-- modal area start-->
+        <div class="modal fade" id="modal_box{{ $product->id }}" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="icon-x"></i></span>
+                    </button>
+                    <div class="modal_body">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-5 col-md-5 col-sm-12">
+                                    <div class="modal_tab">
+                                        <div class="tab-content product-details-large">
+                                            <div class="tab-pane fade show active" id="tab1" role="tabpanel">
+                                                <div class="modal_tab_img">
+                                                    <a href="#"><img src="{{ $product->image_url }}"
+                                                            alt=""></a>
+                                                </div>
+                                            </div>
+                                            @foreach ($product->images as $image)
+                                                <div class="tab-pane fade" id="tab{{ $image->id }}" role="tabpanel">
+                                                    <div class="modal_tab_img">
+                                                        <a href="#"><img src="{{ $image->image_url }}"
+                                                                alt=""></a>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                        <div class="modal_tab_button">
+                                            <ul class="nav product_navactive owl-carousel" role="tablist">
+                                                <li>
+                                                    <a class="nav-link active" data-bs-toggle="tab" href="#tab1"
+                                                        role="tab" aria-controls="tab1" aria-selected="false"><img
+                                                            src="{{ $product->image_url }}" alt=""></a>
 
+
+                                                </li>
+                                                @foreach ($product->images as $image)
+                                                    <li>
+                                                        <a class="nav-link" data-bs-toggle="tab{{ $image->id }}"
+                                                            href="#tab{{ $image->id }}" role="tab"
+                                                            aria-controls="tab{{ $image->id }}"
+                                                            aria-selected="false"><img src="{{ $image->image_url }}"
+                                                                alt=""></a>
+                                                    </li>
+                                                @endforeach
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-7 col-md-7 col-sm-12">
+                                    <div class="modal_right">
+                                        <div class="modal_title mb-10">
+                                            <h2>{{ $product->name }}</h2>
+                                        </div>
+                                        <div class="modal_price mb-10">
+                                            @if ($product->discount_percentage > 0)
+                                                <span class="current_price">PKR
+                                                    {{ $product->price - $product->discount }}</span>
+                                                <span class="old_price">PKR
+                                                    {{ $product->price }}</span>
+                                            @else
+                                                <span class="current_price">PKR
+                                                    {{ $product->price }}</span>
+                                            @endif
+                                        </div>
+                                        <div class="modal_description mb-15">
+                                            <p>{{ $product->description }}</p>
+                                        </div>
+                                        <div class="variants_selects">
+                                            @if ($product->plantInfo)
+                                                <div class="variants_size">
+                                                    <h2>Habit</h2>
+                                                    <p> {{ $product->plantInfo->habits }}</p>
+                                                    <h2>Light</h2>
+                                                    <p> {{ $product->plantInfo->lights }}</p>
+                                                    <h2>Water Requiremet</h2>
+                                                    <p> {{ $product->plantInfo->water_requirements }}
+                                                    </p>
+
+                                                </div>
+                                            @endif
+                                            <div class="modal_add_to_cart">
+                                                <form action="#">
+                                                    <input min="1" max="100" value="1" type="number"
+                                                        class="cart_quantity" onchange="updateDataQuantity(this)"
+                                                        oninput="updateDataQuantity(this)">
+                                                    <button type="submit" class="add_to_cart"
+                                                        data-product-id="{{ $product->id }}" data-quantity="1">add to
+                                                        cart</button>
+                                                </form>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- modal area end-->
+    @endforeach
+    {{-- end trending modal --}}
+    {{-- plants modal --}}
+    @foreach ($Plantsproducts as $product)
+        <!-- modal area start-->
+        <div class="modal fade" id="modal_box{{ $product->id }}" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="icon-x"></i></span>
+                    </button>
+                    <div class="modal_body">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-5 col-md-5 col-sm-12">
+                                    <div class="modal_tab">
+                                        <div class="tab-content product-details-large">
+                                            <div class="tab-pane fade show active" id="tab1" role="tabpanel">
+                                                <div class="modal_tab_img">
+                                                    <a href="#"><img src="{{ $product->image_url }}"
+                                                            alt=""></a>
+                                                </div>
+                                            </div>
+                                            @foreach ($product->images as $image)
+                                                <div class="tab-pane fade" id="tab{{ $image->id }}" role="tabpanel">
+                                                    <div class="modal_tab_img">
+                                                        <a href="#"><img src="{{ $image->image_url }}"
+                                                                alt=""></a>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                        <div class="modal_tab_button">
+                                            <ul class="nav product_navactive owl-carousel" role="tablist">
+                                                <li>
+                                                    <a class="nav-link active" data-bs-toggle="tab" href="#tab1"
+                                                        role="tab" aria-controls="tab1" aria-selected="false"><img
+                                                            src="{{ $product->image_url }}" alt=""></a>
+
+
+                                                </li>
+                                                @foreach ($product->images as $image)
+                                                    <li>
+                                                        <a class="nav-link" data-bs-toggle="tab{{ $image->id }}"
+                                                            href="#tab{{ $image->id }}" role="tab"
+                                                            aria-controls="tab{{ $image->id }}"
+                                                            aria-selected="false"><img src="{{ $image->image_url }}"
+                                                                alt=""></a>
+                                                    </li>
+                                                @endforeach
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-7 col-md-7 col-sm-12">
+                                    <div class="modal_right">
+                                        <div class="modal_title mb-10">
+                                            <h2>{{ $product->name }}</h2>
+                                        </div>
+                                        <div class="modal_price mb-10">
+                                            @if ($product->discount_percentage > 0)
+                                                <span class="current_price">PKR
+                                                    {{ $product->price - $product->discount }}</span>
+                                                <span class="old_price">PKR
+                                                    {{ $product->price }}</span>
+                                            @else
+                                                <span class="current_price">PKR
+                                                    {{ $product->price }}</span>
+                                            @endif
+                                        </div>
+                                        <div class="modal_description mb-15">
+                                            <p>{{ $product->description }}</p>
+                                        </div>
+                                        <div class="variants_selects">
+                                            @if ($product->plantInfo)
+                                                <div class="variants_size">
+                                                    <h2>Habit</h2>
+                                                    <p> {{ $product->plantInfo->habits }}</p>
+                                                    <h2>Light</h2>
+                                                    <p> {{ $product->plantInfo->lights }}</p>
+                                                    <h2>Water Requiremet</h2>
+                                                    <p> {{ $product->plantInfo->water_requirements }}
+                                                    </p>
+
+                                                </div>
+                                            @endif
+                                            <div class="modal_add_to_cart">
+                                                <form action="#">
+                                                    <input min="1" max="100" value="1" type="number"
+                                                        class="cart_quantity" onchange="updateDataQuantity(this)"
+                                                        oninput="updateDataQuantity(this)">
+                                                    <button type="submit" class="add_to_cart"
+                                                        data-product-id="{{ $product->id }}" data-quantity="1">add to
+                                                        cart</button>
+                                                </form>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- modal area end-->
+    @endforeach
+    {{-- end plants modal --}}
+    {{-- Accessories modal --}}
+    @foreach ($Accessoriesproducts as $product)
+        <!-- modal area start-->
+        <div class="modal fade" id="modal_box{{ $product->id }}" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="icon-x"></i></span>
+                    </button>
+                    <div class="modal_body">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-5 col-md-5 col-sm-12">
+                                    <div class="modal_tab">
+                                        <div class="tab-content product-details-large">
+                                            <div class="tab-pane fade show active" id="tab1" role="tabpanel">
+                                                <div class="modal_tab_img">
+                                                    <a href="#"><img src="{{ $product->image_url }}"
+                                                            alt=""></a>
+                                                </div>
+                                            </div>
+                                            @foreach ($product->images as $image)
+                                                <div class="tab-pane fade" id="tab{{ $image->id }}" role="tabpanel">
+                                                    <div class="modal_tab_img">
+                                                        <a href="#"><img src="{{ $image->image_url }}"
+                                                                alt=""></a>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                        <div class="modal_tab_button">
+                                            <ul class="nav product_navactive owl-carousel" role="tablist">
+                                                <li>
+                                                    <a class="nav-link active" data-bs-toggle="tab" href="#tab1"
+                                                        role="tab" aria-controls="tab1" aria-selected="false"><img
+                                                            src="{{ $product->image_url }}" alt=""></a>
+
+
+                                                </li>
+                                                @foreach ($product->images as $image)
+                                                    <li>
+                                                        <a class="nav-link" data-bs-toggle="tab{{ $image->id }}"
+                                                            href="#tab{{ $image->id }}" role="tab"
+                                                            aria-controls="tab{{ $image->id }}"
+                                                            aria-selected="false"><img src="{{ $image->image_url }}"
+                                                                alt=""></a>
+                                                    </li>
+                                                @endforeach
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-7 col-md-7 col-sm-12">
+                                    <div class="modal_right">
+                                        <div class="modal_title mb-10">
+                                            <h2>{{ $product->name }}</h2>
+                                        </div>
+                                        <div class="modal_price mb-10">
+                                            @if ($product->discount_percentage > 0)
+                                                <span class="current_price">PKR
+                                                    {{ $product->price - $product->discount }}</span>
+                                                <span class="old_price">PKR
+                                                    {{ $product->price }}</span>
+                                            @else
+                                                <span class="current_price">PKR
+                                                    {{ $product->price }}</span>
+                                            @endif
+                                        </div>
+                                        <div class="modal_description mb-15">
+                                            <p>{{ $product->description }}</p>
+                                        </div>
+                                        <div class="variants_selects">
+                                            @if ($product->plantInfo)
+                                                <div class="variants_size">
+                                                    <h2>Habit</h2>
+                                                    <p> {{ $product->plantInfo->habits }}</p>
+                                                    <h2>Light</h2>
+                                                    <p> {{ $product->plantInfo->lights }}</p>
+                                                    <h2>Water Requiremet</h2>
+                                                    <p> {{ $product->plantInfo->water_requirements }}
+                                                    </p>
+
+                                                </div>
+                                            @endif
+                                            <div class="modal_add_to_cart">
+                                                <form action="#">
+                                                    <input min="1" max="100" value="1" type="number"
+                                                        class="cart_quantity" onchange="updateDataQuantity(this)"
+                                                        oninput="updateDataQuantity(this)">
+                                                    <button type="submit" class="add_to_cart"
+                                                        data-product-id="{{ $product->id }}" data-quantity="1">add to
+                                                        cart</button>
+                                                </form>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- modal area end-->
+    @endforeach
+    {{-- end trending modal --}}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
