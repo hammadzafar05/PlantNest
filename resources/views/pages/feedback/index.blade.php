@@ -40,8 +40,8 @@
                                 <input name="subject" placeholder="Subject *" type="text" required>
                             </p>
                             <div class="contact_textarea">
-                                <label> Your Message</label>
-                                <textarea placeholder="Message *" name="message" class="form-control2" required></textarea>
+                                <label> Your Feedback</label>
+                                <textarea placeholder="Feedback *" name="message" class="form-control2" required></textarea>
                             </div>
                             <button type="submit"> Send</button>
 

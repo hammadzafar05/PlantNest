@@ -684,21 +684,23 @@
                     },
                     success: function(response) {
                         console.log('Product added to cart successfully');
-                        alert(response.message);
+                        // alert(response.message);
                         cart();
-                        // Swal.fire({
-                        //     icon: 'success',
-                        //     title: 'Success',
-                        //     text: 'Product added to cart successfully.'
-                        // });
+                        Swal.fire({
+                            timer: 2000,
+                            timerProgressBar: true,
+                            icon: 'success',
+                            title: 'Success',
+                            text: response.message
+                        });
                     },
                     error: function(xhr, status, error) {
                         console.error('Error adding product to cart:', error);
-                        // Swal.fire({
-                        //     icon: 'error',
-                        //     title: 'Error',
-                        //     text: 'There was an error adding the product to the cart.'
-                        // });
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'There was an error adding the product to the cart.'
+                        });
                     }
                 });
             });

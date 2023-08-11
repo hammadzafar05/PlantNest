@@ -39,7 +39,7 @@ class AccountController extends Controller
             ]
         );
 
-        $response="Successfully Updated Profile";
+        $response="Profile Updated Successfully ";
 
         return redirect()->back()->with('success',$response);
 

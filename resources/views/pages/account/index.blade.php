@@ -27,6 +27,7 @@
                 <div class="row">
                     <!-- Session Status -->
                 <x-auth-session-status class="text-success mb-4" :status="session('status')" />
+                <x-auth-session-status class="text-success mb-4" :status="session('success')" />
 
                 @if ($errors->updatePassword->any())
                     <ul>
@@ -93,7 +94,7 @@
                             <div class="tab-pane" id="address">
                                 <p>The following addresses will be used on the checkout page by default.</p>
                                 <h4 class="billing-address">Billing address</h4>
-                                <p><strong>{{ $userDetails->name }}</strong></p>
+                                <p><strong>Name:</strong>  {{ $userDetails->name }}</p>
                                 <address>
                                     <span><strong>City:</strong> {{ $userDetails->details->first()->shipping_city }}</span>,
                                     <br>
@@ -113,12 +114,54 @@
                                                 @csrf
                                                 @method('PUT')
                                                  <br>
-                                                <label>First Name</label>
-                                                <input type="text" name="name" value="{{ Auth::user()->name }}">
-                                                <label>Email</label>
-                                                <input type="text" name="email" value="{{ Auth::user()->email }}">
-                                                <label>Contact Number</label>
-                                                <input type="number" name="contact_number" value="{{ Auth::user()->contact_number}}">
+                                                 <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label>First Name</label>
+                                                        <input type="text" name="name" value="{{ Auth::user()->name }}">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label>Email</label>
+                                                        <input type="text" name="email" value="{{ Auth::user()->email }}">
+                                                    </div>
+                                                 </div>
+                                                 <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label>Contact Number</label>
+                                                        <input type="number" name="contact_number" value="{{ Auth::user()->contact_number}}">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label>City</label>
+                                                        <input type="text" name="shipping_city" value="{{ $userDetails->details->first()->shipping_city }}">
+                                                    </div>
+                                                 </div>
+                                                 <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label>Address 1</label>
+                                                        <input type="text" name="shipping_billing_address_1" value="{{ $userDetails->details->first()->shipping_billing_address_1 }}">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label>Address 2</label>
+                                                        <input type="text" name="shipping_billing_address_2" value="{{ $userDetails->details->first()->shipping_billing_address_2 }}">
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label>State</label>
+                                                        <input type="text" name="shipping_state" value="{{ $userDetails->details->first()->shipping_state }}">        
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label>Country</label>
+                                                        <input type="text" name="shipping_country" value="{{ $userDetails->details->first()->shipping_country }}">
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label>Zip Code</label>
+                                                        <input type="text" name="shipping_zip_code" value="{{ $userDetails->details->first()->shipping_zip_code }}">
+                                                    </div>
+                                                </div>
                                                 <div class="save_button primary_btn default_button">
                                                     <button type="submit">Save</button>
                                                 </div>
