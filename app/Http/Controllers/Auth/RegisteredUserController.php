@@ -41,18 +41,15 @@ class RegisteredUserController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'contact_number' => $request->contact_number,
             'password' => Hash::make($request->password),
         ]);
 
-        $userDetail = UserDetail::create([
-            'user_id'=>$user->id,
-            'shipping_phone_number'=>$request->contact_number
-        ]);
 
         event(new Registered($user));
 
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect()->intended(RouteServiceProvider::HOME);
     }
 }

@@ -37,9 +37,7 @@
     <!--modernizr min js here-->
     <script src="{{ asset('assets/frontend/js/vendor/modernizr-3.7.1.min.js') }}"></script>
 
-    @guest
-        <script src="{{ asset('assets/backend/libs/sweetalert2/sweetalert2.all.min.js') }}"></script>
-    @endguest
+    <script src="{{ asset('assets/backend/libs/sweetalert2/sweetalert2.all.min.js') }}"></script>
 
     <script>
         @if (auth()->check())
@@ -174,6 +172,7 @@
                                         <li id="faq"><a href="{{ route('faq.index') }}"> Faq</a></li>
                                         <li id="about"><a href="{{ route('about.index') }}"> About Us</a></li>
                                         <li id="contact"><a href="{{ route('contact.index') }}"> Contact Us</a></li>
+                                        <li id="feedback"><a href="{{ route('feedback.index') }}"> Feedback</a></li>
                                     </ul>
                                 </nav>
                             </div>
