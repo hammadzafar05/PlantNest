@@ -22,7 +22,7 @@
                             </div>
                         </div>
                         <!-- end page title -->
-
+                        
                         <div class="row">
                             <div class="col-md-6 col-xl-3">
                                 <div class="card">
@@ -86,6 +86,43 @@
                                         <div>
                                             <h4 class="mb-1 mt-1 text-center"> + $<span data-plugin="counterup">  </span></h4>
                                             <p class="text-muted mb-0">Total Revenue</p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div> <!-- end col-->
+                        </div> <!-- end row-->
+
+
+                        <div class="row">
+                            <div class="col-md-6 col-xl-6">
+                                <div class="card">
+                                    <div class="card-body bg-primary  text-center">
+                                    @php
+                                        $soldItems=\App\Models\Order::where('status','delivered')->count() ?? 0;
+                                    @endphp
+                                        <div >
+                                            <h4 class="mb-1 mt-1 text-white"><span data-plugin="counterup">
+                                                {{$soldItems}}
+                                            </span></h4>
+                                            <p class="text-white mb-0">Sold Products</p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div> <!-- end col-->
+
+                            <div class="col-md-6 col-xl-6">
+                                <div class="card">
+                                    <div class="card-body text-center">
+                                        @php
+                                        $pendingItems=\App\Models\Order::where('status','pending')->count() ?? 0;
+                                        @endphp
+                                        <div>
+                                            <h4 class="mb-1 mt-1"><span data-plugin="counterup"> 
+                                                {{$pendingItems}}
+                                            </span></h4>
+                                            <p class="text-muted mb-0">Pending Products</p>
                                         </div>
 
                                     </div>
@@ -191,5 +228,4 @@
 
 
                     </div> <!-- container-fluid -->
-                </div>
 @endsection
