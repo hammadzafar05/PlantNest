@@ -1,5 +1,5 @@
 @extends('admin.layouts.app')
-@section('admin_title', 'Admin | Categories')
+@section('admin_title', 'Dashboard | Categories')
 
 @section('content')
 
@@ -78,7 +78,7 @@
                     <ul class="nav nav-tabs nav-tabs-custom mt-3 mb-2 ecommerce-sortby-list">
                         <h4>Categories</h4>
                     </ul>
-
+                    @if (!$accessoriesCategories->isEmpty())
                     <div class="row">
 
                         <div class="col-xl-12 col-sm-6">
@@ -106,6 +106,17 @@
                             </table>
                         </div>
                     </div>
+                    @else
+                    <div class="row justify-content-center text-center">
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <i class="uil uil-exclamation-triangle me-2"></i>
+                            No Category Found!
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                            
+                            </button>
+                        </div>
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>

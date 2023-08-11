@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\Admin\AccessoriesCategoryController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ApiController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\orderController;
 use App\Http\Controllers\Admin\PlantCategoriesController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\UserController;
@@ -72,12 +74,14 @@ Route::post('/wishlist/remove/{id}', [WishlistControlle::class,'removeFromWishli
 Route::middleware(['isAdmin','auth','prevent-back-history'])->prefix('admin')->name('admin.')->group(function () {
 // Route::middleware(['auth','isAdmin'])->prefix('admin')->name('admin.')->group(function () {
 
+    Route::controller(AdminController::class)->group(function () {
+        Route::get('/contact','contact')->name('showContact');
+        Route::get('/feedback','feedback')->name('showFeedback');
+    });
     //Dashboard Controller
     Route::controller(DashboardController::class)->group(function () {
-        
         Route::get('/','index')->name('dashboard');
         Route::get('dashboard','index')->name('dashboard');
-
     });
     //User Controller
     Route::controller(UserController::class)->group(function () {
@@ -96,7 +100,7 @@ Route::middleware(['isAdmin','auth','prevent-back-history'])->prefix('admin')->n
     });
     // PLant Categories controller
     Route::controller(AccessoriesCategoryController::class)->group(function () {
-        //plant categories
+        //accessory categories
         Route::get('categories/AccessoryCategory','index')->name('showAccessoryCategories');
         Route::post('categories/AddAccesoriesCategory','store')->name('AddAccessoryCategories');
         Route::get('categories/editAccessoryCategory/{category}','edit')->name('editAccessoryCategories');
@@ -105,15 +109,25 @@ Route::middleware(['isAdmin','auth','prevent-back-history'])->prefix('admin')->n
     });
     // Product controller
     Route::controller(AdminProductController::class)->group(function () {
-        //plant categories
+        //products
         Route::get('product/allproducts','index')->name('showProducts');
         Route::get('product/addProducts','create')->name('AddProducts');
         Route::post('product/storeProducts','store')->name('StoreProducts');
         Route::get('product/editProducts/{id}','edit')->name('editProducts');
         Route::put('product/updateProducts','update')->name('UpdateProducts');
         Route::get('product/deleteProducts/{id}','destroy')->name('deleteProducts');
-        Route::get('product/deleteImage/{id}','deleteImage')->name('deleteProducts');
-        Route::get('product/status/{id}','changeProductStatus')->name('changeStatus');
+        Route::get('product/deleteImage/{id}','deleteImage')->name('deleteImage');
+        Route::get('product/status/{id}','changeProductStatus')->name('changeProductStatus');
+        // product reviews
+        Route::get('product/productReviews','productReviews')->name('productReviewShows');
+
+    });
+    // Order controller
+    Route::controller(orderController::class)->group(function () {
+        //orders
+        Route::get('orders/allOrders','index')->name('showOrder');
+        Route::get('orders/orderStatus/{id}/{status}','orderStatusChange')->name('changeOrderStatus');
+       
     });
     // Api Fetch subb category controller
     Route::controller(ApiController::class)->group(function () {
