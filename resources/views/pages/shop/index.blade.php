@@ -9,7 +9,7 @@
                     <div class="breadcrumb_content">
                         <h3>Shop</h3>
                         <ul>
-                            <li><a href="{{route('user.home')}}">home</a></li>
+                            <li><a href="{{ route('user.home') }}">home</a></li>
                             <li>shop</li>
                         </ul>
                     </div>
@@ -284,13 +284,14 @@
                                             <a class="primary_img" href={{ route('shop.detail', $product->id) }}><img
                                                     src="{{ $product->image_url }}" alt=""></a>
                                             <div class="label_product">
-                                                @if ($product->discount_percentage >0)
+                                                @if ($product->discount_percentage > 0)
                                                     <span class="label_sale">- {{ $product->discount_percentage }}%</span>
                                                 @endif
                                             </div>
                                             <div class="action_links">
                                                 <ul>
-                                                    <li class="add_to_cart"  data-product-id="{{ $product->id }}"><a href="" title="Add to cart"><i
+                                                    <li class="add_to_cart" data-product-id="{{ $product->id }}"
+                                                        data-quantity="1"><a href="" title="Add to cart"><i
                                                                 class="icon-shopping-bag"></i></a></li>
                                                     <li class="quick_button"><a href="#" data-bs-toggle="modal"
                                                             data-bs-target="#modal_box{{ $product->id }}"
@@ -321,7 +322,7 @@
                                                         href={{ route('shop.detail', $product->id) }}>{{ $product->name }}</a>
                                                 </h4>
                                                 <div class="price_box">
-                                                    @if ($product->discount_percentage >0)
+                                                    @if ($product->discount_percentage > 0)
                                                         <span class="current_price">PKR
                                                             {{ $product->price - $product->discount }}</span>
                                                         <span class="old_price">PKR {{ $product->price }}</span>
@@ -345,7 +346,7 @@
                                                     href={{ route('shop.detail', $product->id) }}>{{ $product->name }}</a>
                                             </h4>
                                             <div class="price_box">
-                                                @if ($product->discount_percentage >0)
+                                                @if ($product->discount_percentage > 0)
                                                     <span class="current_price">PKR
                                                         {{ $product->price - $product->discount }}</span>
                                                     <span class="old_price">PKR {{ $product->price }}</span>
@@ -358,7 +359,8 @@
                                             </div>
                                             <div class="action_links list_action_right">
                                                 <ul>
-                                                    <li class="add_to_cart"  data-product-id="{{ $product->id }}"><a href="" title="Add to cart">Add
+                                                    <li class="add_to_cart" data-product-id="{{ $product->id }}"
+                                                        data-quantity="1"><a href="" title="Add to cart">Add
                                                             to
                                                             cart</a></li>
                                                     <li class="wishlist"><a href="wishlist.html"
@@ -423,8 +425,9 @@
                                                                         <li>
                                                                             <a class="nav-link"
                                                                                 data-bs-toggle="tab{{ $image->id }}"
-                                                                                href="#tab{{$image->id}}" role="tab"
-                                                                                aria-controls="tab{{$image->id}}"
+                                                                                href="#tab{{ $image->id }}"
+                                                                                role="tab"
+                                                                                aria-controls="tab{{ $image->id }}"
                                                                                 aria-selected="false"><img
                                                                                     src="{{ $image->image_url }}"
                                                                                     alt=""></a>
@@ -441,7 +444,7 @@
                                                                 <h2>{{ $product->name }}</h2>
                                                             </div>
                                                             <div class="modal_price mb-10">
-                                                                @if ($product->discount_percentage>0)
+                                                                @if ($product->discount_percentage > 0)
                                                                     <span class="current_price">PKR
                                                                         {{ $product->price - $product->discount }}</span>
                                                                     <span class="old_price">PKR
@@ -470,10 +473,16 @@
                                                                 <div class="modal_add_to_cart">
                                                                     <form action="#">
                                                                         <input min="1" max="100"
-                                                                            step="2" value="1" type="number">
-                                                                        <button type="submit">add to
+                                                                            step="2" value="1" type="number"
+                                                                            class="cart_quantity"
+                                                                            onchange="updateDataQuantity(this)"
+                                                                            oninput="updateDataQuantity(this)">
+                                                                        <button type="submit" class="add_to_cart"
+                                                                            data-product-id="{{ $product->id }}"
+                                                                            data-quantity="1">add to
                                                                             cart</button>
                                                                     </form>
+
                                                                 </div>
                                                             </div>
 
@@ -522,5 +531,13 @@
     </div>
     <!--shop  area end-->
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+    <script>
+        function updateDataQuantity(inputElement) {
+            const quantity = parseInt(inputElement.value);
+            const addToCartButton = inputElement.parentElement.querySelector('.detail_add_to_cart');
+            addToCartButton.setAttribute('data-quantity', quantity);
+        }
+    </script>
 @endsection

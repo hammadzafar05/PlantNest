@@ -11,7 +11,9 @@ class CartController extends Controller
 {
     public function cart(){
         $cartItems = CartItem::with('product')->where('user_id', Auth::user()->id)->get();
-        return response()->json(['message' => 'success', 'cartItem' => $cartItems]);
+        $count = CartItem::with('product')->where('user_id', Auth::user()->id)->count();
+
+        return response()->json(['message' => 'success', 'cartItem' => $cartItems,'count'=>$count]);
 
     }
     public function index()
