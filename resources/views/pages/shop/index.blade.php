@@ -363,8 +363,16 @@
                                                         data-quantity="1"><a href="" title="Add to cart">Add
                                                             to
                                                             cart</a></li>
-                                                    <li class="wishlist"><a href="wishlist.html"
-                                                            title="Add to Wishlist"><i class="icon-heart"></i></a></li>
+                                                   <li class="wishlist"><a href="" title="Add to Wishlist"
+                                                                    data-product-id="{{ $product->id }}"
+                                                                    class="add-to-wishlist">
+                                                                    @if ($product->in_wishlist == 1)
+                                                                        <i class="fa fa-heart"></i>
+                                                                    @else
+                                                                        <i class="icon-heart"></i>
+                                                                    @endif
+                                                                </a>
+                                                            </li>
                                                     <li class="compare"><a href="#" title="Add to Compare"><i
                                                                 class="icon-sliders"></i></a></li>
 

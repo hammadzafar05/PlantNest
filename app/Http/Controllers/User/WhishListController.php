@@ -13,8 +13,8 @@ class WhishListController extends Controller
     public function index()
     {
         $userId = Auth::user()->id;
-        $wishlist = WishlistItem::where('user_id', $userId)->get();
-        return view('pages.wishlist.index',compact('wishlist'));
+        $wishlistItems = WishlistItem::with('product')->where('user_id', $userId)->get();
+        return view('pages.wishlist.index',compact('wishlistItems'));
         
     }
     // public function wishlist()

@@ -103,7 +103,10 @@
                             </div>
                             <div class="product_d_action">
                                 <ul>
-                                    <li><a href="javascript:void(0)" title="Add to wishlist">+ Add to Wishlist</a></li>
+                                   
+                                    
+                                    <li class="wishlist"><a href="javascript:void(0)" title="Add to wishlist" data-product-id="{{ $product->id }}"
+                                        class="add-to-wishlist">+ Add to Wishlist</a></li>
                                 </ul>
                             </div>
                             <div class="product_meta">
@@ -272,8 +275,16 @@
                                         <ul>
                                             <li class="add_to_cart"  data-product-id="{{ $product->id }}" data-quantity="1" ><a href=" title="Add to cart"><i
                                                         class="icon-shopping-bag"></i></a></li>
-                                            <li class="wishlist"><a href="wishlist.html" title="Add to Wishlist"><i
-                                                        class="icon-heart"></i></a></li>
+                                                        <li class="wishlist"><a href="" title="Add to Wishlist"
+                                                            data-product-id="{{ $product->id }}"
+                                                            class="add-to-wishlist">
+                                                            @if ($product->in_wishlist == 1)
+                                                                <i class="fa fa-heart"></i>
+                                                            @else
+                                                                <i class="icon-heart"></i>
+                                                            @endif
+                                                        </a>
+                                                    </li>
                                             <li class="quick_button"><a href="#" data-bs-toggle="modal"
                                                     data-bs-target="#modal_box" title="quick view"> <i
                                                         class="icon-eye"></i></a></li>

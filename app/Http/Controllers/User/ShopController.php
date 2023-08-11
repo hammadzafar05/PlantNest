@@ -5,23 +5,17 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ShopController extends Controller
 {
     public function index($id = null)
     {
-        // $query = Product::query();
-
-        // if ($id !== null) {
-        //     $query->whereHas('category', function ($subquery) use ($id) {
-        //         $subquery->where('id', $id);
-        //     });
-        // }
-
-        // $products = $query->with('plantInfo', 'category', 'images')
-        //     ->paginate(12);
+       
         $query = Product::query();
         // Check if products are empty
+        $user = Auth::user(); // Assuming you have authentication set up
+
         
 
         if ($id !== null) {
@@ -33,6 +27,16 @@ class ShopController extends Controller
             })
             ->with('images', 'plantInfo')
             ->paginate(12);
+            if ($user) {
+            // Retrieve the user's wishlist items
+            $wishlistItems = $user->wishlistItems()->pluck('product_id')->toArray();
+
+            // Add a flag to each product indicating whether it's in the wishlist
+            foreach ($products as $product) {
+                $product->in_wishlist = in_array($product->id, $wishlistItems);
+            }
+           
+        }
         }
         else if ($id !== null) {
             $query->whereHas('category', function ($subquery) use ($id) {
@@ -40,19 +44,48 @@ class ShopController extends Controller
             });
             $products = $query->with('plantInfo', 'images')
             ->paginate(12);
+            if ($user) {
+            // Retrieve the user's wishlist items
+            $wishlistItems = $user->wishlistItems()->pluck('product_id')->toArray();
+
+            // Add a flag to each product indicating whether it's in the wishlist
+            foreach ($products as $product) {
+                $product->in_wishlist = in_array($product->id, $wishlistItems);
+            }
+           
+        }
         }
 
         else{
             $products = $query->with('plantInfo', 'images')
             ->paginate(12);
+            if ($user) {
+            // Retrieve the user's wishlist items
+            $wishlistItems = $user->wishlistItems()->pluck('product_id')->toArray();
+
+            // Add a flag to each product indicating whether it's in the wishlist
+            foreach ($products as $product) {
+                $product->in_wishlist = in_array($product->id, $wishlistItems);
+            }
+           
+        }
             
         }}
         else{
 
             $products = $query->with('plantInfo', 'category', 'images')->paginate(12);
+            if ($user) {
+            // Retrieve the user's wishlist items
+            $wishlistItems = $user->wishlistItems()->pluck('product_id')->toArray();
+
+            // Add a flag to each product indicating whether it's in the wishlist
+            foreach ($products as $product) {
+                $product->in_wishlist = in_array($product->id, $wishlistItems);
+            }
+           
+        }
         }
         
-
         return view('pages.shop.index', compact('products'));
     }
     public function detail($id)

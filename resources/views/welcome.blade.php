@@ -153,8 +153,15 @@
                                                             </li>
                                                             {{-- <li class="compare"><a href="#" title="Add to Compare"><i
                                                                class="icon-sliders"></i></a></li> --}}
-                                                            <li class="wishlist"><a href="wishlist.html"
-                                                                    title="Add to Wishlist"><i class="icon-heart"></i></a>
+                                                            <li class="wishlist"><a href="" title="Add to Wishlist"
+                                                                    data-product-id="{{ $product->id }}"
+                                                                    class="add-to-wishlist">
+                                                                    @if ($product->in_wishlist == 1)
+                                                                        <i class="fa fa-heart"></i>
+                                                                    @else
+                                                                        <i class="icon-heart"></i>
+                                                                    @endif
+                                                                </a>
                                                             </li>
                                                             <li class="quick_button"><a href="#"
                                                                     data-bs-toggle="modal"
@@ -221,8 +228,16 @@
                                                             </li>
                                                             {{-- <li class="compare"><a href="#" title="Add to Compare"><i
                                                                 class="icon-sliders"></i></a></li> --}}
-                                                            <li class="wishlist"><a href="wishlist.html"
-                                                                    title="Add to Wishlist"><i class="icon-heart"></i></a>
+                                                            <li class="wishlist"><a href=""
+                                                                    title="Add to Wishlist"
+                                                                    data-product-id="{{ $product->id }}"
+                                                                    class="add-to-wishlist">
+                                                                    @if ($product->in_wishlist == 1)
+                                                                        <i class="fa fa-heart"></i>
+                                                                    @else
+                                                                        <i class="icon-heart"></i>
+                                                                    @endif
+                                                                </a>
                                                             </li>
                                                             <li class="quick_button"><a href="#"
                                                                     data-bs-toggle="modal" data-bs-target="#modal_box"
@@ -288,8 +303,16 @@
                                                             </li>
                                                             {{-- <li class="compare"><a href="#" title="Add to Compare"><i
                                                                 class="icon-sliders"></i></a></li> --}}
-                                                            <li class="wishlist"><a href="wishlist.html"
-                                                                    title="Add to Wishlist"><i class="icon-heart"></i></a>
+                                                            <li class="wishlist"><a href=""
+                                                                    title="Add to Wishlist"
+                                                                    data-product-id="{{ $product->id }}"
+                                                                    class="add-to-wishlist">
+                                                                    @if ($product->in_wishlist == 1)
+                                                                        <i class="fa fa-heart"></i>
+                                                                    @else
+                                                                        <i class="icon-heart"></i>
+                                                                    @endif
+                                                                </a>
                                                             </li>
                                                             <li class="quick_button"><a href="#"
                                                                     data-bs-toggle="modal" data-bs-target="#modal_box"
@@ -328,7 +351,7 @@
                         </div>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </div>
@@ -452,14 +475,39 @@
                                 <article class="single_product">
                                     <figure>
                                         <div class="product_thumb">
-                                            <a class="primary_img" href="product-details.html"><img
-                                                    src="{{ asset('assets/frontend/img/product/product1.jpg') }}"
-                                                    alt=""></a>
+                                            <a class="primary_img"
+                                                href="{{ route('shop.detail', $product->id) }}"><img
+                                                    src="{{ $product->image_url }}" alt=""></a>
                                             <div class="label_product">
-                                                <span class="label_sale">-7%</span>
+                                                @if ($product->discount_percentage > 0)
+                                                    <span
+                                                        class="label_sale">-{{ $product->discount_percentage }}%</span>
+                                                @endif
                                             </div>
-                                            <div class="product_timing">
-                                                <div data-countdown="2022/12/15"></div>
+                                            <div class="action_links">
+                                                <ul>
+                                                    <li class="add_to_cart" data-product-id="{{ $product->id }}"
+                                                        data-quantity="1"><a href="javascript:void(0)"
+                                                            title="Add to cart"><i
+                                                                class="icon-shopping-bag"></i></a>
+                                                    </li>
+                                                    {{-- <li class="compare"><a href="#" title="Add to Compare"><i
+                                                       class="icon-sliders"></i></a></li> --}}
+                                                    <li class="wishlist"><a href="" title="Add to Wishlist"
+                                                            data-product-id="{{ $product->id }}"
+                                                            class="add-to-wishlist">
+                                                            @if ($product->in_wishlist == 1)
+                                                                <i class="fa fa-heart"></i>
+                                                            @else
+                                                                <i class="icon-heart"></i>
+                                                            @endif
+                                                        </a>
+                                                    </li>
+                                                    <li class="quick_button"><a href="#"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#modal_box{{ $product->id }}"
+                                                            title="quick view"> <i class="icon-eye"></i></a></li>
+                                                </ul>
                                             </div>
                                         </div>
                                         <figcaption class="product_content">
@@ -472,11 +520,16 @@
                                                     <li><a href="#"><i class="icon-star"></i></a></li>
                                                 </ul>
                                             </div>
-                                            <h4 class="product_name"><a href="product-details.html">commodo augue nisi</a>
-                                            </h4>
+                                            <h4 class="product_name"><a
+                                                    href="product-details.html">{{ $product->name }}</a></h4>
                                             <div class="price_box">
-                                                <span class="current_price">£69.00</span>
-                                                <span class="old_price">£74.00</span>
+                                                @if ($product->discount_percentage > 0)
+                                                    <span class="current_price">PKR
+                                                        {{ $product->price - $product->discount }}</span>
+                                                    <span class="old_price">PKR {{ $product->price }}</span>
+                                                @else
+                                                    <span class="current_price">PKR {{ $product->price }}</span>
+                                                @endif
                                             </div>
                                         </figcaption>
                                     </figure>
