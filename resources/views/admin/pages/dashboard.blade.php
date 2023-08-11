@@ -27,12 +27,12 @@
                             <div class="col-md-6 col-xl-3">
                                 <div class="card">
                                     <div class="card-body bg-primary  text-center">
-
-
-
+                                    @php
+                                        $users=\App\Models\User::count() ?? 0;
+                                    @endphp
                                         <div >
                                             <h4 class="mb-1 mt-1 text-white"><span data-plugin="counterup">
-                                                
+                                                {{$users}}
                                             </span></h4>
                                             <p class="text-white mb-0">Total Users</p>
                                         </div>
@@ -44,11 +44,13 @@
                             <div class="col-md-6 col-xl-3">
                                 <div class="card">
                                     <div class="card-body text-center">
-
+                                        @php
+                                        $orders=\App\Models\Order::count() ?? 0;
+                                        @endphp
                                         <div>
-                                       
-
-                                            <h4 class="mb-1 mt-1"><span data-plugin="counterup">   </span></h4>
+                                            <h4 class="mb-1 mt-1"><span data-plugin="counterup"> 
+                                                {{$orders}}
+                                            </span></h4>
                                             <p class="text-muted mb-0">Orders</p>
                                         </div>
 
@@ -59,10 +61,14 @@
                             <div class="col-md-6 col-xl-3">
                                 <div class="card">
                                     <div class="card-body text-white bg-primary text-center">
-
+                                        @php
+                                        $products=\App\Models\Product::where('status',1)->count() ?? 0;
+                                        @endphp
                                         <div>
                                       
-                                            <h4 class="mb-1 mt-1 text-white"><span data-plugin="counterup"></span></h4>
+                                            <h4 class="mb-1 mt-1 text-white"><span data-plugin="counterup">
+                                            {{$products}}    
+                                            </span></h4>
                                             <p class="text-white mb-0">Products</p>
                                         </div>
 
@@ -74,7 +80,9 @@
 
                                 <div class="card">
                                     <div class="card-body text-center">
-                                    
+                                        @php
+                                        $products=\App\Models\Order::where('status','delivered')->sum('total_amount') ?? 0;
+                                        @endphp
                                         <div>
                                             <h4 class="mb-1 mt-1 text-center"> + $<span data-plugin="counterup">  </span></h4>
                                             <p class="text-muted mb-0">Total Revenue</p>

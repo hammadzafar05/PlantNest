@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AccessoriesCategoryController;
+use App\Http\Controllers\Admin\ApiController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PlantCategoriesController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
@@ -100,15 +101,21 @@ Route::middleware(['isAdmin','auth','prevent-back-history'])->prefix('admin')->n
         Route::put('categories/UpdateAccessoryCategory','update')->name('UpdateAccessoryCategories');
         Route::get('categories/deleteAccessoryCategory/{category}','destroy')->name('deleteAccessoryCategories');
     });
-    // Produc controller
+    // Product controller
     Route::controller(AdminProductController::class)->group(function () {
         //plant categories
         Route::get('product/allproducts','index')->name('showProducts');
         Route::get('product/addProducts','create')->name('AddProducts');
-        Route::get('product/storeProducts','store')->name('StoreProducts');
-        Route::get('product/product/edit/{category}','edit')->name('editProducts');
+        Route::post('product/storeProducts','store')->name('StoreProducts');
+        Route::get('product/editProducts/{id}','edit')->name('editProducts');
         Route::put('product/updateProducts','update')->name('UpdateProducts');
-        Route::get('product/deleteProducts/{category}','destroy')->name('deleteProducts');
+        Route::get('product/deleteProducts/{id}','destroy')->name('deleteProducts');
+        Route::get('product/deleteImage/{id}','deleteImage')->name('deleteProducts');
+        Route::get('product/status/{id}','changeProductStatus')->name('changeStatus');
+    });
+    // Api Fetch subb category controller
+    Route::controller(ApiController::class)->group(function () {
+        Route::post('api/fetch-subcategory','fetchSubcategoryApi')->name('fetchSubCategory');
     });
 
 });

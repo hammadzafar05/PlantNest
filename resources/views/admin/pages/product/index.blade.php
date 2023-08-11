@@ -21,9 +21,11 @@
         <div class="card">
             <div class="card-body">
                 <div>
+                    @if (!($allproducts)->isEmpty())
                     <div class="row">
                         @foreach($allproducts as $product)
                         <div class="col-xl-4 col-sm-2">
+                            
                             <div class="product-box">
                                 <div class="product-img pt-4 px-4">
                                     {{-- <div >
@@ -33,16 +35,15 @@
                                       <a href="{{route('product.trending',$product->id)}}"  class="product-ribbon badge bg-warning text-white">Trending</a>
                                         @endif
                                     </div> --}}
-
-
-                                    {{-- @foreach($product['images'] as $img)
-                                        
+                                    @foreach(array_reverse($product['images']->toArray(),true) as $img)
+                                    @if($img['product_id']==$product->id)
                                              @php
-                                                 $imgs=$img['image_url']
-                                             @endphp
+                                                $imgs=$img['image_url']
+                                            @endphp
+                                    @endif
+                                    @endforeach
                                         
-                                    @endforeach --}}
-                                        <img src="{{$product['image_url']}}" alt="" class="img-fluid mx-auto d-block product_img" >
+                                        <img src="{{ asset('assets/backend/images/product/' . $imgs) }}" alt="" class="img-fluid mx-auto d-block product_img" >
 
 
 
@@ -57,12 +58,12 @@
 
                                 </div>
                                 <div class="buttons m-3 text-center" >
-                                     <button class="btn btn-success text-white"><a href="{{url('admin/product/edit',$product->id)}}" class="text-white" >Edit</a></button>
-                                     <button class="btn btn-danger text-white"><a href="{{route('product.delete',$product->id)}}"  class="text-white" >Delete</a></button>
-                                     @if($product->status==1)
-                                        <button class="btn btn-dark text-white"><a href="{{route('product.status',$product->id)}}" class="text-white" >Deactivate</a></button>
+                                     <button class="btn btn-success text-white"><a href="{{url('admin/product/editProducts',$product['id'])}}" class="text-white" >Edit</a></button>
+                                     <button class="btn btn-danger text-white"><a href="{{url('admin/product/deleteProducts',$product['id'])}}"  class="text-white" >Delete</a></button>
+                                     @if($product['status']==1)
+                                        <button class="btn btn-dark text-white"><a href="{{url('admin/product/status',$product['id'])}}" class="text-white" >Deactivate</a></button>
                                      @else
-                                        <button class="btn btn-info text-white"><a href="{{route('product.status',$product->id)}}" class="text-white" >Activate</a></button>
+                                        <button class="btn btn-info text-white"><a href="{{url('admin/product/status',$product->id)}}" class="text-white" >Activate</a></button>
                                     @endif
 
                                 </div>
@@ -71,6 +72,17 @@
                         @endforeach
 
                     </div>
+                    @else
+                    <div class="row justify-content-center text-center">
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <i class="uil uil-exclamation-triangle me-2"></i>
+                            No Products Found!
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                            
+                            </button>
+                        </div>
+                    </div>
+                    @endif
                     <div class="row">
                         <ul class="pagination mt-5 d-flex justify-content-center">
                                 {{ $allproducts->links('pagination::bootstrap-5')}}

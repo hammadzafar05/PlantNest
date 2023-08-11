@@ -194,55 +194,7 @@
     <script src="{{ asset('assets/backend/js/pages/ecommerce-add-product.init.js') }}"></script>
     {{-- <script src="{{asset('assets/backend/js/admin.js')}}"></script> --}}
     @yield('script')
-    <script>
-        $(function() {
-            $(document).ready(function() {
-                $('#category-dropdown').on('change', function() {
-                    var idCategory = this.value;
-                    $("#subcategory-dropdown").html('');
-                    $.ajax({
-                        url: "{{ url('/api/fetch-subcategory') }}",
-                        type: "POST",
-                        data: {
-                            category_id: idCategory,
-                            _token: '{{ csrf_token() }}'
-                        },
-                        dataType: 'json',
-                        success: function(result) {
-                            $('#subcategory-dropdown').html(
-                                '<option selected disabled>Select SubCategory</option>'
-                                );
-                            $.each(result.subcategories, function(key, value) {
-                                $("#subcategory-dropdown").append(
-                                    '<option value="' + value
-                                    .id + '">' + value.subcategory_name +
-                                    '</option>');
-                                console.log(result.subcategories)
-                            });
-                        }
-                    });
-                });
-            });
-
-            // Multiple images preview with JavaScript
-            var previewImages = function(input, imgPreviewPlaceholder) {
-                if (input.files) {
-                    var filesAmount = input.files.length;
-                    for (i = 0; i < filesAmount; i++) {
-                        var reader = new FileReader();
-                        reader.onload = function(event) {
-                            $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(
-                                imgPreviewPlaceholder);
-                        }
-                        reader.readAsDataURL(input.files[i]);
-                    }
-                }
-            };
-            $('#image').on('change', function() {
-                previewImages(this, 'div.images-preview-div');
-            });
-        });
-    </script>
+   
       <script>
         $(document).ready(function() {
            // Wait for 2 seconds and then hide the element

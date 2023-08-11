@@ -70,54 +70,31 @@
                                                 @enderror
                                             </div>
                                         </div>
-
-                                        {{-- <div class="col-lg-6">
-
-                                    <div class="mb-3">
-                                        <label class="form-label" for="manufacturerbrand">Product Size</label>
-                                        <select class="form-select  @error('category') is-invalid @enderror" aria-label="Default select example" name="size"  required name="size" id="">
-                                            <option value="" selected disabled>Select Size</option>
-
-                                            <option {{ old("size") == "Small" ? "selected":""}} value="1">Small</option>
-                                            <option {{ old("size") == "Medium" ? "selected":""}}  value="2">Medium</option>
-                                            <option {{ old("size") == "Large" ? "selected":""}}  value="3">Large</option>
-                                            <option {{ old("size") == "X-Large" ? "selected":""}}  value="4">Exra Large</option>
-                                        </select>
-                                        @error('size')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
-                                    </div>
-                                </div> --}}
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <div class="mb-3">
-                                                <label class="form-label" for="image">Product Image</label>
-                                                <!-- <input id="image" name="image[]" type="file" class="form-control  @error('image') is-invalid @enderror" multiple required> -->
-                                                <input id="image" name="image[]" type="file" class="form-control"
-                                                    multiple required>
-                                            </div>
-
-                                        </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-lg-12">
+                                        <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <label class="form-label" for="image">Product Purpose</label>
-                                                <!-- <input id="image" name="image[]" type="file" class="form-control  @error('purpose') is-invalid @enderror" multiple required> -->
                                                 <input id="purpose" name="purpose" type="text" class="form-control">
                                             </div>
-
+                                            @error('purpose')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <div class="mb-3 text-center">
-                                                <div class="images-preview-div"></div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="discount">Product Discount</label>
+                                                <input id="discount" name="discount" type="number" min="0"
+                                                    max="100" value="{{ old('discount') }}"
+                                                    class="form-control @error('discount') is-invalid @enderror" required>
                                             </div>
+                                            @error('discount')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="row">
@@ -147,6 +124,28 @@
                                                         <strong>{{ $message }}</strong>
                                                     </span>
                                                 @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="image">Product Image</label>
+                                                <!-- <input id="image" name="image[]" type="file" class="form-control  @error('image') is-invalid @enderror" multiple required> -->
+                                                <input id="image" name="image[]" type="file" class="form-control"
+                                                    @error('image') is-invalid @enderror multiple required>
+                                            </div>
+                                            @error('image')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="mb-3 text-center">
+                                                <div class="images-preview-div"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -243,4 +242,55 @@
 
 
             </div> <!-- container-fluid -->
+        @endsection
+        @section('script')
+            <script>
+                $(function() {
+                    $(document).ready(function() {
+                        $('#category-dropdown').on('change', function() {
+                            var idCategory = this.value;
+                            $("#subcategory-dropdown").html('');
+                            $.ajax({
+                                url: "{{ url('admin/api/fetch-subcategory') }}",
+                                type: "POST",
+                                data: {
+                                    category_id: idCategory,
+                                    _token: '{{ csrf_token() }}'
+                                },
+                                dataType: 'json',
+                                success: function(result) {
+                                    $('#subcategory-dropdown').html(
+                                        '<option selected disabled>Select Sub Category</option>'
+                                    );
+                                    $.each(result.subcategories, function(key, value) {
+                                        $("#subcategory-dropdown").append(
+                                            '<option value="' + value
+                                            .id + '">' + value.name +
+                                            '</option>');
+                                        console.log(result.subcategories)
+                                    });
+                                }
+                            });
+                        });
+                    });
+
+                    // Multiple images preview with JavaScript
+                    var previewImages = function(input, imgPreviewPlaceholder) {
+                        if (input.files) {
+                            var filesAmount = input.files.length;
+                            for (i = 0; i < filesAmount; i++) {
+                                var reader = new FileReader();
+                                reader.onload = function(event) {
+                                    $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(
+                                        imgPreviewPlaceholder);
+                                }
+                                reader.readAsDataURL(input.files[i]);
+                            }
+                        }
+                    };
+                    $('#image').on('change', function() {
+                        previewImages(this, 'div.images-preview-div');
+                    });
+                });
+            </script>
         @endsection

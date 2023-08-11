@@ -14,142 +14,170 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $allproducts = Product::paginate(15);
+        $allproducts = Product::with('images')->latest()->paginate(15);
         return view('admin.pages.product.index',['allproducts'=>$allproducts]);
     }
 
     public function create()
     {
         $_categories = Category::where('parent_id',0)->select('id','name','parent_id')->get();
-        // $_subcategory = Category::where('parent_id','!=',0)->select('id','name','parent_id')->get();
         return view('admin.pages.product.create', ['_allCategories'=>$_categories]);
     }
 
     public function store(Request $request)
     {
+        // dd($this->storeFirstImageInProduct($request->file('image'),102));
         $request->validate([
-            'name' => 'required|max:255|unique:product',
+            'name' => 'required|max:255|unique:products',
+            'species' => 'required|max:255',
+            'purpose' => 'max:255',
             'price' => 'required|integer',
-            'category_id' => 'required|integer',
-            'subcategory_id' => 'required|integer',
-            'discount_id' => 'required|integer',
-            'size' => 'required|max:255',
+            'discount' => 'required',
             'description' => 'required|max:255',
+            // 'category_id' => 'required|integer',
+            'subcategory_id' => 'required|integer',
             'stock' => 'required|integer',
             'image' => 'required',
             'image.*' => 'mimes:jpeg,jpg,png,gif'
 
         ]);
+        $imagePaths = [];
         $product = new Product();
         $product->name = $request->name;
+        $product->species = $request->species;
         $product->price = $request->price;
+        $product->discount = $request->discount;
         $product->description = $request->description;
-        $product->size = $request->size;
-        $product->category_id = $request->category_id;
-        $product->subcategory_id = $request->subcategory_id;
-        $product->discount_id = $request->discount_id;
-        $product->status = 1;
-        $product->trending = 0;
+        $product->purpose = $request->purpose;
         $product->stock = $request->stock;
-        $product->save();
-
+        $product->status = 1;
+        // $product->image_url =$imagePaths[0];
+        $product->category_id = $request->subcategory_id;
+        if(!$product->save())
+        {
+            return redirect()->back()->with('error','something weng wrong!');
+        }
+        
         if ($request->hasfile('image')) {
             $images = $request->file('image');
-            foreach ($images as $image) {
-                $extenstion = $image->getClientOriginalName();
-                $filename = 'Product_Image' . rand(1, 9999999999) . $product->id . time() . '.' . $extenstion;
-                $image->move('assets/images/product', $filename);
-                $productimg = new Productimages();
-                $productimg->image = $filename;
+            foreach ($images as $_image) {
+                $extenstion = $_image->getClientOriginalName();
+                $filename = 'Product_Image' . rand(1, 9999999999).$product->id.time().$extenstion;
+                $_image->move('assets/backend/images/product', $filename);
+                $imagePaths[] = $filename;
+                $productimg = new ProductImage();
+                $productimg->image_url = $filename;
                 $productimg->product_id = $product->id;
                 $productimg->save();
             }
+             // Update the first image_url in the products table
+        if (count($imagePaths) > 0) {
+            $product->image_url = $imagePaths[0];
+            $product->save();
         }
-        return redirect()->route('product.index');
+        }
+        return redirect()->back()->with('success','product added successfully!');
     }
 
     public function edit($id)
     {
 
-        $product = Product::find($id);
-        $categories = Category::all();
-        $subcategories=Subcategory::where('category_id',$product->category_id)->get();
-        $discount=Discount::all();
-        $images=Productimages::where('product_id',$id)->get();
+        $_product = Product::with(['images' => function ($query) {
+            $query->select('id','image_url', 'product_id'); // Select the columns you need
+        },
+        'category'=>function($query){
+            $query->select('id','name','parent_id');
+        }])
+        ->where('id',$id)
+        ->get()->first();
+        
+        $_categories = Category::where('parent_id','=',0)->select('id','name','parent_id')->get();
+        $_subCategories = Category::where('parent_id','!=',0)->select('id','name','parent_id')->get();
 
-        return view('admin.product.edit', compact('product','categories','subcategories','discount','images','subcategories'));
+        return view('admin.pages.product.edit',['_product'=>$_product,'_categories'=>$_categories,'_subCategory'=>$_subCategories]);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
+        // dd($request->all());
         $request->validate([
-            'name' => 'max:255|unique:product,name,'.$id,
-            'price' => 'integer',
-            'category_id' => 'integer',
-            'subcategory_id' => 'integer',
-            'discount_id' => 'integer',
-            'size' => 'max:255',
+            'name' => 'max:255|unique:products,name,'.$request->pId,
+            'species' => 'max:255',
+            'purpose' => 'max:255',
+            'price' => 'required',
+            'discount' => 'max:255',
             'description' => 'max:255',
+            'subcategory_id' => 'integer',
             'stock' => 'integer',
-            'image.*' => 'image'
-
+            // 'image' => 'image'
         ]);
-        $product = Product::find($id);
+        $product = Product::find($request->pId);
+        // dd($product);
         $product->name = $request->name;
+        $product->species = $request->species;
         $product->price = $request->price;
+        $product->discount = $request->discount;
         $product->description = $request->description;
-        $product->size = $request->size;
-        $product->category_id = $request->category_id;
-        $product->subcategory_id = $request->subcategory_id;
-        $product->discount_id = $request->discount_id;
-        $product->status = $request->status;
+        $product->purpose = $request->purpose;
         $product->stock = $request->stock;
-        $product->save();
-        if ($request->image) {
-            foreach ($request->image as $img) {
-                $extenstion = $img->getClientOriginalName();
-                $filename = 'Product_Image' . rand(1, 9999999999) . $product->id . time() . '.' . $extenstion;
-                // dd($filename);exit;
-                $img->move('assets/backend/images/product', $filename);
-                $product_images = new Productimages;
-                $product_images->product_id = $product->id;
-                $product_images->image = $filename;
-                $product_images->save();
-
-            }
-
+        $product->status = 1;
+        // $product->image_url =$imagePaths[0];
+        $product->category_id = $request->subcategory_id;
+        if(!$product->save())
+        {
+            return redirect()->back()->with('error','something weng wrong!');
         }
-        return redirect()->route('product.index');
+        $imagePaths = [];
+        
+        if ($request->hasfile('image')) {
+            $images = $request->file('image');
+            foreach ($images as $_image) {
+                $extenstion = $_image->getClientOriginalName();
+                $filename = 'Product_Image' . rand(1, 9999999999).$product->id.time().$extenstion;
+                $_image->move('assets/backend/images/product', $filename);
+                $imagePaths[] = $filename;
+                $productimg = new ProductImage();
+                $productimg->image_url = $filename;
+                $productimg->product_id = $product->id;
+                $productimg->save();
+            }
+             // Update the first image_url in the products table
+        if (count($imagePaths) > 0) {
+            $product->image_url = $imagePaths[0];
+            $product->save();
+        }
+        }
+        return redirect()->route('admin.showProducts')->with('success','product updated successfully!');
     }
 
     public function destroy($id)
     {
-        $images = Productimages::select('image')->where('product_id', $id)->get();
+        $images = ProductImage::select('image_url')->where('product_id', $id)->get();
         foreach ($images as $img) {
-            $filePathName = 'assets/images/product/' . $img->image;
+            $filePathName = 'assets/backend/images/product/' . $img->image_url;
             if (file_exists($filePathName)) {
             }
             unlink($filePathName);
         }
-        Productimages::where('product_id', $id)->delete();
+        ProductImage::where('product_id', $id)->delete();
 
         $product = Product::find($id);
         $product->delete();
-        return redirect()->route('product.index');
+        return redirect()->back()->with('success','Product deleted successfully!');
     }
 
     public function deleteImage($id){
-        $image = Productimages::find($id);
-        $filePathName = 'assets/images/product/' . $image->image;
+        $image = ProductImage::find($id);
+        $filePathName = 'assets/backend/images/product/' . $image->image_url;
         if (file_exists($filePathName)) {
         }
         unlink($filePathName);
 
-        Productimages::destroy($id);
+        ProductImage::destroy($id);
         return redirect()->back();
     }
 
-    public function status($id)
+    public function changeProductStatus($id)
     {
         $product = Product::find($id);
         if ($product->status == 1) {
@@ -159,31 +187,15 @@ class ProductController extends Controller
             $product->status = 1;
             $product->save();
         }
-        $products = Product::all();
-        $pimage=Productimages::all();
-        return redirect()->route('product.index');
+        // $products = Product::all();
+        // $pimage=Productimages::all();
+        return redirect()->back()->with('success','Status changed successfully!');
     }
-    public function trending($id)
-    {
-        $product = Product::find($id);
-        if ($product->trending == 1) {
-            $product->trending = 0;
-            $product->save();
-        } else if ($product->trending == 0) {
-            $product->trending = 1;
-            $product->save();
-        }
-
-        return redirect()->route('product.index');
-    }
-
+   
     public function search(Request $request)
     {
         $search = $request->get('search');
         $products = Product::where('name', 'like', '%' . $search . '%')->paginate(10);
         return view('admin.product.search', compact('products'));
     }
-
-
-
 }

@@ -32,14 +32,6 @@
                 
             </ul>
         </li>
-        <li>
-            <a href="{{url('admin/usersList')}}">
-                <i class="uil-home-alt">
-
-                </i>
-                <span>Users</span>
-            </a>
-         </li>
         </li>
         <li>
             <a href="javascript: void(0);" class="has-arrow waves-effect">
