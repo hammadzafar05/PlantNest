@@ -1,5 +1,3 @@
-
-
 @extends('layouts.guest')
 <title>{{ config('app.name', 'PlantNest|Login') }}</title>
 @section('content') 
@@ -31,6 +29,8 @@
                     <h2>Forgot your password?</h2>
                     <small> {{ __(' No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
                     </small>
+                    <!-- Session Status -->
+                    <x-auth-session-status class="text-success mb-4" :status="session('status')" />
                     <form method="POST" action="{{ route('password.email') }}">
                         @csrf
                         <p>

@@ -55,7 +55,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="product_d_right">
-                        <form action="#">
+                        {{-- <form action="#"> --}}
 
                             <h1><a href="#">{{ $product->name }}</a></h1>
                             {{-- <div class="product_nav">
@@ -101,16 +101,16 @@
                                 cart</button>
 
                             </div>
-                            <div class=" product_d_action">
+                            <div class="product_d_action">
                                 <ul>
-                                    <li><a href="#" title="Add to wishlist">+ Add to Wishlist</a></li>
+                                    <li><a href="javascript:void(0)" title="Add to wishlist">+ Add to Wishlist</a></li>
                                 </ul>
                             </div>
                             <div class="product_meta">
                                 <span>Category: <a href="#">{{ $product->category->name }}</a></span>
                             </div>
 
-                        </form>
+                        {{-- </form> --}}
 
 
                     </div>
@@ -260,7 +260,7 @@
                         <article class="single_product">
                             <figure>
                                 <div class="product_thumb">
-                                    <a class="primary_img" href="route('shop.detail',$product->id)"><img
+                                    <a class="primary_img" href="{{ route('shop.detail',$product->id) }}"><img
                                             src="{{ $product->image_url }}"
                                             alt=""></a>
                                     <div class="label_product">
@@ -270,7 +270,7 @@
                                                                         </div>
                                     <div class="action_links">
                                         <ul>
-                                            <li class="add_to_cart"  data-product-id="{{ $product->id }}><a href=" title="Add to cart"><i
+                                            <li class="add_to_cart"  data-product-id="{{ $product->id }}" data-quantity="1" ><a href=" title="Add to cart"><i
                                                         class="icon-shopping-bag"></i></a></li>
                                             <li class="wishlist"><a href="wishlist.html" title="Add to Wishlist"><i
                                                         class="icon-heart"></i></a></li>
@@ -316,6 +316,7 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+    @section('script')
     <script>
     function updateDataQuantityDetail(inputElement) {
        const quantity = parseInt(inputElement.value);

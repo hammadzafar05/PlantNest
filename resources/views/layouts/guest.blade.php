@@ -47,6 +47,9 @@
         @else
             localStorage.setItem('auth', false);
         @endif
+
+        var baseURL = "{{ url('/') }}/"
+
     </script>
     <style>
         .mini_cart {
@@ -431,7 +434,7 @@
 
     @guest
         <script>
-            $('.add_to_cart, .cart_button, .mini_cart_wrapper, .header_wishlist').click(function(e) {
+            $('.add_to_cart, .cart_button, .mini_cart_wrapper, .header_wishlist, .product_d_action').click(function(e){
                 e.preventDefault();
                 if (localStorage.getItem('auth') == 'false') {
                     Swal.fire({
@@ -701,7 +704,7 @@
         });
     </script>
 
-    @section('script')
+    @yield('script')
 
     </body>
 
