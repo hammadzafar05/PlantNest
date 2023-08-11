@@ -1,5 +1,5 @@
 @extends('layouts.guest')
-<title>{{ config('app.name', 'PlantNest|Checkout') }}</title>
+<title>{{ config('app.name', 'PlantNest | Contact') }}</title>
 @section('content')    <!--breadcrumbs area start-->
     <div class="breadcrumbs_area">
         <div class="container">
@@ -42,7 +42,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-12">
+                {{-- <div class="col-lg-6 col-md-12">
                     <div class="contact_message form">
                         <h3>Tell us about your project</h3>
                         <form method="POST" action="{{ route('submit.contact') }}">
@@ -71,14 +71,14 @@
                         </form>
 
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
 
-    <!--contact area end-->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+@endsection
 
+@section('script')    
 <script>
     $(document).ready(function () {
         console.log('i ran');

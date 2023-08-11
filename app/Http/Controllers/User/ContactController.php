@@ -12,20 +12,4 @@ class ContactController extends Controller
         return view('pages.contact.index');
     }
 
-    public function submit_contact(request $request)
-    {
-        ContactForm::create(
-            [
-                'name'=>$request->name,
-                'email'=>$request->email,
-                'subject'=>$request->subject,
-                'message'=>$request->message
-            ]
-        );
-
-        $response="Successfully Submited Contact Form";
-
-        return redirect()->back()->with('success',$response);
-
-    }
 }

@@ -14,6 +14,7 @@ use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\ContactController;
 use App\Http\Controllers\User\FaqController;
+use App\Http\Controllers\User\FeedbackController;
 use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\User\ShopController;
 use App\Http\Controllers\User\WhishListController;
@@ -37,8 +38,9 @@ Route::controller(HomeController::class)->group(function () {
 
     Route::get('/','index')->name('user.home');
     Route::get('home','index');
-
-    Route::post('/submit-contact', [ContactController::class, 'submit_contact'])->name('submit.contact');
+    
+    Route::get('/feedback',[FeedbackController::class,'index'])->name('feedback.index');
+    Route::post('/submit-feedback', [FeedbackController::class, 'submit_feedback'])->name('submit.feedback');
 
     //authenticated routes
     Route::middleware(['auth','prevent-back-history'])->group(function(){
@@ -58,6 +60,7 @@ Route::get('/cart/removeCartItem',[CartController::class,'remove'])->name('cart.
 
 Route::get('/checkout',[CheckoutController::class,'index'])->name('checkout.index');
 Route::get('/account',[AccountController::class,'index'])->name('account.index');
+Route::put('/account/update',[AccountController::class,'update'])->name('account.update');
 Route::get('/contact',[ContactController::class,'index'])->name('contact.index');
 Route::get('/about',[AboutController::class,'index'])->name('about.index');
 Route::get('/faq',[FaqController::class,'index'])->name('faq.index');
@@ -65,8 +68,8 @@ Route::get('/shop/{id?}',[ShopController::class,'index'])->name('shop.index');
 Route::get('/shop/product/detail/{id?}',[ShopController::class,'detail'])->name('shop.detail');
 
 Route::get('/wishlist',[WhishListController::class,'index'])->name('wishlist.index');
-Route::post('/wishlist/add/{id}', [WishlistControlle::class,'addToWishlist'])->name('wishlist.add');
-Route::post('/wishlist/remove/{id}', [WishlistControlle::class,'removeFromWishlist'])->name('wishlist.remove');
+Route::get('/wishlist/add/{id}', [WhishListController::class,'addToWishlist'])->name('wishlist.add');
+Route::get('/wishlist/remove/{id}', [WhishListController::class,'removeFromWishlist'])->name('wishlist.remove');
 
 
 

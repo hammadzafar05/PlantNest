@@ -23,7 +23,20 @@
     <section class="main_content_area">
         <div class="container">
             <div class="account_dashboard">
+
                 <div class="row">
+                    <!-- Session Status -->
+                <x-auth-session-status class="text-success mb-4" :status="session('status')" />
+                <x-auth-session-status class="text-success mb-4" :status="session('success')" />
+
+                @if ($errors->updatePassword->any())
+                    <ul>
+                        @foreach ($errors->updatePassword->all() as $error)
+                            <li class="text-danger">{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                @endif
+
                     <div class="col-sm-12 col-md-3 col-lg-3">
                         <!-- Nav tabs -->
                         <div class="dashboard_tab_button">
@@ -32,6 +45,7 @@
                                 <li> <a href="#orders" data-bs-toggle="tab" class="nav-link">Orders</a></li>
                                 <li><a href="#address" data-bs-toggle="tab" class="nav-link">Addresses</a></li>
                                 <li><a href="#account-details" data-bs-toggle="tab" class="nav-link">Account details</a>
+                                <li><a href="#update-password" data-bs-toggle="tab" class="nav-link">Update Password</a>
                                 </li>
                                 <li><a href="{{ route('logout') }}" class="nav-link">logout</a></li>
                             </ul>
@@ -52,7 +66,7 @@
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th>Order</th>
+                                                <th>#No</th>
                                                 <th>Date</th>
                                                 <th>Status</th>
                                                 <th>Total</th>
@@ -60,20 +74,19 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+
+                                            @foreach ($orders as $order)
+                                            
                                             <tr>
-                                                <td>1</td>
-                                                <td>May 10, 2018</td>
-                                                <td><span class="success">Completed</span></td>
-                                                <td>$25.00 for 1 item </td>
-                                                <td><a href="cart.html" class="view">view</a></td>
+                                                <td>{{ $order->id }}</td>
+                                                <td>{{ \Carbon\Carbon::parse($order->created_at)->format('d M Y') }}</td>
+                                                <td><span class="success">{{ $order->status }}</span></td>
+                                                <td>{{ $order->total_amount }}</td>
+                                                <td><a href="#" class="view">view</a></td>
                                             </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>May 10, 2018</td>
-                                                <td>Processing</td>
-                                                <td>$17.00 for 1 item </td>
-                                                <td><a href="cart.html" class="view">view</a></td>
-                                            </tr>
+                                            
+                                            @endforeach
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -81,14 +94,13 @@
                             <div class="tab-pane" id="address">
                                 <p>The following addresses will be used on the checkout page by default.</p>
                                 <h4 class="billing-address">Billing address</h4>
-                                <a href="#" class="view">Edit</a>
-                                <p><strong>Bobby Jackson</strong></p>
+                                <p><strong>Name:</strong>  {{ $userDetails->name }}</p>
                                 <address>
-                                    <span><strong>City:</strong> Seattle</span>,
+                                    <span><strong>City:</strong> {{ $userDetails->details->first()?->shipping_city }}</span>,
                                     <br>
-                                    <span><strong>State:</strong> Washington(WA)</span>,
+                                    <span><strong>State:</strong> {{ $userDetails->details->first()?->shipping_state }}</span>,
                                     <br>
-                                    <span><strong>ZIP:</strong> 98101</span>,
+                                    <span><strong>ZIP:</strong> {{ $userDetails->details->first()?->shipping_zip_code }}</span>,
                                     <br>
                                     <span><strong>Country:</strong> USA</span>
                                 </address>
@@ -98,44 +110,83 @@
                                 <div class="login">
                                     <div class="login_form_container">
                                         <div class="account_login_form">
-                                            <form action="#">
-                                                {{-- <p>Already have an account? <a href="#">Log in instead!</a></p> --}}
-                                                {{-- <div class="input-radio">
-                                                    <span class="custom-radio"><input type="radio" value="1"
-                                                            name="id_gender"> Mr.</span>
-                                                    <span class="custom-radio"><input type="radio" value="1"
-                                                            name="id_gender"> Mrs.</span>
-                                                </div> --}}
+                                            <form action="{{ route('account.update') }}" method="POST">
+                                                @csrf
+                                                @method('PUT')
                                                  <br>
-                                                <label>First Name</label>
-                                                <input type="text" name="first-name" value="{{ Auth::user()->name }}">
-                                                <label>Last Name</label>
-                                                <input type="text" name="last-name">
-                                                <label>Email</label>
-                                                <input type="text" name="email-name">
-                                                <label>Contact Number</label>
-                                                <input type="number" name="contact_number" value="{{ Auth::user()->details()->first()->shipping_phone_number }}">
-                                                <label>Password</label>
-                                                <input type="password" name="user-password">
-                                                <label>Birthdate</label>
-                                                <input type="text" placeholder="MM/DD/YYYY" value="" name="birthday">
-                                                <span class="example">
-                                                    (E.g.: 05/31/1970)
-                                                </span>
-                                                <br>
-                                                <span class="custom_checkbox">
-                                                    <input type="checkbox" value="1" name="optin">
-                                                    <label>Receive offers from our partners</label>
-                                                </span>
-                                                <br>
-                                                <span class="custom_checkbox">
-                                                    <input type="checkbox" value="1" name="newsletter">
-                                                    <label>Sign up for our newsletter<br><em>You may unsubscribe at any
-                                                            moment. For that purpose, please find our contact info in
-                                                            the legal notice.</em></label>
-                                                </span>
+                                                 <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label>First Name</label>
+                                                        <input type="text" name="name" value="{{ Auth::user()->name }}">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label>Email</label>
+                                                        <input type="text" name="email" value="{{ Auth::user()->email }}">
+                                                    </div>
+                                                 </div>
+                                                 <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label>Contact Number</label>
+                                                        <input type="number" name="contact_number" value="{{ Auth::user()->contact_number}}">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label>City</label>
+                                                        <input type="text" name="shipping_city" value="{{ $userDetails->details->first()?->shipping_city }}">
+                                                    </div>
+                                                 </div>
+                                                 <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label>Address 1</label>
+                                                        <input type="text" name="shipping_billing_address_1" value="{{ $userDetails->details->first()?->shipping_billing_address_1 }}">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label>Address 2</label>
+                                                        <input type="text" name="shipping_billing_address_2" value="{{ $userDetails->details->first()?->shipping_billing_address_2 }}">
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label>State</label>
+                                                        <input type="text" name="shipping_state" value="{{ $userDetails->details->first()?->shipping_state }}">        
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label>Country</label>
+                                                        <input type="text" name="shipping_country" value="{{ $userDetails->details->first()?->shipping_country }}">
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label>Zip Code</label>
+                                                        <input type="text" name="shipping_zip_code" value="{{ $userDetails->details->first()?->shipping_zip_code }}">
+                                                    </div>
+                                                </div>
                                                 <div class="save_button primary_btn default_button">
                                                     <button type="submit">Save</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="update-password">
+                                <h3>Update Password</h3>
+                                <div class="login">
+                                    <div class="login_form_container">
+                                        <div class="account_login_form">
+                                            <form action="{{ route('password.update') }}" method="POST">
+                                                @method('PUT')
+                                                @csrf
+                                                 <br>
+                                                <label>Current Password <span class="text-danger">*</span> </label>
+                                                <input type="password" name="current_password" required>
+                                                <label>New Password <span class="text-danger">*</span></label>
+                                                <input type="password" name="password" required>
+                                                <label>Confirm New Password <span class="text-danger">*</span></label>
+                                                <input type="password" name="password_confirmation" required>
+                                                <div class="save_button primary_btn default_button">
+                                                    <button type="submit">Update</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -149,9 +200,8 @@
         </div>
     </section>
     <!-- my account end   -->
-        
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+@endsection
+@section('script')
 <script>
     $(document).ready(function() {
         // console.log('i ran');

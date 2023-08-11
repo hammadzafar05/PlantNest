@@ -55,4 +55,8 @@ class Product extends Model
     {
         return $this->hasOne(PlantInfo::class);
     }
+    public function wishlistItems(){
+        return $this->hasMany(WishlistItem::class);
+
+    }
 }

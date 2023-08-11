@@ -13,10 +13,16 @@ class WhishListController extends Controller
     public function index()
     {
         $userId = Auth::user()->id;
-        $wishlist = WishlistItem::where('user_id', $userId)->get();
-        return view('pages.wishlist.index',compact('wishlist'));
+        $wishlistItems = WishlistItem::with('product')->where('user_id', $userId)->get();
+        return view('pages.wishlist.index',compact('wishlistItems'));
+        
     }
-
+    // public function wishlist()
+    // {
+    //     $userId = Auth::user()->id;
+    //     $wishlist = WishlistItem::where('user_id', $userId)->get();
+    //     return response()->json(['message' => ' wishlist Items Fetched', 'wishlist' => $wishlist]);
+    // }
     public function addToWishlist($id)
     {
         $userId = Auth::user()->id;

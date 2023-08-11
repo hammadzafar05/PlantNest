@@ -95,13 +95,18 @@
                             </div>
                             <div class="product_variant quantity">
                                 <label>quantity</label>
-                                <input min="1" max="100" value="1" type="number">
-                                <button onclick="addToCart('{{$product->id}}')" class="button">Add to cart</button>
+                                <input min="1" max="100"
+                                value="1" type="number" class="cart_quantity" onchange="updateDataQuantityDetail(this)" oninput="updateDataQuantityDetail(this)">
+                            <button type="submit" class="add_to_cart" data-product-id="{{$product->id}}" data-quantity="1">add to
+                                cart</button>
 
                             </div>
                             <div class="product_d_action">
                                 <ul>
-                                    <li><a href="javascript:void(0)" title="Add to wishlist">+ Add to Wishlist</a></li>
+                                   
+                                    
+                                    <li class="wishlist"><a href="javascript:void(0)" title="Add to wishlist" data-product-id="{{ $product->id }}"
+                                        class="add-to-wishlist">+ Add to Wishlist</a></li>
                                 </ul>
                             </div>
                             <div class="product_meta">
@@ -268,12 +273,18 @@
                                                                         </div>
                                     <div class="action_links">
                                         <ul>
-                                            <li class="add_to_cart"  data-product-id="{{ $product->id }}" title="Add to cart"><i
+                                            <li class="add_to_cart"  data-product-id="{{ $product->id }}" data-quantity="1" title="Add to cart"><i
                                                         class="icon-shopping-bag"></i></a></li>
-                                            <li class="compare"><a href="#" title="Add to Compare"><i
-                                                        class="icon-sliders"></i></a></li>
-                                            <li class="wishlist"><a href="wishlist.html" title="Add to Wishlist"><i
-                                                        class="icon-heart"></i></a></li>
+                                                        <li class="wishlist"><a href="" title="Add to Wishlist"
+                                                            data-product-id="{{ $product->id }}"
+                                                            class="add-to-wishlist">
+                                                            @if ($product->in_wishlist == 1)
+                                                                <i class="fa fa-heart"></i>
+                                                            @else
+                                                                <i class="icon-heart"></i>
+                                                            @endif
+                                                        </a>
+                                                    </li>
                                             <li class="quick_button"><a href="#" data-bs-toggle="modal"
                                                     data-bs-target="#modal_box" title="quick view"> <i
                                                         class="icon-eye"></i></a></li>
@@ -313,7 +324,6 @@
         </div>
     </section>
     <!--product area end-->
-
     @endsection
 
     @section('script')
@@ -330,6 +340,13 @@
         });
     </script>
     <script>
+
+         function updateDataQuantityDetail(inputElement) {
+            const quantity = parseInt(inputElement.value);
+            const addToCartButton = inputElement.parentElement.querySelector('.detail_add_to_cart');
+            addToCartButton.setAttribute('data-quantity', quantity);
+        }
+        
         function addToCart(p_id){
             if(localStorage.getItem('auth') == 'false')
             {
@@ -367,4 +384,12 @@
             }
         }
     </script>
+    <script>
+    function updateDataQuantityDetail(inputElement) {
+       const quantity = parseInt(inputElement.value);
+       const addToCartButton = inputElement.parentElement.querySelector('.add_to_cart');
+       addToCartButton.setAttribute('data-quantity', quantity);
+   }
+    </script>
+    
 @endsection
