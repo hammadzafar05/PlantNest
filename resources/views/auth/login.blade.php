@@ -45,15 +45,15 @@
                         </p>
                         <div class="login_submit">
                             @if (Route::has('password.request'))
-                            <a href="{{ route('password.request') }}">Lost your password?</a>
+                            <a href="{{ route('password.request') }}">Lost your password? | &nbsp;</a>
                             @endif
+                            <a class="" href="{{ route('register') }}">
+                                {{ __('Not registered?') }}
+                            </a>
                             <label for="remember">
                                 <input id="remember" type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
                                 Remember me
                             </label>
-                            <a class="" href="{{ route('register') }}">
-                                {{ __('Not registered?') }}
-                            </a>
                             <button type="submit">Login</button>
                         </div>
                     </form>
