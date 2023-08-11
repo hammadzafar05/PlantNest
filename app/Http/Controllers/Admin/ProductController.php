@@ -9,6 +9,7 @@ use App\Models\Discount;
 use App\Models\ProductImage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Review;
 
 class ProductController extends Controller
 {
@@ -191,11 +192,17 @@ class ProductController extends Controller
         // $pimage=Productimages::all();
         return redirect()->back()->with('success','Status changed successfully!');
     }
-   
-    public function search(Request $request)
+
+    public function productReviews()
     {
-        $search = $request->get('search');
-        $products = Product::where('name', 'like', '%' . $search . '%')->paginate(10);
-        return view('admin.product.search', compact('products'));
+      $productReviews=Review::with(['user','product.images'])->latest()->get();
+        return view('admin.pages.product.product-review',['_productReviews'=>$productReviews]);
     }
+
+    // public function search(Request $request)
+    // {
+    //     $search = $request->get('search');
+    //     $products = Product::where('name', 'like', '%' . $search . '%')->paginate(10);
+    //     return view('admin.product.search', compact('products'));
+    // }
 }

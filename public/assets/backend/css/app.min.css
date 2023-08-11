@@ -143,7 +143,7 @@ body:not(.vertical-collpsed) .app-search {
 
 }
 .product_img {
-   height:200px;
+   height:auto;
    width: 100%;
 }
 .close{
@@ -598,7 +598,7 @@ body[data-layout=horizontal] .footer {
 }
 
 .mm-active {
-    color: #5b73e8 !important
+    color: #79a206 !important
 }
 
 .mm-active>a {

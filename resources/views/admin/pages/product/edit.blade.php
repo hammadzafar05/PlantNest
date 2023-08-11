@@ -173,8 +173,8 @@
                                                 <label class="form-label" class="control-label">Category</label>
                                                 <select id="category-dropdown"
                                                     class="form-select   @error('category') is-invalid @enderror"
-                                                    value="" aria-label="Default select example"
-                                                    name="category_id" required>
+                                                    value="" aria-label="Default select example" name="category_id"
+                                                    required>
                                                     @error('category')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
@@ -203,10 +203,10 @@
                                                     @enderror
                                                     <option value="" selected disabled>Select SubCategory</option>
                                                     @foreach ($_subCategory as $subCat)
-                                                    <option
-                                                        {{ $_product->category_id == $subCat->id ? 'selected' : '' }}
-                                                        value="{{ $subCat->id }}">{{ $subCat->name }}</option>
-                                                @endforeach
+                                                        <option
+                                                            {{ $_product->category_id == $subCat->id ? 'selected' : '' }}
+                                                            value="{{ $subCat->id }}">{{ $subCat->name }}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>

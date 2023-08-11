@@ -34,41 +34,36 @@
         </li>
         </li>
         <li>
-            <a href="javascript: void(0);" class="has-arrow waves-effect">
-                <i class="fa fa-tags"></i>
-                <span>Discount</span>
+            <a href="{{ url('admin/product/productReviews') }}" class=" waves-effect">
+                <i class="fas fa-star-half-alt"></i>
+                <span>Product Reviews</span>
             </a>
-            <ul class="sub-menu" aria-expanded="false">
-                <li><a href="">Add Discount</a></li>
-                <li><a href="">Discount List</a></li>
-
-            </ul>
         </li>
         <li>
-            <a href="{{ route('admin.user') }}" class=" waves-effect">
+            <a href="{{ url('admin/usersList') }}" class=" waves-effect">
                 <i class="fa fa-user"></i>
                 <span>Users</span>
             </a>
         </li>
 
         <li>
-            <a href="" class=" waves-effect">
+            <a href="{{url('admin/orders/allOrders')}}" class=" waves-effect">
             <i class="fa-solid fa-cart-shopping"></i>
                 <span>Orders</span>
             </a>
         </li>
 
-        <li>
-            <a href="" class=" waves-effect">
+        {{-- <li>
+            <a href="{{url('admin/contact')}}" class=" waves-effect">
             <i class="fa fa-envelope"></i>
                 <span>Contact Messages</span>
             </a>
-        </li>
+        </li> --}}
 
         <li>
-            <a href="" class=" waves-effect">
+            <a href="{{url('admin/feedback')}}" class=" waves-effect">
                 <i class="fa fa-star"></i>
-                <span>Feedback</span>
+                <span>FeedBack</span>
             </a>
         </li> 
 
