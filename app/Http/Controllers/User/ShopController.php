@@ -46,9 +46,12 @@ class ShopController extends Controller
             $products = $query->with('plantInfo', 'images')
             ->paginate(12);
             
+        }}
+        else{
+
+            $products = $query->with('plantInfo', 'category', 'images')->paginate(12);
         }
-        // $products = $query->with('plantInfo', 'category', 'images');
-    }
+        
 
         return view('pages.shop.index', compact('products'));
     }
