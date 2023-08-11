@@ -473,7 +473,7 @@
                                                                 <div class="modal_add_to_cart">
                                                                     <form action="#">
                                                                         <input min="1" max="100"
-                                                                            step="2" value="1" type="number"
+                                                                             value="1" type="number"
                                                                             class="cart_quantity"
                                                                             onchange="updateDataQuantity(this)"
                                                                             oninput="updateDataQuantity(this)">
