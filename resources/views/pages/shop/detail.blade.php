@@ -55,7 +55,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="product_d_right">
-                        <form action="#">
+                        {{-- <form action="#"> --}}
 
                             <h1><a href="#">{{ $product->name }}</a></h1>
                             {{-- <div class="product_nav">
@@ -96,19 +96,19 @@
                             <div class="product_variant quantity">
                                 <label>quantity</label>
                                 <input min="1" max="100" value="1" type="number">
-                                <button onclick="addToCart('{{$product->id}}')" class="button" type="submit">add to cart</button>
+                                <button onclick="addToCart('{{$product->id}}')" class="button">Add to cart</button>
 
                             </div>
-                            <div class=" product_d_action">
+                            <div class="product_d_action">
                                 <ul>
-                                    <li><a href="#" title="Add to wishlist">+ Add to Wishlist</a></li>
+                                    <li><a href="javascript:void(0)" title="Add to wishlist">+ Add to Wishlist</a></li>
                                 </ul>
                             </div>
                             <div class="product_meta">
                                 <span>Category: <a href="#">{{ $product->category->name }}</a></span>
                             </div>
 
-                        </form>
+                        {{-- </form> --}}
 
 
                     </div>
@@ -258,7 +258,7 @@
                         <article class="single_product">
                             <figure>
                                 <div class="product_thumb">
-                                    <a class="primary_img" href="route('shop.detail',$product->id)"><img
+                                    <a class="primary_img" href="{{ route('shop.detail',$product->id) }}"><img
                                             src="{{ $product->image_url }}"
                                             alt=""></a>
                                     <div class="label_product">
@@ -268,7 +268,7 @@
                                                                         </div>
                                     <div class="action_links">
                                         <ul>
-                                            <li class="add_to_cart"  data-product-id="{{ $product->id }}><a href="" title="Add to cart"><i
+                                            <li class="add_to_cart"  data-product-id="{{ $product->id }}" title="Add to cart"><i
                                                         class="icon-shopping-bag"></i></a></li>
                                             <li class="compare"><a href="#" title="Add to Compare"><i
                                                         class="icon-sliders"></i></a></li>
@@ -314,9 +314,9 @@
     </section>
     <!--product area end-->
 
-    
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    @endsection
 
+    @section('script')
     <script>
         $(document).ready(function() {
             console.log('i ran');
@@ -327,7 +327,10 @@
             // Add active class to the clicked li element
             $('#shop').addClass('active');
 
-            function addToCart(p_id){
+        });
+    </script>
+    <script>
+        function addToCart(p_id){
             if(localStorage.getItem('auth') == 'false')
             {
                 Swal.fire({
@@ -363,7 +366,5 @@
                 })
             }
         }
-
-        });
     </script>
 @endsection

@@ -47,7 +47,11 @@
         @else
         localStorage.setItem('auth', false);
         @endif
+
+        var baseURL = "{{ url('/') }}/"
+
     </script>
+
 </head>
 
 <body>
@@ -423,7 +427,7 @@
 
     @guest
         <script>
-            $('.add_to_cart, .cart_button, .mini_cart_wrapper, .header_wishlist').click(function(e){
+            $('.add_to_cart, .cart_button, .mini_cart_wrapper, .header_wishlist, .product_d_action').click(function(e){
                 e.preventDefault();
                 if(localStorage.getItem('auth') == 'false')
                 {
@@ -442,7 +446,7 @@
         </script>
     @endguest
 
-    @section('script')
+    @yield('script')
 
 </body>
 
