@@ -114,6 +114,7 @@ Route::middleware(['isAdmin','auth','prevent-back-history'])->prefix('admin')->n
     Route::controller(AdminProductController::class)->group(function () {
         //products
         Route::get('product/allproducts','index')->name('showProducts');
+        Route::get('product/allproducts/{id?}','index')->name('showProducts');
         Route::get('product/addProducts','create')->name('AddProducts');
         Route::post('product/storeProducts','store')->name('StoreProducts');
         Route::get('product/editProducts/{id}','edit')->name('editProducts');

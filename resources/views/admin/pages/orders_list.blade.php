@@ -35,7 +35,7 @@
                                                     <td>{{ $order->id }}</td>
                                                     <td>{{ \Carbon\Carbon::parse($order->created_at)->format('d-m-Y') }}
                                                     </td>
-                                                    <td>{{ $order->user->name }}</td>
+                                                    <td><span class="badge bg-soft-danger font-size-12">{{ $order->user->name }}</span></td>
 
                                                     @if (App\Models\userDetail::where('user_id', $order->user->id)->first())
                                                         <td>{{ App\Models\userDetail::where('user_id', $order->user->id)->first()->shipping_billing_address_1 }},{{ App\Models\userDetail::where('user_id', $order->user->id)->first()->shipping_billing_address_2 }}
@@ -49,12 +49,12 @@
                                                     <td>
                                                         {{ $order->status }}
                                                         {{-- @if ($order->status == 0)
-                                        <span >Cancel</span>
-                                        @elseif($order->status==1)
-                                        <span >pending</span>
-                                        @elseif($order->status==2)
-                                        <span>Delivered</span>
-                                        @endif --}}
+                                                        <span >Cancel</span>
+                                                        @elseif($order->status==1)
+                                                        <span >pending</span>
+                                                        @elseif($order->status==2)
+                                                        <span>Delivered</span>
+                                                        @endif --}}
                                                     </td>
                                                     <td>
                                                         <select class="form-control m-0"
@@ -62,23 +62,23 @@
                                                             name="orderStatus" id="orderStatusChange">
                                                             <option value="pending" disabled selected>Select Status</option>
                                                             <option {{ $order->status == 'pending' ? 'selected' : '' }}
-                                                                value="pending" class="bg-secondary text-white">
+                                                                value="pending" >
                                                                 Pending
                                                             </option>
                                                             <option {{ $order->status == 'confirmed' ? 'selected' : '' }}
-                                                                value="confirmed" class="bg-primary text-white">
+                                                                value="confirmed" >
                                                                 Confirmed
                                                             </option>
                                                             <option {{ $order->status == 'shipped' ? 'selected' : '' }}
-                                                                value="shipped" class="bg-info text-white">
+                                                                value="shipped">
                                                                 Shipped
                                                             </option>
                                                             <option {{ $order->status == 'delivered' ? 'selected' : '' }}
-                                                                value="delivered" class="bg-warning text-white">
+                                                                value="delivered" >
                                                                 Delivered
                                                             </option>
                                                             <option {{ $order->status == 'cancel' ? 'selected' : '' }}
-                                                                value="cancel" class="bg-danger text-white">
+                                                                value="cancel" >
                                                                 cancel
                                                             </option>
                                                         </select>
@@ -113,8 +113,7 @@
 @section('script')
     <script>
         function changeOrderStatus(id, status) {
-            var url= '{{url("/")}}'
-            window.location.href = `${url}/admin/orders/orderStatus/${id}/${status}`;
+            window.location.href = `${_url}/admin/orders/orderStatus/${id}/${status}`;
         }
     </script>
 @endsection

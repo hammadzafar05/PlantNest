@@ -5,15 +5,43 @@
 @section('content')
 <div class="container-fluid">
 
-<!-- start page title -->
-<div class="row">
-    <div class="col-12">
-        <div class="page-title-box d-flex align-items-center justify-content-between">
-            <h4 class="mb-0">Products</h4>
-
+    <div class="row ">
+        <div class="col-lg-12">
+            <div id="addproduct-accordion" class="custom-accordion">
+                <div class="card">
+                    <a href="#addproduct-billinginfo-collapse" class="text-dark" data-bs-toggle="collapse" aria-expanded="true" aria-controls="addproduct-billinginfo-collapse">
+                        <div class="p-4">
+                            <form action="">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label class="form-label mt-1" for="filerProduct">Categories</label>
+                                        <select class="form-control m-0" id="filerProduct"
+                                        onchange="filterProductsWithCategory(this.value)"
+                                        name="orderStatus" id="orderStatusChange">
+                                        <option value="pending" disabled selected>Filter with Category</option>
+                                        @foreach ($_category as $cat)
+                                        <option {{ $cat->id == $allproducts['category_id'] ? 'selected' : '' }}
+                                            value="{{$cat['id']}}" >
+                                            {{$cat['name']}}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                    </div>
+                                    <div class="col-md-8">
+                                        
+                                    </div>
+                                </div>
+                            </form>
+    
+                        </div>
+                    </a>
+    
+                </div>
+    
+    
+            </div>
         </div>
     </div>
-</div>
 <!-- end page title -->
 
 <div class="row">
@@ -91,4 +119,12 @@
 
 </div> <!-- container-fluid -->
 
+@endsection
+@section('script')
+    <script>
+        function filterProductsWithCategory(id) {
+
+            window.location.href = `${_url}/admin/product/allproducts/${id}`;
+        }
+    </script>
 @endsection

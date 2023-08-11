@@ -145,26 +145,26 @@
                                             <div class="table-responsive">
                                                 <table class="table table-borderless table-centered table-nowrap">
                                                     <tbody>
-                                                        {{-- @foreach($users as $user)
+                                                        @foreach($_users as $user)
                                                         <tr>
-                                                            <td style="width: 20px;"><img src="{{asset('assets/images/users/avatar-4.png')}}" class="avatar-xs rounded-circle " alt="..."></td>
+                                                            <td style="width: 20px;"><img src="{{asset('assets/backend/images/users/avatar-4.png')}}" class="avatar-xs rounded-circle " alt="..."></td>
                                                             <td>
                                                                 <h6 class="font-size-15 mb-1 fw-normal">{{$user->name}}</h6>
                                                                 <p class="text-muted font-size-13 mb-0"><i class="mdi mdi-map-marker"></i> {{$user->email}}</p>
                                                             </td>
 
                                                             <td><span class="badge bg-soft-danger font-size-12">
-                                                                @if($user->role == 1)
+                                                                @if($user->role == 'xxus')
                                                                     User
-                                                                @elseif($user->role == 2)
+                                                                @elseif($user->role == 'xxsa')
                                                                     Admin
 
                                                                 @endif
 
                                                         </span></td>
-                                                            <td class="text-muted fw-semibold text-end"><i class="icon-xs icon me-2 text-success" data-feather="trending-up"></i>{{$user->phone}}</td>
+                                                            <td class="text-muted fw-semibold text-end"><i class="icon-xs icon me-2 text-success" data-feather="trending-up"></i>{{$user->contact_number}}</td>
                                                         </tr>
-                                                       @endforeach --}}
+                                                       @endforeach
                                                     </tbody>
                                                 </table>
                                             </div> <!-- enbd table-responsive-->
@@ -202,19 +202,19 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    {{-- @foreach($orders as $order)
+                                                    @foreach($_orders as $order)
                                                     <tr>
                                                         <td><a href="javascript: void(0);" class="text-body fw-bold">{{$order->id}}</a> </td>
                                                         <td>{{$order->user->name}}</td>
                                                         <td>
-                                                        {{$order->order_date}}
+                                                        {{\Carbon\Carbon::parse($order->order_date)->format('Y-m-d')}}
                                                         </td>
                                                         <td>
-                                                       $ {{$order->total}}
+                                                       $ {{$order->total_amount}}
                                                         </td>
 
                                                     </tr>
-                                                    @endforeach --}}
+                                                    @endforeach
 
                                                 </tbody>
                                             </table>

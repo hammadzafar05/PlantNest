@@ -13,10 +13,30 @@ use App\Models\Review;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index($id=null)
     {
-        $allproducts = Product::with('images')->latest()->paginate(15);
-        return view('admin.pages.product.index',['allproducts'=>$allproducts]);
+        if($id!==null)
+        {
+            $allproducts = Product::with(['images'])->where('category_id',$id ?? '')->latest()->paginate(15);
+        }
+        else
+        {
+            $allproducts = Product::with(['images'])->latest()->paginate(15);
+
+        }
+        // $allproducts = Product::with(['images', 'category'])
+        // ->whereHas('category', function ($query) {
+        //     $query->where('parent_id','!=', 0);
+        // })
+        // ->where(function ($query) use ($id) {
+        //     if (!empty($id)) {
+        //         $query->where('category_id', $id);
+        //     }
+        // })
+        // ->latest()->paginate(15);
+        // dd($allproducts);
+        $_categories = Category::select('id','name','parent_id')->get();
+        return view('admin.pages.product.index',['allproducts'=>$allproducts,'_category'=>$_categories]);
     }
 
     public function create()
