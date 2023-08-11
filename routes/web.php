@@ -46,6 +46,10 @@ Route::controller(HomeController::class)->group(function () {
     Route::middleware(['auth','prevent-back-history'])->group(function(){
 
         Route::get('/account',[AccountController::class,'index'])->name('account.index');
+
+        
+        Route::get('/checkout',[CheckoutController::class,'index'])->name('checkout.index');
+        Route::post('/checkout/submit',[CheckoutController::class,'submit_checkout'])->name('checkout.submit');
     
     });
 
@@ -58,7 +62,6 @@ Route::get('/cart/updateQuantity/',[CartController::class,'updateQuantity'])->na
 Route::get('/cart/removeCartItem',[CartController::class,'remove'])->name('cart.remove');
 
 
-Route::get('/checkout',[CheckoutController::class,'index'])->name('checkout.index');
 Route::get('/account',[AccountController::class,'index'])->name('account.index');
 Route::put('/account/update',[AccountController::class,'update'])->name('account.update');
 Route::get('/contact',[ContactController::class,'index'])->name('contact.index');
