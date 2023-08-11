@@ -38,38 +38,16 @@
     <script src="{{ asset('assets/frontend/js/vendor/modernizr-3.7.1.min.js') }}"></script>
 
     @guest
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('assets/backend/libs/sweetalert2/sweetalert2.all.min.js') }}"></script>
     @endguest
 
     <script>
         @if (auth()->check())
-            localStorage.setItem('auth', true);
+        localStorage.setItem('auth', true);
         @else
-            localStorage.setItem('auth', false);
+        localStorage.setItem('auth', false);
         @endif
     </script>
-    <style>
-        .mini_cart {
-            overflow-y: scroll !important;
-            /* Hide the default scrollbar */
-
-        }
-
-        .mini_cart::-webkit-scrollbar-track {
-            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-            background-color: #F5F5F5;
-        }
-
-        .mini_cart::-webkit-scrollbar {
-            width: 10px;
-            background-color: #F5F5F5;
-        }
-
-        .mini_cart::-webkit-scrollbar-thumb {
-            background-color: #ffffff;
-            border: 2px solid #ffffff;
-        }
-    </style>
 </head>
 
 <body>
@@ -145,8 +123,7 @@
                                         </li>
                                            
                                         @endforeach --}}
-                                        <li class="mega_items"><a id="shop"
-                                                href="{{ route('shop.index') }}">shop<i
+                                        <li class="mega_items"><a id="shop" href="{{route('shop.index')}}">shop<i
                                                     class="fa fa-angle-down"></i></a>
                                             <div class="mega_menu">
                                                 <ul class="mega_menu_inner">
@@ -154,8 +131,7 @@
                                                         <li><a href="#">{{ $category->name }}</a>
                                                             <ul>
                                                                 @foreach ($category->children as $subCategory)
-                                                                    <li><a
-                                                                            href="{{ route('shop.index', $subCategory->id) }}">{{ $subCategory->name }}</a>
+                                                                    <li><a href="{{route('shop.index',$subCategory->id)}}">{{ $subCategory->name }}</a>
                                                                     </li>
                                                                 @endforeach
 
@@ -198,32 +174,63 @@
                                     </ul>
                                 </div>
                                 <div class="header_account-list header_wishlist">
+                                    @if (auth()->check())
                                     <a href="{{ route('wishlist.index') }}"><i class="icon-heart"></i></a>
+                                    @else
+                                    <a class="header_wishlist_btn" href="javascript:void(0)"><i class="icon-heart"></i></a>
+                                    @endif
                                 </div>
                                 <div class="header_account-list  mini_cart_wrapper">
                                     <a href="javascript:void(0)"><i class="icon-shopping-bag"></i><span
                                             class="item_count">0</span></a>
-                                    <!--mini cart-->
-                                    <div class="mini_cart">
-                                        <div class="cart_gallery">
-                                            <div class="cart_close">
-                                                <div class="cart_text">
-                                                    <h3>cart</h3>
+                                    @auth
+                                        <!--mini cart-->
+                                        <div class="mini_cart">
+                                            <div class="cart_gallery">
+                                                <div class="cart_close">
+                                                    <div class="cart_text">
+                                                        <h3>cart</h3>
+                                                    </div>
+                                                    <div class="mini_cart_close">
+                                                        <a href="javascript:void(0)"><i class="icon-x"></i></a>
+                                                    </div>
                                                 </div>
-                                                <div class="mini_cart_close">
-                                                    <a href="javascript:void(0)"><i class="icon-x"></i></a>
+                                                <div class="cart_item">
+                                                    <div class="cart_img">
+                                                        <a href="#"><img src="assets/img/s-product/product.jpg"
+                                                                alt=""></a>
+                                                    </div>
+                                                    <div class="cart_info">
+                                                        <a href="#">Primis In Faucibus</a>
+                                                        <p>1 x <span> $65.00 </span></p>
+                                                    </div>
+                                                    <div class="cart_remove">
+                                                        <a href="#"><i class="icon-x"></i></a>
+                                                    </div>
+                                                </div>
+                                                <div class="cart_item">
+                                                    <div class="cart_img">
+                                                        <a href="#"><img src="assets/img/s-product/product2.jpg"
+                                                                alt=""></a>
+                                                    </div>
+                                                    <div class="cart_info">
+                                                        <a href="#">Letraset Sheets</a>
+                                                        <p>1 x <span> $60.00 </span></p>
+                                                    </div>
+                                                    <div class="cart_remove">
+                                                        <a href="#"><i class="icon-x"></i></a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="PlantNestCart"></div>
                                             <div class="mini_cart_table">
                                                 <div class="cart_table_border">
                                                     <div class="cart_total">
                                                         <span>Sub total:</span>
-                                                        <span class="price"></span>
+                                                        <span class="price">$125.00</span>
                                                     </div>
                                                     <div class="cart_total mt-10">
                                                         <span>total:</span>
-                                                        <span class="price"></span>
+                                                        <span class="price">$125.00</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -237,17 +244,18 @@
                                                             class="fa fa-sign-in"></i>
                                                         Checkout</a>
                                                 </div>
-
+    
                                             </div>
                                         </div>
                                         <!--mini cart end-->
-                                    </div>
+                                    @endauth
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
     </header>
     <!--header area end-->
 
@@ -283,8 +291,8 @@
                     <div class="col-lg-4 col-md-5">
                         <div class="widgets_container widget_app">
                             <div class="footer_logo">
-                                <a href="{{ route('user.home') }}"><img
-                                        src="{{ asset('assets/frontend/img/logo/logo.png') }}" alt=""></a>
+                                <a href="{{route('user.home')}}"><img src="{{ asset('assets/frontend/img/logo/logo.png') }}"
+                                        alt=""></a>
                             </div>
                             <div class="footer_widgetnav_menu">
                                 <ul>
@@ -305,13 +313,9 @@
                             </div>
                             <div class="footer_app">
                                 <ul>
-                                    <li><a href="#"><img
-                                                src="{{ asset('assets/frontend/img/icon/icon-app.jpg') }}"
-                                                alt=""></a>
+                                    <li><a href="#"><img src="{{ asset('assets/frontend/img/icon/icon-app.jpg') }}" alt=""></a>
                                     </li>
-                                    <li><a href="#"><img
-                                                src="{{ asset('assets/frontend/img/icon/icon1-app.jpg') }}"
-                                                alt=""></a></li>
+                                    <li><a href="#"><img src="{{ asset('assets/frontend/img/icon/icon1-app.jpg') }}" alt=""></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -369,17 +373,15 @@
                         <div class="copyright_area">
                             <p class="copyright-text">&copy; {{ now()->year }}
 
-                                <a href="{{ route('user.home') }}">PlantNest</a>. Made with <i
-                                    class="fa fa-heart text-danger"></i>
-                                by <a href="{{ route('user.home') }}" target="_blank">MSG-Artisans</a>
+                                <a href="{{route('user.home')}}">PlantNest</a>. Made with <i class="fa fa-heart text-danger"></i>
+                                by <a href="{{route('user.home')}}" target="_blank">MSG-Artisans</a>
                             </p>
 
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <div class="footer_payment">
-                            <a href="#"><img src="{{ asset('assets/frontend/img/icon/payment.png') }}"
-                                    alt=""></a>
+                            <a href="#"><img src="{{ asset('assets/frontend/img/icon/payment.png') }}" alt=""></a>
                         </div>
                     </div>
                 </div>
@@ -419,226 +421,29 @@
     <!-- Main JS -->
     <script src="{{ asset('assets/frontend/js/main.js') }}"></script>
 
-    @section('script')
-
-    </body>
-    <script>
-        function cart() {
-            e.preventDefault();
-            
-            $.get(
-                    "{{ route('cart.cart') }}", {
-                        _token: '{{ csrf_token() }}'
-                    },
-                    function(response) {
-                        console.log(response);
-                        $('.PlantNestCart').empty();
-                        $('#cartTable').empty();
-
-                        var totalCartPrice = 0;
-                        $.each(response.cartItem, function(index, cartItem) {
-                            var productId = cartItem.product.id;
-                            var image = cartItem.product.image_url;
-                            var productName = cartItem.product.name;
-                            var quantity = cartItem.quantity;
-                            var price;
-                            var discount = cartItem.product.discount;
-                            if (discount > 0) {
-                                price = cartItem.product.price - discount;
-                            } else {
-                                price = cartItem.product.price;
-                            }
-                            var itemTotal = price * quantity;
-                            totalCartPrice += itemTotal;
-
-                            // sidebar cart
-                            var html = `
-                <div class="cart_item">
-                    <div class="cart_img">
-                        <a href="#"><img src="${image}" alt=""></a>
-                    </div>
-                    <div class="cart_info">
-                        <a href="#">${productName}</a>
-                        <p>${quantity} x <span> PKR ${price.toFixed(2)} </span></p>
-                    </div>
-                    <div class="cart_remove" >
-                        <a href="#" ><i class="icon-x"></i></a>
-                    </div>
-                </div>`;
-
-                            $('.PlantNestCart').append(html);
-                            // sidebar cart end
-                            // mainCart
-                            var row = `
-                            <tr class="product_row">
-                                <td class="product_remove" data-cart-id="${cartItem.id}"><a href="#" onclick="removeCartItem(this)"><i class="fa fa-trash-o"></i></a>
-                                </td>
-                                <td class="product_thumb"><a href="#"><img
-                                            src="${image}" alt=""></a></td>
-                                <td class="product_name"><a href="#">${productName}</a></td>
-                                <td class="product-price">PKR ${price.toFixed(2)}</td>
-                                <td class="product_quantity"><label>Quantity</label> <input min="1"
-                                        max="100" value="${quantity}" type="number" onchange="updateCartItem(this)"></td>
-                                <td class="product_total">PKR ${itemTotal.toFixed(2)}</td>
-    
-    
-                            </tr>
-                            `
-                            $('#cartTable').append(row);
-                            console.log(itemTotal)
-                            // mainCartEnd
-                        });
-                        var total = totalCartPrice.toFixed(2);
-                        $('.price').text('PKR ' + total);
-                        $('.cart_amount').text('PKR ' + total);
-                        console.log(total)
-
-
-                    })
-                .fail(function(xhr, status, error) {
-                    console.log('Error adding product to cart:', error);
-                });
-        }
-
-
-        function updateCartItem(inputElement) {
-            var closestTr = inputElement.closest('.product_row');
-            var cartItemId = closestTr.querySelector('.product_remove').getAttribute('data-cart-id');
-            console.log(cartItemId)
-            var newQuantity = parseInt(inputElement.value);
-            var productPrice = parseFloat($(inputElement).closest('.product_row').find('.product-price').text().replace(
-                'PKR ', ''));
-
-            $.ajax({
-                method: 'GET',
-                url: "{{ route('cart.updateQuantity') }}",
-                data: {
-                    quantity: newQuantity,
-                    id: cartItemId
-                },
-                dataType: 'json',
-                success: function(response) {
-                    var newTotal = (productPrice * newQuantity).toFixed(2);
-                    var nearest = $(inputElement).closest('.product_row').find('.product_total');
-                    var newTotal = (productPrice * newQuantity).toFixed(2);
-                    console.log(productPrice, newQuantity, newTotal);
-                    $(inputElement).closest('.product_row').find('.product_total').text(newTotal);
-
-                    calculateTotalCartPrice();
-                    // var total = totalCartPrice.toFixed(2);
-                    // $('.cart_amount').text('PKR ' + total);
-                },
-                error: function(xhr, status, error) {
-                    console.log('Error updating cart item:', error);
-                }
-            });
-        }
-
-        function calculateTotalCartPrice() {
-            var totalCartPrice = 0;
-
-            $('.product_row').each(function(index, cartItemElement) {
-                // console.log(cartItemElement);
-                var itemTotalElement = $(cartItemElement).find('.product_total');
-                var itemTotal=parseFloat(itemTotalElement.text().replace('PKR',''))
-                console.log(itemTotal);
-                totalCartPrice += itemTotal;
-            });
-            // console.log(totalCartPrice)
-
-            $('.cart_amount').text('PKR ' + totalCartPrice);
-
-            // var totalCartPrice = 0;
-
-            // $('.product_row').each(function(index, cartItemElement) {
-            //     console.log(cartItemElement);
-            //     var itemTotal = parseFloat($(cartItemElement).find('.product_total').text());
-            //     console.log(itemTotal);
-            //     totalCartPrice += itemTotal;
-            // });
-
-            // return totalCartPrice;
-        }
-
-        function removeCartItem(iconElement) {
-            var closestTr = iconElement.closest('.product_row');
-
-            var cartItemId = closestTr.querySelector('.product_remove').getAttribute('data-cart-id');
-
-            $.ajax({
-                method: 'GET',
-                url: "{{ route('cart.remove') }}",
-                data: {
-                    id: cartItemId
-                },
-                dataType: 'json',
-                success: function(response) {
-                    $(iconElement).closest('.product_row').remove();
-                    var totalCartPrice = calculateTotalCartPrice();
-                    console.log(totalCartPrice)
-                    var total = totalCartPrice.toFixed(2);
-                    $('.cart_amount').text('PKR ' + total);
-                },
-                error: function(xhr, status, error) {
-                    console.log('Error removing cart item:', error);
-                }
-            });
-        }
-
-
-
-
-
-        $(document).ready(function() {
-            cart();
-
-            $('.add_to_cart').click(function() {
-                if (localStorage.getItem('auth') == 'false') {
+    @guest
+        <script>
+            $('.add_to_cart, .cart_button, .mini_cart_wrapper, .header_wishlist').click(function(e){
+                e.preventDefault();
+                if(localStorage.getItem('auth') == 'false')
+                {
                     Swal.fire({
-                        title: 'You need to login First!',
-                        text: 'Do you want to continue?',
-                        icon: 'warning',
-                        confirmButtonText: 'Login'
+                    title: 'You need to login First!',
+                    text: 'Do you want to continue?',
+                    icon: 'warning',
+                    confirmButtonText: 'Login'
                     }).then((result) => {
-                        /* Read more about isConfirmed, isDenied below */
-                        if (result.isConfirmed) {
-
-                            window.location = "{{ route('login', url()->current()) }}";
-                        }
+                    if (result.isConfirmed) {
+                        window.location = "{{ route('login') }}";
+                    }
                     })
-                } else {
-                    var productId = $(this).data('product-id');
-                    var quantity = $(this).data('quantity');
-
-                    console.log(productId, quantity)
-                    $.ajax({
-                        url: "{{ route('cart.add') }}",
-                        method: 'POST',
-                        data: {
-                            product_id: productId,
-                            quantity: quantity,
-                            _token: '{{ csrf_token() }}'
-                        },
-                        success: function(response) {
-                            console.log('Product added to cart successfully');
-                            alert(response.message)
-                            // Swal.fire({
-                            //     icon: 'success',
-                            //     title: 'Oops...',
-                            //     text: 'There was an error adding the product to the cart.',
-                            // });
-                        },
-                        error: function(xhr, status, error) {
-                            // Swal.fire({
-                            //     icon: 'error',
-                            //     title: 'Oops...',
-                            //     text: 'There was an error adding the product to the cart.',
-                            // });
-                        }
-                    });
                 }
             })
-        });
-    </script>
+        </script>
+    @endguest
 
-    </html>
+    @section('script')
+
+</body>
+
+</html>

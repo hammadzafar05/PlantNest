@@ -634,8 +634,6 @@
             // Add active class to the clicked li element
             $('#home').addClass('active');
 
-           
-
         });
     </script>
 @endsection
