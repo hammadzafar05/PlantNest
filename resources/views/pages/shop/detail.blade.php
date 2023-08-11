@@ -268,7 +268,7 @@
                                                                         </div>
                                     <div class="action_links">
                                         <ul>
-                                            <li class="add_to_cart"><a href="cart.html" title="Add to cart"><i
+                                            <li class="add_to_cart"  data-product-id="{{ $product->id }}><a href="" title="Add to cart"><i
                                                         class="icon-shopping-bag"></i></a></li>
                                             <li class="compare"><a href="#" title="Add to Compare"><i
                                                         class="icon-sliders"></i></a></li>

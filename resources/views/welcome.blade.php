@@ -90,66 +90,35 @@
     </div>
     <!--banner area end-->
 
-<!--banner area start-->
-<div class="banner_area">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-md-6">
-                <figure class="single_banner">
-                    <div class="banner_thumb">
-                        <a href="shop.html"><img src="{{asset('assets/frontend/img/bg/banner1.jpg')}}" alt=""></a>
-                        <div class="banner_content">
-                            {{-- {{$plantCategory}} --}}
-
-                            <h3> Products</h3>
-                            <h2>Plants <br> For Gardens</h2>
-                            <a href="{{ route('shop.index',1) }}">Shop Now</a>
+    <!--product area start-->
+    <div class="product_area  mb-95">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="product_header">
+                        <div class="section_title">
+                            <h2>Our Products</h2>
                         </div>
-                    </div>
-                </figure>
-            </div>
-            <div class="col-lg-6 col-md-6">
-                <figure class="single_banner">
-                    <div class="banner_thumb">
-                        <a href="shop.html"><img src="{{asset('assets/frontend/img/bg/banner2.jpg')}}" alt=""></a>
-                        <div class="banner_content">
-                            <h3>Top Products</h3>
-{{-- {{$accessortCategory}} --}}
-
-                            <h2>Shop <br> For Accessories</h2>
-                            <a href="{{ route('shop.index',2) }}">Shop Now</a>
-                        </div>
-                    </div>
-                </figure>
-            </div>
-        </div>
-    </div>
-</div>
-<!--banner area end-->
-
-<!--product area start-->
-<div class="product_area  mb-95">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="product_header">
-                    <div class="section_title">
-                        <h2>Our Products</h2>
-                    </div>
-                    <div class="product_tab_btn">
-                        <ul class="nav" role="tablist" id="nav-tab">
-                            <li>
-                                <a class="active" data-bs-toggle="tab" href="#plant1" role="tab" aria-controls="plant1"
-                                    aria-selected="true">
-                                    Plant Stands & Movers
-                                </a>
-                            </li>
-                            <li>
-                                <a data-bs-toggle="tab" href="#plant2" role="tab" aria-controls="plant2"
+                        <div class="product_tab_btn">
+                            <ul class="nav" role="tablist" id="nav-tab">
+                                <li>
+                                    <a class="active" data-bs-toggle="tab" href="#plant1" role="tab"
+                                        aria-controls="plant1" aria-selected="true">
+                                        Trending Products
+                                    </a>
+                                </li>
+                                <li>
+                                    <a data-bs-toggle="tab" href="#plant2" role="tab" aria-controls="plant2"
                                     aria-selected="false">
-                                  Accessories
-                                </a>
-                            </li>
+                                    Plants
+                                    </a>
+                                </li>
+                                <li>
+                                    <a data-bs-toggle="tab" href="#plant3" role="tab" aria-controls="plant3"
+                                        aria-selected="false">
+                                        Accessories
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -159,188 +128,200 @@
                 <div class="tab-pane fade show active" id="plant1" role="tabpanel">
                     <div class="row">
                         <div class="product_carousel product_column4 owl-carousel">
-                           
-                           @foreach ($trendingProducts as $product )
-                               
-                           <div class="col-lg-3">
-                               <div class="product_items">
-                                   <article class="single_product">
-                                       <figure>
-                                           <div class="product_thumb">
-                                               <a class="primary_img" href="{{route('shop.detail',$product->id)}}"><img
-                                                       src="{{ $product->image_url }}"
-                                                       alt=""></a>
-                                               <div class="label_product">
-                                                @if ($product->discount_percentage > 0)
-                                                <span class="label_sale">-{{ $product->discount_percentage }}%</span>
-                                            @endif                                               </div>
-                                               <div class="action_links">
-                                                   <ul>
-                                                       <li class="add_to_cart"><a href="javascript:void(0)"
-                                                               title="Add to cart"><i class="icon-shopping-bag"></i></a>
-                                                       </li>
-                                                       {{-- <li class="compare"><a href="#" title="Add to Compare"><i
+
+                            @foreach ($trendingProducts as $product)
+                                <div class="col-lg-3">
+                                    <div class="product_items">
+                                        <article class="single_product">
+                                            <figure>
+                                                <div class="product_thumb">
+                                                    <a class="primary_img"
+                                                        href="{{ route('shop.detail', $product->id) }}"><img
+                                                            src="{{ $product->image_url }}" alt=""></a>
+                                                    <div class="label_product">
+                                                        @if ($product->discount_percentage > 0)
+                                                            <span
+                                                                class="label_sale">-{{ $product->discount_percentage }}%</span>
+                                                        @endif
+                                                    </div>
+                                                    <div class="action_links">
+                                                        <ul>
+                                                            <li class="add_to_cart" data-product-id="{{ $product->id }}"
+                                                                data-quantity="1"><a href="javascript:void(0)"
+                                                                    title="Add to cart"><i
+                                                                        class="icon-shopping-bag"></i></a>
+                                                            </li>
+                                                            {{-- <li class="compare"><a href="#" title="Add to Compare"><i
                                                                class="icon-sliders"></i></a></li> --}}
-                                                       <li class="wishlist"><a href="wishlist.html"
-                                                               title="Add to Wishlist"><i class="icon-heart"></i></a>
-                                                       </li>
-                                                       <li class="quick_button"><a href="#" data-bs-toggle="modal"
-                                                               data-bs-target="#modal_box" title="quick view"> <i
-                                                                   class="icon-eye"></i></a></li>
-                                                   </ul>
-                                               </div>
-                                           </div>
-                                           <figcaption class="product_content">
-                                               <div class="product_rating">
-                                                   <ul>
-                                                       <li><a href="#"><i class="icon-star"></i></a></li>
-                                                       <li><a href="#"><i class="icon-star"></i></a></li>
-                                                       <li><a href="#"><i class="icon-star"></i></a></li>
-                                                       <li><a href="#"><i class="icon-star"></i></a></li>
-                                                       <li><a href="#"><i class="icon-star"></i></a></li>
-                                                   </ul>
-                                               </div>
-                                               <h4 class="product_name"><a href="product-details.html">{{$product->name}}</a></h4>
-                                               <div class="price_box">
-                                                @if ($product->discount_percentage >0)
-                                                <span class="current_price">PKR
-                                                    {{ $product->price - $product->discount }}</span>
-                                                <span class="old_price">PKR {{ $product->price }}</span>
-                                            @else
-                                                <span class="current_price">PKR {{ $product->price }}</span>
-                                            @endif
-                                               </div>
-                                           </figcaption>
-                                       </figure>
-                                   </article>
-                               </div>
-                           </div>
-                           @endforeach
-                           
+                                                            <li class="wishlist"><a href="wishlist.html"
+                                                                    title="Add to Wishlist"><i class="icon-heart"></i></a>
+                                                            </li>
+                                                            <li class="quick_button"><a href="#"
+                                                                    data-bs-toggle="modal" data-bs-target="#modal_box"
+                                                                    title="quick view"> <i class="icon-eye"></i></a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <figcaption class="product_content">
+                                                    <div class="product_rating">
+                                                        <ul>
+                                                            <li><a href="#"><i class="icon-star"></i></a></li>
+                                                            <li><a href="#"><i class="icon-star"></i></a></li>
+                                                            <li><a href="#"><i class="icon-star"></i></a></li>
+                                                            <li><a href="#"><i class="icon-star"></i></a></li>
+                                                            <li><a href="#"><i class="icon-star"></i></a></li>
+                                                        </ul>
+                                                    </div>
+                                                    <h4 class="product_name"><a
+                                                            href="product-details.html">{{ $product->name }}</a></h4>
+                                                    <div class="price_box">
+                                                        @if ($product->discount_percentage > 0)
+                                                            <span class="current_price">PKR
+                                                                {{ $product->price - $product->discount }}</span>
+                                                            <span class="old_price">PKR {{ $product->price }}</span>
+                                                        @else
+                                                            <span class="current_price">PKR {{ $product->price }}</span>
+                                                        @endif
+                                                    </div>
+                                                </figcaption>
+                                            </figure>
+                                        </article>
+                                    </div>
+                                </div>
+                            @endforeach
+
                         </div>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="plant2" role="tabpanel">
                     <div class="row">
                         <div class="product_carousel product_column4 owl-carousel">
-                            @foreach ($Accessoriesproducts as $product )
-                               
-                            <div class="col-lg-3">
-                                <div class="product_items">
-                                    <article class="single_product">
-                                        <figure>
-                                            <div class="product_thumb">
-                                                <a class="primary_img" href="{{route('shop.detail',$product->id)}}"><img
-                                                        src="{{ $product->image_url }}"
-                                                        alt=""></a>
-                                                <div class="label_product">
-                                                 @if ($product->discount_percentage > 0)
-                                                 <span class="label_sale">-{{ $product->discount_percentage }}%</span>
-                                             @endif                                               </div>
-                                                <div class="action_links">
-                                                    <ul>
-                                                        <li class="add_to_cart"><a href="javascript:void(0)"
-                                                                title="Add to cart"><i class="icon-shopping-bag"></i></a>
-                                                        </li>
-                                                        {{-- <li class="compare"><a href="#" title="Add to Compare"><i
+                            @foreach ($Accessoriesproducts as $product)
+                                <div class="col-lg-3">
+                                    <div class="product_items">
+                                        <article class="single_product">
+                                            <figure>
+                                                <div class="product_thumb">
+                                                    <a class="primary_img"
+                                                        href="{{ route('shop.detail', $product->id) }}"><img
+                                                            src="{{ $product->image_url }}" alt=""></a>
+                                                    <div class="label_product">
+                                                        @if ($product->discount_percentage > 0)
+                                                            <span
+                                                                class="label_sale">-{{ $product->discount_percentage }}%</span>
+                                                        @endif
+                                                    </div>
+                                                    <div class="action_links">
+                                                        <ul>
+                                                            <li class="add_to_cart" data-product-id="{{ $product->id }}"
+                                                                data-quantity="1"><a href="javascript:void(0)"
+                                                                    title="Add to cart"><i
+                                                                        class="icon-shopping-bag"></i></a>
+                                                            </li>
+                                                            {{-- <li class="compare"><a href="#" title="Add to Compare"><i
                                                                 class="icon-sliders"></i></a></li> --}}
-                                                        <li class="wishlist"><a href="wishlist.html"
-                                                                title="Add to Wishlist"><i class="icon-heart"></i></a>
-                                                        </li>
-                                                        <li class="quick_button"><a href="#" data-bs-toggle="modal"
-                                                                data-bs-target="#modal_box" title="quick view"> <i
-                                                                    class="icon-eye"></i></a></li>
-                                                    </ul>
+                                                            <li class="wishlist"><a href="wishlist.html"
+                                                                    title="Add to Wishlist"><i class="icon-heart"></i></a>
+                                                            </li>
+                                                            <li class="quick_button"><a href="#"
+                                                                    data-bs-toggle="modal" data-bs-target="#modal_box"
+                                                                    title="quick view"> <i class="icon-eye"></i></a></li>
+                                                        </ul>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <figcaption class="product_content">
-                                                <div class="product_rating">
-                                                    <ul>
-                                                        <li><a href="#"><i class="icon-star"></i></a></li>
-                                                        <li><a href="#"><i class="icon-star"></i></a></li>
-                                                        <li><a href="#"><i class="icon-star"></i></a></li>
-                                                        <li><a href="#"><i class="icon-star"></i></a></li>
-                                                        <li><a href="#"><i class="icon-star"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                                <h4 class="product_name"><a href="product-details.html">{{$product->name}}</a></h4>
-                                                <div class="price_box">
-                                                 @if ($product->discount_percentage >0)
-                                                 <span class="current_price">PKR
-                                                     {{ $product->price - $product->discount }}</span>
-                                                 <span class="old_price">PKR {{ $product->price }}</span>
-                                             @else
-                                                 <span class="current_price">PKR {{ $product->price }}</span>
-                                             @endif
-                                                </div>
-                                            </figcaption>
-                                        </figure>
-                                    </article>
+                                                <figcaption class="product_content">
+                                                    <div class="product_rating">
+                                                        <ul>
+                                                            <li><a href="#"><i class="icon-star"></i></a></li>
+                                                            <li><a href="#"><i class="icon-star"></i></a></li>
+                                                            <li><a href="#"><i class="icon-star"></i></a></li>
+                                                            <li><a href="#"><i class="icon-star"></i></a></li>
+                                                            <li><a href="#"><i class="icon-star"></i></a></li>
+                                                        </ul>
+                                                    </div>
+                                                    <h4 class="product_name"><a
+                                                            href="product-details.html">{{ $product->name }}</a></h4>
+                                                    <div class="price_box">
+                                                        @if ($product->discount_percentage > 0)
+                                                            <span class="current_price">PKR
+                                                                {{ $product->price - $product->discount }}</span>
+                                                            <span class="old_price">PKR {{ $product->price }}</span>
+                                                        @else
+                                                            <span class="current_price">PKR {{ $product->price }}</span>
+                                                        @endif
+                                                    </div>
+                                                </figcaption>
+                                            </figure>
+                                        </article>
+                                    </div>
                                 </div>
-                            </div>
                             @endforeach
-                            
+
                         </div>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="plant3" role="tabpanel">
                     <div class="row">
                         <div class="product_carousel product_column4 owl-carousel">
-                            @foreach ($topSalesWithDiscount as $product )
-                               
-                            <div class="col-lg-3">
-                                <div class="product_items">
-                                    <article class="single_product">
-                                        <figure>
-                                            <div class="product_thumb">
-                                                <a class="primary_img" href="{{route('shop.detail',$product->id)}}"><img
-                                                        src="{{ $product->image_url }}"
-                                                        alt=""></a>
-                                                <div class="label_product">
-                                                 @if ($product->discount_percentage > 0)
-                                                 <span class="label_sale">-{{ $product->discount_percentage }}%</span>
-                                             @endif                                               </div>
-                                                <div class="action_links">
-                                                    <ul>
-                                                        <li class="add_to_cart"><a href="javascript:void(0)"
-                                                                title="Add to cart"><i class="icon-shopping-bag"></i></a>
-                                                        </li>
-                                                        {{-- <li class="compare"><a href="#" title="Add to Compare"><i
+                            @foreach ($Accessoriesproducts as $product)
+                                <div class="col-lg-3">
+                                    <div class="product_items">
+                                        <article class="single_product">
+                                            <figure>
+                                                <div class="product_thumb">
+                                                    <a class="primary_img"
+                                                        href="{{ route('shop.detail', $product->id) }}"><img
+                                                            src="{{ $product->image_url }}" alt=""></a>
+                                                    <div class="label_product">
+                                                        @if ($product->discount_percentage > 0)
+                                                            <span
+                                                                class="label_sale">-{{ $product->discount_percentage }}%</span>
+                                                        @endif
+                                                    </div>
+                                                    <div class="action_links">
+                                                        <ul>
+                                                            <li class="add_to_cart" data-product-id="{{ $product->id }}"
+                                                                data-quantity="1"><a href="javascript:void(0)"
+                                                                    title="Add to cart"><i
+                                                                        class="icon-shopping-bag"></i></a>
+                                                            </li>
+                                                            {{-- <li class="compare"><a href="#" title="Add to Compare"><i
                                                                 class="icon-sliders"></i></a></li> --}}
-                                                        <li class="wishlist"><a href="wishlist.html"
-                                                                title="Add to Wishlist"><i class="icon-heart"></i></a>
-                                                        </li>
-                                                        <li class="quick_button"><a href="#" data-bs-toggle="modal"
-                                                                data-bs-target="#modal_box" title="quick view"> <i
-                                                                    class="icon-eye"></i></a></li>
-                                                    </ul>
+                                                            <li class="wishlist"><a href="wishlist.html"
+                                                                    title="Add to Wishlist"><i class="icon-heart"></i></a>
+                                                            </li>
+                                                            <li class="quick_button"><a href="#"
+                                                                    data-bs-toggle="modal" data-bs-target="#modal_box"
+                                                                    title="quick view"> <i class="icon-eye"></i></a></li>
+                                                        </ul>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <figcaption class="product_content">
-                                                <div class="product_rating">
-                                                    <ul>
-                                                        <li><a href="#"><i class="icon-star"></i></a></li>
-                                                        <li><a href="#"><i class="icon-star"></i></a></li>
-                                                        <li><a href="#"><i class="icon-star"></i></a></li>
-                                                        <li><a href="#"><i class="icon-star"></i></a></li>
-                                                        <li><a href="#"><i class="icon-star"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                                <h4 class="product_name"><a href="product-details.html">{{$product->name}}</a></h4>
-                                                <div class="price_box">
-                                                 @if ($product->discount_percentage >0)
-                                                 <span class="current_price">PKR
-                                                     {{ $product->price - $product->discount }}</span>
-                                                 <span class="old_price">PKR {{ $product->price }}</span>
-                                             @else
-                                                 <span class="current_price">PKR {{ $product->price }}</span>
-                                             @endif
-                                                </div>
-                                            </figcaption>
-                                        </figure>
-                                    </article>
+                                                <figcaption class="product_content">
+                                                    <div class="product_rating">
+                                                        <ul>
+                                                            <li><a href="#"><i class="icon-star"></i></a></li>
+                                                            <li><a href="#"><i class="icon-star"></i></a></li>
+                                                            <li><a href="#"><i class="icon-star"></i></a></li>
+                                                            <li><a href="#"><i class="icon-star"></i></a></li>
+                                                            <li><a href="#"><i class="icon-star"></i></a></li>
+                                                        </ul>
+                                                    </div>
+                                                    <h4 class="product_name"><a
+                                                            href="product-details.html">{{ $product->name }}</a></h4>
+                                                    <div class="price_box">
+                                                        @if ($product->discount_percentage > 0)
+                                                            <span class="current_price">PKR
+                                                                {{ $product->price - $product->discount }}</span>
+                                                            <span class="old_price">PKR {{ $product->price }}</span>
+                                                        @else
+                                                            <span class="current_price">PKR {{ $product->price }}</span>
+                                                        @endif
+                                                    </div>
+                                                </figcaption>
+                                            </figure>
+                                        </article>
+                                    </div>
                                 </div>
-                            </div>
                             @endforeach
                         </div>
                     </div>
@@ -463,64 +444,44 @@
             <div class="product_deals_container">
                 <div class="row">
                     <div class="product_carousel product_column5 owl-carousel">
-                       @foreach ($topSalesWithDiscount as $product )
-                           
-                       <div class="col-lg-3">
-                        <div class="product_items">
-                            <article class="single_product">
-                                <figure>
-                                    <div class="product_thumb">
-                                        <a class="primary_img" href="{{route('shop.detail',$product->id)}}"><img
-                                                src="{{ $product->image_url }}"
-                                                alt=""></a>
-                                        <div class="label_product">
-                                         @if ($product->discount_percentage > 0)
-                                         <span class="label_sale">-{{ $product->discount_percentage }}%</span>
-                                     @endif                                               </div>
-                                        <div class="action_links">
-                                            <ul>
-                                                <li class="add_to_cart"><a href="javascript:void(0)"
-                                                        title="Add to cart"><i class="icon-shopping-bag"></i></a>
-                                                </li>
-                                                {{-- <li class="compare"><a href="#" title="Add to Compare"><i
-                                                        class="icon-sliders"></i></a></li> --}}
-                                                <li class="wishlist"><a href="wishlist.html"
-                                                        title="Add to Wishlist"><i class="icon-heart"></i></a>
-                                                </li>
-                                                <li class="quick_button"><a href="#" data-bs-toggle="modal"
-                                                        data-bs-target="#modal_box" title="quick view"> <i
-                                                            class="icon-eye"></i></a></li>
-                                            </ul>
+                        @foreach ($topSalesWithDiscount as $product)
+                            <div class="col-lg-3">
+                                <article class="single_product">
+                                    <figure>
+                                        <div class="product_thumb">
+                                            <a class="primary_img" href="product-details.html"><img
+                                                    src="{{ asset('assets/frontend/img/product/product1.jpg') }}"
+                                                    alt=""></a>
+                                            <div class="label_product">
+                                                <span class="label_sale">-7%</span>
+                                            </div>
+                                            <div class="product_timing">
+                                                <div data-countdown="2022/12/15"></div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <figcaption class="product_content">
-                                        <div class="product_rating">
-                                            <ul>
-                                                <li><a href="#"><i class="icon-star"></i></a></li>
-                                                <li><a href="#"><i class="icon-star"></i></a></li>
-                                                <li><a href="#"><i class="icon-star"></i></a></li>
-                                                <li><a href="#"><i class="icon-star"></i></a></li>
-                                                <li><a href="#"><i class="icon-star"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <h4 class="product_name"><a href="product-details.html">{{$product->name}}</a></h4>
-                                        <div class="price_box">
-                                         @if ($product->discount_percentage >0)
-                                         <span class="current_price">PKR
-                                             {{ $product->price - $product->discount }}</span>
-                                         <span class="old_price">PKR {{ $product->price }}</span>
-                                     @else
-                                         <span class="current_price">PKR {{ $product->price }}</span>
-                                     @endif
-                                        </div>
-                                    </figcaption>
-                                </figure>
-                            </article>
-                        </div>
-                    </div>
-                       @endforeach
-                       
-                    
+                                        <figcaption class="product_content">
+                                            <div class="product_rating">
+                                                <ul>
+                                                    <li><a href="#"><i class="icon-star"></i></a></li>
+                                                    <li><a href="#"><i class="icon-star"></i></a></li>
+                                                    <li><a href="#"><i class="icon-star"></i></a></li>
+                                                    <li><a href="#"><i class="icon-star"></i></a></li>
+                                                    <li><a href="#"><i class="icon-star"></i></a></li>
+                                                </ul>
+                                            </div>
+                                            <h4 class="product_name"><a href="product-details.html">commodo augue nisi</a>
+                                            </h4>
+                                            <div class="price_box">
+                                                <span class="current_price">£69.00</span>
+                                                <span class="old_price">£74.00</span>
+                                            </div>
+                                        </figcaption>
+                                    </figure>
+                                </article>
+                            </div>
+                        @endforeach
+
+
                     </div>
                 </div>
             </div>
@@ -641,8 +602,7 @@
                     <div class="newsletter_container">
                         <div class="subscribe_form">
                             <form id="mc-form" class="mc-form footer-newsletter">
-                                <input id="mc-email" type="email" autocomplete="off"
-                                    placeholder="Enter you email" />
+                                <input id="mc-email" type="email" autocomplete="off" placeholder="Enter you email" />
                                 <button id="mc-submit">Subscribe</button>
                                 <div class="email_icon">
                                     <i class="icon-mail"></i>
@@ -674,22 +634,7 @@
             // Add active class to the clicked li element
             $('#home').addClass('active');
 
-            $('.add_to_cart').click(function() {
-                if (localStorage.getItem('auth') == 'false') {
-                    Swal.fire({
-                        title: 'You need to login First!',
-                        text: 'Do you want to continue?',
-                        icon: 'warning',
-                        confirmButtonText: 'Login'
-                    }).then((result) => {
-                        /* Read more about isConfirmed, isDenied below */
-                        if (result.isConfirmed) {
-
-                            window.location = "{{ route('login', url()->current()) }}";
-                        }
-                    })
-                }
-            })
+           
 
         });
     </script>

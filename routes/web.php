@@ -47,8 +47,10 @@ Route::controller(HomeController::class)->group(function () {
 });
 // cartController
 Route::get('/cart',[CartController::class,'index'])->name('cart.index');
-Route::post('/cart/add/{id}',[CartController::class,'add'])->name('cart.add');
-Route::post('/cart/updateQuantity/{id}',[CartController::class,'updateQuantity'])->name('cart.updateQuantity');
+Route::get('/get/cart',[CartController::class,'cart'])->name('cart.cart');
+Route::post('/cart/add/',[CartController::class,'add'])->name('cart.add');
+Route::get('/cart/updateQuantity/',[CartController::class,'updateQuantity'])->name('cart.updateQuantity');
+Route::get('/cart/removeCartItem',[CartController::class,'remove'])->name('cart.remove');
 
 
 Route::get('/checkout',[CheckoutController::class,'index'])->name('checkout.index');

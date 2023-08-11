@@ -290,7 +290,7 @@
                                             </div>
                                             <div class="action_links">
                                                 <ul>
-                                                    <li class="add_to_cart"><a href="cart.html" title="Add to cart"><i
+                                                    <li class="add_to_cart"  data-product-id="{{ $product->id }}"><a href="" title="Add to cart"><i
                                                                 class="icon-shopping-bag"></i></a></li>
                                                     <li class="quick_button"><a href="#" data-bs-toggle="modal"
                                                             data-bs-target="#modal_box{{ $product->id }}"
@@ -358,7 +358,7 @@
                                             </div>
                                             <div class="action_links list_action_right">
                                                 <ul>
-                                                    <li class="add_to_cart"><a href="cart.html" title="Add to cart">Add
+                                                    <li class="add_to_cart"  data-product-id="{{ $product->id }}"><a href="" title="Add to cart">Add
                                                             to
                                                             cart</a></li>
                                                     <li class="wishlist"><a href="wishlist.html"
@@ -522,77 +522,5 @@
     </div>
     <!--shop  area end-->
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <script>
-        $(document).ready(function() {
-            console.log('i ran');
-
-            // Remove active class from all li elements
-            $('nav ul li a').removeClass('active');
-
-            // Add active class to the clicked li element
-            $('#shop').addClass('active');
-
-            $('.add_to_cart').click(function(){
-            if(localStorage.getItem('auth') == 'false')
-            {
-                Swal.fire({
-                title: 'You need to login First!',
-                text: 'Do you want to continue?',
-                icon: 'warning',
-                confirmButtonText: 'Login'
-                }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location = "{{ route('login') }}";
-                }
-                })
-            }
-            })
-        });
-    </script>
-
-    <script>
-        function getHeaderCart(){
-
-            document.getElementById("getCart").innerHTML=``
-
-            $.ajax({
-                "type":"POST",
-                "url":baseURL+"/get-cart",
-                "data":{
-                    "_token":csrf,
-                    "user_id":userId
-                },
-                success:function(data){
-                    document.getElementById("cartCountArea").innerHTML=``
-                    // alert(data)
-                console.log(data)
-                    if(data.length>0){
-                        for(var eachItem of data){
-                            document.getElementById("getCart").innerHTML+=`
-                                <a href="#" class="text-reset notification-item">
-                                    <div class="d-flex align-items-start">
-                                        <img src="assets/images/product/${eachItem.img}"
-                                            class="me-3 avatar-xs" height="150px" alt="item-pic">
-                                        <div class="flex-1">
-                                            <h6 class="mt-0 mb-1">${eachItem.title}</h6>
-                                            <div class="font-size-12 text-muted">
-                                                <p class="mb-1">Quantity: ${eachItem.quantity}</p>
-                                                <p class="mb-0"><i class="mdi mdi-clock-outline"></i>Total: $${parseFloat(eachItem.p_price)*parseFloat(eachItem.quantity)}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            `
-                        }
-                        document.getElementById('cartCountArea').innerHTML = data.length
-                    }
-                }
-            })
-    }
-
-    getHeaderCart()
-    </script>
 
 @endsection
