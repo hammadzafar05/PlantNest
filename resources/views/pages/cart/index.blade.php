@@ -32,7 +32,7 @@
                             <table>
                                 <thead>
                                     <tr>
-                                        <th class="product_remove">Delete</th>
+                                        <th class="">Delete</th>
                                         <th class="product_thumb">Image</th>
                                         <th class="product_name">Product</th>
                                         <th class="product-price">Price</th>
@@ -40,47 +40,8 @@
                                         <th class="product_total">Total</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="product_remove"><a href="#"><i class="fa fa-trash-o"></i></a>
-                                        </td>
-                                        <td class="product_thumb"><a href="#"><img
-                                                    src="{{asset('assets/frontend/img/s-product/product.jpg')}}" alt=""></a></td>
-                                        <td class="product_name"><a href="#">Handbag fringilla</a></td>
-                                        <td class="product-price">£65.00</td>
-                                        <td class="product_quantity"><label>Quantity</label> <input min="1"
-                                                max="100" value="1" type="number"></td>
-                                        <td class="product_total">£130.00</td>
-
-
-                                    </tr>
-
-                                    <tr>
-                                        <td class="product_remove"><a href="#"><i class="fa fa-trash-o"></i></a>
-                                        </td>
-                                        <td class="product_thumb"><a href="#"><img
-                                                    src="{{asset('assets/frontend/img/s-product/product2.jpg')}}" alt=""></a></td>
-                                        <td class="product_name"><a href="#">Handbags justo</a></td>
-                                        <td class="product-price">£90.00</td>
-                                        <td class="product_quantity"><label>Quantity</label> <input min="1"
-                                                max="100" value="1" type="number"></td>
-                                        <td class="product_total">£180.00</td>
-
-
-                                    </tr>
-                                    <tr>
-                                        <td class="product_remove"><a href="#"><i class="fa fa-trash-o"></i></a>
-                                        </td>
-                                        <td class="product_thumb"><a href="#"><img
-                                                    src="{{asset('assets/frontend/img/s-product/product3.jpg')}}" alt=""></a></td>
-                                        <td class="product_name"><a href="#">Handbag elit</a></td>
-                                        <td class="product-price">£80.00</td>
-                                        <td class="product_quantity"><label>Quantity</label> <input min="1"
-                                                max="100" value="1" type="number"></td>
-                                        <td class="product_total">£160.00</td>
-
-
-                                    </tr>
+                                <tbody id="cartTable">
+                                
 
                                 </tbody>
                             </table>
@@ -112,7 +73,7 @@
                                 </div>
                                 <div class="cart_subtotal ">
                                     <p>Shipping</p>
-                                    <p class="cart_amount"><span>Flat Rate:</span> £255.00</p>
+                                    <p class="shipping_amount"><span>Flat Rate:</span> PKR 0.00</p>
                                 </div>
                                 <a href="#">Calculate shipping</a>
 

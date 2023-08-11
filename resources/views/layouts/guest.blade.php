@@ -38,7 +38,7 @@
     <script src="{{ asset('assets/frontend/js/vendor/modernizr-3.7.1.min.js') }}"></script>
 
     @guest
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('assets/backend/libs/sweetalert2/sweetalert2.all.min.js') }}"></script>
     @endguest
 
     <script>
@@ -47,7 +47,11 @@
         @else
         localStorage.setItem('auth', false);
         @endif
+
+        var baseURL = "{{ url('/') }}/"
+
     </script>
+
 </head>
 
 <body>
@@ -161,10 +165,10 @@
                                             @if (auth()->user()->role === 'xxsa')
                                                 <li><a href="{{ route('admin.dashboard') }}">Dashboard </a></li>
                                             @endif
-                                            <li><a href="{{ route('checkout.index') }}">Checkout </a></li>
+                                            <li><a href="{{ route('account.index') }}">My Account </a></li>
                                             <li><a href="{{ route('cart.index') }}">Shopping Cart</a></li>
                                             <li><a href="{{ route('wishlist.index') }}">Wishlist</a></li>
-                                            <li><a href="{{ route('account.index') }}">My Account </a></li>
+                                            <li><a href="{{ route('checkout.index') }}">Checkout </a></li>
                                             <li><a href="{{ route('logout') }}">logout</a></li>
                                         @endauth
                                         @guest
@@ -174,75 +178,81 @@
                                     </ul>
                                 </div>
                                 <div class="header_account-list header_wishlist">
+                                    @if (auth()->check())
                                     <a href="{{ route('wishlist.index') }}"><i class="icon-heart"></i></a>
+                                    @else
+                                    <a class="header_wishlist_btn" href="javascript:void(0)"><i class="icon-heart"></i></a>
+                                    @endif
                                 </div>
                                 <div class="header_account-list  mini_cart_wrapper">
                                     <a href="javascript:void(0)"><i class="icon-shopping-bag"></i><span
                                             class="item_count">0</span></a>
-                                    <!--mini cart-->
-                                    <div class="mini_cart">
-                                        <div class="cart_gallery">
-                                            <div class="cart_close">
-                                                <div class="cart_text">
-                                                    <h3>cart</h3>
+                                    @auth
+                                        <!--mini cart-->
+                                        <div class="mini_cart">
+                                            <div class="cart_gallery">
+                                                <div class="cart_close">
+                                                    <div class="cart_text">
+                                                        <h3>cart</h3>
+                                                    </div>
+                                                    <div class="mini_cart_close">
+                                                        <a href="javascript:void(0)"><i class="icon-x"></i></a>
+                                                    </div>
                                                 </div>
-                                                <div class="mini_cart_close">
-                                                    <a href="javascript:void(0)"><i class="icon-x"></i></a>
+                                                <div class="cart_item">
+                                                    <div class="cart_img">
+                                                        <a href="#"><img src="assets/img/s-product/product.jpg"
+                                                                alt=""></a>
+                                                    </div>
+                                                    <div class="cart_info">
+                                                        <a href="#">Primis In Faucibus</a>
+                                                        <p>1 x <span> $65.00 </span></p>
+                                                    </div>
+                                                    <div class="cart_remove">
+                                                        <a href="#"><i class="icon-x"></i></a>
+                                                    </div>
+                                                </div>
+                                                <div class="cart_item">
+                                                    <div class="cart_img">
+                                                        <a href="#"><img src="assets/img/s-product/product2.jpg"
+                                                                alt=""></a>
+                                                    </div>
+                                                    <div class="cart_info">
+                                                        <a href="#">Letraset Sheets</a>
+                                                        <p>1 x <span> $60.00 </span></p>
+                                                    </div>
+                                                    <div class="cart_remove">
+                                                        <a href="#"><i class="icon-x"></i></a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="cart_item">
-                                                <div class="cart_img">
-                                                    <a href="#"><img src="assets/img/s-product/product.jpg"
-                                                            alt=""></a>
-                                                </div>
-                                                <div class="cart_info">
-                                                    <a href="#">Primis In Faucibus</a>
-                                                    <p>1 x <span> $65.00 </span></p>
-                                                </div>
-                                                <div class="cart_remove">
-                                                    <a href="#"><i class="icon-x"></i></a>
+                                            <div class="mini_cart_table">
+                                                <div class="cart_table_border">
+                                                    <div class="cart_total">
+                                                        <span>Sub total:</span>
+                                                        <span class="price">$125.00</span>
+                                                    </div>
+                                                    <div class="cart_total mt-10">
+                                                        <span>total:</span>
+                                                        <span class="price">$125.00</span>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="cart_item">
-                                                <div class="cart_img">
-                                                    <a href="#"><img src="assets/img/s-product/product2.jpg"
-                                                            alt=""></a>
+                                            <div class="mini_cart_footer">
+                                                <div class="cart_button">
+                                                    <a href="{{ route('cart.index') }}"><i
+                                                            class="fa fa-shopping-cart"></i> View cart</a>
                                                 </div>
-                                                <div class="cart_info">
-                                                    <a href="#">Letraset Sheets</a>
-                                                    <p>1 x <span> $60.00 </span></p>
+                                                <div class="cart_button">
+                                                    <a class="active" href="{{ route('checkout.index') }}"><i
+                                                            class="fa fa-sign-in"></i>
+                                                        Checkout</a>
                                                 </div>
-                                                <div class="cart_remove">
-                                                    <a href="#"><i class="icon-x"></i></a>
-                                                </div>
+    
                                             </div>
                                         </div>
-                                        <div class="mini_cart_table">
-                                            <div class="cart_table_border">
-                                                <div class="cart_total">
-                                                    <span>Sub total:</span>
-                                                    <span class="price">$125.00</span>
-                                                </div>
-                                                <div class="cart_total mt-10">
-                                                    <span>total:</span>
-                                                    <span class="price">$125.00</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="mini_cart_footer">
-                                            <div class="cart_button">
-                                                <a href="{{ route('cart.index') }}"><i
-                                                        class="fa fa-shopping-cart"></i> View cart</a>
-                                            </div>
-                                            <div class="cart_button">
-                                                <a class="active" href="{{ route('checkout.index') }}"><i
-                                                        class="fa fa-sign-in"></i>
-                                                    Checkout</a>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <!--mini cart end-->
+                                        <!--mini cart end-->
+                                    @endauth
                                 </div>
                             </div>
                         </div>
@@ -415,7 +425,28 @@
     <!-- Main JS -->
     <script src="{{ asset('assets/frontend/js/main.js') }}"></script>
 
-    @section('script')
+    @guest
+        <script>
+            $('.add_to_cart, .cart_button, .mini_cart_wrapper, .header_wishlist, .product_d_action').click(function(e){
+                e.preventDefault();
+                if(localStorage.getItem('auth') == 'false')
+                {
+                    Swal.fire({
+                    title: 'You need to login First!',
+                    text: 'Do you want to continue?',
+                    icon: 'warning',
+                    confirmButtonText: 'Login'
+                    }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location = "{{ route('login') }}";
+                    }
+                    })
+                }
+            })
+        </script>
+    @endguest
+
+    @yield('script')
 
 </body>
 
