@@ -55,16 +55,23 @@
                         <div class="col-xl-4 col-sm-2">
                             
                             <div class="product-box">
-                                <div class="product-img pt-2 px-2">
-                                    {{-- @foreach($product['images'] as $img)
+                                <div class="product-img pt-4 px-4">
+                                    {{-- <div >
+                                    @if( $product->trending == 1)
+                                        <a href="{{route('product.trending',$product->id)}}"  class="product-ribbon badge bg-danger text-white">Not Trending</a>
+                                     @else
+                                      <a href="{{route('product.trending',$product->id)}}"  class="product-ribbon badge bg-warning text-white">Trending</a>
+                                        @endif
+                                    </div> --}}
+                                    @foreach(array_reverse($product['images']->toArray(),true) as $img)
                                     @if($img['product_id']==$product->id)
                                              @php
                                                 $imgs=$img['image_url']
                                             @endphp
                                     @endif
-                                    @endforeach --}}
+                                    @endforeach
                                         
-                                        <img src="{{ asset('assets/backend/images/product/' . $product->image_url) }}" alt="" class="img-fluid mx-auto d-block product_img" >
+                                        <img src="{{ asset('assets/backend/images/product/' . $imgs) }}" alt="" class="img-fluid mx-auto d-block product_img" >
 
 
 

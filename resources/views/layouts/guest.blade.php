@@ -439,7 +439,9 @@
                         title: 'You need to login First!',
                         text: 'Do you want to continue?',
                         icon: 'warning',
-                        confirmButtonText: 'Login'
+                        showCancelButton: true,
+                        confirmButtonText: 'Login',
+                        cancelButtonText: 'No'
                     }).then((result) => {
                         if (result.isConfirmed) {
                             window.location = "{{ route('login') }}";
@@ -451,7 +453,6 @@
     @endguest
     <script>
         function cart() {
-            console.log('test')
 
 
             $.get(
@@ -662,8 +663,8 @@
             });
         }
 
-
-
+        @auth
+        
         $(document).ready(function() {
             cart();
             $(".add-to-wishlist").click(function(e) {
@@ -725,6 +726,9 @@
                 });
             });
         });
+
+        @endauth
+
     </script>
 
     @yield('script')

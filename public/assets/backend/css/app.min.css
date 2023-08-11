@@ -143,7 +143,7 @@ body:not(.vertical-collpsed) .app-search {
 
 }
 .product_img {
-   height: 280px;
+   height:auto;
    width: 100%;
 }
 .close{
@@ -4208,9 +4208,8 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td.dtr-control:before {
 }
 
 .product-box:hover .product-content {
-    -webkit-transform: translateY(-22px);
-    transform: translateY(-22px);
-    transition: all 0.4s ease;
+    -webkit-transform: translateY(-30px);
+    transform: translateY(-30px)
 }
 
 .product-box:hover .product-color {

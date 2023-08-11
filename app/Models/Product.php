@@ -18,6 +18,7 @@ class Product extends Model
         'purpose',
         'stock',
         'status',
+        'image_url',
         'category_id',
     ];
     protected $appends = ['discount_percentage'];
