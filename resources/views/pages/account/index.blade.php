@@ -96,11 +96,11 @@
                                 <h4 class="billing-address">Billing address</h4>
                                 <p><strong>Name:</strong>  {{ $userDetails->name }}</p>
                                 <address>
-                                    <span><strong>City:</strong> {{ $userDetails->details->first()->shipping_city }}</span>,
+                                    <span><strong>City:</strong> {{ $userDetails->details->first()?->shipping_city }}</span>,
                                     <br>
-                                    <span><strong>State:</strong> {{ $userDetails->details->first()->shipping_state }}</span>,
+                                    <span><strong>State:</strong> {{ $userDetails->details->first()?->shipping_state }}</span>,
                                     <br>
-                                    <span><strong>ZIP:</strong> {{ $userDetails->details->first()->shipping_zip_code }}</span>,
+                                    <span><strong>ZIP:</strong> {{ $userDetails->details->first()?->shipping_zip_code }}</span>,
                                     <br>
                                     <span><strong>Country:</strong> USA</span>
                                 </address>
@@ -131,35 +131,35 @@
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label>City</label>
-                                                        <input type="text" name="shipping_city" value="{{ $userDetails->details->first()->shipping_city }}">
+                                                        <input type="text" name="shipping_city" value="{{ $userDetails->details->first()?->shipping_city }}">
                                                     </div>
                                                  </div>
                                                  <div class="row">
                                                     <div class="col-md-6">
                                                         <label>Address 1</label>
-                                                        <input type="text" name="shipping_billing_address_1" value="{{ $userDetails->details->first()->shipping_billing_address_1 }}">
+                                                        <input type="text" name="shipping_billing_address_1" value="{{ $userDetails->details->first()?->shipping_billing_address_1 }}">
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label>Address 2</label>
-                                                        <input type="text" name="shipping_billing_address_2" value="{{ $userDetails->details->first()->shipping_billing_address_2 }}">
+                                                        <input type="text" name="shipping_billing_address_2" value="{{ $userDetails->details->first()?->shipping_billing_address_2 }}">
                                                     </div>
                                                 </div>
 
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <label>State</label>
-                                                        <input type="text" name="shipping_state" value="{{ $userDetails->details->first()->shipping_state }}">        
+                                                        <input type="text" name="shipping_state" value="{{ $userDetails->details->first()?->shipping_state }}">        
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label>Country</label>
-                                                        <input type="text" name="shipping_country" value="{{ $userDetails->details->first()->shipping_country }}">
+                                                        <input type="text" name="shipping_country" value="{{ $userDetails->details->first()?->shipping_country }}">
                                                     </div>
                                                 </div>
 
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <label>Zip Code</label>
-                                                        <input type="text" name="shipping_zip_code" value="{{ $userDetails->details->first()->shipping_zip_code }}">
+                                                        <input type="text" name="shipping_zip_code" value="{{ $userDetails->details->first()?->shipping_zip_code }}">
                                                     </div>
                                                 </div>
                                                 <div class="save_button primary_btn default_button">
