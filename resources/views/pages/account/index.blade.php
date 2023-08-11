@@ -30,7 +30,6 @@
                             <ul role="tablist" class="nav flex-column dashboard-list">
                                 <li><a href="#dashboard" data-bs-toggle="tab" class="nav-link active">Dashboard</a></li>
                                 <li> <a href="#orders" data-bs-toggle="tab" class="nav-link">Orders</a></li>
-                                <li><a href="#downloads" data-bs-toggle="tab" class="nav-link">Downloads</a></li>
                                 <li><a href="#address" data-bs-toggle="tab" class="nav-link">Addresses</a></li>
                                 <li><a href="#account-details" data-bs-toggle="tab" class="nav-link">Account details</a>
                                 </li>
@@ -79,35 +78,6 @@
                                     </table>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="downloads">
-                                <h3>Downloads</h3>
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th>Product</th>
-                                                <th>Downloads</th>
-                                                <th>Expires</th>
-                                                <th>Download</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Shopnovilla - Free Real Estate PSD Template</td>
-                                                <td>May 10, 2018</td>
-                                                <td><span class="danger">Expired</span></td>
-                                                <td><a href="#" class="view">Click Here To Download Your File</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Organic - ecommerce html template</td>
-                                                <td>Sep 11, 2018</td>
-                                                <td>Never</td>
-                                                <td><a href="#" class="view">Click Here To Download Your File</a></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
                             <div class="tab-pane" id="address">
                                 <p>The following addresses will be used on the checkout page by default.</p>
                                 <h4 class="billing-address">Billing address</h4>
@@ -129,19 +99,22 @@
                                     <div class="login_form_container">
                                         <div class="account_login_form">
                                             <form action="#">
-                                                <p>Already have an account? <a href="#">Log in instead!</a></p>
-                                                <div class="input-radio">
+                                                {{-- <p>Already have an account? <a href="#">Log in instead!</a></p> --}}
+                                                {{-- <div class="input-radio">
                                                     <span class="custom-radio"><input type="radio" value="1"
                                                             name="id_gender"> Mr.</span>
                                                     <span class="custom-radio"><input type="radio" value="1"
                                                             name="id_gender"> Mrs.</span>
-                                                </div> <br>
+                                                </div> --}}
+                                                 <br>
                                                 <label>First Name</label>
                                                 <input type="text" name="first-name" value="{{ Auth::user()->name }}">
                                                 <label>Last Name</label>
                                                 <input type="text" name="last-name">
                                                 <label>Email</label>
                                                 <input type="text" name="email-name">
+                                                <label>Contact Number</label>
+                                                <input type="number" name="contact_number" value="{{ Auth::user()->details()->first()->shipping_phone_number }}">
                                                 <label>Password</label>
                                                 <input type="password" name="user-password">
                                                 <label>Birthdate</label>

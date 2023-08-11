@@ -46,6 +46,13 @@
                             @enderror
                         </p>
                         <p>
+                            <label>Contact Number <span>*</span></label>
+                            <input type="number" name="contact_number" value="{{ old('contact_number') }}">
+                            @error('contact_number')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </p>
+                        <p>
                             <label>Passwords <span>*</span></label>
                             <input type="password" name="password">
                             @error('password')
