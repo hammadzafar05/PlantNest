@@ -262,7 +262,6 @@
                     </div>
                 </div>
                 <div class="tab-pane fade" id="plant3" role="tabpanel">
-                    {{$Accessoriesproducts}}
                     <div class="row">
                         <div class="product_carousel product_column4 owl-carousel">
                             @foreach ($Accessoriesproducts as $product)

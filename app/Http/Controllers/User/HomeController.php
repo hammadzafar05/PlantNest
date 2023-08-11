@@ -32,7 +32,7 @@ class HomeController extends Controller
             ->take(10) // Change this to the desired number of top sales products
             ->get();
         $Plantsproducts = Product::whereHas('category.parent', function ($query) {
-            $query->where('name', 'plants');
+            $query->where('id', 1);
         })
             ->with('images', 'plantInfo')
             ->select('*', DB::raw('(discount / price) * 100 as discount_percentage'))
@@ -41,7 +41,7 @@ class HomeController extends Controller
             ->get();
 
             $Accessoriesproducts = Product::whereHas('category.parent', function ($query) {
-                $query->where('name', 'accessorires');
+                $query->where('id', 2);
             })
                 ->with('images', 'plantInfo')
                 ->select('*', DB::raw('(discount / price) * 100 as discount_percentage'))
