@@ -187,28 +187,7 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            {{-- <div class="col-md-6">
-                                                <div class="mb-3">
-                                                    <label class="form-label" class="control-label">Discount</label>
-                                                    <select class="form-select  @error('discount') is-invalid @enderror"
-                                                        aria-label="Default select example"
-                                                        value="{{ old('discount_id') }}" name="discount_id" required>
-                                                        @error('category')
-                                                            <span class="invalid-feedback" role="alert">
-                                                                <strong>{{ $message }}</strong>
-                                                            </span>
-                                                        @enderror
-                                                        <option selected disabled>Select Discount</option>
-                                                        <option selected value="0">No Discount</option>
-                                                        @foreach ($discount as $discount)
-                                                            <option
-                                                                {{ old('discount_id') == $discount->id ? 'selected' : '' }}
-                                                                value="{{ $discount->id }}">{{ $discount->name }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div> --}}
+
                                             <div class="mb-0">
                                                 <label class="form-label" for="productdesc">Product Description</label>
                                                 <textarea class="form-control  @error('description') is-invalid @enderror" name="description" id="productdesc"
@@ -225,8 +204,6 @@
 
                                     <div class="row my-3">
                                         <div class="col text-end">
-                                            {{-- <a href="{{ route('admin.form_cancel') }}" class="btn btn-danger"> <i
-                                                    class="uil uil-times me-1"></i> Cancel </a> --}}
                                             <input type="submit" class="btn btn-primary"> </button>
                                         </div> <!-- end col -->
                                     </div> <!-- end row-->
@@ -242,55 +219,4 @@
 
 
             </div> <!-- container-fluid -->
-        @endsection
-        @section('script')
-            <script>
-                $(function() {
-                    $(document).ready(function() {
-                        $('#category-dropdown').on('change', function() {
-                            var idCategory = this.value;
-                            $("#subcategory-dropdown").html('');
-                            $.ajax({
-                                url: "{{ url('admin/api/fetch-subcategory') }}",
-                                type: "POST",
-                                data: {
-                                    category_id: idCategory,
-                                    _token: '{{ csrf_token() }}'
-                                },
-                                dataType: 'json',
-                                success: function(result) {
-                                    $('#subcategory-dropdown').html(
-                                        '<option selected disabled>Select Sub Category</option>'
-                                    );
-                                    $.each(result.subcategories, function(key, value) {
-                                        $("#subcategory-dropdown").append(
-                                            '<option value="' + value
-                                            .id + '">' + value.name +
-                                            '</option>');
-                                        console.log(result.subcategories)
-                                    });
-                                }
-                            });
-                        });
-                    });
-
-                    // Multiple images preview with JavaScript
-                    var previewImages = function(input, imgPreviewPlaceholder) {
-                        if (input.files) {
-                            var filesAmount = input.files.length;
-                            for (i = 0; i < filesAmount; i++) {
-                                var reader = new FileReader();
-                                reader.onload = function(event) {
-                                    $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(
-                                        imgPreviewPlaceholder);
-                                }
-                                reader.readAsDataURL(input.files[i]);
-                            }
-                        }
-                    };
-                    $('#image').on('change', function() {
-                        previewImages(this, 'div.images-preview-div');
-                    });
-                });
-            </script>
         @endsection

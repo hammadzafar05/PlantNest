@@ -195,6 +195,54 @@
     {{-- <script src="{{asset('assets/backend/js/admin.js')}}"></script> --}}
     <script>
         var _url= '{{url("/")}}';
+
+        $(function() {
+                    $(document).ready(function() {
+                        $('#category-dropdown').on('change', function() {
+                            var idCategory = this.value;
+                            $("#subcategory-dropdown").html('');
+                            $.ajax({
+                                url: "{{ url('admin/api/fetch-subcategory') }}",
+                                type: "POST",
+                                data: {
+                                    category_id: idCategory,
+                                    _token: '{{ csrf_token() }}'
+                                },
+                                dataType: 'json',
+                                success: function(result) {
+                                    $('#subcategory-dropdown').html(
+                                        '<option selected disabled>Select Sub Category</option>'
+                                    );
+                                    $.each(result.subcategories, function(key, value) {
+                                        $("#subcategory-dropdown").append(
+                                            '<option value="' + value
+                                            .id + '">' + value.name +
+                                            '</option>');
+                                        console.log(result.subcategories)
+                                    });
+                                }
+                            });
+                        });
+                    });
+
+                    // Multiple images preview with JavaScript
+                    var previewImages = function(input, imgPreviewPlaceholder) {
+                        if (input.files) {
+                            var filesAmount = input.files.length;
+                            for (i = 0; i < filesAmount; i++) {
+                                var reader = new FileReader();
+                                reader.onload = function(event) {
+                                    $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(
+                                        imgPreviewPlaceholder);
+                                }
+                                reader.readAsDataURL(input.files[i]);
+                            }
+                        }
+                    };
+                    $('#image').on('change', function() {
+                        previewImages(this, 'div.images-preview-div');
+                    });
+                });
     </script>
     @yield('script')
    

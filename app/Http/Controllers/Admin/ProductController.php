@@ -17,26 +17,17 @@ class ProductController extends Controller
     {
         if($id!==null)
         {
-            $allproducts = Product::with(['images'])->where('category_id',$id ?? '')->latest()->paginate(15);
+            $allproducts = Product::with(['images'])->where('category_id',$id ?? '')->select('id','name','price','description','image_url')->latest()->paginate(15);
         }
         else
         {
             $allproducts = Product::with(['images'])->latest()->paginate(15);
 
         }
-        // $allproducts = Product::with(['images', 'category'])
-        // ->whereHas('category', function ($query) {
-        //     $query->where('parent_id','!=', 0);
-        // })
-        // ->where(function ($query) use ($id) {
-        //     if (!empty($id)) {
-        //         $query->where('category_id', $id);
-        //     }
-        // })
-        // ->latest()->paginate(15);
-        // dd($allproducts);
-        $_categories = Category::select('id','name','parent_id')->get();
-        return view('admin.pages.product.index',['allproducts'=>$allproducts,'_category'=>$_categories]);
+        $main_categories = Category::where('parent_id',0)->select('id','name','parent_id')->get();
+        $sub_categories = Category::where('parent_id','!=',0)->select('id','name','parent_id')->get();
+        
+        return view('admin.pages.product.index',['allproducts'=>$allproducts,'_subCategory'=>$sub_categories,'_mainCategory'=>$main_categories]);
     }
 
     public function create()
@@ -217,6 +208,27 @@ class ProductController extends Controller
     {
       $productReviews=Review::with(['user','product.images'])->latest()->get();
         return view('admin.pages.product.product-review',['_productReviews'=>$productReviews]);
+    }
+
+    public function productDetail()
+    {
+      $productArray=Review::with([
+        'product'=>function($query){
+            $query->select('id','name','price','discount','description','stock','image_url','category_id');
+        },
+        'product.category'=>function($query){
+            $query->select('id','name');
+        },
+        'product.images'=>function($query){
+            $query->select('id','image_url','product_id');
+        },
+        'user'=>function ($query){
+            $query->select('id','name');
+        }
+    ])->get()->toArray();
+
+    dd($productArray);
+
     }
 
     // public function search(Request $request)

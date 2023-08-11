@@ -127,6 +127,7 @@ Route::middleware(['isAdmin','auth','prevent-back-history'])->prefix('admin')->n
         Route::get('product/status/{id}','changeProductStatus')->name('changeProductStatus');
         // product reviews
         Route::get('product/productReviews','productReviews')->name('productReviewShows');
+        Route::get('product/productsDetail/{id}','productDetail')->name('productDetailShows');
 
     });
     // Order controller
