@@ -270,7 +270,7 @@
                                                                         </div>
                                     <div class="action_links">
                                         <ul>
-                                            <li class="add_to_cart"  data-product-id="{{ $product->id }}" title="Add to cart"><i
+                                            <li class="add_to_cart"  data-product-id="{{ $product->id }}" data-quantity="1" title="Add to cart"><i
                                                         class="icon-shopping-bag"></i></a></li>
                                             <li class="wishlist"><a href="wishlist.html" title="Add to Wishlist"><i
                                                         class="icon-heart"></i></a></li>
@@ -313,7 +313,6 @@
         </div>
     </section>
     <!--product area end-->
-
     @endsection
 
     @section('script')
@@ -373,6 +372,13 @@
                 })
             }
         }
+    </script>
+    <script>
+    function updateDataQuantityDetail(inputElement) {
+       const quantity = parseInt(inputElement.value);
+       const addToCartButton = inputElement.parentElement.querySelector('.detail_add_to_cart');
+       addToCartButton.setAttribute('data-quantity', quantity);
+   }
     </script>
     
 @endsection
