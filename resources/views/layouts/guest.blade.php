@@ -47,7 +47,6 @@
         @endif
 
         var baseURL = "{{ url('/') }}/"
-
     </script>
     <style>
         .mini_cart {
@@ -433,7 +432,7 @@
 
     @guest
         <script>
-            $('.add_to_cart, .cart_button, .mini_cart_wrapper, .header_wishlist, .product_d_action').click(function(e){
+            $('.add_to_cart, .cart_button, .mini_cart_wrapper, .header_wishlist, .product_d_action').click(function(e) {
                 e.preventDefault();
                 if (localStorage.getItem('auth') == 'false') {
                     Swal.fire({
@@ -667,7 +666,28 @@
 
         $(document).ready(function() {
             cart();
+            $(".add-to-wishlist").click(function(e) {
+                e.preventDefault(); // Prevent the link from navigating
 
+                var productId = $(this).data("product-id");
+                var $icon = $(this).find("i");
+                
+                console.log('product-id',productId,$icon);
+
+                // Make a POST request to your API to add the product to the wishlist
+                $.get("wishlist/add/"+productId, {
+                    product_id: productId
+                }, function(response) {
+
+                        console.log('added wishilist'+response)
+                        // Change the icon to a filled heart
+                        $icon.removeClass("icon-heart").addClass("fa fa-heart");
+                        console.log($icon)
+                    
+                });
+            });
+            
+           
             $('.add_to_cart').click(function(e) {
                 e.preventDefault()
                 var productId = $(this).data('product-id');
@@ -709,6 +729,6 @@
 
     @yield('script')
 
-    </body>
+</body>
 
-    </html>
+</html>

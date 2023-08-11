@@ -66,8 +66,8 @@ Route::get('/shop/{id?}',[ShopController::class,'index'])->name('shop.index');
 Route::get('/shop/product/detail/{id?}',[ShopController::class,'detail'])->name('shop.detail');
 
 Route::get('/wishlist',[WhishListController::class,'index'])->name('wishlist.index');
-Route::post('/wishlist/add/{id}', [WishlistControlle::class,'addToWishlist'])->name('wishlist.add');
-Route::post('/wishlist/remove/{id}', [WishlistControlle::class,'removeFromWishlist'])->name('wishlist.remove');
+Route::get('/wishlist/add/{id}', [WhishListController::class,'addToWishlist'])->name('wishlist.add');
+Route::get('/wishlist/remove/{id}', [WhishListController::class,'removeFromWishlist'])->name('wishlist.remove');
 
 
 
