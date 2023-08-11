@@ -95,8 +95,10 @@
                             </div>
                             <div class="product_variant quantity">
                                 <label>quantity</label>
-                                <input min="1" max="100" value="1" type="number">
-                                <button onclick="addToCart('{{$product->id}}')" class="button" type="submit">add to cart</button>
+                                <input min="1" max="100"
+                                step="2" value="1" type="number" class="cart_quantity" onchange="updateDataQuantityDetail(this)" oninput="updateDataQuantityDetail(this)">
+                            <button type="submit" class="add_to_cart" data-product-id="{{$product->id}}" data-quantity="1">add to
+                                cart</button>
 
                             </div>
                             <div class=" product_d_action">
@@ -268,10 +270,8 @@
                                                                         </div>
                                     <div class="action_links">
                                         <ul>
-                                            <li class="add_to_cart"  data-product-id="{{ $product->id }}><a href="" title="Add to cart"><i
+                                            <li class="add_to_cart"  data-product-id="{{ $product->id }}><a href=" title="Add to cart"><i
                                                         class="icon-shopping-bag"></i></a></li>
-                                            <li class="compare"><a href="#" title="Add to Compare"><i
-                                                        class="icon-sliders"></i></a></li>
                                             <li class="wishlist"><a href="wishlist.html" title="Add to Wishlist"><i
                                                         class="icon-heart"></i></a></li>
                                             <li class="quick_button"><a href="#" data-bs-toggle="modal"
@@ -314,56 +314,15 @@
     </section>
     <!--product area end-->
 
-    
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
-        $(document).ready(function() {
-            console.log('i ran');
-
-            // Remove active class from all li elements
-            $('nav ul li a').removeClass('active');
-
-            // Add active class to the clicked li element
-            $('#shop').addClass('active');
-
-            function addToCart(p_id){
-            if(localStorage.getItem('auth') == 'false')
-            {
-                Swal.fire({
-                title: 'You need to login First!',
-                text: 'Do you want to continue?',
-                icon: 'warning',
-                confirmButtonText: 'Login'
-                }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location = "{{ route('login') }}";
-                }
-                })
-            }
-            else
-            {
-                $.ajax({
-                    "type":"POST",
-                    "url":baseURL+"add-cart",
-                    "data":{
-                        "_token":"{{csrf_token()}}",
-                        "product_id":p_id,
-                        "product_quantity":$("#qnt").val(),
-                    },
-                    success:function(response){
-                        getCart()
-                        getHeaderCart()
-                        $("#qnt").val(1)
-                        $("#pd_alert").css("display","block")
-                        setTimeout(() => {
-                            $("#pd_alert").css("display","none")
-                        }, 3000);
-                    }
-                })
-            }
-        }
-
-        });
+    function updateDataQuantityDetail(inputElement) {
+       const quantity = parseInt(inputElement.value);
+       const addToCartButton = inputElement.parentElement.querySelector('.detail_add_to_cart');
+       addToCartButton.setAttribute('data-quantity', quantity);
+   }
+   
     </script>
+    
 @endsection
