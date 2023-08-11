@@ -451,7 +451,6 @@
     @endguest
     <script>
         function cart() {
-            console.log('test')
 
 
             $.get(
@@ -662,8 +661,8 @@
             });
         }
 
-
-
+        @auth
+        
         $(document).ready(function() {
             cart();
             $(".add-to-wishlist").click(function(e) {
@@ -725,6 +724,9 @@
                 });
             });
         });
+
+        @endauth
+
     </script>
 
     @yield('script')
