@@ -104,5 +104,25 @@
         </div>
     </div>
     <!--wishlist area end -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    $(".remove_wishlist").click(function (e) {
+        e.preventDefault(); // Prevent the link from navigating
+
+        var productId = $(this).data("product-id");
+        var $tr = $(this).closest("tr");
+
+        // Make a GET request to your API to remove the product from the wishlist
+        $.get("/wishlist/remove/" + productId, function (response) {
+            // Remove the entire row from the table
+            $('.wishlist_item_count').text(response.count);
+            $tr.remove();
+            Swal.fire({
+                icon: 'success',
+                title: 'success',
+                text: response.message
+            });
+            console.error('Error removing product to wihslist:', error);
+        });
+    });
     
 @endsection
