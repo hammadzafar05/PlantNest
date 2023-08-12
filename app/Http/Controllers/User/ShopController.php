@@ -115,7 +115,7 @@ $query->with('reviews');
     {
         $user = Auth::user();
 
-        $product = Product::with('plantInfo', 'category', 'images','reviews')->find($id);
+        $product = Product::with('plantInfo', 'category', 'images','reviews.user')->find($id);
 
         $relatedProducts = Product::with('plantInfo', 'category', 'images','reviews')
             ->where('category_id', $product->category_id)
