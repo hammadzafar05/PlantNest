@@ -193,6 +193,7 @@
     <!-- init js -->
     <script src="{{ asset('assets/backend/js/pages/ecommerce-add-product.init.js') }}"></script>
     {{-- <script src="{{asset('assets/backend/js/admin.js')}}"></script> --}}
+    @yield('script')
     <script>
         var _url= '{{url("/")}}';
 
@@ -218,7 +219,7 @@
                                             '<option value="' + value
                                             .id + '">' + value.name +
                                             '</option>');
-                                        console.log(result.subcategories)
+                                        // console.log(result.subcategories)
                                     });
                                 }
                             });
@@ -244,7 +245,6 @@
                     });
                 });
     </script>
-    @yield('script')
    
       <script>
         $(document).ready(function() {

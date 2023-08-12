@@ -9,46 +9,49 @@
         <div class="col-lg-12">
             <div id="addproduct-accordion" class="custom-accordion">
                 <div class="card">
-                    <a href="#addproduct-billinginfo-collapse" class="text-dark" data-bs-toggle="collapse" aria-expanded="true" aria-controls="addproduct-billinginfo-collapse">
+                    {{-- <a href="#addproduct-billinginfo-collapse" class="text-dark" data-bs-toggle="collapse" aria-expanded="true" aria-controls="addproduct-billinginfo-collapse"> --}}
                         <div class="p-4">
-                            <form action="">
+                            <form action="{{url('admin/product/allproducts')}}" method="post">
+                                @csrf
                                 <div class="row">
-                                    <div class="col-md-4">
-                                        <label class="form-label mt-1" for="category-dropdown">Main Categories</label>
-                                        <select class="form-control m-0" id="category-dropdown"
-                                        {{-- onchange="filterProductsWithCategory(this.value)" --}}
-                                        name="orderStatus" id="orderStatusChange">
-                                        <option value="pending" disabled selected>Filter By Main Category</option>
-                                        @foreach ($_mainCategory as $cat)
-                                        <option 
-                                            value="{{$cat['id']}}" >
-                                            {{$cat['name']}}
-                                        </option>
-                                        @endforeach
-                                    </select>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label class="form-label mt-1" for="subcategory-dropdown">Sub Categories</label>
-                                        <select class="form-control m-0" id="subcategory-dropdown"
-                                        onchange="filterProductsWithCategory(this.value)"
-                                        name="orderStatus" id="orderStatusChange">
-                                        <option value="pending" disabled selected>Filter By Sub Category</option>
-                                        @foreach ($_subCategory as $cat)
-                                        <option 
-                                            value="{{$cat['id']}}" >
-                                            {{$cat['name']}}
-                                        </option>
-                                        @endforeach
-                                    </select>
-                                    </div>
-                                    <div class="col-md-8">
-                                        
-                                    </div>
+                                    <div class="col-md-5">
+                                    <label class="form-label mt-1" for="category_dropdown">Main Categories</label>
+                                    <select class="form-control m-0" id="category_dropdown"
+                                    name="mainCat" id="orderStatusChange">
+                                    <option {{ $catId == null || $catId == 'all' ? 'selected' : '' }} disabled selected>select category</option>
+                                    {{-- @if (!$_mainCategory->count())
+                                    @endif --}}
+                                    @foreach ($_mainCategory as $cat)
+                                    <option {{$cat['id'] == $catId ? 'selected' : ''}}
+                                        value="{{$cat['id']}}" >
+                                        {{$cat['name']}}
+                                    </option>
+                                    @endforeach
+                                </select>
                                 </div>
-                            </form>
-    
+                                <div class="col-md-5">
+                                    <label class="form-label mt-1" for="subcategory_dropdown">Sub Categories</label>
+                                    <select class="form-control m-0" id="subcategory_dropdown"
+                                    name="subCat" id="orderStatusChange">
+                                    <option {{ $subCat == null || $subCat == 'all' ? 'selected' : '' }} disabled selected>No Sub Category Found</option>
+                                    {{-- @if (!$_subCategory->count())
+                                    @endif --}}
+                                    @foreach ($_subCategory as $subCateg)
+                                    <option {{$subCateg['id'] == $subCat ? 'selected' : ''}}
+                                        value="{{$subCateg['id']}}" >
+                                        {{$subCateg['name']}}
+                                    </option>
+                                    @endforeach
+                                </select>
+                                </div>
+                                <div class="col-md-2" style="margin-top: 33px;">
+                                    <button type="submit" class="btn btn-primary">Search</button>
+                                </div>
+                                    </div>
+                                </form>
+                                </div>    
                         </div>
-                    </a>
+                    {{-- </a> --}}
     
                 </div>
     
@@ -126,9 +129,33 @@
 @endsection
 @section('script')
     <script>
-        function filterProductsWithCategory(id) {
-
-            window.location.href = `${_url}/admin/product/allproducts/${id}`;
-        }
+      $(function() {
+                    $(document).ready(function() {
+                        $('#category_dropdown').on('change', function() {
+                            var idCategory = this.value;
+                             $("#subcategory_dropdown").html('');
+                            $.ajax({
+                                url: "{{ url('admin/api/productsByCategory') }}",
+                                type: "POST",
+                                data: {
+                                    category_id: idCategory,
+                                    _token: '{{ csrf_token() }}'
+                                },
+                                dataType: 'json',
+                                success: function(result) {
+                                    $('#subcategory_dropdown').html(
+                                        '<option selected disabled>Select Sub Category</option>'
+                                    );
+                                    $.each(result.subcategories, function(key, value) {
+                                        $("#subcategory_dropdown").append(
+                                            '<option value="' + value
+                                            .id + '">' + value.name +
+                                            '</option>');
+                                    });
+                                }
+                            })
+                        });
+                    });
+                });
     </script>
 @endsection

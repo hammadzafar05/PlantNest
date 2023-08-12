@@ -39,15 +39,7 @@
                                                     <td><span class="badge bg-soft-danger font-size-12">{{ $review->user->name }}</span></td>
                                                     <td>{{ $review->product->name }}</td>
                                                     <td>
-                                                        @foreach(array_reverse($review['product']['images']->toArray(),true) as $img)
-                                                        @if($img['product_id']==$review->product->id)
-                                                                 @php
-                                                                    $imgs=$img['image_url']
-                                                                @endphp
-                                                        @endif
-                                                        @endforeach
-                                                        <img src="{{ asset('assets/backend/images/product/' . $imgs) }}" alt="" class="img-fluid mx-auto d-block product_img" >
-
+                                                        <img src="{{ asset('assets/backend/images/product/' . $review['product']['image_url']) }}" alt="" class="img-fluid" width="70" height="70" >
                                                     </td>
 
                                                 </tr>

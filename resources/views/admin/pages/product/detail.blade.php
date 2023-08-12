@@ -1,241 +1,322 @@
 @extends('admin.layouts.app')
-@section('admin_title','Dashboard | Product Detail')
+@section('admin_title', 'Dashboard | Product Detail')
 @section('content')
-    <!--breadcrumbs area start-->
-    <div class="breadcrumbs_area">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="breadcrumb_content">
-                        <ul>
-                            <li><a href="{{ route('user.home') }}">home</a></li>
-                            <li>product details</li>
-                        </ul>
-                    </div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 col">
+            <div class="page-title-box d-flex align-items-center justify-content-between">
+                <h4 class="mb-0">Product Detail</h4>
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a href="/ecommerce-product-detail">Ecommerce</a></li>
+                        <li class="active breadcrumb-item" aria-current="page"><a
+                                href="/ecommerce-product-detail">Product Detail</a></li>
+                    </ol>
                 </div>
             </div>
         </div>
     </div>
-    <!--breadcrumbs area end-->
-
-    <!--product details start-->
-    <div class="product_details mt-100 mb-100">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 col-md-6">
-                    <div class="product-details-tab">
-                        <div id="img-1" class="zoomWrapper single-zoom">
-                            <a href="#">
-                                <img id="zoom1" src="{{ $product->image_url }}"
-                                    data-zoom-image="{{ $product->image_url }}" alt="big-1">
-                            </a>
-                        </div>
-                        <div class="single-zoom-thumb">
-                            <ul class="s-tab-zoom owl-carousel single-product-active" id="gallery_01">
-                                <li>
-                                    <a href="#" class="elevatezoom-gallery active" data-update=""
-                                        data-image="{{ $product->image_url }}" data-zoom-image="{{ $product->image_url }}">
-                                        <img src="{{ $product->image_url }}" alt="zo-th-1" />
-                                    </a>
-
-                                </li>
-                                @foreach ($product->images as $image)
-                                    <li>
-                                        <a href="#" class="elevatezoom-gallery active" data-update=""
-                                            data-image="{{ $image->image_url }}" data-zoom-image="{{ $image->image_url }}">
-                                            <img src="{{ $image->image_url }}" alt="zo-th-1" />
-                                        </a>
-
-                                    </li>
-                                @endforeach
-
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="product_d_right">
-                        {{-- <form action="#"> --}}
-
-                            <h1><a href="#">{{ $product->name }}</a></h1>
-                            {{-- <div class="product_nav">
-                            <ul>
-                                <li class="prev"><a href="route('shop.detail',$product->id)"><i class="fa fa-angle-left"></i></a>
-                                </li>
-                                <li class="next"><a href="variable-product.html"><i
-                                            class="fa fa-angle-right"></i></a></li>
-                            </ul>
-                        </div> --}}
-                            <div class=" product_ratting">
-                                <ul>
-                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                    <li class="review"><a href="#"> (customer review ) </a></li>
-                                </ul>
-
-                            </div>
-                            <div class="price_box">
-                                @if ($product->discount_percentage >0)
-                                    <span class="current_price">PKR
-                                        {{ $product->price - $product->discount }}</span>
-                                    <span class="old_price">PKR
-                                        {{ $product->price }}</span>
-                                @else
-                                    <span class="current_price">PKR
-                                        {{ $product->price }}</span>
-                                @endif
-
-
-                            </div>
-                            <div class="product_desc">
-                                <p>{{ $product->description }} </p>
-                            </div>
-                            <div class="product_variant quantity">
-                                <label>quantity</label>
-                                <input min="1" max="100"
-                                value="1" type="number" class="cart_quantity" onchange="updateDataQuantityDetail(this)" oninput="updateDataQuantityDetail(this)">
-                            <button type="submit" class="add_to_cart" data-product-id="{{$product->id}}" data-quantity="1">add to
-                                cart</button>
-
-                            </div>
-                            <div class="product_d_action">
-                                <ul>
-                                   
-                                    
-                                    <li class="wishlist"><a href="javascript:void(0)" title="Add to wishlist" data-product-id="{{ $product->id }}"
-                                        class="add-to-wishlist">+ Add to Wishlist</a></li>
-                                </ul>
-                            </div>
-                            <div class="product_meta">
-                                <span>Category: <a href="#">{{ $product->category->name }}</a></span>
-                            </div>
-
-                        {{-- </form> --}}
-
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--product details end-->
-
-    <!--product info start-->
-    <div class="product_d_info mb-90">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="product_d_inner">
-                        <div class="product_info_button">
-                            <ul class="nav" role="tablist" id="nav-tab">
-                                <li>
-                                    <a class="active" data-bs-toggle="tab" href="#info" role="tab"
-                                        aria-controls="info" aria-selected="false">Description</a>
-                                </li>
-                                @if ($product->plantInfo)
-                                    <li>
-                                        <a data-bs-toggle="tab" href="#sheet" role="tab" aria-controls="sheet"
-                                            aria-selected="false">Specification</a>
-                                    </li>
-                                @endif
-                                <li>
-                                    <a data-bs-toggle="tab" href="#reviews" role="tab" aria-controls="reviews"
-                                        aria-selected="false">Reviews (1)</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="tab-content">
-                            <div class="tab-pane fade show active" id="info" role="tabpanel">
-                                <div class="product_info_content">
-                                    <p>{{ $product->description }}</p>
-                                </div>
-                            </div>
-                            @if ($product->plantInfo)
-                                <div class="tab-pane fade" id="sheet" role="tabpanel">
-                                    <div class="product_d_table">
-                                        <form action="#">
-                                            <table>
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="first_child">Habit</td>
-                                                        <td>{{ $product->plantInfo->habits }}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="first_child">Water</td>
-                                                        <td>{{ $product->plantInfo->water_requirements }}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="first_child">Sunlight</td>
-                                                        <td>{{ $product->plantInfo->lights }}</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </form>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-xl-5">
+                            <div class="product-detail">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <ul class="flex-column nav nav-pills">
+                                            @foreach ($productArray->images as $image)
+                                            {{dd($image->image_url[0])}}
+                                            <li class="nav-item">
+                                                <a class="active nav-link">
+                                                <img src="{{asset('assets/backend/images/product/'.$image->image_url)}}"
+                                                        alt=""
+                                                        class="img-fluid mx-auto d-block tab-img rounded">
+                                                    </a>
+                                                </li>
+                                                @endforeach
+                                        </ul>
                                     </div>
-
-                                </div>
-                            @endif
-                            <div class="tab-pane fade" id="reviews" role="tabpanel">
-                                <div class="reviews_wrapper">
-                                    <h2>1 review for Donec eu furniture</h2>
-                                    <div class="reviews_comment_box">
-                                        <div class="comment_thmb">
-                                            <img src="assets/img/blog/comment2.jpg')}}" alt="">
+                                    <div class="col-9">
+                                        <div class="tab-content position-relative">
+                                            <div class="tab-pane active">
+                                                <div class="product-img"><img
+                                                        src="{{asset('assets/backend/images/product/'.$productArray->image_url)}}"
+                                                        alt="" id="expandedImg1"
+                                                        class="img-fluid mx-auto d-block"></div>
+                                            </div>
+                                            <div class="tab-pane">
+                                                <div class="product-img"><img
+                                                        src="/static/media/img-1.7d8658df1a509f5ebbd2.png"
+                                                        id="expandedImg2" alt=""
+                                                        class="img-fluid mx-auto d-block"></div>
+                                            </div>
+                                            <div class="tab-pane">
+                                                <div class="product-img"><img
+                                                        src="/static/media/img-1.7d8658df1a509f5ebbd2.png"
+                                                        id="expandedImg3" alt=""
+                                                        class="img-fluid mx-auto d-block"></div>
+                                            </div>
+                                            <div class="tab-pane">
+                                                <div class="product-img"><img
+                                                        src="/static/media/img-1.7d8658df1a509f5ebbd2.png"
+                                                        id="expandedImg4" alt=""
+                                                        class="img-fluid mx-auto d-block"></div>
+                                            </div>
                                         </div>
-                                        <div class="comment_text">
-                                            <div class="reviews_meta">
-                                                <div class="star_rating">
-                                                    <ul>
-                                                        <li><a href="#"><i class="icon-star"></i></a></li>
-                                                        <li><a href="#"><i class="icon-star"></i></a></li>
-                                                        <li><a href="#"><i class="icon-star"></i></a></li>
-                                                        <li><a href="#"><i class="icon-star"></i></a></li>
-                                                        <li><a href="#"><i class="icon-star"></i></a></li>
+                                        <div class="text-center mt-2 row">
+                                            <div class="d-grid col-sm-6"><button type="button"
+                                                    class="btn-block waves-effect waves-light mt-2 me-1 btn btn-primary"><i
+                                                        class="uil uil-shopping-cart-alt me-2"></i> Add to cart</button>
+                                            </div>
+                                            <div class="d-grid col-sm-6"><button type="button"
+                                                    class="btn-block waves-effect  mt-2 waves-light btn btn-light"><i
+                                                        class="uil uil-shopping-basket me-2"></i>Buy now</button></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-7">
+                            <div class="mt-4 mt-xl-3 ps-xl-4">
+                                <h5 class="font-size-14"><a class="text-muted" href="/ecommerce-product-detail">Nike</a>
+                                </h5>
+                                <h4 class="font-size-20 mb-3">Nike N012 Running Shoes (Gray)</h4>
+                                <div class="text-muted"><span class="badge bg-success font-size-14 me-1"><i
+                                            class="mdi mdi-star"></i> 4.2</span> 234 Reviews</div>
+                                <h5 class="mt-4 pt-2"><del class="text-muted me-2">$280</del>$260<span
+                                        class="text-danger font-size-14 ms-2">- 20 % Off</span></h5>
+                                <p class="mt-4 text-muted">If several languages coalesce, the grammar of the resulting
+                                    language is more simple and regular</p>
+                                <div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mt-3">
+                                                <h5 class="font-size-14">Specification :</h5>
+                                                <ul class="list-unstyled product-desc-list text-muted">
+                                                    <li><i class="mdi mdi-circle-medium me-1 align-middle"></i> High
+                                                        Quality</li>
+                                                    <li><i class="mdi mdi-circle-medium me-1 align-middle"></i> Leather
+                                                    </li>
+                                                    <li><i class="mdi mdi-circle-medium me-1 align-middle"></i> All
+                                                        Sizes available</li>
+                                                    <li><i class="mdi mdi-circle-medium me-1 align-middle"></i> 4
+                                                        Different Color</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mt-3">
+                                                <h5 class="font-size-14">Services :</h5>
+                                                <ul class="list-unstyled product-desc-list text-muted">
+                                                    <li><i class="uil uil-exchange text-primary me-1 font-size-16"></i>
+                                                        10 Days Replacement</li>
+                                                    <li><i class="uil uil-bill text-primary me-1 font-size-16"></i>
+                                                        Cash on Delivery available</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="product-color">
+                                        <h5 class="font-size-15">Color :</h5><a class="active"
+                                            href="/ecommerce-product-detail">
+                                            <div class="product-color-item border rounded"><img
+                                                    src="/static/media/img-1.7d8658df1a509f5ebbd2.png" alt=""
+                                                    class="avatar-md"></div>
+                                            <p>Red</p>
+                                        </a><a class="active" href="/ecommerce-product-detail">
+                                            <div class="product-color-item border rounded"><img
+                                                    src="/static/media/img-2.1c8fac61181331c07712.png" alt=""
+                                                    class="avatar-md"></div>
+                                            <p>Dark</p>
+                                        </a><a class="active" href="/ecommerce-product-detail">
+                                            <div class="product-color-item border rounded"><img
+                                                    src="/static/media/img-3.13e02027e81c737eeccf.png" alt=""
+                                                    class="avatar-md"></div>
+                                            <p>Purple</p>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="mt-3">
+                                    <h5 class="font-size-14 mb-3"><i
+                                            class="uil uil-location-pin-alt font-size-20 text-primary align-middle me-2"></i>
+                                        Delivery location</h5>
+                                    <div class="d-inline-flex">
+                                        <div class="input-group mb-3"><input placeholder="Enter Delivery pincode"
+                                                type="text" class="form-control form-control"><button
+                                                type="button" class="btn btn-light">Check</button></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-8 col-lg-7">
+                                        <div class="product-desc-color mt-3">
+                                            <h5 class="font-size-14">Colors :</h5>
+                                            <ul class="list-inline">
+                                                <li class="list-inline-item"><a class="active"
+                                                        data-bs-toggle="tooltip" id="Gray"
+                                                        href="/ecommerce-product-detail">
+                                                        <div class="product-color-item"><img
+                                                                src="/static/media/img-1.7d8658df1a509f5ebbd2.png"
+                                                                alt="" class="avatar-md"></div>
+                                                    </a></li>
+                                                <li class="list-inline-item"><a class=""
+                                                        data-bs-toggle="tooltip" id="Dark"
+                                                        href="/ecommerce-product-detail">
+                                                        <div class="product-color-item"><img
+                                                                src="/static/media/img-2.1c8fac61181331c07712.png"
+                                                                alt="" class="avatar-md"></div>
+                                                    </a></li>
+                                                <li class="list-inline-item"><a class=""
+                                                        data-bs-toggle="tooltip" id="Purple"
+                                                        href="/ecommerce-product-detail">
+                                                        <div class="product-color-item"><img
+                                                                src="/static/media/img-3.13e02027e81c737eeccf.png"
+                                                                alt="" class="avatar-md"></div>
+                                                    </a></li>
+                                                <li class="list-inline-item"><a class="text-primary border-0 p-1"
+                                                        href="/ecommerce-product-detail">2 + Colors</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 col-lg-5">
+                                        <div class="mt-3">
+                                            <h5 class="font-size-14 mb-3">Select Sizes :</h5>
+                                            <div class="d-inline-flex"><select class="form-select w-sm form-select">
+                                                    <option value="1">3</option>
+                                                    <option value="2">4</option>
+                                                    <option value="3">5</option>
+                                                    <option value="4">6</option>
+                                                    <option value="5">7</option>
+                                                    <option value="6">8</option>
+                                                    <option value="7">9</option>
+                                                    <option value="8">10</option>
+                                                </select></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <h5 class="font-size-14 mb-3">Product description: </h5>
+                        <div class="product-desc">
+                            <ul class="nav-tabs-custom nav nav-tabs">
+                                <li class="nav-item"><a class="nav-link" style="cursor: pointer;">Description</a>
+                                </li>
+                                <li class="nav-item"><a class="active nav-link"
+                                        style="cursor: pointer;">Specifications</a></li>
+                            </ul>
+                            <div class="tab-content border border-top-0 p-4">
+                                <div class="tab-pane">
+                                    <div class="row">
+                                        <div class="col-sm-3 col-md-2">
+                                            <div><img src="/static/media/img-6.8d6e5eecfa1688bc0a28.png"
+                                                    alt="" class="img-fluid mx-auto d-block"></div>
+                                        </div>
+                                        <div class="col-sm-9 col-md-10">
+                                            <div class="text-muted p-2">
+                                                <p>If several languages coalesce, the grammar of the resulting language
+                                                    is more simple and regular</p>
+                                                <p>Everyone realizes why a new common language would be desirable, one
+                                                    could refuse to pay expensive translators.</p>
+                                                <p>It will be as simple as occidental in fact.</p>
+                                                <div>
+                                                    <ul class="list-unstyled product-desc-list text-muted">
+                                                        <li><i class="mdi mdi-circle-medium me-1 align-middle"></i> Sed
+                                                            ut perspiciatis omnis iste</li>
+                                                        <li><i class="mdi mdi-circle-medium me-1 align-middle"></i>
+                                                            Neque porro quisquam est</li>
+                                                        <li><i class="mdi mdi-circle-medium me-1 align-middle"></i>
+                                                            Quis autem vel eum iure</li>
                                                     </ul>
                                                 </div>
-                                                <p><strong>admin </strong>- September 12, 2018</p>
-                                                <span>roadthemes</span>
                                             </div>
                                         </div>
-
                                     </div>
-                                    <div class="comment_title">
-                                        <h2>Add a review </h2>
-                                        <p>Your email address will not be published. Required fields are marked </p>
+                                </div>
+                                <div class="tab-pane active">
+                                    <table class="table-nowrap mb-0 table">
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row" style="width: 20%;">Category</th>
+                                                <td>Shoes</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" style="width: 20%;">Brand</th>
+                                                <td>Nike</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" style="width: 20%;">Color</th>
+                                                <td>Gray</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" style="width: 20%;">Quality</th>
+                                                <td>High</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" style="width: 20%;">Material</th>
+                                                <td>Leather</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <h5 class="font-size-14 mb-3">Reviews :</h5>
+                        <div class="text-muted mb-3"><span class="badge bg-success font-size-14 me-1"><i
+                                    class="mdi mdi-star"></i> 4.2</span> 234 Reviews</div>
+                        <div class="border p-4 rounded">
+                            <div class="border-bottom pb-3">
+                                <p class="float-sm-end text-muted font-size-13">12 July, 2020</p>
+                                <div class="badge bg-success mb-2"><i class="mdi mdi-star"></i> 4.1</div>
+                                <p class="text-muted mb-4">It will be as simple as in fact, it will be Occidental. It
+                                    will seem like simplified</p>
+                                <div class="d-flex align-items-start">
+                                    <div class="flex-grow-1">
+                                        <h5 class="font-size-15 mb-0">Samuel</h5>
                                     </div>
-                                    <div class="product_ratting mb-10">
-                                        <h3>Your rating</h3>
-                                        <ul>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                        </ul>
+                                    <ul class="list-inline product-review-link mb-0">
+                                        <li class="list-inline-item"><a href="/ecommerce-product-detail"><i
+                                                    class="uil uil-thumbs-up"></i></a></li>
+                                        <li class="list-inline-item"><a href="/ecommerce-product-detail"><i
+                                                    class="uil uil-comment-alt-message"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="border-bottom py-3">
+                                <p class="float-sm-end text-muted font-size-13">06 July, 2020</p>
+                                <div class="badge bg-success mb-2"><i class="mdi mdi-star"></i> 4.0</div>
+                                <p class="text-muted mb-4">Sed ut perspiciatis unde omnis iste natus error sit</p>
+                                <div class="d-flex align-items-start">
+                                    <div class="flex-grow-1">
+                                        <h5 class="font-size-15 mb-0">Joseph</h5>
                                     </div>
-                                    <div class="product_review_form">
-                                        <form action="#">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <label for="review_comment">Your review </label>
-                                                    <textarea name="comment" id="review_comment"></textarea>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6">
-                                                    <label for="author">Name</label>
-                                                    <input id="author" type="text">
-
-                                                </div>
-                                                <div class="col-lg-6 col-md-6">
-                                                    <label for="email">Email </label>
-                                                    <input id="email" type="text">
-                                                </div>
-                                            </div>
-                                            <button type="submit">Submit</button>
-                                        </form>
+                                    <ul class="list-inline product-review-link mb-0">
+                                        <li class="list-inline-item"><a href="/ecommerce-product-detail"><i
+                                                    class="uil uil-thumbs-up"></i></a></li>
+                                        <li class="list-inline-item"><a href="/ecommerce-product-detail"><i
+                                                    class="uil uil-comment-alt-message"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="border-bottom py-3">
+                                <p class="float-sm-end text-muted font-size-13">26 June, 2020</p>
+                                <div class="badge bg-success mb-2"><i class="mdi mdi-star"></i> 4.2</div>
+                                <p class="text-muted mb-4">Neque porro quisquam est, qui dolorem ipsum quia dolor sit
+                                    amet</p>
+                                <div class="d-flex align-items-start">
+                                    <div class="flex-grow-1">
+                                        <h5 class="font-size-15 mb-0">Paul</h5>
                                     </div>
+                                    <ul class="list-inline product-review-link mb-0">
+                                        <li class="list-inline-item"><a href="/ecommerce-product-detail"><i
+                                                    class="uil uil-thumbs-up"></i></a></li>
+                                        <li class="list-inline-item"><a href="/ecommerce-product-detail"><i
+                                                    class="uil uil-comment-alt-message"></i></a></li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
@@ -244,152 +325,8 @@
             </div>
         </div>
     </div>
-    <!--product info end-->
+</div>
+@endsection
+@section('script')
 
-    <!--product area start-->
-    <section class="product_area related_products">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="section_title">
-                        <h2>Related Products </h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="product_carousel product_column4 owl-carousel">
-                    @foreach ($relatedProducts as $product )
-                    <div class="col-lg-3">
-                        <article class="single_product">
-                            <figure>
-                                <div class="product_thumb">
-                                    <a class="primary_img" href="{{ route('shop.detail',$product->id) }}"><img
-                                            src="{{ $product->image_url }}"
-                                            alt=""></a>
-                                    <div class="label_product">
-                                        @if ($product->discount_percentage > 0)
-                                        <span class="label_sale">-{{ $product->discount_percentage }}%</span>
-                                    @endif
-                                                                        </div>
-                                    <div class="action_links">
-                                        <ul>
-                                            <li class="add_to_cart"  data-product-id="{{ $product->id }}" data-quantity="1" title="Add to cart"><i
-                                                        class="icon-shopping-bag"></i></a></li>
-                                                        <li class="wishlist"><a href="" title="Add to Wishlist"
-                                                            data-product-id="{{ $product->id }}"
-                                                            class="add-to-wishlist">
-                                                            @if ($product->in_wishlist == 1)
-                                                                <i class="fa fa-heart"></i>
-                                                            @else
-                                                                <i class="icon-heart"></i>
-                                                            @endif
-                                                        </a>
-                                                    </li>
-                                            <li class="quick_button"><a href="#" data-bs-toggle="modal"
-                                                    data-bs-target="#modal_box" title="quick view"> <i
-                                                        class="icon-eye"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <figcaption class="product_content">
-                                    <div class="product_rating">
-                                        <ul>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <h4 class="product_name"><a href="{{route('shop.detail',$product->id)}}">{{$product->name}}</a></h4>
-                                    <div class="price_box">
-                                        @if ($product->discount_percentage >0)
-                                        <span class="current_price">PKR
-                                            {{ $product->price - $product->discount }}</span>
-                                        <span class="old_price">PKR
-                                            {{ $product->price }}</span>
-                                    @else
-                                        <span class="current_price">PKR
-                                            {{ $product->price }}</span>
-                                    @endif
-                                    </div>
-                                </figcaption>
-                            </figure>
-                        </article>
-                    </div>
-                    @endforeach
-                  
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--product area end-->
-    @endsection
-
-    @section('script')
-    <script>
-        $(document).ready(function() {
-            console.log('i ran');
-
-            // Remove active class from all li elements
-            $('nav ul li a').removeClass('active');
-
-            // Add active class to the clicked li element
-            $('#shop').addClass('active');
-
-        });
-    </script>
-    <script>
-
-         function updateDataQuantityDetail(inputElement) {
-            const quantity = parseInt(inputElement.value);
-            const addToCartButton = inputElement.parentElement.querySelector('.detail_add_to_cart');
-            addToCartButton.setAttribute('data-quantity', quantity);
-        }
-        
-        function addToCart(p_id){
-            if(localStorage.getItem('auth') == 'false')
-            {
-                Swal.fire({
-                title: 'You need to login First!',
-                text: 'Do you want to continue?',
-                icon: 'warning',
-                confirmButtonText: 'Login'
-                }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location = "{{ route('login') }}";
-                }
-                })
-            }
-            else
-            {
-                $.ajax({
-                    "type":"POST",
-                    "url":baseURL+"add-cart",
-                    "data":{
-                        "_token":"{{csrf_token()}}",
-                        "product_id":p_id,
-                        "product_quantity":$("#qnt").val(),
-                    },
-                    success:function(response){
-                        getCart()
-                        getHeaderCart()
-                        $("#qnt").val(1)
-                        $("#pd_alert").css("display","block")
-                        setTimeout(() => {
-                            $("#pd_alert").css("display","none")
-                        }, 3000);
-                    }
-                })
-            }
-        }
-    </script>
-    <script>
-    function updateDataQuantityDetail(inputElement) {
-       const quantity = parseInt(inputElement.value);
-       const addToCartButton = inputElement.parentElement.querySelector('.add_to_cart');
-       addToCartButton.setAttribute('data-quantity', quantity);
-   }
-    </script>
-    
 @endsection
