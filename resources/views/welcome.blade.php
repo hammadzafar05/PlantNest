@@ -153,21 +153,16 @@
                                                             </li>
                                                             {{-- <li class="compare"><a href="#" title="Add to Compare"><i
                                                                class="icon-sliders"></i></a></li> --}}
-                                                               @if ($product->in_wishlist == 1)
                                                             <li class="wishlist"><a href="" title="Add to Wishlist"
                                                                     data-product-id="{{ $product->id }}"
                                                                     class="add-to-wishlist">
+                                                                    @if ($product->in_wishlist == 1)
                                                                         <i class="fa fa-heart"></i>
-                                                                    </a>
-                                                                </li>
                                                                     @else
-                                                                    <li class="wishlist"><a href="" title="Add to Wishlist"
-                                                                        data-product-id="{{ $product->id }}"
-                                                                        class="remove_wishlist">
                                                                         <i class="icon-heart"></i>
-                                                                        </a>
-                                                                    </li>
                                                                     @endif
+                                                                </a>
+                                                            </li>
                                                             <li class="quick_button"><a href="#"
                                                                     data-bs-toggle="modal"
                                                                     data-bs-target="#modal_box{{ $product->id }}"
@@ -261,7 +256,7 @@
                                                 <figcaption class="product_content">
                                                     <div class="product_rating">
                                                         <ul>
-                                                            @php
+                                                             @php
                                                             $averageRating = $product->reviews->avg('rating');
                                                         @endphp
                                                         
@@ -345,19 +340,19 @@
                                                     <div class="product_rating">
                                                         <ul>
                                                             @php
-                                                            $averageRating = $product->reviews->avg('rating');
-                                                        @endphp
-                                                        
-                                                        @for ($i = 1; $i <= 5; $i++)
-                                                            @if ($i <= $averageRating)
-                                                            <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                                            @elseif ($i - 0.5 <= $averageRating)
-                                                            <li><a href="javascript:void(0)"><i class="fa fa-star-half" aria-hidden="true"></i></a></li>
-                                                            @else
-                                                            <li><a href="javascript:void(0)"><i class="icon-star"></i></a></li>
-                                                            @endif
-                                                        @endfor
-                                                        </ul>
+                                                           $averageRating = $product->reviews->avg('rating');
+                                                       @endphp
+                                                       
+                                                       @for ($i = 1; $i <= 5; $i++)
+                                                           @if ($i <= $averageRating)
+                                                           <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                           @elseif ($i - 0.5 <= $averageRating)
+                                                           <li><a href="#"><i class="fa fa-star-half" aria-hidden="true"></i></a></li>
+                                                           @else
+                                                           <li><a href="#"><i class="icon-star"></i></a></li>
+                                                           @endif
+                                                       @endfor
+                                                       </ul>
                                                     </div>
                                                     <h4 class="product_name"><a
                                                             href="product-details.html">{{ $product->name }}</a></h4>
@@ -542,19 +537,11 @@
                                         <figcaption class="product_content">
                                             <div class="product_rating">
                                                 <ul>
-                                                     @php
-                                                            $averageRating = $product->reviews->avg('rating');
-                                                        @endphp
-                                                        
-                                                        @for ($i = 1; $i <= 5; $i++)
-                                                            @if ($i <= $averageRating)
-                                                            <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                                            @elseif ($i - 0.5 <= $averageRating)
-                                                            <li><a href="#"><i class="fa fa-star-half" aria-hidden="true"></i></a></li>
-                                                            @else
-                                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                                            @endif
-                                                        @endfor
+                                                    <li><a href="#"><i class="icon-star"></i></a></li>
+                                                    <li><a href="#"><i class="icon-star"></i></a></li>
+                                                    <li><a href="#"><i class="icon-star"></i></a></li>
+                                                    <li><a href="#"><i class="icon-star"></i></a></li>
+                                                    <li><a href="#"><i class="icon-star"></i></a></li>
                                                 </ul>
                                             </div>
                                             <h4 class="product_name"><a
