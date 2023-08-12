@@ -181,9 +181,9 @@
                                                             @if ($i <= $averageRating)
                                                             <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
                                                             @elseif ($i - 0.5 <= $averageRating)
-                                                            <li><a href="#"><i class="fa fa-star-half" aria-hidden="true"></i></a></li>
+                                                            <li><a href="javascript:void(0)"><i class="fa fa-star-half" aria-hidden="true"></i></a></li>
                                                             @else
-                                                            <li><a href="#"><i class="icon-star"></i></a></li>
+                                                            <li><a href="javascript:void(0)"><i class="icon-star"></i></a></li>
                                                             @endif
                                                         @endfor
                                                         </ul>
@@ -264,9 +264,9 @@
                                                             @if ($i <= $averageRating)
                                                             <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
                                                             @elseif ($i - 0.5 <= $averageRating)
-                                                            <li><a href="#"><i class="fa fa-star-half" aria-hidden="true"></i></a></li>
+                                                            <li><a href="javascript:void(0)"><i class="fa fa-star-half" aria-hidden="true"></i></a></li>
                                                             @else
-                                                            <li><a href="#"><i class="icon-star"></i></a></li>
+                                                            <li><a href="javascript:void(0)"><i class="icon-star"></i></a></li>
                                                             @endif
                                                         @endfor
                                                         </ul>
@@ -347,9 +347,9 @@
                                                             @if ($i <= $averageRating)
                                                             <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
                                                             @elseif ($i - 0.5 <= $averageRating)
-                                                            <li><a href="#"><i class="fa fa-star-half" aria-hidden="true"></i></a></li>
+                                                            <li><a href="javascript:void(0)"><i class="fa fa-star-half" aria-hidden="true"></i></a></li>
                                                             @else
-                                                            <li><a href="#"><i class="icon-star"></i></a></li>
+                                                            <li><a href="javascript:void(0)"><i class="icon-star"></i></a></li>
                                                             @endif
                                                         @endfor
                                                         </ul>
@@ -545,9 +545,9 @@
                                                     @if ($i <= $averageRating)
                                                     <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
                                                     @elseif ($i - 0.5 <= $averageRating)
-                                                    <li><a href="#"><i class="fa fa-star-half" aria-hidden="true"></i></a></li>
+                                                    <li><a href="javascript:void(0)"><i class="fa fa-star-half" aria-hidden="true"></i></a></li>
                                                     @else
-                                                    <li><a href="#"><i class="icon-star"></i></a></li>
+                                                    <li><a href="javascript:void(0)"><i class="icon-star"></i></a></li>
                                                     @endif
                                                 @endfor
                                                 </ul>
