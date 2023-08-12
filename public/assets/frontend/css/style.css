@@ -5204,10 +5204,10 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
     margin-bottom: 53px;
   }
 }
-.widget_list.widget_filter form {
-  padding-top: 10px;
+.widget_list.widget_filter  {
+  padding-bottom: 10px;
 }
-.widget_list.widget_filter form input {
+.widget_list.widget_filter  input {
   background: none;
   border: none;
   font-size: 12px;
@@ -5217,11 +5217,11 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   width: 60px;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
-  .widget_list.widget_filter form input {
+  .widget_list.widget_filter  input {
     width: 65px;
   }
 }
-.widget_list.widget_filter form button {
+.widget_list.widget_filter  button {
   height: 30px;
   line-height: 30px;
   padding: 0 20px;
@@ -5234,7 +5234,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   -webkit-transition: 0.3s;
   transition: 0.3s;
 }
-.widget_list.widget_filter form button:hover {
+.widget_list.widget_filter  button:hover {
   background: #79a206;
 }
 

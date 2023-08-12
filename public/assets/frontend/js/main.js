@@ -355,7 +355,7 @@
  
     
     /*--- niceSelect---*/
-     $('.select_option').niceSelect();
+    //  $('.select_option').niceSelect();
     
     
 
@@ -384,11 +384,15 @@
         max: 500,
         values: [ 0, 500 ],
         slide: function( event, ui ) {
-        $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+            $( "#min-price" ).val( ui.values[ 0 ] );
+            console.log($( "#min-price" ).val( ui.values[ 0 ] ));
+            $( "#max-price" ).val( ui.values[1] );
+        $( "#amount" ).val( "PKR " + ui.values[ 0 ] + " - PKR " + ui.values[ 1 ] );
        }
     });
-    $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
-       " - $" + $( "#slider-range" ).slider( "values", 1 ) );
+    
+    $( "#amount" ).val( "PKR " + $( "#slider-range" ).slider( "values", 0 ) +
+       " - PKR " + $( "#slider-range" ).slider( "values", 1 ) );
     
     /*---elevateZoom---*/
     $("#zoom1").elevateZoom({
