@@ -189,7 +189,7 @@
                                                         </ul>
                                                     </div>
                                                     <h4 class="product_name"><a
-                                                            href="product-details.html">{{ $product->name }}</a></h4>
+                                                            href="{{ route('shop.detail',$product->id) }}">{{ $product->name }}</a></h4>
                                                     <div class="price_box">
                                                         @if ($product->discount_percentage > 0)
                                                             <span class="current_price">PKR
