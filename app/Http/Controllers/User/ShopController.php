@@ -30,9 +30,15 @@ class ShopController extends Controller
         //         $q->whereIn('category_id', $categories);
         //     });
         // }
+        // name
+        $name = $request->input('search');
+        if ($name) {
+            $query->where('name', 'LIKE', '%' . $name . '%');
+        }
 
         // Apply sorting based on the selected option
         $orderBy = $request->input('orderby', 'default');
+
         switch ($orderBy) {
             case '1':
                 $query->orderBy('average_rating', 'desc');
