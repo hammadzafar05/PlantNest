@@ -65,7 +65,7 @@ class ProductController extends Controller
         $imagePaths = [];
         $product = new Product();
         $product->name = $request->name;
-        $product->species = $request->species;
+        $product->species = $request->species ?? 'None';
         $product->price = $request->price;
         $product->discount = $request->discount;
         $product->description = $request->description;
@@ -79,7 +79,7 @@ class ProductController extends Controller
             return redirect()->back()->with('error','something weng wrong!');
         }
             $plantsInfo=new PlantInfo();
-            $plantsInfo->product_id = $request->subcategory_id ?? 'Not Provided'; 
+            $plantsInfo->product_id = $product->id; 
             $plantsInfo->habits = $request->habit ?? 'Not Provided';
             $plantsInfo->lights = $request->light ?? 'Not Provided';
             $plantsInfo->water_requirements = $request->water ?? 'Not Provided';
