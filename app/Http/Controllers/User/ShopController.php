@@ -16,7 +16,7 @@ class ShopController extends Controller
         $query = Product::query();
         // Check if products are empty
         $user = Auth::user();
-
+$query->with('reviews');
         // Apply category filter if selected
         $selectedCategories = $request->input('categories', []);
         if (!empty($selectedCategories)) {
@@ -115,10 +115,10 @@ class ShopController extends Controller
     {
         $user = Auth::user();
 
-        $product = Product::with('plantInfo', 'category', 'images')->find($id);
+        $product = Product::with('plantInfo', 'category', 'images','reviews')->find($id);
 
-        $relatedProducts = Product::with('plantInfo', 'category', 'images')
-            ->where('category_id', $product->category_id)->get()
+        $relatedProducts = Product::with('plantInfo', 'category', 'images','reviews')
+            ->where('category_id', $product->category_id)
             ->take(8);
         if ($user) {
 

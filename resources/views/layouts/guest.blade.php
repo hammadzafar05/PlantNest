@@ -446,7 +446,7 @@
                     <div class="row align-items-center">
                         <div class="col-lg-3 col-md-3 col-4">
                             <div class="logo">
-                                <a href="index.html"><img src="{{asset('assets/frontend/img/logo/logo.png
+                                <a href="{{route('user.home')}}"><img src="{{asset('assets/frontend/img/logo/logo.png
                                 ')}}" alt=""></a>
                             </div>
                         </div>
