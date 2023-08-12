@@ -55,6 +55,7 @@ Route::controller(HomeController::class)->group(function () {
         Route::post('/product/{id}/review/submit',[AccountController::class,'storeReview'])->name('product.review.submit');
     
     });
+    Route::get('/wishlist',[WhishListController::class,'index'])->name('wishlist.index');
 
 });
 // cartController
@@ -71,9 +72,8 @@ Route::get('/contact',[ContactController::class,'index'])->name('contact.index')
 Route::get('/about',[AboutController::class,'index'])->name('about.index');
 Route::get('/faq',[FaqController::class,'index'])->name('faq.index');
 Route::get('/shop/{id?}',[ShopController::class,'index'])->name('shop.index');
-Route::get('/shop/product/detail/{id?}',[ShopController::class,'detail'])->name('shop.detail');
+Route::get('/shop/product/detail/{id}',[ShopController::class,'detail'])->name('shop.detail');
 
-Route::get('/wishlist',[WhishListController::class,'index'])->name('wishlist.index');
 Route::get('/wishlist/add/{id}', [WhishListController::class,'addToWishlist'])->name('wishlist.add');
 Route::get('/wishlist/remove/{id}', [WhishListController::class,'removeFromWishlist'])->name('wishlist.remove');
 
