@@ -31,7 +31,7 @@
                 <th>Id</th>
                 <th>Name</th>
                 <th>Email</th>
-                <th>Number</th>
+                <th>Subject</th>
                 <th>Feedback</th>
             </tr>
             @php
@@ -40,15 +40,10 @@
             @foreach($_feedbacks as $feedback)
             <tr>
                 <td>{{$i++}}</td>
-                <td>{{$feedback->user->name}}</td>
-                <td>{{$feedback->user->email}}</td>
-                @if ($feedback->user->contact_number)
-                <td>{{$feedback->user->contact_number}}</td>
-                @else
-                <td>Not Given</td>
-                
-                @endif
-                <td>{{$feedback->feedback_text}}</td>
+                <td>{{$feedback->name}}</td>
+                <td>{{$feedback->email}}</td>
+                <td>{{$feedback->subject}}</td> 
+                <td>{{$feedback->message}}</td>
 
             </tr>
             @endforeach

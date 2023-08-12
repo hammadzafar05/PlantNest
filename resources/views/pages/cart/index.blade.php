@@ -73,9 +73,9 @@
                                 </div>
                                 <div class="cart_subtotal ">
                                     <p>Shipping</p>
-                                    <p class="shipping_amount"><span>Flat Rate:</span> PKR 0.00</p>
+                                    <p class="shipping_amount"><span>Free:</span> PKR 0</p>
                                 </div>
-                                <a href="#">Calculate shipping</a>
+                                {{-- <a href="#">Calculate shipping</a> --}}
 
                                 <div class="cart_subtotal">
                                     <p>Total</p>

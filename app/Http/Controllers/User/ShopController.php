@@ -113,6 +113,7 @@ $query->with('reviews');
     }
     public function detail($id)
     {
+        // dd($id);
         $user = Auth::user();
 
         $product = Product::with('plantInfo', 'category', 'images','reviews.user')->find($id);

@@ -276,6 +276,13 @@ span.wishlist_item_count {
     font-size: 12px;
     color: #fff;
 }
+
+#scrollUp i{
+    margin-top: 10px
+}
+.footer_social ul li i{
+    margin-top: 13px
+} 
     </style>
     @yield('style')
 </head>
@@ -467,7 +474,8 @@ span.wishlist_item_count {
                         <div class="col-lg-9 col-md-6 col-6">
                             <div class="header_right_info">
                                 <div class="search_container">
-                                    <form action="#">
+                                    <form action="{{route('shop.index')}}" method="GET">
+                                        @csrf
                                         <div class="hover_category">
                                             {{-- <select class="select_option" name="select" id="categori1" style="display: none;">
                                                 <option selected="" value="1">All Categories</option>
@@ -489,7 +497,7 @@ span.wishlist_item_count {
                                             </select><div class="nice-select select_option" tabindex="0"><span class="current">All Categories</span><ul class="list"><li data-value="1" class="option selected">All Categories</li><li data-value="2" class="option">Accessories</li><li data-value="3" class="option">Accessories &amp; More</li><li data-value="4" class="option">Butters &amp; Eggs</li><li data-value="5" class="option">Camera &amp; Video </li><li data-value="6" class="option">Mornitors</li><li data-value="7" class="option">Tablets</li><li data-value="8" class="option">Laptops</li><li data-value="9" class="option">Handbags</li><li data-value="10" class="option">Headphone &amp; Speaker</li><li data-value="11" class="option">Herbs &amp; botanicals</li><li data-value="12" class="option">Vegetables</li><li data-value="13" class="option">Shop</li><li data-value="14" class="option">Laptops &amp; Desktops</li><li data-value="15" class="option">Watchs</li><li data-value="16" class="option">Electronic</li></ul></div> --}}
                                         </div>
                                         <div class="search_box">
-                                            <input placeholder="Search product..." type="text">
+                                            <input placeholder="Search product..." type="text" name="search" class="searched">
                                             <button type="submit"><i class="icon-search"></i></button>
                                         </div>
                                     </form>
@@ -721,8 +729,10 @@ span.wishlist_item_count {
                             <!--main menu end-->
                         </div>
                         <div class="col-lg-3">
-                            <div class="call-support">
-                                <p>Call Support: <a href="tel:0123456789">0123456789</a></p>
+                            <div class="call-support text-center">
+                                @if(auth()->user())
+                                <p class="text-center w-100"> <a href="javascript:void(0)" class="w-100 text-center">{{Auth::user()->name}}</a></p>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -777,11 +787,11 @@ span.wishlist_item_count {
                             </div>
                             <div class="footer_social">
                                 <ul>
-                                    <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                                    <li><a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                    <li><a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                    <li><a href=""><i class="fa fa-google-plus" aria-hidden="true"></i></a>
                                     </li>
-                                    <li><a href="#"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
+                                    <li><a href=""><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
                                 </ul>
                             </div>
                             <div class="footer_app">
@@ -902,7 +912,7 @@ span.wishlist_item_count {
 
     @guest
         <script>
-            $('.add_to_cart, .cart_button, .mini_cart_wrapper, .header_wishlist, .product_d_action, .add-to-wishlist').click(function(e) {
+            $('.add_to_cart, .cart_button, .mini_cart_wrapper, .header_wishlist, .product_d_action, .add-to-wishlist, .header_wishlist-list').click(function(e) {
                 e.preventDefault();
                 if (localStorage.getItem('auth') == 'false') {
                     Swal.fire({
@@ -1132,11 +1142,17 @@ span.wishlist_item_count {
                 }
             });
         }
-
+        function updateDataQuantity(inputElement) {
+            const quantity = parseInt(inputElement.value);
+            console.log(quantity);
+            const addToCartButton = inputElement.parentElement.querySelector('.add_to_cart');
+            addToCartButton.setAttribute('data-quantity', quantity);
+        }
         @auth
 
         $(document).ready(function() {
             cart();
+           
             $(".add-to-wishlist").click(function(e) {
                 e.preventDefault(); // Prevent the link from navigating
 
@@ -1149,11 +1165,25 @@ span.wishlist_item_count {
                     product_id: productId
                 }, function(response) {
 
-                    console.log('added wishilist' + response)
-                    // Change the icon to a filled heart
-                    $icon.removeClass("icon-heart").addClass("fa fa-heart");
-                    console.log($icon)
+                    $('.wishlist_item_count').text(response.count);
 
+                    console.log('added wishilist' + response)
+                    if(response.action==1){
+
+                        $icon.removeClass("icon-heart").addClass("fa fa-heart");
+                    }else{
+                        $icon.removeClass("fa fa-heart").addClass("icon-heart");
+
+                    }
+                    console.log($icon)
+                    Swal.fire({
+                            timer: 2000,
+                            timerProgressBar: true,
+                            icon: 'success',
+                            title: 'Success',
+                            text: response.message
+                        });
+                    $('#wishlist_detail').text('Added to wishlist');
                 });
             });
 

@@ -96,8 +96,8 @@
                                 title="List"></button>
                         </div>
                         <div class=" nice-select_option">
-                            <div class="select_option">
-                                <select name="orderby" id="short">
+                            <div class="select_option form-group">
+                                <select name="orderby" id="short" class="form-control">
                                     <option selected value="7">Product Name: A to Z</option>
                                     <option value="6">Product Name: Z to A</option>
                                     {{-- <option value="1">Sort by average rating</option> --}}
@@ -122,7 +122,7 @@
                                     <figure>
                                         <div class="product_thumb">
                                             <a class="primary_img" href={{ route('shop.detail', $product->id) }}><img
-                                                    src="{{ $product->image_url }}" alt=""></a>
+                                                    src="{{ asset('assets/backend/images/product/').'/'.$product->image_url }}" alt=""></a>
                                             <div class="label_product">
                                                 @if ($product->discount_percentage > 0)
                                                     <span class="label_sale">- {{ $product->discount_percentage }}%</span>
@@ -166,11 +166,11 @@
                                                         
                                                         @for ($i = 1; $i <= 5; $i++)
                                                             @if ($i <= $averageRating)
-                                                            <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                            <li><a href=""><i class="fa fa-star" aria-hidden="true"></i></a></li>
                                                             @elseif ($i - 0.5 <= $averageRating)
-                                                            <li><a href="#"><i class="fa fa-star-half" aria-hidden="true"></i></a></li>
+                                                            <li><a href=""><i class="fa fa-star-half" aria-hidden="true"></i></a></li>
                                                             @else
-                                                            <li><a href="#"><i class="icon-star"></i></a></li>
+                                                            <li><a href=""><i class="icon-star"></i></a></li>
                                                             @endif
                                                         @endfor
                                                     </ul>
@@ -198,11 +198,11 @@
                                                         
                                                         @for ($i = 1; $i <= 5; $i++)
                                                             @if ($i <= $averageRating)
-                                                            <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                            <li><a href=""><i class="fa fa-star" aria-hidden="true"></i></a></li>
                                                             @elseif ($i - 0.5 <= $averageRating)
-                                                            <li><a href="#"><i class="fa fa-star-half" aria-hidden="true"></i></a></li>
+                                                            <li><a href=""><i class="fa fa-star-half" aria-hidden="true"></i></a></li>
                                                             @else
-                                                            <li><a href="#"><i class="icon-star"></i></a></li>
+                                                            <li><a href=""><i class="icon-star"></i></a></li>
                                                             @endif
                                                         @endfor
                                                 </ul>
@@ -267,7 +267,7 @@
                                                                     role="tabpanel">
                                                                     <div class="modal_tab_img">
                                                                         <a href="#"><img
-                                                                                src="{{ $product->image_url }}"
+                                                                                src="{{asset('assets/backend/images/product/').'/'. $product->image_url }}"
                                                                                 alt=""></a>
                                                                     </div>
                                                                 </div>
@@ -276,7 +276,7 @@
                                                                         id="tab{{ $image->id }}" role="tabpanel">
                                                                         <div class="modal_tab_img">
                                                                             <a href="#"><img
-                                                                                    src="{{ $image->image_url }}"
+                                                                                    src="{{asset('assets/backend/images/product/').'/'. $image->image_url }}"
                                                                                     alt=""></a>
                                                                         </div>
                                                                     </div>
@@ -290,7 +290,7 @@
                                                                             href="#tab1" role="tab"
                                                                             aria-controls="tab1"
                                                                             aria-selected="false"><img
-                                                                                src="{{ $product->image_url }}"
+                                                                                src="{{asset('assets/backend/images/product/').'/'. $product->image_url }}"
                                                                                 alt=""></a>
 
 
@@ -303,7 +303,7 @@
                                                                                 role="tab"
                                                                                 aria-controls="tab{{ $image->id }}"
                                                                                 aria-selected="false"><img
-                                                                                    src="{{ $image->image_url }}"
+                                                                                    src="{{asset('assets/backend/images/product/').'/'. $image->image_url }}"
                                                                                     alt=""></a>
                                                                         </li>
                                                                     @endforeach
@@ -349,9 +349,8 @@
                                                                         <input min="1" max="100"
                                                                             value="1" type="number"
                                                                             class="cart_quantity"
-                                                                            onchange="updateDataQuantity(this)"
-                                                                            oninput="updateDataQuantity(this)">
-                                                                        <button type="submit" class="add_to_cart"
+                                                                            onchange="updateDataQuantity(this)" oninput="updateDataQuantity(this)">
+                                                                        <button type="submit" class="add_to_cart form_add_cart"
                                                                             data-product-id="{{ $product->id }}"
                                                                             data-quantity="1">add to
                                                                             cart</button>
@@ -408,17 +407,12 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
-        function updateDataQuantity(inputElement) {
-            const quantity = parseInt(inputElement.value);
-            const addToCartButton = inputElement.parentElement.querySelector('.add_to_cart');
-            addToCartButton.setAttribute('data-quantity', quantity);
-        }
-        $(document).ready(function() {
-
-            // $('.select_option').niceSelect();
+       
+        $(document).ready(function() {            // $('.select_option').niceSelect();
 
 
             const urlParams = new URLSearchParams(window.location.search);
+            console.log(urlParams);
             const checkboxValues = urlParams.getAll('categories[]'); // Change this to match the parameter name
 
             checkboxValues.forEach(value => {

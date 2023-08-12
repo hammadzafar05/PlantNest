@@ -26,24 +26,24 @@
                     <div class="product-details-tab">
                         <div id="img-1" class="zoomWrapper single-zoom">
                             <a href="#">
-                                <img id="zoom1" src="{{ $product->image_url }}"
-                                    data-zoom-image="{{ $product->image_url }}" alt="big-1">
+                                <img id="zoom1" src="{{ asset('assets/backend/images/product/').'/'. $product->image_url }}"
+                                    data-zoom-image="{{asset('assets/backend/images/product/').'/'. $product->image_url }}" alt="big-1">
                             </a>
                         </div>
                         <div class="single-zoom-thumb">
                             <ul class="s-tab-zoom owl-carousel single-product-active" id="gallery_01">
                                 <li>
                                     <a href="#" class="elevatezoom-gallery active" data-update=""
-                                        data-image="{{ $product->image_url }}" data-zoom-image="{{ $product->image_url }}">
-                                        <img src="{{ $product->image_url }}" alt="zo-th-1" />
+                                        data-image="{{ asset('assets/backend/images/product/').'/'.$product->image_url }}" data-zoom-image="{{ asset('assets/backend/images/product/').'/'.$product->image_url }}">
+                                        <img src="{{ asset('assets/backend/images/product/').'/'.$product->image_url }}" alt="zo-th-1" />
                                     </a>
 
                                 </li>
                                 @foreach ($product->images as $image)
                                     <li>
                                         <a href="#" class="elevatezoom-gallery active" data-update=""
-                                            data-image="{{ $image->image_url }}" data-zoom-image="{{ $image->image_url }}">
-                                            <img src="{{ $image->image_url }}" alt="zo-th-1" />
+                                            data-image="{{ asset('assets/backend/images/product/').'/'.$image->image_url }}" data-zoom-image="{{ asset('assets/backend/images/product/').'/'.$image->image_url }}">
+                                            <img src="{{ asset('assets/backend/images/product/').'/'.$image->image_url }}" alt="zo-th-1" />
                                         </a>
 
                                     </li>
@@ -74,11 +74,11 @@
 
                                 @for ($i = 1; $i <= 5; $i++)
                                     @if ($i <= $averageRating)
-                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                        <li><a href=""><i class="fa fa-star" aria-hidden="true"></i></a></li>
                                     @elseif ($i - 0.5 <= $averageRating)
-                                        <li><a href="#"><i class="fa fa-star-half" aria-hidden="true"></i></a></li>
+                                        <li><a href=""><i class="fa fa-star-half" aria-hidden="true"></i></a></li>
                                     @else
-                                        <li><a href="#"><i class="icon-star"></i></a></li>
+                                        <li><a href=""><i class="icon-star"></i></a></li>
                                     @endif
                                 @endfor
                                 <li class="review"><a href="#"> ({{ $product->reviews->count() }} ) </a></li>
@@ -114,7 +114,7 @@
                             <ul>
 
                                 <li class="wishlist"><a href="javascript:void(0)" title="Add to wishlist"
-                                        data-product-id="{{ $product->id }}" class="add-to-wishlist">
+                                        data-product-id="{{ $product->id }}" class="add-to-wishlist" id="wishlist_detail">
                                         @if ($product->in_wishlist == true)
                                             Added to Wishlist
                                         @else
@@ -215,13 +215,13 @@
 
                                                             @for ($i = 1; $i <= 5; $i++)
                                                                 @if ($i <= $review->rating)
-                                                                    <li><a href="#"><i class="fa fa-star"
+                                                                    <li><a href=""><i class="fa fa-star"
                                                                                 aria-hidden="true"></i></a></li>
                                                                 @elseif ($i - 0.5 <= $review->rating)
-                                                                    <li><a href="#"><i class="fa fa-star-half"
+                                                                    <li><a href=""><i class="fa fa-star-half"
                                                                                 aria-hidden="true"></i></a></li>
                                                                 @else
-                                                                    <li><a href="#"><i class="icon-star"></i></a>
+                                                                    <li><a href=""><i class="icon-star"></i></a>
                                                                     </li>
                                                                 @endif
                                                             @endfor
@@ -242,11 +242,11 @@
                                     <div class="product_ratting mb-10">
                                         <h3>Your rating</h3>
                                         <ul>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
+                                            <li><a href=""><i class="icon-star"></i></a></li>
+                                            <li><a href=""><i class="icon-star"></i></a></li>
+                                            <li><a href=""><i class="icon-star"></i></a></li>
+                                            <li><a href=""><i class="icon-star"></i></a></li>
+                                            <li><a href=""><i class="icon-star"></i></a></li>
                                         </ul>
                                     </div>
                                     <div class="product_review_form">
@@ -297,7 +297,7 @@
                                 <figure>
                                     <div class="product_thumb">
                                         <a class="primary_img" href="{{ route('shop.detail', $product->id) }}"><img
-                                                src="{{ $product->image_url }}" alt=""></a>
+                                                src="{{ asset('assets/backend/images/product/').'/'.$product->image_url }}" alt=""></a>
                                         <div class="label_product">
                                             @if ($product->discount_percentage > 0)
                                                 <span class="label_sale">-{{ $product->discount_percentage }}%</span>
@@ -332,13 +332,13 @@
 
                                                 @for ($i = 1; $i <= 5; $i++)
                                                     @if ($i <= $averageRating)
-                                                        <li><a href="#"><i class="fa fa-star"
+                                                        <li><a href=""><i class="fa fa-star"
                                                                     aria-hidden="true"></i></a></li>
                                                     @elseif ($i - 0.5 <= $averageRating)
-                                                        <li><a href="#"><i class="fa fa-star-half"
+                                                        <li><a href=""><i class="fa fa-star-half"
                                                                     aria-hidden="true"></i></a></li>
                                                     @else
-                                                        <li><a href="#"><i class="icon-star"></i></a></li>
+                                                        <li><a href=""><i class="icon-star"></i></a></li>
                                                     @endif
                                                 @endfor
                                             </ul>

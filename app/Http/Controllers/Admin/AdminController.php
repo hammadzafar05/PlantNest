@@ -18,7 +18,7 @@ class AdminController extends Controller
     //get all feedbacks
     public function feedback()
     {
-        $feedbacks=Feedback::with('user')->get();
+        $feedbacks=ContactForm::get();
         return view('admin.pages.feedback',['_feedbacks'=>$feedbacks]);
     }
 }

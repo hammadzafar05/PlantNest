@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\CartItem;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -40,7 +41,10 @@ class CheckoutController extends Controller
                 'quantity'=>$item->quantity,
                 'price'=>$item->quantity * ($item->product->price - $item->product->discount)
             ]);
+
+            $updateStockQuantity = Product::find($item->product_id)->decrement('stock',$item->quantity);
         }
+
 
         //Clear Cart
         CartItem::where('user_id',auth()->user()->id)->delete();
