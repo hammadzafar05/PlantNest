@@ -259,6 +259,23 @@
     
     line-height: 55px !important; 
 }
+.widget_list.widget_filter input {
+    width: 100px !important;
+}
+span.wishlist_item_count {
+    position: absolute;
+    top: -10px;
+    right: -8px;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    background: #79a206;
+    border-radius: 100%;
+    text-align: center;
+    font-weight: 400;
+    font-size: 12px;
+    color: #fff;
+}
     </style>
     @yield('style')
 </head>
@@ -573,12 +590,17 @@
                                             @endguest
                                         </ul>
                                     </div>
-                                    <div class="header_account-list header_wishlist">
+                                    <div class="header_account-list header_wishlist-list ">
                                         @if (auth()->check())
-                                            <a href="{{ route('wishlist.index') }}"><i class="icon-heart"></i></a>
+                                            <a href="{{ route('wishlist.index') }}"><i class="icon-heart"></i>
+                                            
+                                                <span
+                                                class="wishlist_item_count">{{Auth::user()->wishlistItems->count()}}</span></a>
+                                            
                                         @else
                                             <a class="header_wishlist_btn" href="javascript:void(0)"><i
-                                                    class="icon-heart"></i></a>
+                                                    class="icon-heart"></i><span
+                                                    class="item_count wishlist_item_count">0</span></a>
                                         @endif
                                     </div>
                                     <div class="header_account-list  mini_cart_wrapper">
