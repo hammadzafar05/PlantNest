@@ -76,12 +76,54 @@
             <div class="modal-header"><h5 class="modal-title mt-0" id="mySmallModalLabel">User Detail</h5>
                 </div>
                 <p class="text-center">User Detail</p>
-          <div class="row">
-            <div class="col-md-6">
-                name
+          <div class="row m-2">
+            <div class="row">
+                <div class="col-md-4">
+                   <p>Name:</p> 
+                </div>
+                <div class="col-md-8">
+                    <input id="name" type="text" readonly class="form-control">
+                </div>
             </div>
-            <div class="col-md-6">
-                junaid
+            <div class="row">
+                <div class="col-md-4">
+                   <p>Email:</p> 
+                </div>
+                <div class="col-md-8">
+                    <input id="email" type="text" readonly class="form-control">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                   <p>Contact:</p> 
+                </div>
+                <div class="col-md-8">
+                    <input id="contact" type="text" readonly class="form-control">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                   <p>Name:</p> 
+                </div>
+                <div class="col-md-8">
+                    <input id="name" type="text" readonly class="form-control">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                   <p>Name:</p> 
+                </div>
+                <div class="col-md-8">
+                    <input id="name" type="text" readonly class="form-control">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                   <p>Name:</p> 
+                </div>
+                <div class="col-md-8">
+                    <input id="name" type="text" readonly class="form-control">
+                </div>
             </div>
           </div>
         </div>
