@@ -99,7 +99,7 @@
                         </button>
                         <div class="dropdown-menu dropdown-menu-end">
                             <!-- item-->
-                            <a class="dropdown-item" href="{{ url('/user') }}"><i
+                            <a class="dropdown-item" href="{{ url('/account') }}"><i
                                     class="uil uil-user-circle font-size-18 align-middle text-muted me-1"></i> <span
                                     class="align-middle">View Profile</span></a>
                             <a class="dropdown-item" href="{{ url('/') }}"><i
