@@ -122,7 +122,7 @@
                                     <figure>
                                         <div class="product_thumb">
                                             <a class="primary_img" href={{ route('shop.detail', $product->id) }}><img
-                                                    src="{{ $product->image_url }}" alt=""></a>
+                                                    src="{{ asset('assets/backend/images/product/').'/'.$product->image_url }}" alt=""></a>
                                             <div class="label_product">
                                                 @if ($product->discount_percentage > 0)
                                                     <span class="label_sale">- {{ $product->discount_percentage }}%</span>
