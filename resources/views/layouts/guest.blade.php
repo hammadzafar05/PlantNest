@@ -731,8 +731,7 @@ span.wishlist_item_count {
                         <div class="col-lg-3">
                             <div class="call-support text-center">
                                 @if(auth()->user())
-                                <p class="text-center w-100"> <a href="tel:0123456789" class="w-100 text-center">{{Auth::user()->name}}</a></p>
-                                
+                                <p class="text-center w-100"> <a href="javascript:void(0)" class="w-100 text-center">{{Auth::user()->name}}</a></p>
                                 @endif
                             </div>
                         </div>
