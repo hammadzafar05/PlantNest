@@ -217,18 +217,8 @@ class ProductController extends Controller
 
     public function productDetail($id)
     {
-      $productArray=Product::with([
-        'category'=>function($query){
-            $query->select('id','name','parent_id');
-        },
-        'images'=>function($query){
-            $query->select('id','image_url','product_id');
-        }])
-        ->leftjoin('reviews','products.id','=','reviews.product_id')
-        ->leftjoin('users','users.id','=','reviews.user_id')
-        ->where('products.id','=',$id)
-      ->get()->first()->toArray();
-      dd($productArray);
+      $productArray=Product::with(['category','images','reviews','reviews.user'])->where('id',$id)->get()->first();
+
       return view('admin.pages.product.detail',['productArray'=>$productArray]);
     }
 
