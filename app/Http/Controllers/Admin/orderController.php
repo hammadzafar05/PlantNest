@@ -68,6 +68,7 @@ class orderController extends Controller
     public function orderStatusChange($id,$status)
     {
         $order=order::find($id);
+        
         $order->status=$status;
         if(!$order->save())
         {

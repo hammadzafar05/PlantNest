@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\Product;
 use App\Models\Review;
 use App\Models\User;
 use App\Models\UserDetail;
@@ -69,5 +70,22 @@ class AccountController extends Controller
 
         return redirect()->back()->with('success','Review Submitted Successfully');
     }
+    
+    function cancelOrder($id)
+    {
+        $order=order::find($id);
+        
+        foreach ($order->orderItems as $key => $orderItem) {
+            $product=Product::find($orderItem->product_id);
+            $product->stock+=$orderItem->quantity;
+            $product->save();
+        }
+        $order->status='canceled';
+        $order->save();
+        return redirect()->back()->with('success','Order Canceled Successfully');
 
+        
+    }
+    
+    
 }

@@ -47,6 +47,7 @@ Route::controller(HomeController::class)->group(function () {
 
         Route::get('/account',[AccountController::class,'index'])->name('account.index');
         Route::get('/order/{id}',[AccountController::class,'viewOrder'])->name('order.details');
+        Route::get('/orderCancel/{id}',[AccountController::class,'cancelOrder'])->name('order.cancel');
 
         
         Route::get('/checkout',[CheckoutController::class,'index'])->name('checkout.index');
