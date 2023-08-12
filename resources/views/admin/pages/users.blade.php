@@ -11,7 +11,7 @@
                     <ul class="nav nav-tabs nav-tabs-custom mt-3 mb-2 ecommerce-sortby-list">
                         <h4>Users List</h4>
                     </ul>
-                    @if (!$users->isEmpty())
+                    @if (!empty($users))
                     <div class="row">
 
                         <div class="col-xl-12 col-sm-6">
@@ -33,16 +33,16 @@
                                 @foreach ($users as $user)
                                     <tr>
                                         <td>{{ $i++ }}</td>
-                                        <td><span class="badge bg-soft-danger font-size-12">{{ $user->name }}</span></td>
-                                        <td>{{ $user->email }}</td>
+                                        <td><span class="badge bg-soft-danger font-size-12">{{ $user['name'] }}</span></td>
+                                        <td>{{ $user['email'] }}</td>
                                         {{-- <td>{{ $user->phone }}</td> --}}
-                                        @if ($user->role == 'xxus')
+                                        @if ($user['role'] == 'xxus')
                                             <td>User</td>
-                                        @elseif($user->role == 'xxsa')
+                                        @elseif($user['role'] == 'xxsa')
                                             <td>Admin</td>
                                         @endif
                                         <td>
-                                            <a href="{{url('admin/deleteUser/'.$user->id)}}"
+                                            <a href="{{url('admin/deleteUser/'.$user['id'])}}"
                                                 class="btn btn-danger">Delete</a>
                                                 <button type="button" class="btn btn-info" onclick="openModal({{json_encode($user)}})">Detail</button>
                                         </td>
@@ -75,9 +75,8 @@
         <div class="modal-content">
             <div class="modal-header"><h5 class="modal-title mt-0" id="mySmallModalLabel">User Detail</h5>
                 </div>
-                <p class="text-center">User Detail</p>
           <div class="row m-2">
-            <div class="row">
+            <div class="row my-2">
                 <div class="col-md-4">
                    <p>Name:</p> 
                 </div>
@@ -85,7 +84,7 @@
                     <input id="name" type="text" readonly class="form-control">
                 </div>
             </div>
-            <div class="row">
+            <div class="row my-2">
                 <div class="col-md-4">
                    <p>Email:</p> 
                 </div>
@@ -93,7 +92,7 @@
                     <input id="email" type="text" readonly class="form-control">
                 </div>
             </div>
-            <div class="row">
+            <div class="row my-2">
                 <div class="col-md-4">
                    <p>Contact:</p> 
                 </div>
@@ -101,28 +100,36 @@
                     <input id="contact" type="text" readonly class="form-control">
                 </div>
             </div>
-            <div class="row">
+            <div class="row my-2">
                 <div class="col-md-4">
-                   <p>Name:</p> 
+                   <p>City:</p> 
                 </div>
                 <div class="col-md-8">
-                    <input id="name" type="text" readonly class="form-control">
+                    <input id="city" type="text" readonly class="form-control">
+                </div>
+            </div>
+            <div class="row my-2">
+                <div class="col-md-4">
+                   <p>State:</p> 
+                </div>
+                <div class="col-md-8">
+                    <input id="state" type="text" readonly class="form-control">
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-4">
-                   <p>Name:</p> 
+                   <p>Country:</p> 
                 </div>
                 <div class="col-md-8">
-                    <input id="name" type="text" readonly class="form-control">
+                    <input id="country" type="text" readonly class="form-control">
                 </div>
             </div>
-            <div class="row">
+            <div class="row my-2">
                 <div class="col-md-4">
-                   <p>Name:</p> 
+                   <p>Address:</p> 
                 </div>
                 <div class="col-md-8">
-                    <input id="name" type="text" readonly class="form-control">
+                    <input id="address" type="text" readonly class="form-control">
                 </div>
             </div>
           </div>
@@ -134,8 +141,16 @@
 <script>
     function openModal(userDetail)
     {
-        console.log(userDetail);
+        var address = userDetail.details[0]['shipping_city']+', '+userDetail.details[0]['shipping_state']+', '+userDetail.details[0]['shipping_country'];
+
         $('#myModal').modal('show')
+        $('#name').val(`${userDetail.name}`)
+        $('#email').val(`${userDetail.email}`)
+        $('#contact').val(`${userDetail.details[0]['shipping_phone_number']}`)
+        $('#city').val(`${userDetail.details[0]['shipping_city']}`)
+        $('#state').val(`${userDetail.details[0]['shipping_state']}`)
+        $('#country').val(`${userDetail.details[0]['shipping_country']}`)
+        $('#address').val(address)
 
     }
 </script>

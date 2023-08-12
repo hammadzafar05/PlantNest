@@ -14,7 +14,7 @@ class UserController extends Controller
     public function index()
     {
         // dd(User::with('details')->get()->toArray());
-        return view('admin.pages.users',['users'=>User::with('details')->get()]);
+        return view('admin.pages.users',['users'=>User::with('details')->get()->toArray()]);
     }
 
     /**
