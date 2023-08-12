@@ -263,6 +263,7 @@
     width: 100px !important;
 }
     </style>
+    @yield('style')
 </head>
 
 <body>

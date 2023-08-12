@@ -22,9 +22,9 @@
     <!--Checkout page section-->
     <div class="Checkout_section  mt-100" id="accordion">
         <div class="container">
-            {{-- <div class="row">
+            <div class="row">
                 <div class="col-12">
-                    <div class="user-actions">
+                    {{--<div class="user-actions">
                         <h3>
                             <i class="fa fa-file-o" aria-hidden="true"></i>
                             Returning customer?
@@ -55,26 +55,16 @@
                                 </form>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
+                    @if (session()->has('success'))
                     <div class="user-actions">
-                        <h3>
-                            <i class="fa fa-file-o" aria-hidden="true"></i>
-                            Returning customer?
-                            <a class="Returning" href="#" data-bs-toggle="collapse" data-bs-target="#checkout_coupon"
-                                aria-expanded="true">Click here to enter your code</a>
-
+                        <h3 class="text-success">
+                            {{ session()->get('success') }}  
                         </h3>
-                        <div id="checkout_coupon" class="collapse" data-parent="#accordion">
-                            <div class="checkout_info coupon_info">
-                                <form action="#">
-                                    <input placeholder="Coupon code" type="text">
-                                    <button type="submit">Apply coupon</button>
-                                </form>
-                            </div>
-                        </div>
                     </div>
+                    @endif
                 </div>
-            </div> --}}
+            </div>
             <div class="checkout_form">
                 <div class="row">
                     <div class="col-lg-6 col-md-6">
@@ -83,58 +73,39 @@
                             <div class="row">
 
                                 <div class="col-lg-6 mb-20">
-                                    <label>First Name <span>*</span></label>
-                                    <input type="text">
+                                    <label>Full Name<span class="text-danger">*</span></label>
+                                    <input type="text" name="name" value="{{ $user->name }}" required>
                                 </div>
                                 <div class="col-lg-6 mb-20">
-                                    <label>Last Name <span>*</span></label>
-                                    <input type="text">
+                                    <label>Email Address<span class="text-danger">*</span></label>
+                                    <input type="email" name="email" autocomplete="off" value="{{ $user->email }}" required>
                                 </div>
-                                <div class="col-12 mb-20">
-                                    <label>Company Name</label>
-                                    <input type="text">
+                                <div class="col-6 mb-20">
+                                    <label for="country">Country <span class="text-danger">*</span></label>
+                                    <input id="country" type="text" name="shipping_country" value="{{ $user->details->first()->shipping_country }}" required>
                                 </div>
-                                <div class="col-12 mb-20">
-                                    <label for="country">country <span>*</span></label>
-                                    <select class="select_option" name="cuntry" id="country">
-                                        <option value="2">bangladesh</option>
-                                        <option value="3">Algeria</option>
-                                        <option value="4">Afghanistan</option>
-                                        <option value="5">Ghana</option>
-                                        <option value="6">Albania</option>
-                                        <option value="7">Bahrain</option>
-                                        <option value="8">Colombia</option>
-                                        <option value="9">Dominican Republic</option>
-
-                                    </select>
+                                <div class="col-6 mb-20">
+                                    <label>Town / City <span class="text-danger">*</span></label>
+                                    <input type="text" name="shipping_city" value="{{ $user->details->first()->shipping_city }}" required>
                                 </div>
 
                                 <div class="col-12 mb-20">
                                     <label>Street address <span>*</span></label>
-                                    <input placeholder="House number and street name" type="text">
+                                    <input placeholder="House number and street name" type="text" name="shipping_billing_address_1" value="{{ $user->details->first()->shipping_billing_address_1 }}" required>
                                 </div>
                                 <div class="col-12 mb-20">
-                                    <input placeholder="Apartment, suite, unit etc. (optional)" type="text">
+                                    <input placeholder="Apartment, suite, unit etc. (optional)" type="text" name="shipping_billing_address_2" value="{{ $user->details->first()->shipping_billing_address_2 }}" required>
                                 </div>
-                                <div class="col-12 mb-20">
-                                    <label>Town / City <span>*</span></label>
-                                    <input type="text">
-                                </div>
-                                <div class="col-12 mb-20">
-                                    <label>State / County <span>*</span></label>
-                                    <input type="text">
+                                <div class="col-6 mb-20">
+                                    <label>State <span class="text-danger">*</span></label>
+                                    <input type="text" name="shipping_state" value="{{ $user->details->first()->shipping_state }}" required>
                                 </div>
                                 <div class="col-lg-6 mb-20">
                                     <label>Phone<span>*</span></label>
-                                    <input type="text">
+                                    <input type="number" name="contact_number" value="{{ $user->contact_number }}" required>
 
                                 </div>
-                                <div class="col-lg-6 mb-20">
-                                    <label> Email Address <span>*</span></label>
-                                    <input type="text">
-
-                                </div>
-                                <div class="col-12 mb-20">
+                                {{-- <div class="col-12 mb-20">
                                     <input id="account" type="checkbox" data-bs-target="createp_account" />
                                     <label for="account" data-bs-toggle="collapse" data-bs-target="#collapseOne"
                                         aria-controls="collapseOne">Create an account?</label>
@@ -145,8 +116,8 @@
                                             <input placeholder="password" type="password">
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-12 mb-20">
+                                </div> --}}
+                                {{-- <div class="col-12 mb-20">
                                     <input id="address" type="checkbox" data-bs-target="createp_account" />
                                     <label class="righ_0" for="address" data-bs-toggle="collapse"
                                         data-bs-target="#collapsetwo" aria-controls="collapseOne">Ship to a different
@@ -210,7 +181,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="col-12">
                                     <div class="order-notes">
                                         <label for="order_note">Order Notes</label>
@@ -222,7 +193,8 @@
                         </form>
                     </div>
                     <div class="col-lg-6 col-md-6">
-                        <form action="#">
+                        <form action="{{ route('checkout.submit') }}" method="POST">
+                            @csrf
                             <h3>Your order</h3>
                             <div class="order_table table-responsive">
                                 <table>
@@ -233,41 +205,45 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td> Handbag fringilla <strong> × 2</strong></td>
-                                            <td> $165.00</td>
-                                        </tr>
-                                        <tr>
-                                            <td> Handbag justo <strong> × 2</strong></td>
-                                            <td> $50.00</td>
-                                        </tr>
-                                        <tr>
-                                            <td> Handbag elit <strong> × 2</strong></td>
-                                            <td> $50.00</td>
-                                        </tr>
-                                        <tr>
-                                            <td> Handbag Rutrum <strong> × 1</strong></td>
-                                            <td> $50.00</td>
-                                        </tr>
+                                        @php
+                                            $subTotal = 0;
+                                            if($cartItems->first())
+                                            {
+                                                $shipping = 250.00;
+                                            }
+                                            else {
+                                                $shipping = 0;
+                                            }
+                                        @endphp
+                                        @foreach ($cartItems as $item)
+                                            @php
+                                                $subTotal += ($item->product->price * $item->quantity);
+                                            @endphp
+                                            <tr>
+                                                <td> {{ $item->product->name }} <strong> × {{ $item->quantity }}</strong></td>
+                                                <td> Rs {{ ($item->product->price * $item->quantity) }}</td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                     <tfoot>
                                         <tr>
                                             <th>Cart Subtotal</th>
-                                            <td>$215.00</td>
+                                            <td>Rs {{ $subTotal }}</td>
                                         </tr>
                                         <tr>
                                             <th>Shipping</th>
-                                            <td><strong>$5.00</strong></td>
+                                            <td><strong>Rs {{ $shipping }}</strong></td>
                                         </tr>
                                         <tr class="order_total">
                                             <th>Order Total</th>
-                                            <td><strong>$220.00</strong></td>
+                                            <td><strong>Rs {{ $subTotal + $shipping }}</strong></td>
                                         </tr>
                                     </tfoot>
                                 </table>
                             </div>
-                            <div class="payment_method">
-                                <div class="panel-default">
+                            <input type="hidden" value="{{ $subTotal + $shipping }}" name="total_amount">
+                            <div class="payment_method" style="float: right">
+                            {{-- <div class="panel-default">
                                     <input id="payment" name="check_method" type="radio"
                                         data-bs-target="createp_account" />
                                     <label for="payment" data-bs-toggle="collapse" data-bs-target="#method"
@@ -279,23 +255,23 @@
                                                 / County, Store Postcode.</p>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="panel-default">
-                                    <input id="payment_defult" name="check_method" type="radio"
-                                        data-bs-target="createp_account" />
-                                    <label for="payment_defult" data-bs-toggle="collapse" data-bs-target="#collapsedefult"
-                                        aria-controls="collapsedefult">PayPal <img src="{{asset('assets/frontend/img/icon/papyel.png')}}"
-                                            alt=""></label>
+                                </div> --}}
+                                    {{-- <div class="panel-default">
+                                        <input id="payment_defult" name="check_method" type="radio"
+                                            data-bs-target="createp_account" />
+                                        <label for="payment_defult" data-bs-toggle="collapse" data-bs-target="#collapsedefult"
+                                            aria-controls="collapsedefult">PayPal <img src="{{asset('assets/frontend/img/icon/papyel.png')}}"
+                                                alt=""></label>
 
-                                    <div id="collapsedefult" class="collapse one" data-parent="#accordion">
-                                        <div class="card-body1">
-                                            <p>Pay via PayPal; you can pay with your credit card if you don’t have a
-                                                PayPal account.</p>
+                                        <div id="collapsedefult" class="collapse one" data-parent="#accordion">
+                                            <div class="card-body1">
+                                                <p>Pay via PayPal; you can pay with your credit card if you don’t have a
+                                                    PayPal account.</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
+                                    </div> --}}
                                 <div class="order_button">
-                                    <button type="submit">Proceed to PayPal</button>
+                                    <button class="order_btn" type="{{ $shipping ? 'submit' : 'button' }}" >Checkout</button>
                                 </div>
                             </div>
                         </form>
@@ -305,8 +281,10 @@
         </div>
     </div>
     <!--Checkout page section end-->
-    
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+@endsection
+
+@section('script')
 
 <script>
     $(document).ready(function() {
@@ -316,7 +294,28 @@
         $('nav ul li a').removeClass('active');
 
         // Add active class to the clicked li element
-        $('#shop').addClass('active');
+        $('#checkout').addClass('active');
+
     });
 </script>
+
+@if (!$shipping)
+    <script>
+            $('.order_btn').click(function()
+            {
+                Swal.fire({
+                    title: 'Your Cart Is Empty !',
+                    text: 'Nothing Is Available for Checkout',
+                    icon: 'Warning',
+                    confirmButtonText: 'Go For Shopping',
+                }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location = "{{ route('shop.index') }}";
+                        }
+                    })
+            })
+    </script>
+    
+@endif
+
 @endsection

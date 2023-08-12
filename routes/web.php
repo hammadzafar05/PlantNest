@@ -46,6 +46,12 @@ Route::controller(HomeController::class)->group(function () {
     Route::middleware(['auth','prevent-back-history'])->group(function(){
 
         Route::get('/account',[AccountController::class,'index'])->name('account.index');
+        Route::get('/order/{id}',[AccountController::class,'viewOrder'])->name('order.details');
+
+        
+        Route::get('/checkout',[CheckoutController::class,'index'])->name('checkout.index');
+        Route::post('/checkout/submit',[CheckoutController::class,'submit_checkout'])->name('checkout.submit');
+        Route::post('/product/{id}/review/submit',[AccountController::class,'storeReview'])->name('product.review.submit');
     
     });
 
@@ -58,7 +64,6 @@ Route::get('/cart/updateQuantity/',[CartController::class,'updateQuantity'])->na
 Route::get('/cart/removeCartItem',[CartController::class,'remove'])->name('cart.remove');
 
 
-Route::get('/checkout',[CheckoutController::class,'index'])->name('checkout.index');
 Route::get('/account',[AccountController::class,'index'])->name('account.index');
 Route::put('/account/update',[AccountController::class,'update'])->name('account.update');
 Route::get('/contact',[ContactController::class,'index'])->name('contact.index');
@@ -114,6 +119,7 @@ Route::middleware(['isAdmin','auth','prevent-back-history'])->prefix('admin')->n
     Route::controller(AdminProductController::class)->group(function () {
         //products
         Route::get('product/allproducts','index')->name('showProducts');
+        Route::get('product/allproducts/{id?}','index')->name('showProducts');
         Route::get('product/addProducts','create')->name('AddProducts');
         Route::post('product/storeProducts','store')->name('StoreProducts');
         Route::get('product/editProducts/{id}','edit')->name('editProducts');
@@ -123,6 +129,7 @@ Route::middleware(['isAdmin','auth','prevent-back-history'])->prefix('admin')->n
         Route::get('product/status/{id}','changeProductStatus')->name('changeProductStatus');
         // product reviews
         Route::get('product/productReviews','productReviews')->name('productReviewShows');
+        Route::get('product/productsDetail/{id}','productDetail')->name('productDetailShows');
 
     });
     // Order controller
