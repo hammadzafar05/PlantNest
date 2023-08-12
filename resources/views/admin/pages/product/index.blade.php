@@ -70,7 +70,6 @@
                     <div class="row">
                         @foreach($allproducts as $product)
                         <div class="col-xl-4 col-sm-2">
-                            <a href="{{url('admin/product/productsDetail/'.$product['id'])}}">
                                 <div class="product-box">
                                     <div class="product-img pt-4 px-4">    
                                         <img src="{{ asset('assets/backend/images/product/' . $product['image_url']) }}" alt="" class="img-fluid mx-auto d-block product_img" >
@@ -85,17 +84,17 @@
     
                                     </div>
                                     <div class="buttons m-3 text-center" >
-                                         <button class="btn btn-success text-white"><a href="{{url('admin/product/editProducts',$product['id'])}}" class="text-white" >Edit</a></button>
-                                         <button class="btn btn-danger text-white"><a href="{{url('admin/product/deleteProducts',$product['id'])}}"  class="text-white" >Delete</a></button>
+                                         <button class="btn btn-success text-white my-1"><a href="{{url('admin/product/editProducts',$product['id'])}}" class="text-white my-1" >Edit</a></button>
+                                         <button class="btn btn-danger text-white my-1"><a href="{{url('admin/product/deleteProducts',$product['id'])}}"  class="text-white" >Delete</a></button>
                                          @if($product['status']==1)
-                                            <button class="btn btn-dark text-white"><a href="{{url('admin/product/status',$product['id'])}}" class="text-white" >Deactivate</a></button>
+                                         <button class="btn btn-dark text-white my-1"><a href="{{url('admin/product/status',$product['id'])}}" class="text-white" >Deactivate</a></button>
                                          @else
-                                            <button class="btn btn-info text-white"><a href="{{url('admin/product/status',$product->id)}}" class="text-white" >Activate</a></button>
-                                        @endif
+                                         <button class="btn btn-info text-white my-1"><a href="{{url('admin/product/status',$product->id)}}" class="text-white" >Activate</a></button>
+                                         @endif
+                                         <button class="btn btn-primary text-white my-1"><a href="{{url('admin/product/productsDetail/'.$product['id'])}}"  class="text-white" >View</a></button>
     
                                     </div>
                                 </div>
-                            </a>
                         </div>
                         @endforeach
 
