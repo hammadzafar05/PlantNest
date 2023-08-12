@@ -18,6 +18,8 @@
                             @php
                                 $i=1;
                             @endphp
+                              <div data-simplebar="init" style="max-height: 339px;"><div class="simplebar-wrapper" style="margin: 0px;"><div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask"><div class="simplebar-offset" style="right: -16.6667px; bottom: 0px;"><div class="simplebar-content-wrapper" style="height: auto; overflow: hidden scroll;"><div class="simplebar-content" style="padding: 0px;">
+                                <div class="table-responsive">
                             <table border="1" class="table">
 
                                 <tr>
@@ -42,10 +44,13 @@
                                         <td>
                                             <a href="{{url('admin/deleteUser/'.$user->id)}}"
                                                 class="btn btn-danger">Delete</a>
+                                                <button type="button" class="btn btn-info" onclick="openModal({{json_encode($user)}})">Detail</button>
                                         </td>
                                     </tr>
                                 @endforeach
                             </table>
+                        </div> <!-- enbd table-responsive-->
+                    </div></div></div></div><div class="simplebar-placeholder" style="width: auto; height: 503px;"></div></div><div class="simplebar-track simplebar-horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar" style="transform: translate3d(0px, 0px, 0px); display: none;"></div></div><div class="simplebar-track simplebar-vertical" style="visibility: visible;"><div class="simplebar-scrollbar" style="height: 228px; transform: translate3d(0px, 0px, 0px); display: block;"></div></div></div> <!-- data-sidebar-->
                         </div>
                     </div>
                     @else
@@ -63,9 +68,34 @@
             </div>
         </div>
     </div>
-
+    </div>
+    
+    <div class="modal fade bd-example-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header"><h5 class="modal-title mt-0" id="mySmallModalLabel">User Detail</h5>
+                </div>
+                <p class="text-center">User Detail</p>
+          <div class="row">
+            <div class="col-md-6">
+                name
+            </div>
+            <div class="col-md-6">
+                junaid
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
 @section('script')
+<script>
+    function openModal(userDetail)
+    {
+        console.log(userDetail);
+        $('#myModal').modal('show')
+
+    }
+</script>
 @endsection
 @endsection

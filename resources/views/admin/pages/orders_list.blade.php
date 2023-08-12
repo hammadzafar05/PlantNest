@@ -19,6 +19,8 @@
                                 <div class="row">
 
                                     <div class="col-xl-12 col-sm-6">
+                                        <div data-simplebar="init" style="max-height: 339px;"><div class="simplebar-wrapper" style="margin: 0px;"><div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask"><div class="simplebar-offset" style="right: -16.6667px; bottom: 0px;"><div class="simplebar-content-wrapper" style="height: auto; overflow: hidden scroll;"><div class="simplebar-content" style="padding: 0px;">
+                                            <div class="table-responsive">
                                         <table border="1" class="table">
 
                                             <tr>
@@ -86,6 +88,8 @@
                                                     </td>
                                             @endforeach
                                         </table>
+                                    </div> <!-- enbd table-responsive-->
+                                </div></div></div></div><div class="simplebar-placeholder" style="width: auto; height: 503px;"></div></div><div class="simplebar-track simplebar-horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar" style="transform: translate3d(0px, 0px, 0px); display: none;"></div></div><div class="simplebar-track simplebar-vertical" style="visibility: visible;"><div class="simplebar-scrollbar" style="height: 228px; transform: translate3d(0px, 0px, 0px); display: block;"></div></div></div> <!-- data-sidebar-->
                                     </div>
                                 </div>
                             @else

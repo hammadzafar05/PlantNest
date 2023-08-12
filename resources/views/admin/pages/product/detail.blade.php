@@ -1,5 +1,12 @@
 @extends('admin.layouts.app')
 @section('admin_title', 'Dashboard | Product Detail')
+@section('style')
+<style>
+    .starChecked {
+      color: orange;
+    }
+    </style>
+@endsection
 @section('content')
 <div class="container-fluid">
     <div class="row">
@@ -130,127 +137,32 @@
                             </div>
                         </div>
                     </div>
+                   
                     <div class="mt-4">
-                        <h5 class="font-size-14 mb-3">Product description: </h5>
-                        <div class="product-desc">
-                            <ul class="nav-tabs-custom nav nav-tabs">
-                                <li class="nav-item"><a class="nav-link" href="#pDesc" data-toggle="tab" role="tab" style="cursor: pointer;">Description</a>
-                                </li>
-                                <li class="nav-item"><a href="#pSpec" data-toggle="tab" class="active nav-link"
-                                        style="cursor: pointer;">Specifications</a></li>
-                            </ul>
-                            <div class="tab-content border border-top-0 p-4">
-                                <div class="tab-pane" id="pDesc">
-                                    <div class="row">
-                                        <div class="col-sm-3 col-md-2">
-                                            <div><img src="/static/media/img-6.8d6e5eecfa1688bc0a28.png"
-                                                    alt="" class="img-fluid mx-auto d-block"></div>
-                                        </div>
-                                        <div class="col-sm-9 col-md-10">
-                                            <div class="text-muted p-2">
-                                                <p>If several languages coalesce, the grammar of the resulting language
-                                                    is more simple and regular</p>
-                                                <p>Everyone realizes why a new common language would be desirable, one
-                                                    could refuse to pay expensive translators.</p>
-                                                <p>It will be as simple as occidental in fact.</p>
-                                                <div>
-                                                    <ul class="list-unstyled product-desc-list text-muted">
-                                                        <li><i class="mdi mdi-circle-medium me-1 align-middle"></i> Sed
-                                                            ut perspiciatis omnis iste</li>
-                                                        <li><i class="mdi mdi-circle-medium me-1 align-middle"></i>
-                                                            Neque porro quisquam est</li>
-                                                        <li><i class="mdi mdi-circle-medium me-1 align-middle"></i>
-                                                            Quis autem vel eum iure</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="tab-pane active" id="pSpec">
-                                    <table class="table-nowrap mb-0 table">
-                                        <tbody>
-                                            <tr>
-                                                <th scope="row" style="width: 20%;">Category</th>
-                                                <td>Shoes</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row" style="width: 20%;">Brand</th>
-                                                <td>Nike</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row" style="width: 20%;">Color</th>
-                                                <td>Gray</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row" style="width: 20%;">Quality</th>
-                                                <td>High</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row" style="width: 20%;">Material</th>
-                                                <td>Leather</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mt-4">
-                        <h5 class="font-size-14 mb-3">Reviews :</h5>
+                        <h5 class="font-size-14 mb-3">Reviews:</h5>
                         <div class="text-muted mb-3"><span class="badge bg-success font-size-14 me-1"><i
-                                    class="mdi mdi-star"></i> 4.2</span> 234 Reviews</div>
+                                    class="mdi mdi-star"> {{$productArray->reviews->count()}}</i></span> Review</div>
                         <div class="border p-4 rounded">
+                            @foreach ($productArray->reviews as $review)
+                            <div class="d-flex align-items-start">
+                                <div class="flex-grow-1">
+                                    <h5 class="font-size-15 mb-0">{{$review->user->name}}</h5>
+                                </div>
+                            </div>
                             <div class="border-bottom pb-3">
-                                <p class="float-sm-end text-muted font-size-13">12 July, 2020</p>
-                                <div class="badge bg-success mb-2"><i class="mdi mdi-star"></i> 4.1</div>
-                                <p class="text-muted mb-4">It will be as simple as in fact, it will be Occidental. It
-                                    will seem like simplified</p>
-                                <div class="d-flex align-items-start">
-                                    <div class="flex-grow-1">
-                                        <h5 class="font-size-15 mb-0">Samuel</h5>
-                                    </div>
-                                    <ul class="list-inline product-review-link mb-0">
-                                        <li class="list-inline-item"><a href="/ecommerce-product-detail"><i
-                                                    class="uil uil-thumbs-up"></i></a></li>
-                                        <li class="list-inline-item"><a href="/ecommerce-product-detail"><i
-                                                    class="uil uil-comment-alt-message"></i></a></li>
-                                    </ul>
+                                <p class="float-sm-end text-muted font-size-13">{{\Carbon\Carbon::parse($review->created_at)->format('Y-m-d')}}</p>
+                                <p class="text-muted my-1">
+                                    {{$review->review_text}}
+                                </p>
+                                <div class="badge bg-success mb-2"><i class="mdi mdi-star"></i>  {{$review->rating}}</div>
+                                <div class="badge font-14 mb-2">
+                                    @for ($i = 1; $i <= $review->rating; $i++)
+                                    <span class="fa fa-star starChecked"></span>
+                                    @endfor
                                 </div>
+                               
                             </div>
-                            <div class="border-bottom py-3">
-                                <p class="float-sm-end text-muted font-size-13">06 July, 2020</p>
-                                <div class="badge bg-success mb-2"><i class="mdi mdi-star"></i> 4.0</div>
-                                <p class="text-muted mb-4">Sed ut perspiciatis unde omnis iste natus error sit</p>
-                                <div class="d-flex align-items-start">
-                                    <div class="flex-grow-1">
-                                        <h5 class="font-size-15 mb-0">Joseph</h5>
-                                    </div>
-                                    <ul class="list-inline product-review-link mb-0">
-                                        <li class="list-inline-item"><a href="/ecommerce-product-detail"><i
-                                                    class="uil uil-thumbs-up"></i></a></li>
-                                        <li class="list-inline-item"><a href="/ecommerce-product-detail"><i
-                                                    class="uil uil-comment-alt-message"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="border-bottom py-3">
-                                <p class="float-sm-end text-muted font-size-13">26 June, 2020</p>
-                                <div class="badge bg-success mb-2"><i class="mdi mdi-star"></i> 4.2</div>
-                                <p class="text-muted mb-4">Neque porro quisquam est, qui dolorem ipsum quia dolor sit
-                                    amet</p>
-                                <div class="d-flex align-items-start">
-                                    <div class="flex-grow-1">
-                                        <h5 class="font-size-15 mb-0">Paul</h5>
-                                    </div>
-                                    <ul class="list-inline product-review-link mb-0">
-                                        <li class="list-inline-item"><a href="/ecommerce-product-detail"><i
-                                                    class="uil uil-thumbs-up"></i></a></li>
-                                        <li class="list-inline-item"><a href="/ecommerce-product-detail"><i
-                                                    class="uil uil-comment-alt-message"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -259,6 +171,4 @@
     </div>
 </div>
 @endsection
-@section('script')
 
-@endsection
