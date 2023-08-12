@@ -124,6 +124,8 @@
                             </ul>
                         </div>
                         <div class="product_meta">
+                            <span>Purpose: <a href="#">{{ $product->purpose }}</a></span>
+<br>
                             <span>Category: <a href="#">{{ $product->category->name }}</a></span>
                         </div>
 
@@ -163,6 +165,7 @@
                         </div>
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="info" role="tabpanel">
+
                                 <div class="product_info_content">
                                     <p>{{ $product->description }}</p>
                                 </div>
@@ -184,6 +187,10 @@
                                                     <tr>
                                                         <td class="first_child">Sunlight</td>
                                                         <td>{{ $product->plantInfo->lights }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="first_child">Other</td>
+                                                        <td>{{ $product->plantInfo->other }}</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
