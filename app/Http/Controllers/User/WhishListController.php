@@ -31,16 +31,20 @@ class WhishListController extends Controller
         $existingItem = WishlistItem::where('user_id', $userId)
             ->where('product_id', $id)
             ->first();
-
+            
         if (!$existingItem) {
             $wishlistItem = new WishlistItem();
             $wishlistItem->user_id = $userId;
             $wishlistItem->product_id = $id;
             $wishlistItem->save();
-            return response()->json(['message' => 'Item added to wishlist', 'wishlistItem' => $wishlistItem]);
+            $count = WishlistItem::where('user_id', $userId)
+            ->count();
+            return response()->json(['message' => 'Item added to wishlist', 'wishlistItem' => $wishlistItem, 'count' => $count]);
         }
+        $count = WishlistItem::where('user_id', $userId)
+        ->count();
 
-        return response()->json(['message' => 'Item is already in the wishlist']);
+        return response()->json(['message' => 'Item is already in the wishlist','count' => $count]);
     }
 
     public function removeFromWishlist($id)
@@ -53,7 +57,9 @@ class WhishListController extends Controller
 
         if ($wishlistItem) {
             $wishlistItem->delete();
-            return response()->json(['message' => 'Item removed from wishlist']);
+            $count = WishlistItem::where('user_id', $userId)
+            ->count();
+            return response()->json(['message' => 'Item removed from wishlist','count'=>$count]);
         }
 
         return response()->json(['message' => 'Item not found in wishlist'], 404);

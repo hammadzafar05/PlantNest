@@ -1150,6 +1150,8 @@ span.wishlist_item_count {
                     product_id: productId
                 }, function(response) {
 
+                    $('.wishlist_item_count').text(response.count);
+
                     console.log('added wishilist' + response)
                     // Change the icon to a filled heart
                     $icon.removeClass("icon-heart").addClass("fa fa-heart");

@@ -117,6 +117,7 @@
                 // Make a GET request to your API to remove the product from the wishlist
                 $.get("/wishlist/remove/" + productId, function (response) {
                     // Remove the entire row from the table
+                    $('.wishlist_item_count').text(response.count);
                     $tr.remove();
                 });
             });
