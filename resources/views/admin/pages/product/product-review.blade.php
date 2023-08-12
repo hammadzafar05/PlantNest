@@ -10,8 +10,6 @@
         <!-- end page title -->
 
         <div class="row">
-
-
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
@@ -38,8 +36,7 @@
                                             @foreach ($_productReviews as $review)
                                                 <tr>
                                                     <td>{{ $i++ }}</td>
-                                                    <td>{{ $review->user->name }}</td>
-                                                    <td>{{ $review->user->rating }}</td>
+                                                    <td><span class="badge bg-soft-danger font-size-12">{{ $review->user->name }}</span></td>
                                                     <td>{{ $review->product->name }}</td>
                                                     <td>
                                                         @foreach(array_reverse($review['product']['images']->toArray(),true) as $img)

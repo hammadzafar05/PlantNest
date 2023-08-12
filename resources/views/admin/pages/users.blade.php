@@ -31,7 +31,7 @@
                                 @foreach ($users as $user)
                                     <tr>
                                         <td>{{ $i++ }}</td>
-                                        <td>{{ $user->name }}</td>
+                                        <td><span class="badge bg-soft-danger font-size-12">{{ $user->name }}</span></td>
                                         <td>{{ $user->email }}</td>
                                         {{-- <td>{{ $user->phone }}</td> --}}
                                         @if ($user->role == 'xxus')
