@@ -20,7 +20,6 @@
                                     <div data-test="datatable" class="dataTables_wrapper dt-bootstrap4">
                                         <div class="row">
                                             <div data-test="datatable-table" class="col-sm-12">
-                                                <div >
                                                     <table  id="dt-table"
                                                         class="bg-white table table-bordered table-hover table-striped w-100">
                                                         <thead data-test="datatable-head">
@@ -52,7 +51,6 @@
                                                             @endforeach
                                                         </tbody>
                                                     </table>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -150,6 +148,7 @@
 @section('script')
     <script>
         function openModal(userDetail) {
+            
             var address = userDetail.details[0]['shipping_city'] + ', ' + userDetail.details[0]['shipping_state'] + ', ' +
                 userDetail.details[0]['shipping_country'];
 
