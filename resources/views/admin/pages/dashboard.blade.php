@@ -84,7 +84,7 @@
                                         $products=\App\Models\Order::where('status','delivered')->sum('total_amount') ?? 0;
                                         @endphp
                                         <div>
-                                            <h4 class="mb-1 mt-1 text-center"> + $<span data-plugin="counterup">  </span></h4>
+                                            <h4 class="mb-1 mt-1 text-center"> + PKR <span data-plugin="counterup">  </span></h4>
                                             <p class="text-muted mb-0">Total Revenue</p>
                                         </div>
 

@@ -9,6 +9,7 @@ use App\Models\Discount;
 use App\Models\ProductImage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\PlantInfo;
 use App\Models\Review;
 
 class ProductController extends Controller
@@ -43,16 +44,19 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        // dd($this->storeFirstImageInProduct($request->file('image'),102));
         $request->validate([
             'name' => 'required|max:255|unique:products',
             'species' => 'required|max:255',
             'purpose' => 'max:255',
             'price' => 'required|integer',
             'discount' => 'required',
-            'description' => 'required|max:255',
+            'description' => 'required',
             // 'category_id' => 'required|integer',
             'subcategory_id' => 'required|integer',
+            'habit'  => 'max:255',
+            'light'  => 'max:255',
+            'water'  => 'max:255',
+            'plantOther'  => 'max:255',
             'stock' => 'required|integer',
             'image' => 'required',
             'image.*' => 'mimes:jpeg,jpg,png,gif'
@@ -74,6 +78,16 @@ class ProductController extends Controller
         {
             return redirect()->back()->with('error','something weng wrong!');
         }
+            $plantsInfo=new PlantInfo();
+            $plantsInfo->product_id = $request->subcategory_id ?? 'Not Provided'; 
+            $plantsInfo->habits = $request->habit ?? 'Not Provided';
+            $plantsInfo->lights = $request->light ?? 'Not Provided';
+            $plantsInfo->water_requirements = $request->water ?? 'Not Provided';
+            $plantsInfo->other = $request->plantOther ?? 'Not Provided';
+            if(!$plantsInfo->save())
+            {
+                return redirect()->back()->with('error','something weng wrong!');
+            }
         
         if ($request->hasfile('image')) {
             $images = $request->file('image');
@@ -93,7 +107,7 @@ class ProductController extends Controller
             $product->save();
         }
         }
-        return redirect()->back()->with('success','product added successfully!');
+        return redirect()->back()->with('success','Product added successfully!');
     }
 
     public function edit($id)
@@ -126,7 +140,6 @@ class ProductController extends Controller
             'description' => 'max:255',
             'subcategory_id' => 'integer',
             'stock' => 'integer',
-            // 'image' => 'image'
         ]);
         $product = Product::find($request->pId);
         // dd($product);

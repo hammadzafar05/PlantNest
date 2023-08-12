@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
         integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
         @yield('style')
     </head>
     
@@ -194,7 +195,9 @@
     <!-- init js -->
     <script src="{{ asset('assets/backend/js/pages/ecommerce-add-product.init.js') }}"></script>
     {{-- <script src="{{asset('assets/backend/js/admin.js')}}"></script> --}}
-    @yield('script')
+
+    <script src="{{ asset('assets/backend/libs/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+
     <script>
         var _url= '{{url("/")}}';
 
@@ -202,6 +205,15 @@
                     $(document).ready(function() {
                         $('#category-dropdown').on('change', function() {
                             var idCategory = this.value;
+                            var selectedOptionText = $('#category-dropdown').val();
+                            if(selectedOptionText == 1 && selectedOptionText !== null)
+                            {
+                                $('#plants-info').removeClass('d-none');
+                            }
+                            else{
+
+                                $('#plants-info').addClass('d-none');
+                            }
                             $("#subcategory-dropdown").html('');
                             $.ajax({
                                 url: "{{ url('admin/api/fetch-subcategory') }}",
@@ -255,6 +267,7 @@
            }, 3000); // 2000 milliseconds = 2 seconds
        });
    </script>
+   @yield('script')
 </body>
 
 </html>
