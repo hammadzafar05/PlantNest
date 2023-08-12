@@ -262,6 +262,20 @@
 .widget_list.widget_filter input {
     width: 100px !important;
 }
+span.wishlist_item_count {
+    position: absolute;
+    top: -10px;
+    right: -8px;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    background: #79a206;
+    border-radius: 100%;
+    text-align: center;
+    font-weight: 400;
+    font-size: 12px;
+    color: #fff;
+}
     </style>
     @yield('style')
 </head>
@@ -446,15 +460,14 @@
                     <div class="row align-items-center">
                         <div class="col-lg-3 col-md-3 col-4">
                             <div class="logo">
-                                <a href="{{route('user.home')}}"><img src="{{asset('assets/frontend/img/logo/logo.png
+                                <a href="{{url('/')}}"><img src="{{asset('assets/frontend/img/logo/logo.png
                                 ')}}" alt=""></a>
                             </div>
                         </div>
                         <div class="col-lg-9 col-md-6 col-6">
                             <div class="header_right_info">
                                 <div class="search_container">
-                                    <form action="{{route('shop.index')}}" method="GET">
-                                        @csrf
+                                    <form action="#">
                                         <div class="hover_category">
                                             {{-- <select class="select_option" name="select" id="categori1" style="display: none;">
                                                 <option selected="" value="1">All Categories</option>
@@ -476,7 +489,7 @@
                                             </select><div class="nice-select select_option" tabindex="0"><span class="current">All Categories</span><ul class="list"><li data-value="1" class="option selected">All Categories</li><li data-value="2" class="option">Accessories</li><li data-value="3" class="option">Accessories &amp; More</li><li data-value="4" class="option">Butters &amp; Eggs</li><li data-value="5" class="option">Camera &amp; Video </li><li data-value="6" class="option">Mornitors</li><li data-value="7" class="option">Tablets</li><li data-value="8" class="option">Laptops</li><li data-value="9" class="option">Handbags</li><li data-value="10" class="option">Headphone &amp; Speaker</li><li data-value="11" class="option">Herbs &amp; botanicals</li><li data-value="12" class="option">Vegetables</li><li data-value="13" class="option">Shop</li><li data-value="14" class="option">Laptops &amp; Desktops</li><li data-value="15" class="option">Watchs</li><li data-value="16" class="option">Electronic</li></ul></div> --}}
                                         </div>
                                         <div class="search_box">
-                                            <input placeholder="Search product..." type="text" name="search" class="searched">
+                                            <input placeholder="Search product..." type="text">
                                             <button type="submit"><i class="icon-search"></i></button>
                                         </div>
                                     </form>
@@ -577,12 +590,17 @@
                                             @endguest
                                         </ul>
                                     </div>
-                                    <div class="header_account-list header_wishlist">
+                                    <div class="header_account-list header_wishlist-list ">
                                         @if (auth()->check())
-                                            <a href="{{ route('wishlist.index') }}"><i class="icon-heart"></i></a>
+                                            <a href="{{ route('wishlist.index') }}"><i class="icon-heart"></i>
+                                            
+                                                <span
+                                                class="wishlist_item_count">{{Auth::user()->wishlistItems->count()}}</span></a>
+                                            
                                         @else
                                             <a class="header_wishlist_btn" href="javascript:void(0)"><i
-                                                    class="icon-heart"></i></a>
+                                                    class="icon-heart"></i><span
+                                                    class="item_count wishlist_item_count">0</span></a>
                                         @endif
                                     </div>
                                     <div class="header_account-list  mini_cart_wrapper">
@@ -884,7 +902,7 @@
 
     @guest
         <script>
-            $('.add_to_cart, .cart_button, .mini_cart_wrapper, .header_wishlist, .product_d_action','.add-to-wishlist').click(function(e) {
+            $('.add_to_cart, .cart_button, .mini_cart_wrapper, .header_wishlist, .product_d_action, .add-to-wishlist').click(function(e) {
                 e.preventDefault();
                 if (localStorage.getItem('auth') == 'false') {
                     Swal.fire({

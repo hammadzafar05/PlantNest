@@ -118,20 +118,15 @@ $query->with('reviews');
         $product = Product::with('plantInfo', 'category', 'images','reviews.user')->find($id);
 
         $relatedProducts = Product::with('plantInfo', 'category', 'images','reviews')
-            ->where('category_id', $product->category_id)
+            ->where('category_id', $product->category_id)->get()
             ->take(8);
         if ($user) {
 
             $wishlistItems = $user->wishlistItems()->pluck('product_id')->toArray();
 
-
             foreach ($relatedProducts as $product) {
                 $product->in_wishlist = in_array($product->id, $wishlistItems);
             }
-
-
-
-
             $product->in_wishlist = in_array($product->id, $wishlistItems);
         }
 
