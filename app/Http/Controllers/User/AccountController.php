@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\Review;
 use App\Models\User;
 use App\Models\UserDetail;
 use Illuminate\Http\Request;
@@ -46,10 +47,27 @@ class AccountController extends Controller
 
     }
 
+    //view order
     function viewOrder($orderId){
 
-        $orderDetails =  OrderItem::with(['order','product'])->where('order_id',$orderId)->get();
+        $orderDetails =  OrderItem::with(['order','product','product.reviews'=>function($query){
+            $query->where('user_id',auth()->user()->id);
+        }])->where('order_id',$orderId)->get();
 
         return view('pages.order.details',compact('orderDetails'));
     }
+
+    //Submit Review
+    function storeReview(Request $request){
+
+        $review = Review::create([
+            'user_id'=>auth()->user()->id,
+            'product_id'=>$request->product_id,
+            'rating'=>$request->rating,
+            'review_text'=>$request->review
+        ]);
+
+        return redirect()->back()->with('success','Review Submitted Successfully');
+    }
+
 }

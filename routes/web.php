@@ -51,6 +51,7 @@ Route::controller(HomeController::class)->group(function () {
         
         Route::get('/checkout',[CheckoutController::class,'index'])->name('checkout.index');
         Route::post('/checkout/submit',[CheckoutController::class,'submit_checkout'])->name('checkout.submit');
+        Route::post('/product/{id}/review/submit',[AccountController::class,'storeReview'])->name('product.review.submit');
     
     });
 

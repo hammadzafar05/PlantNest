@@ -256,6 +256,7 @@
             display: block !important;
         }
     </style>
+    @yield('style')
 </head>
 
 <body>
