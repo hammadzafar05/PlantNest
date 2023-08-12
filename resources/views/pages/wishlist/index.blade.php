@@ -45,11 +45,11 @@
                                         @foreach ($wishlistItems as $wishlistItem)
                                             <tr>
                                                 <td class="product_remove remove_wishlist" data-product-id="{{ $wishlistItem->product->id }}" ><a href="#">X</a></td>
-                                                <td class="product_thumb"><a href="#"><img
+                                                <td class="product_thumb"><a href="{{route('shop.detail',$product->id)}}"><img
                                                             src="{{ $wishlistItem->product->image_url }}"
                                                             alt=""></a></td>
                                                 <td class="product_name"><a
-                                                        href="#">{{ $wishlistItem->product->name }}</a></td>
+                                                        href="{{route('shop.detail',$product->id)}}">{{ $wishlistItem->product->name }}</a></td>
                                                 <td class="product-price">PKR @if ($wishlistItem->product->discount_percentage > 0)
                                                         <span class="current_price">PKR
                                                             {{ $wishlistItem->product->price - $wishlistItem->product->discount }}</span>
@@ -104,24 +104,5 @@
         </div>
     </div>
     <!--wishlist area end -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <script>
-        $(document).ready(function () {
-            $(".remove_wishlist").click(function (e) {
-                e.preventDefault(); // Prevent the link from navigating
-    
-                var productId = $(this).data("product-id");
-                var $tr = $(this).closest("tr");
-    
-                // Make a GET request to your API to remove the product from the wishlist
-                $.get("/wishlist/remove/" + productId, function (response) {
-                    // Remove the entire row from the table
-                    $('.wishlist_item_count').text(response.count);
-                    $tr.remove();
-                });
-            });
-        });
-    </script>
     
 @endsection
