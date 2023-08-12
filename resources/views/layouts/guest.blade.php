@@ -276,6 +276,13 @@ span.wishlist_item_count {
     font-size: 12px;
     color: #fff;
 }
+
+#scrollUp i{
+    margin-top: 10px
+}
+.footer_social ul li i{
+    margin-top: 13px
+} 
     </style>
     @yield('style')
 </head>
@@ -1133,7 +1140,12 @@ span.wishlist_item_count {
                 }
             });
         }
-
+        function updateDataQuantity(inputElement) {
+            const quantity = parseInt(inputElement.value);
+            console.log(quantity);
+            const addToCartButton = inputElement.parentElement.querySelector('.add_to_cart');
+            addToCartButton.setAttribute('data-quantity', quantity);
+        }
         @auth
 
         $(document).ready(function() {
