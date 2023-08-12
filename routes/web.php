@@ -49,6 +49,7 @@ Route::controller(HomeController::class)->group(function () {
         Route::put('/account/update',[AccountController::class,'update'])->name('account.update');
 
         Route::get('/order/{id}',[AccountController::class,'viewOrder'])->name('order.details');
+        Route::get('/orderCancel/{id}',[AccountController::class,'cancelOrder'])->name('order.cancel');
 
         // cartController
         Route::get('/cart',[CartController::class,'index'])->name('cart.index');
