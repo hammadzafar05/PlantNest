@@ -24,7 +24,7 @@
                                 </div> --}}
                                 <div class="flex-1 overflow-hidden">
                                     <h5 class="font-size-16 mb-1">ADD SUB CATEGORY</h5>
-                                    <p class="text-muted text-truncate mb-0">Add accessories category below</p>
+                                    <p class="text-muted text-truncate mb-0">Add Accessories category below</p>
                                 </div>
                                 <i class="mdi mdi-chevron-up accor-down-icon font-size-24"></i>
                             </div>

@@ -38,7 +38,7 @@ class CheckoutController extends Controller
                 'order_id'=>$order->id,
                 'product_id'=>$item->product_id,
                 'quantity'=>$item->quantity,
-                'price'=>$item->quantity * $item->product->price
+                'price'=>$item->quantity * ($item->product->price - $item->product->discount)
             ]);
         }
 
