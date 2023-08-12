@@ -74,11 +74,11 @@
 
                                 @for ($i = 1; $i <= 5; $i++)
                                     @if ($i <= $averageRating)
-                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                        <li><a href=""><i class="fa fa-star" aria-hidden="true"></i></a></li>
                                     @elseif ($i - 0.5 <= $averageRating)
-                                        <li><a href="#"><i class="fa fa-star-half" aria-hidden="true"></i></a></li>
+                                        <li><a href=""><i class="fa fa-star-half" aria-hidden="true"></i></a></li>
                                     @else
-                                        <li><a href="#"><i class="icon-star"></i></a></li>
+                                        <li><a href=""><i class="icon-star"></i></a></li>
                                     @endif
                                 @endfor
                                 <li class="review"><a href="#"> ({{ $product->reviews->count() }} ) </a></li>
@@ -215,13 +215,13 @@
 
                                                             @for ($i = 1; $i <= 5; $i++)
                                                                 @if ($i <= $review->rating)
-                                                                    <li><a href="#"><i class="fa fa-star"
+                                                                    <li><a href=""><i class="fa fa-star"
                                                                                 aria-hidden="true"></i></a></li>
                                                                 @elseif ($i - 0.5 <= $review->rating)
-                                                                    <li><a href="#"><i class="fa fa-star-half"
+                                                                    <li><a href=""><i class="fa fa-star-half"
                                                                                 aria-hidden="true"></i></a></li>
                                                                 @else
-                                                                    <li><a href="#"><i class="icon-star"></i></a>
+                                                                    <li><a href=""><i class="icon-star"></i></a>
                                                                     </li>
                                                                 @endif
                                                             @endfor
@@ -242,11 +242,11 @@
                                     <div class="product_ratting mb-10">
                                         <h3>Your rating</h3>
                                         <ul>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
+                                            <li><a href=""><i class="icon-star"></i></a></li>
+                                            <li><a href=""><i class="icon-star"></i></a></li>
+                                            <li><a href=""><i class="icon-star"></i></a></li>
+                                            <li><a href=""><i class="icon-star"></i></a></li>
+                                            <li><a href=""><i class="icon-star"></i></a></li>
                                         </ul>
                                     </div>
                                     <div class="product_review_form">
@@ -332,13 +332,13 @@
 
                                                 @for ($i = 1; $i <= 5; $i++)
                                                     @if ($i <= $averageRating)
-                                                        <li><a href="#"><i class="fa fa-star"
+                                                        <li><a href=""><i class="fa fa-star"
                                                                     aria-hidden="true"></i></a></li>
                                                     @elseif ($i - 0.5 <= $averageRating)
-                                                        <li><a href="#"><i class="fa fa-star-half"
+                                                        <li><a href=""><i class="fa fa-star-half"
                                                                     aria-hidden="true"></i></a></li>
                                                     @else
-                                                        <li><a href="#"><i class="icon-star"></i></a></li>
+                                                        <li><a href=""><i class="icon-star"></i></a></li>
                                                     @endif
                                                 @endfor
                                             </ul>

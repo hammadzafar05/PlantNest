@@ -179,7 +179,7 @@
                                                         
                                                         @for ($i = 1; $i <= 5; $i++)
                                                             @if ($i <= $averageRating)
-                                                            <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                            <li><a href=""><i class="fa fa-star" aria-hidden="true"></i></a></li>
                                                             @elseif ($i - 0.5 <= $averageRating)
                                                             <li><a href="javascript:void(0)"><i class="fa fa-star-half" aria-hidden="true"></i></a></li>
                                                             @else
@@ -262,7 +262,7 @@
                                                         
                                                         @for ($i = 1; $i <= 5; $i++)
                                                             @if ($i <= $averageRating)
-                                                            <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                            <li><a href=""><i class="fa fa-star" aria-hidden="true"></i></a></li>
                                                             @elseif ($i - 0.5 <= $averageRating)
                                                             <li><a href="javascript:void(0)"><i class="fa fa-star-half" aria-hidden="true"></i></a></li>
                                                             @else
@@ -345,11 +345,11 @@
                                                        
                                                        @for ($i = 1; $i <= 5; $i++)
                                                            @if ($i <= $averageRating)
-                                                           <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                           <li><a href=""><i class="fa fa-star" aria-hidden="true"></i></a></li>
                                                            @elseif ($i - 0.5 <= $averageRating)
-                                                           <li><a href="#"><i class="fa fa-star-half" aria-hidden="true"></i></a></li>
+                                                           <li><a href=""><i class="fa fa-star-half" aria-hidden="true"></i></a></li>
                                                            @else
-                                                           <li><a href="#"><i class="icon-star"></i></a></li>
+                                                           <li><a href=""><i class="icon-star"></i></a></li>
                                                            @endif
                                                        @endfor
                                                        </ul>
@@ -537,11 +537,19 @@
                                         <figcaption class="product_content">
                                             <div class="product_rating">
                                                 <ul>
-                                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                                    <li><a href="#"><i class="icon-star"></i></a></li>
+                                                    <@php
+                                                    $averageRating = $product->reviews->avg('rating');
+                                                @endphp
+                                                
+                                                @for ($i = 1; $i <= 5; $i++)
+                                                    @if ($i <= $averageRating)
+                                                    <li><a href=""><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                    @elseif ($i - 0.5 <= $averageRating)
+                                                    <li><a href=""><i class="fa fa-star-half" aria-hidden="true"></i></a></li>
+                                                    @else
+                                                    <li><a href=""><i class="icon-star"></i></a></li>
+                                                    @endif
+                                                @endfor
                                                 </ul>
                                             </div>
                                             <h4 class="product_name"><a

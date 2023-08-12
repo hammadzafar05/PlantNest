@@ -166,11 +166,11 @@
                                                         
                                                         @for ($i = 1; $i <= 5; $i++)
                                                             @if ($i <= $averageRating)
-                                                            <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                            <li><a href=""><i class="fa fa-star" aria-hidden="true"></i></a></li>
                                                             @elseif ($i - 0.5 <= $averageRating)
-                                                            <li><a href="#"><i class="fa fa-star-half" aria-hidden="true"></i></a></li>
+                                                            <li><a href=""><i class="fa fa-star-half" aria-hidden="true"></i></a></li>
                                                             @else
-                                                            <li><a href="#"><i class="icon-star"></i></a></li>
+                                                            <li><a href=""><i class="icon-star"></i></a></li>
                                                             @endif
                                                         @endfor
                                                     </ul>
@@ -198,11 +198,11 @@
                                                         
                                                         @for ($i = 1; $i <= 5; $i++)
                                                             @if ($i <= $averageRating)
-                                                            <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                            <li><a href=""><i class="fa fa-star" aria-hidden="true"></i></a></li>
                                                             @elseif ($i - 0.5 <= $averageRating)
-                                                            <li><a href="#"><i class="fa fa-star-half" aria-hidden="true"></i></a></li>
+                                                            <li><a href=""><i class="fa fa-star-half" aria-hidden="true"></i></a></li>
                                                             @else
-                                                            <li><a href="#"><i class="icon-star"></i></a></li>
+                                                            <li><a href=""><i class="icon-star"></i></a></li>
                                                             @endif
                                                         @endfor
                                                 </ul>
