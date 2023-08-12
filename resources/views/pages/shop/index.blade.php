@@ -96,8 +96,8 @@
                                 title="List"></button>
                         </div>
                         <div class=" nice-select_option">
-                            <div class="select_option">
-                                <select name="orderby" id="short">
+                            <div class="select_option form-group">
+                                <select name="orderby" id="short" class="form-control">
                                     <option selected value="7">Product Name: A to Z</option>
                                     <option value="6">Product Name: Z to A</option>
                                     {{-- <option value="1">Sort by average rating</option> --}}
@@ -408,12 +408,11 @@
 
     <script>
        
-        $(document).ready(function() {
-            updateDataQuantity()
-            // $('.select_option').niceSelect();
+        $(document).ready(function() {            // $('.select_option').niceSelect();
 
 
             const urlParams = new URLSearchParams(window.location.search);
+            console.log(urlParams);
             const checkboxValues = urlParams.getAll('categories[]'); // Change this to match the parameter name
 
             checkboxValues.forEach(value => {
