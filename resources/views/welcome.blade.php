@@ -791,7 +791,7 @@
                                                     <input min="1" max="100" value="1" type="number"
                                                         class="cart_quantity" onchange="updateDataQuantity(this)"
                                                         oninput="updateDataQuantity(this)">
-                                                    <button type="submit" class="add_to_cart"
+                                                    <button type="submit" class="add_to_cart form_add_cart"
                                                         data-product-id="{{ $product->id }}" data-quantity="1">add to
                                                         cart</button>
                                                 </form>
@@ -900,7 +900,7 @@
                                                     <input min="1" max="100" value="1" type="number"
                                                         class="cart_quantity" onchange="updateDataQuantity(this)"
                                                         oninput="updateDataQuantity(this)">
-                                                    <button type="submit" class="add_to_cart"
+                                                    <button type="submit" class="add_to_cart form_add_cart"
                                                         data-product-id="{{ $product->id }}" data-quantity="1">add to
                                                         cart</button>
                                                 </form>
@@ -1009,7 +1009,7 @@
                                                     <input min="1" max="100" value="1" type="number"
                                                         class="cart_quantity" onchange="updateDataQuantity(this)"
                                                         oninput="updateDataQuantity(this)">
-                                                    <button type="submit" class="add_to_cart"
+                                                    <button type="submit" class="add_to_cart form_add_cart"
                                                         data-product-id="{{ $product->id }}" data-quantity="1">add to
                                                         cart</button>
                                                 </form>

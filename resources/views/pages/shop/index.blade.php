@@ -349,9 +349,8 @@
                                                                         <input min="1" max="100"
                                                                             value="1" type="number"
                                                                             class="cart_quantity"
-                                                                            onchange="updateDataQuantity(this)"
-                                                                            oninput="updateDataQuantity(this)">
-                                                                        <button type="submit" class="add_to_cart"
+                                                                            onchange="updateDataQuantity(this)" oninput="updateDataQuantity(this)">
+                                                                        <button type="submit" class="add_to_cart form_add_cart"
                                                                             data-product-id="{{ $product->id }}"
                                                                             data-quantity="1">add to
                                                                             cart</button>
@@ -408,13 +407,9 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
-        function updateDataQuantity(inputElement) {
-            const quantity = parseInt(inputElement.value);
-            const addToCartButton = inputElement.parentElement.querySelector('.add_to_cart');
-            addToCartButton.setAttribute('data-quantity', quantity);
-        }
+       
         $(document).ready(function() {
-
+            updateDataQuantity()
             // $('.select_option').niceSelect();
 
 
