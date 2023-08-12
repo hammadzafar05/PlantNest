@@ -622,7 +622,7 @@
     @guest
         <script>
             $('.add_to_cart, .cart_button, .mini_cart_wrapper, .header_wishlist, .product_d_action').click(function(e) {
-                e.preventDefault() !important;
+                e.preventDefault();
                 if (localStorage.getItem('auth') == 'false') {
                     Swal.fire({
                         title: 'You need to login First!',
@@ -633,7 +633,7 @@
                         cancelButtonText: 'No'
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            window.location = "{{ route('login') }}" !important;
+                            window.location = "{{ route('login') }}";
                         }
                     })
                 }

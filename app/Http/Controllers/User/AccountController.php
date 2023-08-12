@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 use App\Models\User;
 use App\Models\UserDetail;
 use Illuminate\Http\Request;
@@ -12,9 +13,8 @@ class AccountController extends Controller
 {
     public function index(){
 
-        $orders = auth()->user()->orders();
+        $orders = Order::where('user_id',auth()->user()->id)->get();
         $userDetails = User::with(['details'])->find(auth()->user()->id);
-        // dd($userDetails);
 
         return view('pages.account.index',compact('orders','userDetails'));
     }

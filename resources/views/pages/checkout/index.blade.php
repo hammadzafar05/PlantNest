@@ -271,7 +271,7 @@
                                         </div>
                                     </div> --}}
                                 <div class="order_button">
-                                    <button type="submit" {{ $shipping ? '' : 'disabled' }}>Checkout</button>
+                                    <button class="order_btn" type="{{ $shipping ? 'submit' : 'button' }}" >Checkout</button>
                                 </div>
                             </div>
                         </form>
@@ -295,6 +295,27 @@
 
         // Add active class to the clicked li element
         $('#checkout').addClass('active');
+
     });
 </script>
+
+@if (!$shipping)
+    <script>
+            $('.order_btn').click(function()
+            {
+                Swal.fire({
+                    title: 'Your Cart Is Empty !',
+                    text: 'Nothing Is Available for Checkout',
+                    icon: 'Warning',
+                    confirmButtonText: 'Go For Shopping',
+                }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location = "{{ route('shop.index') }}";
+                        }
+                    })
+            })
+    </script>
+    
+@endif
+
 @endsection
