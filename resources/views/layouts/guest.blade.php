@@ -13,26 +13,26 @@
     <!-- CSS
     ========================= -->
     <!--bootstrap min css-->
-    <link rel="stylesheet"  href="{{ asset('assets/frontend/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/frontend/css/bootstrap.min.css') }}">
     <!--owl carousel min css-->
-    <link rel="stylesheet"  href="{{ asset('assets/frontend/css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/frontend/css/owl.carousel.min.css') }}">
     <!--slick min css-->
-    <link rel="stylesheet"  href="{{ asset('assets/frontend/css/slick.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/frontend/css/slick.css') }}">
     <!--magnific popup min css-->
-    <link rel="stylesheet"  href="{{ asset('assets/frontend/css/magnific-popup.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/frontend/css/magnific-popup.css') }}">
     <!--font awesome css-->
-    <link rel="stylesheet"  href="{{ asset('assets/frontend/css/font.awesome.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/frontend/css/font.awesome.css') }}">
     <!--plugins css-->
-    <link rel="stylesheet"  href="{{asset('assets/frontend/css/plugins.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/frontend/css/plugins.css') }}">
     <!--animate css-->
-    <link rel="stylesheet"  href="{{ asset('assets/frontend/css/animate.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/frontend/css/animate.css') }}">
     <!--jquery ui min css-->
-    <link rel="stylesheet"  href="{{ asset('assets/frontend/css/jquery-ui.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/frontend/css/jquery-ui.min.css') }}">
     <!--slinky menu css-->
-    <link rel="stylesheet"  href="{{ asset('assets/frontend/css/slinky.menu.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/frontend/css/slinky.menu.css') }}">
 
     <!-- Main Style CSS -->
-    <link rel="stylesheet"  href="{{ asset('assets/frontend/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/frontend/css/style.css') }}">
 
     <!--modernizr min js here-->
     <script src="{{ asset('assets/frontend/js/vendor/modernizr-3.7.1.min.js') }}"></script>
@@ -69,195 +69,192 @@
             background-color: #ffffff;
             border: 2px solid #ffffff;
         }
+
         /*--
     - nice-select
 -----------------------------------*/
-.nice-select {
-    -webkit-tap-highlight-color: transparent;
-    background-color: #fff !important;
-    border-radius: 5px !important;
-    border: solid 1px #e8e8e8 !important;
-    -webkit-box-sizing: border-box !important;
-    box-sizing: border-box !important;
-    clear: both !important;
-    cursor: pointer !important;
-    display: block !important;
-    float: left !important;
-    font-family: inherit !important;
-    font-size: 14px !important;
-    font-weight: normal !important;
-    height: 42px !important;
-    line-height: 40px !important;
-    outline: none !important;
-    padding-left: 18px !important;
-    padding-right: 30px !important;
-    position: relative !important;
-    text-align: left !important !important;
-    -webkit-transition: all 0.2s ease-in-out !important;
-    transition: all 0.2s ease-in-out !important;
-    -webkit-user-select: none !important;
-    -moz-user-select: none !important;
-    -ms-user-select: none !important;
-    user-select: none !important;
-    white-space: nowrap !important;
-    width: auto !important;
-}
+        .nice-select {
+            -webkit-tap-highlight-color: transparent;
+            background-color: #fff !important;
+            border-radius: 5px !important;
+            border: solid 1px #e8e8e8 !important;
+            -webkit-box-sizing: border-box !important;
+            box-sizing: border-box !important;
+            clear: both !important;
+            cursor: pointer !important;
+            display: block !important;
+            float: left !important;
+            font-family: inherit !important;
+            font-size: 14px !important;
+            font-weight: normal !important;
+            height: 42px !important;
+            line-height: 40px !important;
+            outline: none !important;
+            padding-left: 18px !important;
+            padding-right: 30px !important;
+            position: relative !important;
+            text-align: left !important !important;
+            -webkit-transition: all 0.2s ease-in-out !important;
+            transition: all 0.2s ease-in-out !important;
+            -webkit-user-select: none !important;
+            -moz-user-select: none !important;
+            -ms-user-select: none !important;
+            user-select: none !important;
+            white-space: nowrap !important;
+            width: auto !important;
+        }
 
-.nice-select:hover {
-    border-color: #dbdbdb !important;
-}
+        .nice-select:hover {
+            border-color: #dbdbdb !important;
+        }
 
-.nice-select:active,
-.nice-select.open,
-.nice-select:focus {
-    border-color: #999 !important;
-}
+        .nice-select:active,
+        .nice-select.open,
+        .nice-select:focus {
+            border-color: #999 !important;
+        }
 
-.nice-select:after {
-    border-bottom: 2px solid #999 !important;
-    border-right: 2px solid #999 !important;
-    content: '' !important;
-    display: block !important;
-    height: 5px !important;
-    margin-top: -4px !important;
-    pointer-events: none !important;
-    position: absolute !important;
-    right: 12px !important;
-    top: 50% !important;
-    -webkit-transform-origin: 66% 66% !important;
-    transform-origin: 66% 66% !important;
-    -webkit-transform: rotate(45deg) !important;
-    transform: rotate(45deg) !important;
-    -webkit-transition: all 0.15s ease-in-out !important;
-    transition: all 0.15s ease-in-out !important;
-    width: 5px !important;
-}
+        .nice-select:after {
+            border-bottom: 2px solid #999 !important;
+            border-right: 2px solid #999 !important;
+            content: '' !important;
+            display: block !important;
+            height: 5px !important;
+            margin-top: -4px !important;
+            pointer-events: none !important;
+            position: absolute !important;
+            right: 12px !important;
+            top: 50% !important;
+            -webkit-transform-origin: 66% 66% !important;
+            transform-origin: 66% 66% !important;
+            -webkit-transform: rotate(45deg) !important;
+            transform: rotate(45deg) !important;
+            -webkit-transition: all 0.15s ease-in-out !important;
+            transition: all 0.15s ease-in-out !important;
+            width: 5px !important;
+        }
 
-.nice-select.open:after {
-    -webkit-transform: rotate(-135deg) !important;
-    transform: rotate(-135deg) !important;
-}
+        .nice-select.open:after {
+            -webkit-transform: rotate(-135deg) !important;
+            transform: rotate(-135deg) !important;
+        }
 
-.nice-select.open .list {
-    opacity: 1 !important;
-    pointer-events: auto !important;
-    -webkit-transform: scale(1) translateY(0) !important;
-    transform: scale(1) translateY(0) !important;
-}
+        .nice-select.open .list {
+            opacity: 1 !important;
+            pointer-events: auto !important;
+            -webkit-transform: scale(1) translateY(0) !important;
+            transform: scale(1) translateY(0) !important;
+        }
 
-.nice-select.disabled {
-    border-color: #ededed !important;
-    color: #999 !important;
-    pointer-events: none !important;
-}
+        .nice-select.disabled {
+            border-color: #ededed !important;
+            color: #999 !important;
+            pointer-events: none !important;
+        }
 
-.nice-select.disabled:after {
-    border-color: #cccccc !important;
-}
+        .nice-select.disabled:after {
+            border-color: #cccccc !important;
+        }
 
-.nice-select.wide {
-    width: 100% !important;
-}
+        .nice-select.wide {
+            width: 100% !important;
+        }
 
-.nice-select.wide .list {
-    left: 0 !important !important;
-    right: 0 !important !important;
-}
+        .nice-select.wide .list {
+            left: 0 !important !important;
+            right: 0 !important !important;
+        }
 
-.nice-select.right {
-    float: right !important;
-}
+        .nice-select.right {
+            float: right !important;
+        }
 
-.nice-select.right .list {
-    left: auto !important;
-    right: 0 !important;
-}
+        .nice-select.right .list {
+            left: auto !important;
+            right: 0 !important;
+        }
 
-.nice-select.small {
-    font-size: 12px !important;
-    height: 36px !important;
-    line-height: 34px !important;
-}
+        .nice-select.small {
+            font-size: 12px !important;
+            height: 36px !important;
+            line-height: 34px !important;
+        }
 
-.nice-select.small:after {
-    height: 4px !important;
-    width: 4px !important;
-}
+        .nice-select.small:after {
+            height: 4px !important;
+            width: 4px !important;
+        }
 
-.nice-select.small .option {
-    line-height: 34px !important;
-    min-height: 34px !important;
-}
+        .nice-select.small .option {
+            line-height: 34px !important;
+            min-height: 34px !important;
+        }
 
-.nice-select .list {
-    background-color: #fff !important;
-    border-radius: 5px !important;
-    -webkit-box-shadow: 0 0 0 1px rgba(68, 68, 68, 0.11) !important;
-    box-shadow: 0 0 0 1px rgba(68, 68, 68, 0.11) !important;
-    -webkit-box-sizing: border-box !important;
-    box-sizing: border-box !important;
-    margin-top: 4px !important;
-    opacity: 0 !important;
-    overflow: hidden !important;
-    padding: 0 !important;
-    pointer-events: none !important;
-    position: absolute !important;
-    top: 100% !important;
-    left: 0 !important;
-    -webkit-transform-origin: 50% 0 !important;
-    transform-origin: 50% 0 !important;
-    -webkit-transform: scale(0.75) translateY(-21px) !important;
-    transform: scale(0.75) translateY(-21px) !important;
-    -webkit-transition: all 0.2s cubic-bezier(0.5, 0, 0, 1.25), opacity 0.15s ease-out !important;
-    transition: all 0.2s cubic-bezier(0.5, 0, 0, 1.25), opacity 0.15s ease-out !important;
-    z-index: 9 !important;
-}
+        .nice-select .list {
+            background-color: #fff !important;
+            border-radius: 5px !important;
+            -webkit-box-shadow: 0 0 0 1px rgba(68, 68, 68, 0.11) !important;
+            box-shadow: 0 0 0 1px rgba(68, 68, 68, 0.11) !important;
+            -webkit-box-sizing: border-box !important;
+            box-sizing: border-box !important;
+            margin-top: 4px !important;
+            opacity: 0 !important;
+            overflow: hidden !important;
+            padding: 0 !important;
+            pointer-events: none !important;
+            position: absolute !important;
+            top: 100% !important;
+            left: 0 !important;
+            -webkit-transform-origin: 50% 0 !important;
+            transform-origin: 50% 0 !important;
+            -webkit-transform: scale(0.75) translateY(-21px) !important;
+            transform: scale(0.75) translateY(-21px) !important;
+            -webkit-transition: all 0.2s cubic-bezier(0.5, 0, 0, 1.25), opacity 0.15s ease-out !important;
+            transition: all 0.2s cubic-bezier(0.5, 0, 0, 1.25), opacity 0.15s ease-out !important;
+            z-index: 9 !important;
+        }
 
-.nice-select .list:hover .option:not(:hover) {
-    background-color: transparent !important !important;
-}
+        .nice-select .list:hover .option:not(:hover) {
+            background-color: transparent !important !important;
+        }
 
-.nice-select .option {
-    cursor: pointer !important;
-    font-weight: 400 !important;
-    line-height: 40px !important;
-    list-style: none !important;
-    min-height: 40px !important;
-    outline: none !important;
-    padding-left: 18px !important;
-    padding-right: 29px !important;
-    text-align: left !important;
-    -webkit-transition: all 0.2s !important;
-    transition: all 0.2s !important;
-}
+        .nice-select .option {
+            cursor: pointer !important;
+            font-weight: 400 !important;
+            line-height: 40px !important;
+            list-style: none !important;
+            min-height: 40px !important;
+            outline: none !important;
+            padding-left: 18px !important;
+            padding-right: 29px !important;
+            text-align: left !important;
+            -webkit-transition: all 0.2s !important;
+            transition: all 0.2s !important;
+        }
 
-.nice-select .option:hover,
-.nice-select .option.focus,
-.nice-select .option.selected.focus {
-    background-color: #f6f6f6 !important;
-}
+        .nice-select .option:hover,
+        .nice-select .option.focus,
+        .nice-select .option.selected.focus {
+            background-color: #f6f6f6 !important;
+        }
 
-.nice-select .option.selected {
-    font-weight: bold !important;
-}
+        .nice-select .option.selected {
+            font-weight: bold !important;
+        }
 
-.nice-select .option.disabled {
-    background-color: transparent !important;
-    color: #999 !important;
-    cursor: default !important;
-}
+        .nice-select .option.disabled {
+            background-color: transparent !important;
+            color: #999 !important;
+            cursor: default !important;
+        }
 
-.no-csspointerevents .nice-select .list {
-    display: none !important;
-}
+        .no-csspointerevents .nice-select .list {
+            display: none !important;
+        }
 
-.no-csspointerevents .nice-select.open .list {
-    display: block !important;
-}
-
-
-
-
+        .no-csspointerevents .nice-select.open .list {
+            display: block !important;
+        }
     </style>
 </head>
 
@@ -567,7 +564,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-6 col-md-6">
                         <div class="copyright_area">
-                            <p class="copyright-text">&copy !important; {{ now()->year }}
+                            <p class="copyright-text">&copy; {{ now()->year }}
 
                                 <a href="{{ route('user.home') }}">PlantNest</a>. Made with <i
                                     class="fa fa-heart text-danger"></i>
@@ -621,7 +618,7 @@
 
     @guest
         <script>
-            $('.add_to_cart, .cart_button, .mini_cart_wrapper, .header_wishlist, .product_d_action').click(function(e) {
+            $('.add_to_cart, .cart_button, .mini_cart_wrapper, .header_wishlist, .product_d_action','.add-to-wishlist').click(function(e) {
                 e.preventDefault();
                 if (localStorage.getItem('auth') == 'false') {
                     Swal.fire({
