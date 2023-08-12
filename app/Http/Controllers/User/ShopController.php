@@ -16,7 +16,7 @@ class ShopController extends Controller
         $query = Product::query();
         // Check if products are empty
         $user = Auth::user();
-
+$query->with('reviews');
         // Apply category filter if selected
         $selectedCategories = $request->input('categories', []);
         if (!empty($selectedCategories)) {
@@ -30,9 +30,15 @@ class ShopController extends Controller
         //         $q->whereIn('category_id', $categories);
         //     });
         // }
+        // name
+        $name = $request->input('search');
+        if ($name) {
+            $query->where('name', 'LIKE', '%' . $name . '%');
+        }
 
         // Apply sorting based on the selected option
         $orderBy = $request->input('orderby', 'default');
+
         switch ($orderBy) {
             case '1':
                 $query->orderBy('average_rating', 'desc');
@@ -109,10 +115,10 @@ class ShopController extends Controller
     {
         $user = Auth::user();
 
-        $product = Product::with('plantInfo', 'category', 'images')->find($id);
+        $product = Product::with('plantInfo', 'category', 'images','reviews.user')->find($id);
 
-        $relatedProducts = Product::with('plantInfo', 'category', 'images')
-            ->where('category_id', $product->category_id)->get()
+        $relatedProducts = Product::with('plantInfo', 'category', 'images','reviews')
+            ->where('category_id', $product->category_id)
             ->take(8);
         if ($user) {
 

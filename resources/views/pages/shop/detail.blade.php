@@ -68,12 +68,20 @@
                         </div> --}}
                         <div class=" product_ratting">
                             <ul>
+                                @php
+                                $averageRating = $product->reviews->avg('rating');
+                            @endphp
+                            
+                            @for ($i = 1; $i <= 5; $i++)
+                                @if ($i <= $averageRating)
+                                <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                @elseif ($i - 0.5 <= $averageRating)
+                                <li><a href="#"><i class="fa fa-star-half" aria-hidden="true"></i></a></li>
+                                @else
                                 <li><a href="#"><i class="icon-star"></i></a></li>
-                                <li><a href="#"><i class="icon-star"></i></a></li>
-                                <li><a href="#"><i class="icon-star"></i></a></li>
-                                <li><a href="#"><i class="icon-star"></i></a></li>
-                                <li><a href="#"><i class="icon-star"></i></a></li>
-                                <li class="review"><a href="#"> (customer review ) </a></li>
+                                @endif
+                            @endfor
+                            <li class="review"><a href="#"> ({{$product->reviews->count()}} ) </a></li>
                             </ul>
 
                         </div>
@@ -149,7 +157,7 @@
                                 @endif
                                 <li>
                                     <a data-bs-toggle="tab" href="#reviews" role="tab" aria-controls="reviews"
-                                        aria-selected="false">Reviews (1)</a>
+                                        aria-selected="false">Reviews ({{$product->reviews->count()}})</a>
                                 </li>
                             </ul>
                         </div>
@@ -186,28 +194,35 @@
                             @endif
                             <div class="tab-pane fade" id="reviews" role="tabpanel">
                                 <div class="reviews_wrapper">
-                                    <h2>1 review for Donec eu furniture</h2>
+                                    <h2>{{$product->reviews->count()}} review for {{$product->name}}</h2>
+                                    @foreach ($product->reviews as $review )
                                     <div class="reviews_comment_box">
                                         <div class="comment_thmb">
-                                            <img src="assets/img/blog/comment2.jpg')}}" alt="">
+                                            <img src="{{asset('assets/frontend/img/blog/comment2.jpg')}}" alt="">
                                         </div>
                                         <div class="comment_text">
                                             <div class="reviews_meta">
                                                 <div class="star_rating">
                                                     <ul>
+                                                       
+                                                    @for ($i = 1; $i <= 5; $i++)
+                                                        @if ($i <= $review->rating)
+                                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                        @elseif ($i - 0.5 <= $review->rating)
+                                                        <li><a href="#"><i class="fa fa-star-half" aria-hidden="true"></i></a></li>
+                                                        @else
                                                         <li><a href="#"><i class="icon-star"></i></a></li>
-                                                        <li><a href="#"><i class="icon-star"></i></a></li>
-                                                        <li><a href="#"><i class="icon-star"></i></a></li>
-                                                        <li><a href="#"><i class="icon-star"></i></a></li>
-                                                        <li><a href="#"><i class="icon-star"></i></a></li>
+                                                        @endif
+                                                    @endfor
                                                     </ul>
                                                 </div>
-                                                <p><strong>admin </strong>- September 12, 2018</p>
-                                                <span>roadthemes</span>
+                                                <p><strong>{{$review->user->name}} </strong>- {{$review->created_at->format('F j, Y')}}</p>
+                                                <span>{{$review->review_text}}</span>
                                             </div>
                                         </div>
 
                                     </div>
+                                    @endforeach
                                     <div class="comment_title">
                                         <h2>Add a review </h2>
                                         <p>Your email address will not be published. Required fields are marked </p>
@@ -299,11 +314,19 @@
                                     <figcaption class="product_content">
                                         <div class="product_rating">
                                             <ul>
+                                                @php
+                                                $averageRating = $product->reviews->avg('rating');
+                                            @endphp
+                                            
+                                            @for ($i = 1; $i <= 5; $i++)
+                                                @if ($i <= $averageRating)
+                                                <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                @elseif ($i - 0.5 <= $averageRating)
+                                                <li><a href="#"><i class="fa fa-star-half" aria-hidden="true"></i></a></li>
+                                                @else
                                                 <li><a href="#"><i class="icon-star"></i></a></li>
-                                                <li><a href="#"><i class="icon-star"></i></a></li>
-                                                <li><a href="#"><i class="icon-star"></i></a></li>
-                                                <li><a href="#"><i class="icon-star"></i></a></li>
-                                                <li><a href="#"><i class="icon-star"></i></a></li>
+                                                @endif
+                                            @endfor
                                             </ul>
                                         </div>
                                         <h4 class="product_name"><a

@@ -31,6 +31,7 @@
                     <!--sidebar widget start-->
                     <form action="{{ route('shop.index') }}" method="GET" id="filterForm">
                         @csrf
+                        <input type="hidden" name="search" class="searched"> 
 
                         <aside class="sidebar_widget">
                             <div class="widget_inner">
@@ -159,11 +160,19 @@
                                             <div class="product_price_rating">
                                                 <div class="product_rating">
                                                     <ul>
-                                                        <li><a href="#"><i class="icon-star"></i></a></li>
-                                                        <li><a href="#"><i class="icon-star"></i></a></li>
-                                                        <li><a href="#"><i class="icon-star"></i></a></li>
-                                                        <li><a href="#"><i class="icon-star"></i></a></li>
-                                                        <li><a href="#"><i class="icon-star"></i></a></li>
+                                                        @php
+                                                            $averageRating = $product->reviews->avg('rating');
+                                                        @endphp
+                                                        
+                                                        @for ($i = 1; $i <= 5; $i++)
+                                                            @if ($i <= $averageRating)
+                                                            <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                            @elseif ($i - 0.5 <= $averageRating)
+                                                            <li><a href="#"><i class="fa fa-star-half" aria-hidden="true"></i></a></li>
+                                                            @else
+                                                            <li><a href="#"><i class="icon-star"></i></a></li>
+                                                            @endif
+                                                        @endfor
                                                     </ul>
                                                 </div>
                                                 <h4 class="product_name"><a
@@ -183,11 +192,19 @@
                                         <div class="product_content list_content">
                                             <div class="product_rating">
                                                 <ul>
-                                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                                    <li><a href="#"><i class="icon-star"></i></a></li>
+                                                    @php
+                                                            $averageRating = $product->reviews->avg('rating');
+                                                        @endphp
+                                                        
+                                                        @for ($i = 1; $i <= 5; $i++)
+                                                            @if ($i <= $averageRating)
+                                                            <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                            @elseif ($i - 0.5 <= $averageRating)
+                                                            <li><a href="#"><i class="fa fa-star-half" aria-hidden="true"></i></a></li>
+                                                            @else
+                                                            <li><a href="#"><i class="icon-star"></i></a></li>
+                                                            @endif
+                                                        @endfor
                                                 </ul>
                                             </div>
                                             <h4 class="product_name"><a
@@ -412,6 +429,8 @@
             // const minPrice = urlParams.get('min-price');
             // const maxPrice = urlParams.get('max-price');
             const minPrice = parseInt(urlParams.get('min-price')) || 0;
+            const name = urlParams.get('search');
+            $('.searched').val(name);
             const maxPrice = parseInt(urlParams.get('max-price')) || 500;
             $("#min-price").val(minPrice);
             $("#max-price").val(maxPrice);
@@ -464,6 +483,10 @@
             const orderValue = urlParams.get('orderby');
 
             $('#short option').prop('selected', false);
+            $('#short').change(function (e) { 
+                $('#filterForm').submit();
+                
+            });
             if (orderValue) {
                 console.log('option');
                 $('#short option[value="' + orderValue + '"]').prop('selected', true);
