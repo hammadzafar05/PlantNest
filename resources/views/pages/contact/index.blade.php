@@ -1,5 +1,5 @@
 @extends('layouts.guest')
-<title>{{ config('app.name', 'PlantNest | Contact') }}</title>
+<title>{{ config('app.name', 'PlantNest | Contact Us') }}</title>
 @section('content')    <!--breadcrumbs area start-->
     <div class="breadcrumbs_area">
         <div class="container">
@@ -30,49 +30,67 @@
     <div class="contact_area">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 col-md-12">
-                    <div class="contact_message content">
-                        <h3>contact us</h3>
-                        <p>If you have any questions, suggestions, or inquiries, feel free to reach out to us. We're here to help!</p>
-                            <li><i class="fa fa-fax"></i> Address : Aptech Metro Star Gate, Karachi, Pakistan</li>
-                            <br>
-                            <li><i class="fa fa-phone"></i> <a href="#">info@msg-artisan.techwiz.com.pk</a></li>
-                            <br>
-                            <li><i class="fa fa-envelope-o"></i> &nbsp;&nbsp; <a href="tel:0123456789">0123456789</a> </li>
-                        </ul>
+                <div class="col-lg-12">
+                    <div class="contact-info text-center">
+                        <h3>Contact Us</h3>
                     </div>
                 </div>
-                {{-- <div class="col-lg-6 col-md-12">
-                    <div class="contact_message form">
-                        <h3>Tell us about your project</h3>
-                        <form method="POST" action="{{ route('submit.contact') }}">
-                            @csrf
-                            <p>
-                                <label> Your Name (required)</label>
-                                <input name="name" placeholder="Name *" type="text" required>
-                            </p>
-                            <p>
-                                <label> Your Email (required)</label>
-                                <input name="email" placeholder="Email *" type="email" required>
-                            </p>
-                            <p>
-                                <label> Subject</label>
-                                <input name="subject" placeholder="Subject *" type="text" required>
-                            </p>
-                            <div class="contact_textarea">
-                                <label> Your Message</label>
-                                <textarea placeholder="Message *" name="message" class="form-control2" required></textarea>
-                            </div>
-                            <button type="submit"> Send</button>
-
-                            @if (session()->has('success'))
-                            <h4 class="text-success mt-2">{{ session()->get('success') }}</h4>
-                            @endif
-                        </form>
-
-                    </div>
-                </div> --}}
             </div>
+            
+            <div class="row mt-5">
+                <div class="col-lg-4">
+                    <div class="contact-info text-center">
+                        <i class="fa fa-3x fa-fax  mb-3"></i>
+                        {{-- <h4>Address</h4> --}}
+                        <h5> Aptech Metro Star Gate, Karachi, Pakistan</h5>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="contact-info text-center">
+                        <i class="fa fa-3x fa-envelope-o  mb-3"></i>
+                        {{-- <h4>Email</h4> --}}
+                        <h5> <a href="mailto:info@msg-artisan.techwiz.com.pk">info@msg-artisan.techwiz.com.pk</a></h5>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="contact-info text-center">
+                        <i class="fa fa-3x fa-phone mb-3"></i>
+                        {{-- <h4>Phone</h4> --}}
+                        <h5> <a href="tel:0123456789">0123456789</a></h5>
+                    </div>
+                </div>
+            </div>
+            
+            {{-- <div class="col-lg-6 col-md-12">
+                <div class="contact_message form">
+                    <h3>Tell us about your project</h3>
+                    <form method="POST" action="{{ route('submit.contact') }}">
+                        @csrf
+                        <p>
+                            <label> Your Name (required)</label>
+                            <input name="name" placeholder="Name *" type="text" required>
+                        </p>
+                        <p>
+                            <label> Your Email (required)</label>
+                            <input name="email" placeholder="Email *" type="email" required>
+                        </p>
+                        <p>
+                            <label> Subject</label>
+                            <input name="subject" placeholder="Subject *" type="text" required>
+                        </p>
+                        <div class="contact_textarea">
+                            <label> Your Message</label>
+                            <textarea placeholder="Message *" name="message" class="form-control2" required></textarea>
+                        </div>
+                        <button type="submit"> Send</button>
+
+                        @if (session()->has('success'))
+                        <h4 class="text-success mt-2">{{ session()->get('success') }}</h4>
+                        @endif
+                    </form>
+
+                </div>
+            </div> --}}
         </div>
     </div>
 

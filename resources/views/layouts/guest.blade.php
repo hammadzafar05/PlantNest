@@ -467,7 +467,8 @@ span.wishlist_item_count {
                         <div class="col-lg-9 col-md-6 col-6">
                             <div class="header_right_info">
                                 <div class="search_container">
-                                    <form action="#">
+                                    <form action="{{route('shop.index')}}" method="GET">
+                                        @csrf
                                         <div class="hover_category">
                                             {{-- <select class="select_option" name="select" id="categori1" style="display: none;">
                                                 <option selected="" value="1">All Categories</option>
@@ -902,7 +903,7 @@ span.wishlist_item_count {
 
     @guest
         <script>
-            $('.add_to_cart, .cart_button, .mini_cart_wrapper, .header_wishlist, .product_d_action, .add-to-wishlist').click(function(e) {
+            $('.add_to_cart, .cart_button, .mini_cart_wrapper, .header_wishlist, .product_d_action, .add-to-wishlist, .header_wishlist-list').click(function(e) {
                 e.preventDefault();
                 if (localStorage.getItem('auth') == 'false') {
                     Swal.fire({
