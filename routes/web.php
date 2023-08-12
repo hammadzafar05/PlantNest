@@ -46,6 +46,7 @@ Route::controller(HomeController::class)->group(function () {
     Route::middleware(['auth','prevent-back-history'])->group(function(){
 
         Route::get('/account',[AccountController::class,'index'])->name('account.index');
+        Route::get('/order/{id}',[AccountController::class,'viewOrder'])->name('order.details');
 
         
         Route::get('/checkout',[CheckoutController::class,'index'])->name('checkout.index');

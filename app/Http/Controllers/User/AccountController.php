@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\OrderItem;
 use App\Models\User;
 use App\Models\UserDetail;
 use Illuminate\Http\Request;
@@ -43,5 +44,12 @@ class AccountController extends Controller
 
         return redirect()->back()->with('success',$response);
 
+    }
+
+    function viewOrder($orderId){
+
+        $orderDetails =  OrderItem::with(['order','product'])->where('order_id',$orderId)->get();
+
+        return view('pages.order.details',compact('orderDetails'));
     }
 }

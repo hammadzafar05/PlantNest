@@ -78,11 +78,11 @@
                                             @foreach ($orders as $order)
                                             
                                             <tr>
-                                                <td>{{ $order->id }}</td>
+                                                <td>#{{ $order->id }}</td>
                                                 <td>{{ \Carbon\Carbon::parse($order->created_at)->format('d M Y') }}</td>
                                                 <td><span class="success">{{ $order->status }}</span></td>
                                                 <td>{{ $order->total_amount }}</td>
-                                                <td><a href="#" class="view">view</a></td>
+                                                <td><a href="{{ route('order.details',$order->id) }}" class="view">view</a></td>
                                             </tr>
                                             
                                             @endforeach
@@ -102,7 +102,7 @@
                                     <br>
                                     <span><strong>ZIP:</strong> {{ $userDetails->details->first()?->shipping_zip_code }}</span>,
                                     <br>
-                                    <span><strong>Country:</strong> USA</span>
+                                    <span><strong>Country:</strong> {{ $userDetails->details->first()?->shipping_country }}</span>
                                 </address>
                             </div>
                             <div class="tab-pane fade" id="account-details">
