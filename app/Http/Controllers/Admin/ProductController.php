@@ -13,21 +13,26 @@ use App\Models\Review;
 
 class ProductController extends Controller
 {
-    public function index($id=null)
+    public function index(Request $req)
     {
-        if($id!==null)
+        // dd($req->mainCat,$req->subCat)
+        if($req->mainCat!==null && $req->subCat!==null)
         {
-            $allproducts = Product::with(['images'])->where('category_id',$id ?? '')->select('id','name','price','description','image_url')->latest()->paginate(15);
-        }
-        else
+            // dd('not null');
+            $mainCat=$req->mainCat;
+            $subCat=$req->subCat;
+            $allproducts = Product::with(['images'])->where('category_id',$req->subCat)->select('id','name','price','description','image_url')->latest()->paginate(15);
+            
+        }else
         {
-            $allproducts = Product::with(['images'])->latest()->paginate(15);
-
+            $mainCat='all';
+            $subCat='all';
+            $allproducts = Product::with(['images'])->latest()->paginate(15);            
         }
-        $main_categories = Category::where('parent_id',0)->select('id','name','parent_id')->get();
-        $sub_categories = Category::where('parent_id','!=',0)->select('id','name','parent_id')->get();
+        $main_categories = Category::where('parent_id','=',0)->select('id','name','parent_id')->get();
+        $sub_categories = Category::where('parent_id',$req->mainCat ?? '')->where('parent_id','!=',0)->select('id','name','parent_id')->get();
         
-        return view('admin.pages.product.index',['allproducts'=>$allproducts,'_subCategory'=>$sub_categories,'_mainCategory'=>$main_categories]);
+        return view('admin.pages.product.index',['allproducts'=>$allproducts,'_mainCategory'=>$main_categories,'_subCategory'=>$sub_categories,'catId'=>$mainCat,'subCat'=>$subCat]);
     }
 
     public function create()
@@ -210,25 +215,11 @@ class ProductController extends Controller
         return view('admin.pages.product.product-review',['_productReviews'=>$productReviews]);
     }
 
-    public function productDetail()
+    public function productDetail($id)
     {
-      $productArray=Review::with([
-        'product'=>function($query){
-            $query->select('id','name','price','discount','description','stock','image_url','category_id');
-        },
-        'product.category'=>function($query){
-            $query->select('id','name');
-        },
-        'product.images'=>function($query){
-            $query->select('id','image_url','product_id');
-        },
-        'user'=>function ($query){
-            $query->select('id','name');
-        }
-    ])->get()->toArray();
+      $productArray=Product::with(['category','images','reviews','reviews.user'])->where('id',$id)->get()->first();
 
-    dd($productArray);
-
+      return view('admin.pages.product.detail',['productArray'=>$productArray]);
     }
 
     // public function search(Request $request)

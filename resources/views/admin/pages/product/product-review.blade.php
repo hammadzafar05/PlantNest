@@ -1,7 +1,13 @@
 @extends('admin.layouts.app')
 
 @section('admin_title', 'Dashboard | Reviews')
-
+@section('style')
+<style>
+    .starChecked {
+      color: orange;
+    }
+    </style>
+@endsection
 @section('content')
     <div class="container-fluid">
 
@@ -26,8 +32,9 @@
                                             <tr>
                                                 <th>Id</th>
                                                 <th>Name</th>
-                                                <th>Rating</th>
+                                                <th>product Review</th>
                                                 <th>product Name</th>
+                                                <th>Rating</th>
                                                 <th>product Image</th>
                                             </tr>
                                             @php
@@ -37,16 +44,16 @@
                                                 <tr>
                                                     <td>{{ $i++ }}</td>
                                                     <td><span class="badge bg-soft-danger font-size-12">{{ $review->user->name }}</span></td>
-                                                    <td>{{ $review->product->name }}</td>
                                                     <td>
-                                                        @foreach(array_reverse($review['product']['images']->toArray(),true) as $img)
-                                                        @if($img['product_id']==$review->product->id)
-                                                                 @php
-                                                                    $imgs=$img['image_url']
-                                                                @endphp
-                                                        @endif
-                                                        @endforeach
-                                                        <img src="{{ asset('assets/backend/images/product/' . $imgs) }}" alt="" class="img-fluid mx-auto d-block product_img" >
+                                                        @for ($i = 1; $i <= $review->rating; $i++)
+                                                        <span class="fa fa-star starChecked"></span>
+                                                        @endfor
+                                                    </td>
+                                                    <td>{{ $review->review_text }}</td>
+                                                    <td>{{ $review->product->name }}</td>
+
+                                                    <td>
+                                                        <img src="{{ asset('assets/backend/images/product/' . $review['product']['image_url']) }}" alt="" class="img-fluid" width="70" height="70" >
 
                                                     </td>
 

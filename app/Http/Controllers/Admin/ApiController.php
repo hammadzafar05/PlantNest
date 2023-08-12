@@ -244,6 +244,15 @@ class ApiController extends Controller
         ]);
         return response()->json($data);
     }
+    // /api/productsByCategory
+    public function productsByCategory(Request $request)
+    {
+        $data['subcategories'] = Category::where('parent_id', $request->category_id)->get([
+            'id',
+            'name'
+        ]);
+        return response()->json($data);
+    }
 
     //Search Product Api
     public function searchProduct(Request $request)
