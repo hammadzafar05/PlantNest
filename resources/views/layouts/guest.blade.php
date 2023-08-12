@@ -1138,6 +1138,25 @@ span.wishlist_item_count {
 
         $(document).ready(function() {
             cart();
+            $(".remove_wishlist").click(function (e) {
+                e.preventDefault(); // Prevent the link from navigating
+    
+                var productId = $(this).data("product-id");
+                var $tr = $(this).closest("tr");
+    
+                // Make a GET request to your API to remove the product from the wishlist
+                $.get("/wishlist/remove/" + productId, function (response) {
+                    // Remove the entire row from the table
+                    $('.wishlist_item_count').text(response.count);
+                    $tr.remove();
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'success',
+                        text: response.message
+                    });
+                    console.error('Error adding product to cart:', error);
+                });
+            });
             $(".add-to-wishlist").click(function(e) {
                 e.preventDefault(); // Prevent the link from navigating
 
@@ -1153,10 +1172,16 @@ span.wishlist_item_count {
                     $('.wishlist_item_count').text(response.count);
 
                     console.log('added wishilist' + response)
-                    // Change the icon to a filled heart
                     $icon.removeClass("icon-heart").addClass("fa fa-heart");
                     console.log($icon)
-
+                    Swal.fire({
+                            timer: 2000,
+                            timerProgressBar: true,
+                            icon: 'success',
+                            title: 'Success',
+                            text: response.message
+                        });
+                    $('#wishlist_detail').text('Added to wishlist');
                 });
             });
 

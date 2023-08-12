@@ -114,7 +114,7 @@
                             <ul>
 
                                 <li class="wishlist"><a href="javascript:void(0)" title="Add to wishlist"
-                                        data-product-id="{{ $product->id }}" class="add-to-wishlist">
+                                        data-product-id="{{ $product->id }}" class="add-to-wishlist" id="wishlist_detail">
                                         @if ($product->in_wishlist == true)
                                             Added to Wishlist
                                         @else

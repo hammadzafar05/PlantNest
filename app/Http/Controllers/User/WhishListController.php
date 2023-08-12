@@ -39,12 +39,12 @@ class WhishListController extends Controller
             $wishlistItem->save();
             $count = WishlistItem::where('user_id', $userId)
             ->count();
-            return response()->json(['message' => 'Item added to wishlist', 'wishlistItem' => $wishlistItem, 'count' => $count]);
+            return response()->json(['message' => 'Product added to the wishlist', 'wishlistItem' => $wishlistItem, 'count' => $count]);
         }
         $count = WishlistItem::where('user_id', $userId)
         ->count();
 
-        return response()->json(['message' => 'Item is already in the wishlist','count' => $count]);
+        return response()->json(['message' => 'Product is already in the wishlist','count' => $count]);
     }
 
     public function removeFromWishlist($id)
@@ -59,9 +59,9 @@ class WhishListController extends Controller
             $wishlistItem->delete();
             $count = WishlistItem::where('user_id', $userId)
             ->count();
-            return response()->json(['message' => 'Item removed from wishlist','count'=>$count]);
+            return response()->json(['message' => 'Product removed from wishlist','count'=>$count]);
         }
 
-        return response()->json(['message' => 'Item not found in wishlist'], 404);
+        return response()->json(['message' => 'Product not found in wishlist'], 404);
     }
 }
