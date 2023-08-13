@@ -7,6 +7,7 @@ use App\Models\ClickedItem;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class ShopController extends Controller
@@ -42,8 +43,8 @@ $query->with('reviews');
 
         switch ($orderBy) {
             case '1':
-                $query->orderBy('average_rating', 'desc');
-                break;
+                $query->select('products.*', DB::raw('(SELECT AVG(rating) FROM reviews WHERE reviews.product_id = products.id) AS average_rating'))
+                ->orderByDesc('average_rating');                break;
             case '2':
                 $query->orderBy('popularity', 'desc');
                 break;

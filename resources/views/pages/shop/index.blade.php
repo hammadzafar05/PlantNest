@@ -100,7 +100,7 @@
                                 <select name="orderby" id="short" class="form-control">
                                     <option selected value="7">Product Name: A to Z</option>
                                     <option value="6">Product Name: Z to A</option>
-                                    {{-- <option value="1">Sort by average rating</option> --}}
+                                    <option value="1">Sort by average rating</option>
                                     {{-- <option value="2">Sort by popularity</option> --}}
                                     <option value="3">Sort by newness</option>
                                     <option value="4">Sort by price: low to high</option>
