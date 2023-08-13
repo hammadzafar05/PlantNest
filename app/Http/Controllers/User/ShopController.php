@@ -18,7 +18,7 @@ class ShopController extends Controller
         $query = Product::query();
         // Check if products are empty
         $user = Auth::user();
-$query->with('reviews');
+        $query->with('reviews')->where('status', 1);
         // Apply category filter if selected
         $selectedCategories = $request->input('categories', []);
         if (!empty($selectedCategories)) {
@@ -44,7 +44,8 @@ $query->with('reviews');
         switch ($orderBy) {
             case '1':
                 $query->select('products.*', DB::raw('(SELECT AVG(rating) FROM reviews WHERE reviews.product_id = products.id) AS average_rating'))
-                ->orderByDesc('average_rating');                break;
+                    ->orderByDesc('average_rating');
+                break;
             case '2':
                 $query->orderBy('popularity', 'desc');
                 break;
@@ -72,7 +73,7 @@ $query->with('reviews');
         // Apply price filter if selected
         $minPrice = $request->input('min-price');
         $maxPrice = $request->input('max-price');
-        
+
         if ($minPrice && $maxPrice) {
             $query->whereBetween('price', [$minPrice, $maxPrice]);
         }
@@ -118,9 +119,9 @@ $query->with('reviews');
         // dd($id);
         $user = Auth::user();
 
-        $product = Product::with('plantInfo', 'category', 'images','reviews.user')->find($id);
+        $product = Product::with('plantInfo', 'category', 'images', 'reviews.user')->find($id);
 
-        $relatedProducts = Product::with('plantInfo', 'category', 'images','reviews')
+        $relatedProducts = Product::with('plantInfo', 'category', 'images', 'reviews')->where('status',1)
             ->where('category_id', $product->category_id)->get()
             ->take(8);
         if ($user) {
@@ -132,12 +133,13 @@ $query->with('reviews');
             }
             $product->in_wishlist = in_array($product->id, $wishlistItems);
         }
-        $click=new ClickedItem();
+        $click = new ClickedItem();
         if (Auth::check()) {
             $click->user_id = Auth::user()->id;
         } else {
             $click->user_id = null;
-        }        $click->product_id=$product->id;
+        }
+        $click->product_id = $product->id;
         $click->save();
 
         // dd($relatedProducts);
