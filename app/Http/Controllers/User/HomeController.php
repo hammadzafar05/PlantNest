@@ -23,7 +23,7 @@ class HomeController extends Controller
             ->leftJoin(DB::raw('(SELECT product_id, COUNT(*) as order_items FROM order_items GROUP BY product_id) as ordered'), 'products.id', '=', 'ordered.product_id')
             ->orderByRaw('(COALESCE(clicked.clicks, 0) + COALESCE(searched.searches, 0) + COALESCE(filtered.filters, 0) + COALESCE(ordered.order_items, 0)) DESC')
             ->orderByDesc('avg_reviews.avg_rating')
-            ->with('reviews')
+            ->with('reviews')->where('status',1)
             ->take(10) // Change this to the desired number of trending products
             ->get();
 
@@ -33,7 +33,7 @@ class HomeController extends Controller
             ->where('products.discount', '>', 0)
             ->orderByDesc(DB::raw('COALESCE(sold.total_quantity, 0)'))
             ->orderByDesc(DB::raw('(products.discount / products.price) * 100'))
-            ->with('reviews')
+            ->with('reviews')->where('status',1)
             ->take(10) 
             ->get();
         $Plantsproducts = Product::whereHas('category.parent', function ($query) {
@@ -42,7 +42,7 @@ class HomeController extends Controller
             ->with('images', 'plantInfo')
             ->select('*', DB::raw('(discount / price) * 100 as discount_percentage'))
             ->orderByDesc('discount_percentage') 
-            ->with('reviews')
+            ->with('reviews')->where('status',1)
             ->take(10) 
             ->get();
 
@@ -52,7 +52,7 @@ class HomeController extends Controller
             ->with('images', 'plantInfo')
             ->select('*', DB::raw('(discount / price) * 100 as discount_percentage'))
             ->orderByDesc('discount_percentage')
-            ->with('reviews') 
+            ->with('reviews')->where('status',1) 
             ->take(10) 
             ->get();
 
