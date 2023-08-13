@@ -43,8 +43,10 @@
                                                                 <td>Not Given</td>
                                                                 @endif
                                                              <td>
-                                                                <a href="{{url('admin/deleteUser/'.$user['id'])}}"
+                                                                <a onclick="deleteData('/admin/deleteUser/'+{{$user['id']}})"
                                                                 class="btn btn-danger">Delete</a>
+                                                                {{-- <a href="{{url('admin/deleteUser/'.$user['id'])}}"
+                                                                class="btn btn-danger">Delete</a> --}}
                                                                 <button type="button" class="btn btn-info" onclick="openModal({{json_encode($user)}})">Detail</button>    
                                                             </td>
                                                             </tr>

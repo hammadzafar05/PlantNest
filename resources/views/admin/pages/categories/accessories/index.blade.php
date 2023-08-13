@@ -98,7 +98,9 @@
                                         <td>{{ $category->name }}</td>
                                         <td>
                                             <a href="{{url('admin/categories/editAccessoryCategory/'.$category->id)}}" class="btn btn-primary">Edit</a>
-                                            <a href="{{url('admin/categories/deleteAccessoryCategory/'.$category->id)}}"
+                                            {{-- <a href="{{url('admin/categories/deleteAccessoryCategory/'.$category->id)}}"
+                                                class="btn btn-danger">Delete</a> --}}
+                                            <a onclick="deleteData('/admin/categories/deleteAccessoryCategory/'+{{$category->id}})"
                                                 class="btn btn-danger">Delete</a>
                                         </td>
                                     </tr>

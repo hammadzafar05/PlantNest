@@ -85,7 +85,8 @@
                                     </div>
                                     <div class="buttons m-3 text-center" >
                                          <button class="btn btn-success text-white my-1"><a href="{{url('admin/product/editProducts',$product['id'])}}" class="text-white my-1" >Edit</a></button>
-                                         <button class="btn btn-danger text-white my-1"><a href="{{url('admin/product/deleteProducts',$product['id'])}}"  class="text-white" >Delete</a></button>
+                                         <button class="btn btn-danger text-white my-1"><a onclick="deleteData('/admin/product/deleteProducts/'+{{$product['id']}})"  class="text-white" >Delete</a></button>
+                                         {{-- <button class="btn btn-danger text-white my-1"><a href="{{url('admin/product/deleteProducts',$product['id'])}}"  class="text-white" >Delete</a></button> --}}
                                          @if($product['status']==1)
                                          <button class="btn btn-dark text-white my-1"><a href="{{url('admin/product/status',$product['id'])}}" class="text-white" >Deactivate</a></button>
                                          @else
