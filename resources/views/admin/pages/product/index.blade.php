@@ -92,7 +92,7 @@
                                          @else
                                          <button class="btn btn-info text-white my-1"><a href="{{url('admin/product/status',$product->id)}}" class="text-white" >Activate</a></button>
                                          @endif
-                                         <button class="btn btn-primary text-white my-1"><a href="{{url('admin/product/productsDetail/'.$product['id'])}}"  class="text-white" >View</a></button>
+                                         {{-- <button class="btn btn-primary text-white my-1"><a href="{{url('admin/product/productsDetail/'.$product['id'])}}"  class="text-white" >View</a></button> --}}
     
                                     </div>
                                 </div>
