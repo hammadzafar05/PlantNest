@@ -59,7 +59,7 @@
                                                                     @endfor
                                                                 </td>
                                                                 <td>{{ $review->review_text }}</td>
-                                                                <td>{{ $review->product->name }}</td>
+                                                                <td>{{ $review->product->name ?? '' }}</td>
 
                                                                 <td>
                                                                     <img src="{{ asset('assets/backend/images/product/' . $review['product']['image_url']) }}"
