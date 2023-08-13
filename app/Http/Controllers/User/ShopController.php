@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\ClickedItem;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -130,6 +131,13 @@ $query->with('reviews');
             }
             $product->in_wishlist = in_array($product->id, $wishlistItems);
         }
+        $click=new ClickedItem();
+        if (Auth::check()) {
+            $click->user_id = Auth::user()->id;
+        } else {
+            $click->user_id = null;
+        }        $click->product_id=$product->id;
+        $click->save();
 
         // dd($relatedProducts);
         return view('pages.shop.detail', compact('product', 'relatedProducts'));
