@@ -195,6 +195,9 @@ class ProductController extends Controller
         ProductImage::where('product_id', $id)->delete();
 
         $product = Product::find($id);
+        if($product){
+            $product->reviews()->delete();
+        }
         $product->delete();
         return redirect()->back()->with('success','Product deleted successfully!');
     }
