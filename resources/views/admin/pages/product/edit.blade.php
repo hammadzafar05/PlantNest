@@ -137,7 +137,7 @@
                                                 <label class="form-label" for="image">Product Image</label>
                                                 <!-- <input id="image" name="image[]" type="file" class="form-control  @error('image') is-invalid @enderror" multiple required> -->
                                                 <input id="image" name="image[]" type="file" class="form-control"
-                                                    multiple required>
+                                                    multiple>
                                             </div>
                                             {{-- @error('image')
                                                 <span class="invalid-feedback" role="alert">

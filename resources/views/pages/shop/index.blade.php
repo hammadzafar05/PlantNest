@@ -122,7 +122,7 @@
                                     <figure>
                                         <div class="product_thumb">
                                             <a class="primary_img" href={{ route('shop.detail', $product->id) }}><img
-                                                    src="{{ $product->image_url }}" alt=""></a>
+                                                    src="{{ asset('assets/backend/images/product/').'/'.$product->image_url }}" alt=""></a>
                                             <div class="label_product">
                                                 @if ($product->discount_percentage > 0)
                                                     <span class="label_sale">- {{ $product->discount_percentage }}%</span>
@@ -267,7 +267,7 @@
                                                                     role="tabpanel">
                                                                     <div class="modal_tab_img">
                                                                         <a href="#"><img
-                                                                                src="{{ $product->image_url }}"
+                                                                                src="{{asset('assets/backend/images/product/').'/'. $product->image_url }}"
                                                                                 alt=""></a>
                                                                     </div>
                                                                 </div>
@@ -276,7 +276,7 @@
                                                                         id="tab{{ $image->id }}" role="tabpanel">
                                                                         <div class="modal_tab_img">
                                                                             <a href="#"><img
-                                                                                    src="{{ $image->image_url }}"
+                                                                                    src="{{asset('assets/backend/images/product/').'/'. $image->image_url }}"
                                                                                     alt=""></a>
                                                                         </div>
                                                                     </div>
@@ -290,7 +290,7 @@
                                                                             href="#tab1" role="tab"
                                                                             aria-controls="tab1"
                                                                             aria-selected="false"><img
-                                                                                src="{{ $product->image_url }}"
+                                                                                src="{{asset('assets/backend/images/product/').'/'. $product->image_url }}"
                                                                                 alt=""></a>
 
 
@@ -303,7 +303,7 @@
                                                                                 role="tab"
                                                                                 aria-controls="tab{{ $image->id }}"
                                                                                 aria-selected="false"><img
-                                                                                    src="{{ $image->image_url }}"
+                                                                                    src="{{asset('assets/backend/images/product/').'/'. $image->image_url }}"
                                                                                     alt=""></a>
                                                                         </li>
                                                                     @endforeach

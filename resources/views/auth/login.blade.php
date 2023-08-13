@@ -23,8 +23,9 @@
 <div class="customer_login">
     <div class="container">
         <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-0"></div>
             <!--login area start-->
-            <div class="col-lg-6 col-md-6 offset-3">
+            <div class="col-lg-6 col-md-6">
                 <div class="account_form">
                     <h2>login</h2>
                     <form method="POST" action="{{ route('login') }}">

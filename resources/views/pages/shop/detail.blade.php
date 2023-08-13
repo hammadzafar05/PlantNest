@@ -26,24 +26,24 @@
                     <div class="product-details-tab">
                         <div id="img-1" class="zoomWrapper single-zoom">
                             <a href="#">
-                                <img id="zoom1" src="{{ $product->image_url }}"
-                                    data-zoom-image="{{ $product->image_url }}" alt="big-1">
+                                <img id="zoom1" src="{{ asset('assets/backend/images/product/').'/'. $product->image_url }}"
+                                    data-zoom-image="{{asset('assets/backend/images/product/').'/'. $product->image_url }}" alt="big-1">
                             </a>
                         </div>
                         <div class="single-zoom-thumb">
                             <ul class="s-tab-zoom owl-carousel single-product-active" id="gallery_01">
                                 <li>
                                     <a href="#" class="elevatezoom-gallery active" data-update=""
-                                        data-image="{{ $product->image_url }}" data-zoom-image="{{ $product->image_url }}">
-                                        <img src="{{ $product->image_url }}" alt="zo-th-1" />
+                                        data-image="{{ asset('assets/backend/images/product/').'/'.$product->image_url }}" data-zoom-image="{{ asset('assets/backend/images/product/').'/'.$product->image_url }}">
+                                        <img src="{{ asset('assets/backend/images/product/').'/'.$product->image_url }}" alt="zo-th-1" />
                                     </a>
 
                                 </li>
                                 @foreach ($product->images as $image)
                                     <li>
                                         <a href="#" class="elevatezoom-gallery active" data-update=""
-                                            data-image="{{ $image->image_url }}" data-zoom-image="{{ $image->image_url }}">
-                                            <img src="{{ $image->image_url }}" alt="zo-th-1" />
+                                            data-image="{{ asset('assets/backend/images/product/').'/'.$image->image_url }}" data-zoom-image="{{ asset('assets/backend/images/product/').'/'.$image->image_url }}">
+                                            <img src="{{ asset('assets/backend/images/product/').'/'.$image->image_url }}" alt="zo-th-1" />
                                         </a>
 
                                     </li>
@@ -297,7 +297,7 @@
                                 <figure>
                                     <div class="product_thumb">
                                         <a class="primary_img" href="{{ route('shop.detail', $product->id) }}"><img
-                                                src="{{ $product->image_url }}" alt=""></a>
+                                                src="{{ asset('assets/backend/images/product/').'/'.$product->image_url }}" alt=""></a>
                                         <div class="label_product">
                                             @if ($product->discount_percentage > 0)
                                                 <span class="label_sale">-{{ $product->discount_percentage }}%</span>

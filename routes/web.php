@@ -46,9 +46,22 @@ Route::controller(HomeController::class)->group(function () {
     Route::middleware(['auth','prevent-back-history'])->group(function(){
 
         Route::get('/account',[AccountController::class,'index'])->name('account.index');
+        Route::put('/account/update',[AccountController::class,'update'])->name('account.update');
+
         Route::get('/order/{id}',[AccountController::class,'viewOrder'])->name('order.details');
         Route::get('/orderCancel/{id}',[AccountController::class,'cancelOrder'])->name('order.cancel');
 
+        // cartController
+        Route::get('/cart',[CartController::class,'index'])->name('cart.index');
+        Route::get('/get/cart',[CartController::class,'cart'])->name('cart.cart');
+        Route::post('/cart/add/',[CartController::class,'add'])->name('cart.add');
+        Route::get('/cart/updateQuantity/',[CartController::class,'updateQuantity'])->name('cart.updateQuantity');
+        Route::get('/cart/removeCartItem',[CartController::class,'remove'])->name('cart.remove');
+
+        //Wishlist
+        Route::get('/wishlist',[WhishListController::class,'index'])->name('wishlist.index');
+        Route::get('/wishlist/add/{id}', [WhishListController::class,'addToWishlist'])->name('wishlist.add');
+        Route::get('/wishlist/remove/{id}', [WhishListController::class,'removeFromWishlist'])->name('wishlist.remove');
         
         Route::get('/checkout',[CheckoutController::class,'index'])->name('checkout.index');
         Route::post('/checkout/submit',[CheckoutController::class,'submit_checkout'])->name('checkout.submit');
@@ -58,24 +71,13 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/wishlist',[WhishListController::class,'index'])->name('wishlist.index');
 
 });
-// cartController
-Route::get('/cart',[CartController::class,'index'])->name('cart.index');
-Route::get('/get/cart',[CartController::class,'cart'])->name('cart.cart');
-Route::post('/cart/add/',[CartController::class,'add'])->name('cart.add');
-Route::get('/cart/updateQuantity/',[CartController::class,'updateQuantity'])->name('cart.updateQuantity');
-Route::get('/cart/removeCartItem',[CartController::class,'remove'])->name('cart.remove');
 
-
-Route::get('/account',[AccountController::class,'index'])->name('account.index');
-Route::put('/account/update',[AccountController::class,'update'])->name('account.update');
 Route::get('/contact',[ContactController::class,'index'])->name('contact.index');
 Route::get('/about',[AboutController::class,'index'])->name('about.index');
 Route::get('/faq',[FaqController::class,'index'])->name('faq.index');
 Route::get('/shop/{id?}',[ShopController::class,'index'])->name('shop.index');
 Route::get('/shop/product/detail/{id}',[ShopController::class,'detail'])->name('shop.detail');
 
-Route::get('/wishlist/add/{id}', [WhishListController::class,'addToWishlist'])->name('wishlist.add');
-Route::get('/wishlist/remove/{id}', [WhishListController::class,'removeFromWishlist'])->name('wishlist.remove');
 
 
 
@@ -120,7 +122,7 @@ Route::middleware(['isAdmin','auth','prevent-back-history'])->prefix('admin')->n
     Route::controller(AdminProductController::class)->group(function () {
         //products
         Route::get('product/allproducts','index')->name('showProducts');
-        Route::get('product/allproducts/{id?}','index')->name('showProducts');
+        Route::post('product/allproducts','index')->name('showProducts');
         Route::get('product/addProducts','create')->name('AddProducts');
         Route::post('product/storeProducts','store')->name('StoreProducts');
         Route::get('product/editProducts/{id}','edit')->name('editProducts');
@@ -143,6 +145,7 @@ Route::middleware(['isAdmin','auth','prevent-back-history'])->prefix('admin')->n
     // Api Fetch subb category controller
     Route::controller(ApiController::class)->group(function () {
         Route::post('api/fetch-subcategory','fetchSubcategoryApi')->name('fetchSubCategory');
+        Route::post('api/productsByCategory','productsByCategory')->name('productsByCategory');
     });
 
 });

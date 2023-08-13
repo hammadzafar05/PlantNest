@@ -139,7 +139,7 @@ body:not(.vertical-collpsed) .app-search {
 .images-preview-div img{
     padding:10px;
     width:150px;
-    height:90px;
+    height:auto;
 
 }
 .product_img {

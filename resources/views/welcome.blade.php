@@ -137,7 +137,7 @@
                                                 <div class="product_thumb">
                                                     <a class="primary_img"
                                                         href="{{ route('shop.detail', $product->id) }}"><img
-                                                            src="{{ $product->image_url }}" alt=""></a>
+                                                            src="{{ asset('assets/backend/images/product/').'/'.$product->image_url }}" alt=""></a>
                                                     <div class="label_product">
                                                         @if ($product->discount_percentage > 0)
                                                             <span
@@ -181,15 +181,15 @@
                                                             @if ($i <= $averageRating)
                                                             <li><a href=""><i class="fa fa-star" aria-hidden="true"></i></a></li>
                                                             @elseif ($i - 0.5 <= $averageRating)
-                                                            <li><a href=""><i class="fa fa-star-half" aria-hidden="true"></i></a></li>
+                                                            <li><a href="javascript:void(0)"><i class="fa fa-star-half" aria-hidden="true"></i></a></li>
                                                             @else
-                                                            <li><a href=""><i class="icon-star"></i></a></li>
+                                                            <li><a href="javascript:void(0)"><i class="icon-star"></i></a></li>
                                                             @endif
                                                         @endfor
                                                         </ul>
                                                     </div>
                                                     <h4 class="product_name"><a
-                                                            href="product-details.html">{{ $product->name }}</a></h4>
+                                                            href="{{ route('shop.detail',$product->id) }}">{{ $product->name }}</a></h4>
                                                     <div class="price_box">
                                                         @if ($product->discount_percentage > 0)
                                                             <span class="current_price">PKR
@@ -220,7 +220,7 @@
                                                 <div class="product_thumb">
                                                     <a class="primary_img"
                                                         href="{{ route('shop.detail', $product->id) }}"><img
-                                                            src="{{ $product->image_url }}" alt=""></a>
+                                                            src="{{asset('assets/backend/images/product/').'/'. $product->image_url }}" alt=""></a>
                                                     <div class="label_product">
                                                         @if ($product->discount_percentage > 0)
                                                             <span
@@ -264,9 +264,9 @@
                                                             @if ($i <= $averageRating)
                                                             <li><a href=""><i class="fa fa-star" aria-hidden="true"></i></a></li>
                                                             @elseif ($i - 0.5 <= $averageRating)
-                                                            <li><a href=""><i class="fa fa-star-half" aria-hidden="true"></i></a></li>
+                                                            <li><a href="javascript:void(0)"><i class="fa fa-star-half" aria-hidden="true"></i></a></li>
                                                             @else
-                                                            <li><a href=""><i class="icon-star"></i></a></li>
+                                                            <li><a href="javascript:void(0)"><i class="icon-star"></i></a></li>
                                                             @endif
                                                         @endfor
                                                         </ul>
@@ -303,7 +303,7 @@
                                                 <div class="product_thumb">
                                                     <a class="primary_img"
                                                         href="{{ route('shop.detail', $product->id) }}"><img
-                                                            src="{{ $product->image_url }}" alt=""></a>
+                                                            src="{{asset('assets/backend/images/product/').'/'. $product->image_url }}" alt=""></a>
                                                     <div class="label_product">
                                                         @if ($product->discount_percentage > 0)
                                                             <span
@@ -501,7 +501,7 @@
                                         <div class="product_thumb">
                                             <a class="primary_img"
                                                 href="{{ route('shop.detail', $product->id) }}"><img
-                                                    src="{{ $product->image_url }}" alt=""></a>
+                                                    src="{{asset('assets/backend/images/product/').'/'. $product->image_url }}" alt=""></a>
                                             <div class="label_product">
                                                 @if ($product->discount_percentage > 0)
                                                     <span
@@ -726,14 +726,14 @@
                                         <div class="tab-content product-details-large">
                                             <div class="tab-pane fade show active" id="tab1" role="tabpanel">
                                                 <div class="modal_tab_img">
-                                                    <a href="#"><img src="{{ $product->image_url }}"
+                                                    <a href="#"><img src="{{ asset('assets/backend/images/product/').'/'.$product->image_url }}"
                                                             alt=""></a>
                                                 </div>
                                             </div>
                                             @foreach ($product->images as $image)
                                                 <div class="tab-pane fade" id="tab{{ $image->id }}" role="tabpanel">
                                                     <div class="modal_tab_img">
-                                                        <a href="#"><img src="{{ $image->image_url }}"
+                                                        <a href="#"><img src="{{asset('assets/backend/images/product/').'/'. $image->image_url }}"
                                                                 alt=""></a>
                                                     </div>
                                                 </div>
@@ -744,7 +744,7 @@
                                                 <li>
                                                     <a class="nav-link active" data-bs-toggle="tab" href="#tab1"
                                                         role="tab" aria-controls="tab1" aria-selected="false"><img
-                                                            src="{{ $product->image_url }}" alt=""></a>
+                                                            src="{{asset('assets/backend/images/product/').'/'. $product->image_url }}" alt=""></a>
 
 
                                                 </li>
@@ -753,7 +753,7 @@
                                                         <a class="nav-link" data-bs-toggle="tab{{ $image->id }}"
                                                             href="#tab{{ $image->id }}" role="tab"
                                                             aria-controls="tab{{ $image->id }}"
-                                                            aria-selected="false"><img src="{{ $image->image_url }}"
+                                                            aria-selected="false"><img src="{{asset('assets/backend/images/product/').'/'. $image->image_url }}"
                                                                 alt=""></a>
                                                     </li>
                                                 @endforeach
@@ -835,14 +835,14 @@
                                         <div class="tab-content product-details-large">
                                             <div class="tab-pane fade show active" id="tab1" role="tabpanel">
                                                 <div class="modal_tab_img">
-                                                    <a href="#"><img src="{{ $product->image_url }}"
+                                                    <a href="#"><img src="{{ asset('assets/backend/images/product/').'/'.$product->image_url }}"
                                                             alt=""></a>
                                                 </div>
                                             </div>
                                             @foreach ($product->images as $image)
                                                 <div class="tab-pane fade" id="tab{{ $image->id }}" role="tabpanel">
                                                     <div class="modal_tab_img">
-                                                        <a href="#"><img src="{{ $image->image_url }}"
+                                                        <a href="#"><img src="{{ asset('assets/backend/images/product/').'/'.$image->image_url }}"
                                                                 alt=""></a>
                                                     </div>
                                                 </div>
@@ -853,7 +853,7 @@
                                                 <li>
                                                     <a class="nav-link active" data-bs-toggle="tab" href="#tab1"
                                                         role="tab" aria-controls="tab1" aria-selected="false"><img
-                                                            src="{{ $product->image_url }}" alt=""></a>
+                                                            src="{{ asset('assets/backend/images/product/').'/'.$product->image_url }}" alt=""></a>
 
 
                                                 </li>
@@ -862,7 +862,7 @@
                                                         <a class="nav-link" data-bs-toggle="tab{{ $image->id }}"
                                                             href="#tab{{ $image->id }}" role="tab"
                                                             aria-controls="tab{{ $image->id }}"
-                                                            aria-selected="false"><img src="{{ $image->image_url }}"
+                                                            aria-selected="false"><img src="{{ asset('assets/backend/images/product/').'/'.$image->image_url }}"
                                                                 alt=""></a>
                                                     </li>
                                                 @endforeach
@@ -944,14 +944,14 @@
                                         <div class="tab-content product-details-large">
                                             <div class="tab-pane fade show active" id="tab1" role="tabpanel">
                                                 <div class="modal_tab_img">
-                                                    <a href="#"><img src="{{ $product->image_url }}"
+                                                    <a href="#"><img src="{{ asset('assets/backend/images/product/').'/'.$product->image_url }}"
                                                             alt=""></a>
                                                 </div>
                                             </div>
                                             @foreach ($product->images as $image)
                                                 <div class="tab-pane fade" id="tab{{ $image->id }}" role="tabpanel">
                                                     <div class="modal_tab_img">
-                                                        <a href="#"><img src="{{ $image->image_url }}"
+                                                        <a href="#"><img src="{{ asset('assets/backend/images/product/').'/'.$image->image_url }}"
                                                                 alt=""></a>
                                                     </div>
                                                 </div>
@@ -962,7 +962,7 @@
                                                 <li>
                                                     <a class="nav-link active" data-bs-toggle="tab" href="#tab1"
                                                         role="tab" aria-controls="tab1" aria-selected="false"><img
-                                                            src="{{ $product->image_url }}" alt=""></a>
+                                                            src="{{asset('assets/backend/images/product/').'/'. $product->image_url }}" alt=""></a>
 
 
                                                 </li>
@@ -971,7 +971,7 @@
                                                         <a class="nav-link" data-bs-toggle="tab{{ $image->id }}"
                                                             href="#tab{{ $image->id }}" role="tab"
                                                             aria-controls="tab{{ $image->id }}"
-                                                            aria-selected="false"><img src="{{ $image->image_url }}"
+                                                            aria-selected="false"><img src="{{asset('assets/backend/images/product/').'/'. $image->image_url }}"
                                                                 alt=""></a>
                                                     </li>
                                                 @endforeach

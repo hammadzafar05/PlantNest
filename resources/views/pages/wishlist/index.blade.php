@@ -50,13 +50,13 @@
                                                             alt=""></a></td>
                                                 <td class="product_name"><a
                                                         href="{{route('shop.detail',$product->id)}}">{{ $wishlistItem->product->name }}</a></td>
-                                                <td class="product-price">PKR @if ($wishlistItem->product->discount_percentage > 0)
-                                                        <span class="current_price">PKR
+                                                <td class="product-price">Rs @if ($wishlistItem->product->discount_percentage > 0)
+                                                        <span class="current_price">Rs
                                                             {{ $wishlistItem->product->price - $wishlistItem->product->discount }}</span>
-                                                        <span class="old_price">PKR
+                                                        <span class="old_price" style="text-decoration: line-through">Rs
                                                             {{ $wishlistItem->product->price }}</span>
                                                     @else
-                                                        <span class="current_price">PKR
+                                                        <span class="current_price">Rs
                                                             {{ $wishlistItem->product->price }}</span>
                                                     @endif
                                                 </td>

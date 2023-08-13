@@ -9,25 +9,31 @@ use App\Models\Discount;
 use App\Models\ProductImage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\PlantInfo;
 use App\Models\Review;
 
 class ProductController extends Controller
 {
-    public function index($id=null)
+    public function index(Request $req)
     {
-        if($id!==null)
+        // dd($req->mainCat,$req->subCat)
+        if($req->mainCat!==null && $req->subCat!==null)
         {
-            $allproducts = Product::with(['images'])->where('category_id',$id ?? '')->select('id','name','price','description','image_url')->latest()->paginate(15);
-        }
-        else
+            // dd('not null');
+            $mainCat=$req->mainCat;
+            $subCat=$req->subCat;
+            $allproducts = Product::with(['images'])->where('category_id',$req->subCat)->select('id','name','price','description','image_url')->latest()->paginate(15);
+            
+        }else
         {
-            $allproducts = Product::with(['images'])->latest()->paginate(15);
-
+            $mainCat='all';
+            $subCat='all';
+            $allproducts = Product::with(['images'])->latest()->paginate(15);            
         }
-        $main_categories = Category::where('parent_id',0)->select('id','name','parent_id')->get();
-        $sub_categories = Category::where('parent_id','!=',0)->select('id','name','parent_id')->get();
+        $main_categories = Category::where('parent_id','=',0)->select('id','name','parent_id')->get();
+        $sub_categories = Category::where('parent_id',$req->mainCat ?? '')->where('parent_id','!=',0)->select('id','name','parent_id')->get();
         
-        return view('admin.pages.product.index',['allproducts'=>$allproducts,'_subCategory'=>$sub_categories,'_mainCategory'=>$main_categories]);
+        return view('admin.pages.product.index',['allproducts'=>$allproducts,'_mainCategory'=>$main_categories,'_subCategory'=>$sub_categories,'catId'=>$mainCat,'subCat'=>$subCat]);
     }
 
     public function create()
@@ -38,16 +44,19 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        // dd($this->storeFirstImageInProduct($request->file('image'),102));
         $request->validate([
             'name' => 'required|max:255|unique:products',
             'species' => 'required|max:255',
             'purpose' => 'max:255',
             'price' => 'required|integer',
             'discount' => 'required',
-            'description' => 'required|max:255',
+            'description' => 'required',
             // 'category_id' => 'required|integer',
             'subcategory_id' => 'required|integer',
+            'habit'  => 'max:255',
+            'light'  => 'max:255',
+            'water'  => 'max:255',
+            'plantOther'  => 'max:255',
             'stock' => 'required|integer',
             'image' => 'required',
             'image.*' => 'mimes:jpeg,jpg,png,gif'
@@ -56,7 +65,7 @@ class ProductController extends Controller
         $imagePaths = [];
         $product = new Product();
         $product->name = $request->name;
-        $product->species = $request->species;
+        $product->species = $request->species ?? 'None';
         $product->price = $request->price;
         $product->discount = $request->discount;
         $product->description = $request->description;
@@ -69,6 +78,16 @@ class ProductController extends Controller
         {
             return redirect()->back()->with('error','something weng wrong!');
         }
+            $plantsInfo=new PlantInfo();
+            $plantsInfo->product_id = $product->id; 
+            $plantsInfo->habits = $request->habit ?? 'Not Provided';
+            $plantsInfo->lights = $request->light ?? 'Not Provided';
+            $plantsInfo->water_requirements = $request->water ?? 'Not Provided';
+            $plantsInfo->other = $request->plantOther ?? 'Not Provided';
+            if(!$plantsInfo->save())
+            {
+                return redirect()->back()->with('error','something weng wrong!');
+            }
         
         if ($request->hasfile('image')) {
             $images = $request->file('image');
@@ -88,7 +107,7 @@ class ProductController extends Controller
             $product->save();
         }
         }
-        return redirect()->back()->with('success','product added successfully!');
+        return redirect()->back()->with('success','Product added successfully!');
     }
 
     public function edit($id)
@@ -121,7 +140,6 @@ class ProductController extends Controller
             'description' => 'max:255',
             'subcategory_id' => 'integer',
             'stock' => 'integer',
-            // 'image' => 'image'
         ]);
         $product = Product::find($request->pId);
         // dd($product);
@@ -210,25 +228,11 @@ class ProductController extends Controller
         return view('admin.pages.product.product-review',['_productReviews'=>$productReviews]);
     }
 
-    public function productDetail()
+    public function productDetail($id)
     {
-      $productArray=Review::with([
-        'product'=>function($query){
-            $query->select('id','name','price','discount','description','stock','image_url','category_id');
-        },
-        'product.category'=>function($query){
-            $query->select('id','name');
-        },
-        'product.images'=>function($query){
-            $query->select('id','image_url','product_id');
-        },
-        'user'=>function ($query){
-            $query->select('id','name');
-        }
-    ])->get()->toArray();
+      $productArray=Product::with(['category','images','reviews','reviews.user'])->where('id',$id)->get()->first();
 
-    dd($productArray);
-
+      return view('admin.pages.product.detail',['productArray'=>$productArray]);
     }
 
     // public function search(Request $request)

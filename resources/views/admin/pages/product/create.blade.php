@@ -162,7 +162,7 @@
                                                             <strong>{{ $message }}</strong>
                                                         </span>
                                                     @enderror
-                                                    <option value="" selected disabled>Select Category</option>
+                                                    <option selected disabled>Select Category</option>
                                                     @foreach ($_allCategories as $category)
                                                         <option {{ old('category_id') == $category->id ? 'selected' : '' }}
                                                             value="{{ $category->id }}">{{ $category->name }}</option>
@@ -186,19 +186,52 @@
                                                 </select>
                                             </div>
                                         </div>
+                                        {{-- this will show when category will be plant --}}
+                                        <div class="d-none" id="plants-info">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="habit">Plant Habit</label>
+                                                        <input id="habit" value="{{ old('habit') }}" name="habit" type="text" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="light">Plant Light</label>
+                                                        <input id="light" name="light" type="text"
+                                                             value="{{ old('light') }}"
+                                                            class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="water">Water Requirments</label>
+                                                        <input id="water" value="{{ old('water') }}" name="water" type="text" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="plantOther">Plant Others</label>
+                                                        <input id="plantOther" name="plantOther" type="text"
+                                                             value="{{ old('plantOther') }}"
+                                                            class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="row">
-
                                             <div class="mb-0">
                                                 <label class="form-label" for="productdesc">Product Description</label>
                                                 <textarea class="form-control  @error('description') is-invalid @enderror" name="description" id="productdesc"
-                                                    rows="4" required>{{ old('name') }}</textarea>
+                                                    rows="4" required>{{ old('description') }}</textarea>
                                                 @error('description')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
                                                 @enderror
                                             </div>
-
                                         </div>
                                     </div>
 
@@ -210,13 +243,13 @@
 
                                 </form>
                             </div>
-
-
                         </div>
                     </div>
                 </div>
+            </div>
                 <!-- end row -->
 
 
             </div> <!-- container-fluid -->
         @endsection
+

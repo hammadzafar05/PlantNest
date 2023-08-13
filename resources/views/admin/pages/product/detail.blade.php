@@ -1,18 +1,19 @@
 @extends('admin.layouts.app')
 @section('admin_title','Dashboard | Product Detail')
+@section('style')
+<style>
+    .starChecked {
+      color: orange;
+    }
+    </style>
+@endsection
+
 @section('content')
-    <!--breadcrumbs area start-->
-    <div class="breadcrumbs_area">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="breadcrumb_content">
-                        <ul>
-                            <li><a href="{{ route('user.home') }}">home</a></li>
-                            <li>product details</li>
-                        </ul>
-                    </div>
-                </div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 col">
+            <div class="page-title-box d-flex align-items-center justify-content-between">
+                <h4 class="mb-0">Product Detail</h4>
             </div>
         </div>
     </div>
@@ -26,24 +27,24 @@
                     <div class="product-details-tab">
                         <div id="img-1" class="zoomWrapper single-zoom">
                             <a href="">
-                                <img id="zoom1" src="{{ $product->image_url }}"
-                                    data-zoom-image="{{ $product->image_url }}" alt="big-1">
+                                <img id="zoom1" src="{{asset('assets/backend/images/product/').'/'. $product->image_url }}"
+                                    data-zoom-image="{{ asset('assets/backend/images/product/').'/'.$product->image_url }}" alt="big-1">
                             </a>
                         </div>
                         <div class="single-zoom-thumb">
                             <ul class="s-tab-zoom owl-carousel single-product-active" id="gallery_01">
                                 <li>
                                     <a href="#" class="elevatezoom-gallery active" data-update=""
-                                        data-image="{{ $product->image_url }}" data-zoom-image="{{ $product->image_url }}">
-                                        <img src="{{ $product->image_url }}" alt="zo-th-1" />
+                                        data-image="{{ asset('assets/backend/images/product/').'/'.$product->image_url }}" data-zoom-image="{{ asset('assets/backend/images/product/').'/'.$product->image_url }}">
+                                        <img src="{{asset('assets/backend/images/product/').'/'. $product->image_url }}" alt="zo-th-1" />
                                     </a>
 
                                 </li>
                                 @foreach ($product->images as $image)
                                     <li>
                                         <a href="#" class="elevatezoom-gallery active" data-update=""
-                                            data-image="{{ $image->image_url }}" data-zoom-image="{{ $image->image_url }}">
-                                            <img src="{{ $image->image_url }}" alt="zo-th-1" />
+                                            data-image="{{ asset('assets/backend/images/product/').'/'.$image->image_url }}" data-zoom-image="{{ asset('assets/backend/images/product/').'/'.$image->image_url }}">
+                                            <img src="{{ asset('assets/backend/images/product/').'/'.$image->image_url }}" alt="zo-th-1" />
                                         </a>
 
                                     </li>
@@ -211,7 +212,7 @@
                                                         @endfor
                                                     </ul>
                                                 </div>
-                                                <p><strong>{{$review->user->name}} </strong>- {{$review->created_at->format(F J , Y)}}</p>
+                                                <p><strong>{{$review->user->name}} </strong>- {{$review->created_at->format('F J , Y')}}</p>
                                                 <span>{{$review->review_text}}</span>
                                             </div>
                                         </div>
@@ -280,7 +281,7 @@
                             <figure>
                                 <div class="product_thumb">
                                     <a class="primary_img" href="{{ route('shop.detail',$product->id) }}"><img
-                                            src="{{ $product->image_url }}"
+                                            src="{{ asset('assets/backend/images/product/').'/'.$product->image_url }}"
                                             alt=""></a>
                                     <div class="label_product">
                                         @if ($product->discount_percentage > 0)
@@ -409,3 +410,4 @@
     </script>
     
 @endsection
+

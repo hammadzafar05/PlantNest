@@ -16,20 +16,26 @@
                                 <h4>Orders List</h4>
                             </ul>
                             @if (!$_orders->isEmpty())
-                                <div class="row">
-
-                                    <div class="col-xl-12 col-sm-6">
-                                        <table border="1" class="table">
-
-                                            <tr>
-                                                <th>Order Id</th>
-                                                <th>Date</th>
-                                                <th>Billing Name</th>
-                                                <th>Billing Address</th>
-                                                <th>Total</th>
-                                                <th>Status</th>
-                                                <th>Action</th>
-                                            </tr>
+                            <div class="col-xl-12 col-sm-6">
+                                @php
+                                    $i = 1;
+                                @endphp
+                                <div data-test="datatable" class="dataTables_wrapper dt-bootstrap4">
+                                    <div class="row">
+                                        <div data-test="datatable-table" class="col-sm-12">
+                                                <table  id="dt-table" class="bg-white table table-bordered table-hover table-striped w-100">
+                                            <thead data-test="datatable-head">
+                                                <tr>
+                                                    <th>Order Id</th>
+                                                    <th>Date</th>
+                                                    <th>Billing Name</th>
+                                                    <th>Billing Address</th>
+                                                    <th>Total</th>
+                                                    <th>Status</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                                    </thead>
+                                                    <tbody data-test="table-body">
                                             @foreach ($_orders as $order)
                                                 <tr>
                                                     <td>{{ $order->id }}</td>
@@ -44,17 +50,9 @@
                                                         <td>Not Provided</td>
                                                     @endif
 
-                                                    {{-- <td>{{ App\Models\Profile::where('users_id',$order->user->id)->first()->address1}},{{ App\Models\Profile::where('users_id',$order->user->id)->first()->address2}}</td> --}}
-                                                    <td>${{ $order->total_amount }}</td>
+                                                    <td><strong>PKR</strong> {{ $order->total_amount }}</td>
                                                     <td>
                                                         {{ $order->status }}
-                                                        {{-- @if ($order->status == 0)
-                                                        <span >Cancel</span>
-                                                        @elseif($order->status==1)
-                                                        <span >pending</span>
-                                                        @elseif($order->status==2)
-                                                        <span>Delivered</span>
-                                                        @endif --}}
                                                     </td>
                                                     <td>
                                                         <select class="form-control m-0"
@@ -84,10 +82,14 @@
                                                         </select>
 
                                                     </td>
-                                            @endforeach
+                                                </tr>
+                                                @endforeach
+                                            </tbody>
                                         </table>
+                                    </div> <!-- enbd table-responsive-->
                                     </div>
                                 </div>
+                            </div>
                             @else
                                 <div class="row justify-content-center text-center">
                                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -115,5 +117,18 @@
         function changeOrderStatus(id, status) {
             window.location.href = `${_url}/admin/orders/orderStatus/${id}/${status}`;
         }
+
+        $(document).ready(function() {
+            $('#dt-table').dataTable(
+                {
+           responsive: true,
+           pagingType: 'full_numbers',
+           dom:
+               "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'B>>" +
+               "<'row'<'col-sm-12'tr>>" +
+               "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+       }
+            );
+        });
     </script>
 @endsection

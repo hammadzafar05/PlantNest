@@ -467,7 +467,7 @@ span.wishlist_item_count {
                     <div class="row align-items-center">
                         <div class="col-lg-3 col-md-3 col-4">
                             <div class="logo">
-                                <a href="{{route('user.home')}}"><img src="{{asset('assets/frontend/img/logo/logo.png
+                                <a href="{{url('/')}}"><img src="{{asset('assets/frontend/img/logo/logo.png
                                 ')}}" alt=""></a>
                             </div>
                         </div>
@@ -731,8 +731,7 @@ span.wishlist_item_count {
                         <div class="col-lg-3">
                             <div class="call-support text-center">
                                 @if(auth()->user())
-                                <p class="text-center w-100"> <a href="tel:0123456789" class="w-100 text-center">{{Auth::user()->name}}</a></p>
-                                
+                                <p class="text-center w-100"> <a href="javascript:void(0)" class="w-100 text-center">{{Auth::user()->name}}</a></p>
                                 @endif
                             </div>
                         </div>
@@ -913,7 +912,7 @@ span.wishlist_item_count {
 
     @guest
         <script>
-            $('.add_to_cart, .cart_button, .mini_cart_wrapper, .header_wishlist, .product_d_action','.add-to-wishlist').click(function(e) {
+            $('.add_to_cart, .cart_button, .mini_cart_wrapper, .header_wishlist, .product_d_action, .add-to-wishlist, .header_wishlist-list').click(function(e) {
                 e.preventDefault();
                 if (localStorage.getItem('auth') == 'false') {
                     Swal.fire({

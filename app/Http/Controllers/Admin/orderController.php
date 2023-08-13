@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\order;
+use App\Models\Order;
 use Illuminate\Http\Request;
 
 class orderController extends Controller
@@ -13,7 +13,7 @@ class orderController extends Controller
      */
     public function index()
     {
-        $_orders=order::orderBy('id','desc')->with('user')->get();
+        $_orders=Order::orderBy('id','desc')->with('user')->get();
 
         return view('admin.pages.orders_list',['_orders'=>$_orders]);
     }
@@ -67,8 +67,7 @@ class orderController extends Controller
     }
     public function orderStatusChange($id,$status)
     {
-        $order=order::find($id);
-        
+        $order=Order::find($id);
         $order->status=$status;
         if(!$order->save())
         {

@@ -21,6 +21,7 @@
     <link href="{{ asset('assets/backend/libs/select2/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- dropzone css -->
     <link href="{{ asset('assets/backend/libs/dropzone/min/dropzone.min.css') }}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{{asset('assets/backend/libs/sweetalert2/sweetalert2.min.css')}}">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
         integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
@@ -28,13 +29,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
         integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-        @yield('style')
-    </head>
-    
-    <body>
-  
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
+    @yield('style')
+</head>
 
-<!-- Begin page -->
+<body>
+
+
+    <!-- Begin page -->
     <div id="layout-wrapper">
         <header id="page-topbar">
             <div class="navbar-header">
@@ -75,7 +77,7 @@
 
                 <div class="d-flex">
 
-                    <div class="dropdown d-inline-block d-lg-none ms-2">
+                    {{-- <div class="dropdown d-inline-block d-lg-none ms-2">
                         <button type="button" class="btn header-item noti-icon waves-effect"
                             id="page-header-search-dropdown" data-bs-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
@@ -86,7 +88,7 @@
 
 
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="dropdown d-inline-block">
                         <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -98,7 +100,7 @@
                         </button>
                         <div class="dropdown-menu dropdown-menu-end">
                             <!-- item-->
-                            <a class="dropdown-item" href="{{ url('/user') }}"><i
+                            <a class="dropdown-item" href="{{ url('/account') }}"><i
                                     class="uil uil-user-circle font-size-18 align-middle text-muted me-1"></i> <span
                                     class="align-middle">View Profile</span></a>
                             <a class="dropdown-item" href="{{ url('/') }}"><i
@@ -127,7 +129,8 @@
             <div class="navbar-brand-box">
                 <a href="{{ url('admin') }}" class="logo logo-dark">
                     <span class="logo-sm">
-                        <img src="{{ asset('assets/backend/images/logo/logo-sm.png') }}" alt="" height="25">
+                        <img src="{{ asset('assets/backend/images/logo/logo-sm.png') }}" alt=""
+                            height="25">
                     </span>
                     <span class="logo-lg">
                         <img src="{{ asset('assets/backend/logo/logo.png') }}" alt="" height="40"
@@ -140,7 +143,7 @@
             <button type="button" class="btn btn-sm px-3 font-size-16 header-item waves-effect vertical-menu-btn">
                 <i class="fa fa-fw fa-bars"></i>
             </button>
-            
+
             <div data-simplebar class="sidebar-menu-scroll">
                 @include('admin.layouts.navigate')
             </div>
@@ -164,8 +167,9 @@
         </div>
     </div>
     <!-- END layout-wrapper -->
-
-
+    {{-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script> --}}
     <!-- JAVASCRIPT -->
     <script src="{{ asset('assets/backend/libs/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/backend/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
@@ -179,9 +183,10 @@
     <script src="{{ asset('assets/backend/js/pages/toastr.init.js') }}"></script>
 
     <!-- apexcharts -->
-    {{-- <script src="{{asset('assets/backend/libs/apexcharts/apexcharts.min.js')}}"></script> --}}
+    <script src="{{asset('assets/backend/libs/sweetalert2/sweetalert2.all.min.js')}}"></script>
 
     {{-- <script src="{{asset('assets/backend/js/pages/dashboard.init.js')}}"></script> --}}
+    <script src="{{ asset('assets/backend/js/main.js') }}"></script>
 
     <script src="{{ asset('assets/backend/js/app.js') }}"></script>
     <!-- select 2 plugin -->
@@ -193,67 +198,77 @@
     <!-- init js -->
     <script src="{{ asset('assets/backend/js/pages/ecommerce-add-product.init.js') }}"></script>
     {{-- <script src="{{asset('assets/backend/js/admin.js')}}"></script> --}}
+
+    <script src="{{ asset('assets/backend/libs/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+
     <script>
-        var _url= '{{url("/")}}';
+        var _url = '{{ url('/') }}';
 
         $(function() {
-                    $(document).ready(function() {
-                        $('#category-dropdown').on('change', function() {
-                            var idCategory = this.value;
-                            $("#subcategory-dropdown").html('');
-                            $.ajax({
-                                url: "{{ url('admin/api/fetch-subcategory') }}",
-                                type: "POST",
-                                data: {
-                                    category_id: idCategory,
-                                    _token: '{{ csrf_token() }}'
-                                },
-                                dataType: 'json',
-                                success: function(result) {
-                                    $('#subcategory-dropdown').html(
-                                        '<option selected disabled>Select Sub Category</option>'
-                                    );
-                                    $.each(result.subcategories, function(key, value) {
-                                        $("#subcategory-dropdown").append(
-                                            '<option value="' + value
-                                            .id + '">' + value.name +
-                                            '</option>');
-                                        console.log(result.subcategories)
-                                    });
-                                }
-                            });
-                        });
-                    });
+            $(document).ready(function() {
+                $('#category-dropdown').on('change', function() {
+                    var idCategory = this.value;
+                    var selectedOptionText = $('#category-dropdown').val();
+                    if (selectedOptionText == 1 && selectedOptionText !== null) {
+                        $('#plants-info').removeClass('d-none');
+                    } else {
 
-                    // Multiple images preview with JavaScript
-                    var previewImages = function(input, imgPreviewPlaceholder) {
-                        if (input.files) {
-                            var filesAmount = input.files.length;
-                            for (i = 0; i < filesAmount; i++) {
-                                var reader = new FileReader();
-                                reader.onload = function(event) {
-                                    $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(
-                                        imgPreviewPlaceholder);
-                                }
-                                reader.readAsDataURL(input.files[i]);
-                            }
+                        $('#plants-info').addClass('d-none');
+                    }
+                    $("#subcategory-dropdown").html('');
+                    $.ajax({
+                        url: "{{ url('admin/api/fetch-subcategory') }}",
+                        type: "POST",
+                        data: {
+                            category_id: idCategory,
+                            _token: '{{ csrf_token() }}'
+                        },
+                        dataType: 'json',
+                        success: function(result) {
+                            $('#subcategory-dropdown').html(
+                                '<option selected disabled>Select Sub Category</option>'
+                            );
+                            $.each(result.subcategories, function(key, value) {
+                                $("#subcategory-dropdown").append(
+                                    '<option value="' + value
+                                    .id + '">' + value.name +
+                                    '</option>');
+                                // console.log(result.subcategories)
+                            });
                         }
-                    };
-                    $('#image').on('change', function() {
-                        previewImages(this, 'div.images-preview-div');
                     });
                 });
+            });
+
+            // Multiple images preview with JavaScript
+            var previewImages = function(input, imgPreviewPlaceholder) {
+                if (input.files) {
+                    var filesAmount = input.files.length;
+                    for (i = 0; i < filesAmount; i++) {
+                        var reader = new FileReader();
+                        reader.onload = function(event) {
+                            $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(
+                                imgPreviewPlaceholder);
+                        }
+                        reader.readAsDataURL(input.files[i]);
+                    }
+                }
+            };
+            $('#image').on('change', function() {
+                previewImages(this, 'div.images-preview-div');
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            // Wait for 2 seconds and then hide the element
+            setTimeout(function() {
+                $('.messageToast').addClass('d-none');
+            }, 3000); // 2000 milliseconds = 2 seconds
+        });
     </script>
     @yield('script')
-   
-      <script>
-        $(document).ready(function() {
-           // Wait for 2 seconds and then hide the element
-           setTimeout(function() {
-               $('.messageToast').addClass('d-none');
-           }, 3000); // 2000 milliseconds = 2 seconds
-       });
-   </script>
 </body>
 
 </html>
