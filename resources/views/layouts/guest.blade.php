@@ -634,11 +634,11 @@ span.wishlist_item_count {
                                                     <div class="cart_table_border">
                                                         <div class="cart_total">
                                                             <span>Sub total:</span>
-                                                            <span class="price">$125.00</span>
+                                                            <span class="price">Rs 0</span>
                                                         </div>
                                                         <div class="cart_total mt-10">
                                                             <span>total:</span>
-                                                            <span class="price">$125.00</span>
+                                                            <span class="price">Rs 0</span>
                                                         </div>
                                                     </div>
                                                 </div>

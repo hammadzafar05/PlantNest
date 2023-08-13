@@ -13,7 +13,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\PlantInfo;
 use App\Models\Review;
-use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -264,13 +263,8 @@ class ProductController extends Controller
         ->join('orders', 'order_items.order_id', '=', 'orders.id')
         ->join('categories', 'products.category_id', '=', 'categories.id')
         ->where('orders.status', '=', 'confirmed')
-        ->select(
-            'products.id as product_id',
-            'products.name as product_name',
-            'categories.name as category_name',
-            DB::raw('SUM(order_items.quantity) as total_quantity_sold')
-        )
-        ->groupBy('product_id', 'product_name', 'category_name')
+        ->select('products.name as product_name', 'order_items.quantity as quantity_sold', 'categories.name as category_name')
+        ->distinct('products.id')
         ->get();
 
         return view('admin.pages.sold',['products'=>$soldProducts]);
