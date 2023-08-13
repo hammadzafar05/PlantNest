@@ -13,8 +13,7 @@ class orderController extends Controller
      */
     public function index()
     {
-        $_orders=Order::orderBy('id','desc')->with('user')->get();
-
+        $_orders=Order::with('user')->orderBy('orders.id','desc')->get();
         return view('admin.pages.orders_list',['_orders'=>$_orders]);
     }
 

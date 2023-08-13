@@ -52,6 +52,18 @@
                 <span>Orders</span>
             </a>
         </li>
+        <li>
+            <a href="{{url('admin/products-availability')}}" class=" waves-effect">
+            <i class="fa-solid fa-cart-shopping"></i>
+                <span>Availability</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{url('admin/products-sold')}}" class=" waves-effect">
+            <i class="fa-solid fa-cart-shopping"></i>
+                <span>Sold Quantity</span>
+            </a>
+        </li>
 
         {{-- <li>
             <a href="{{url('admin/contact')}}" class=" waves-effect">

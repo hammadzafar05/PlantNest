@@ -38,10 +38,10 @@
                                                     <tbody data-test="table-body">
                                             @foreach ($_orders as $order)
                                                 <tr>
-                                                    <td>{{ $order->id }}</td>
+                                                    <td>{{ $loop->iteration }}</td>
                                                     <td>{{ \Carbon\Carbon::parse($order->created_at)->format('d-m-Y') }}
                                                     </td>
-                                                    <td><span class="badge bg-soft-danger font-size-12">{{ $order->user->name }}</span></td>
+                                                    <td><span class="badge bg-soft-info font-size-12">{{ $order->user->name }}</span></td>
 
                                                     @if (App\Models\userDetail::where('user_id', $order->user->id)->first())
                                                         <td>{{ App\Models\userDetail::where('user_id', $order->user->id)->first()->shipping_billing_address_1 }},{{ App\Models\userDetail::where('user_id', $order->user->id)->first()->shipping_billing_address_2 }}

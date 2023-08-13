@@ -16,7 +16,7 @@ class AccountController extends Controller
 {
     public function index(){
 
-        $orders = Order::where('user_id',auth()->user()->id)->get();
+        $orders = Order::where('user_id',auth()->user()->id)->orderBy('id','desc')->get();
         $userDetails = User::with(['details'])->find(auth()->user()->id);
 
         return view('pages.account.index',compact('orders','userDetails'));

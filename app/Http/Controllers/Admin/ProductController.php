@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use App\Models\OrderItem;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Subcategory;
@@ -9,8 +10,10 @@ use App\Models\Discount;
 use App\Models\ProductImage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 use App\Models\PlantInfo;
 use App\Models\Review;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -241,4 +244,33 @@ class ProductController extends Controller
     //     $products = Product::where('name', 'like', '%' . $search . '%')->paginate(10);
     //     return view('admin.product.search', compact('products'));
     // }
+
+    //available products
+    public function productsAvailability(){
+
+        $products=Product::with(['category'])->orderBy('id','desc')->get();
+        
+        return view('admin.pages.availability',['products'=>$products]);
+
+    }
+
+    //Sold products
+    public function productsSold(){
+
+        $soldProducts = OrderItem::join('products', 'order_items.product_id', '=', 'products.id')
+        ->join('orders', 'order_items.order_id', '=', 'orders.id')
+        ->join('categories', 'products.category_id', '=', 'categories.id')
+        ->where('orders.status', '=', 'confirmed')
+        ->select(
+            'products.id as product_id',
+            'products.name as product_name',
+            'categories.name as category_name',
+            DB::raw('SUM(order_items.quantity) as total_quantity_sold')
+        )
+        ->groupBy('product_id', 'product_name', 'category_name')
+        ->get();
+
+        return view('admin.pages.sold',['products'=>$soldProducts]);
+
+    }
 }

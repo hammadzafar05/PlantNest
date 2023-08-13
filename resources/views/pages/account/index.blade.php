@@ -78,7 +78,7 @@
                                             @foreach ($orders as $order)
                                             
                                             <tr>
-                                                <td>#{{ $order->id }}</td>
+                                                <td>#{{ $loop->iteration }}</td>
                                                 <td>{{ \Carbon\Carbon::parse($order->created_at)->format('d M Y') }}</td>
                                                 <td><span class="success">{{ $order->status }}</span></td>
                                                 <td>{{ $order->total_amount }}</td>

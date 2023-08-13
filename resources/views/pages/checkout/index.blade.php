@@ -317,5 +317,15 @@
     </script>
     
 @endif
-
+@if(session()->has('success'))
+        <script>
+            Swal.fire({
+                    timer: 3000,
+                    timerProgressBar: true,
+                    icon: 'success',
+                    title: 'Thanks For Order',
+                    text: 'Your Order Has Been Placed Successfully'
+                    });
+        </script>
+    @endif
 @endsection

@@ -134,6 +134,11 @@ Route::middleware(['isAdmin','auth','prevent-back-history'])->prefix('admin')->n
         Route::get('product/productReviews','productReviews')->name('productReviewShows');
         Route::get('product/productsDetail/{id}','productDetail')->name('productDetailShows');
 
+        //Get Products Availability
+        Route::get('products-availability','productsAvailability')->name('products.availability');
+        //Get Products Sold
+        Route::get('products-sold','productsSold')->name('products.sold');
+
     });
     // Order controller
     Route::controller(orderController::class)->group(function () {
