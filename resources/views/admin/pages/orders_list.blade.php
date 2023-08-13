@@ -43,8 +43,8 @@
                                                     </td>
                                                     <td><span class="badge bg-soft-info font-size-12">{{ $order->user->name }}</span></td>
 
-                                                    @if (App\Models\userDetail::where('user_id', $order->user->id)->first())
-                                                        <td>{{ App\Models\userDetail::where('user_id', $order->user->id)->first()->shipping_billing_address_1 }},{{ App\Models\userDetail::where('user_id', $order->user->id)->first()->shipping_billing_address_2 }}
+                                                    @if (App\Models\UserDetail::where('user_id', $order->user->id)->first())
+                                                        <td>{{ App\Models\UserDetail::where('user_id', $order->user->id)->first()->shipping_billing_address_1 }},{{ App\Models\UserDetail::where('user_id', $order->user->id)->first()->shipping_billing_address_2 }}
                                                         </td>
                                                     @else
                                                         <td>Not Provided</td>

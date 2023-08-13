@@ -82,7 +82,7 @@
                                                 <td>{{ \Carbon\Carbon::parse($order->created_at)->format('d M Y') }}</td>
                                                 <td><span class="success">{{ $order->status }}</span></td>
                                                 <td>{{ $order->total_amount }}</td>
-                                                @if (Str::lower($order->status) == "confirmed")
+                                                @if (Str::lower($order->status) != "confirmed")
                                                 <td><a href="{{ route('order.details',$order->id) }}" class="view">view</a></td>
                                                 @elseif (Str::lower($order->status) == "pending")
                                                 <td><a href="{{route('order.cancel',$order->id)}}" class="view">Cancel Order</a></td>

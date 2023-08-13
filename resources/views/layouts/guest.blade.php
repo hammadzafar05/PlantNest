@@ -967,11 +967,11 @@ span.wishlist_item_count {
                             var html = `
                 <div class="cart_item">
                     <div class="cart_img">
-                        <a href="#"><img src="${image}" alt=""></a>
+                        <a href="#"><img src="${baseURL+'assets/backend/images/product/'+image}" alt=""></a>
                     </div>
                     <div class="cart_info">
                         <a href="#">${productName}</a>
-                        <p>${quantity} x <span> PKR ${price.toFixed(2)} </span></p>
+                        <p>${quantity} x <span> PKR ${price} </span></p>
                     </div>
                     <div class="cart_remove"  data-cart-id="${cartItem.id}">
                         <a href="#"  onclick="removeMiniCartItem(this)"><i class="icon-x"></i></a>
@@ -988,10 +988,10 @@ span.wishlist_item_count {
                                 <td class="product_thumb"><a href="#"><img
                                             src="${image}" alt=""></a></td>
                                 <td class="product_name"><a href="#">${productName}</a></td>
-                                <td class="product-price">PKR ${price.toFixed(2)}</td>
+                                <td class="product-price">PKR ${price}</td>
                                 <td class="product_quantity"><label>Quantity</label> <input min="1"
                                         max="100" value="${quantity}" type="number" onchange="updateCartItem(this)"></td>
-                                <td class="product_total">PKR ${itemTotal.toFixed(2)}</td>
+                                <td class="product_total">PKR ${itemTotal}</td>
     
     
                             </tr>
@@ -1001,7 +1001,7 @@ span.wishlist_item_count {
                             // mainCartEnd
                         });
                         var total = totalCartPrice;
-                        var formattedPrice = parseFloat(totalCartPrice.toFixed(2));
+                        var formattedPrice = parseFloat(totalCartPrice);
 
                         $('.price').text('PKR ' + formattedPrice);
                         $('.cart_amount').text('PKR ' + formattedPrice);
@@ -1032,15 +1032,15 @@ span.wishlist_item_count {
                 },
                 dataType: 'json',
                 success: function(response) {
-                    var newTotal = (productPrice * newQuantity).toFixed(2);
+                    var newTotal = (productPrice * newQuantity);
                     var nearest = $(inputElement).closest('.product_row').find('.product_total');
-                    var newTotal = (productPrice * newQuantity).toFixed(2);
+                    var newTotal = (productPrice * newQuantity);
                     console.log(productPrice, newQuantity, newTotal);
                     $(inputElement).closest('.product_row').find('.product_total').text(newTotal);
 
                     calculateTotalCartPrice();
                     cart();
-                    // var total = totalCartPrice.toFixed(2);
+                    // var total = totalCartPrice;
                     // $('.cart_amount').text('PKR ' + total);
                 },
                 error: function(xhr, status, error) {
@@ -1061,10 +1061,10 @@ span.wishlist_item_count {
             });
 
             // console.log(totalCartPrice)
-            var formattedPrice = parseFloat(totalCartPrice.toFixed(2));
+            var formattedPrice = parseFloat(totalCartPrice);
             console.log('Total Cart Price:', totalCartPrice);
 
-            var formattedPrice = parseFloat(totalCartPrice.toFixed(2));
+            var formattedPrice = parseFloat(totalCartPrice);
             console.log('Formatted Price:', formattedPrice);
             $('.cart_amount').text('PKR ' + formattedPrice);
             // 
@@ -1109,7 +1109,7 @@ span.wishlist_item_count {
                     calculateTotalCartPrice();
                     cart()
                     // console.log(totalCartPrice)
-                    // var total = totalCartPrice.toFixed(2);
+                    // var total = totalCartPrice;
                     // $('.cart_amount').text('PKR ' + total);
                 },
                 error: function(xhr, status, error) {
@@ -1134,7 +1134,7 @@ span.wishlist_item_count {
                     $(iconElement).closest('.cart_item').remove();
                     calculateTotalCartPrice();
                     // console.log(totalCartPrice)
-                    // var total = totalCartPrice.toFixed(2);
+                    // var total = totalCartPrice;
                     // $('.cart_amount').text('PKR ' + total);
                 },
                 error: function(xhr, status, error) {
