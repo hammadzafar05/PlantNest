@@ -137,7 +137,8 @@
                                                 <div class="product_thumb">
                                                     <a class="primary_img"
                                                         href="{{ route('shop.detail', $product->id) }}"><img
-                                                            src="{{ asset('assets/backend/images/product/').'/'.$product->image_url }}" alt=""></a>
+                                                            src="{{ asset('assets/backend/images/product/') . '/' . $product->image_url }}"
+                                                            alt=""></a>
                                                     <div class="label_product">
                                                         @if ($product->discount_percentage > 0)
                                                             <span
@@ -174,22 +175,27 @@
                                                     <div class="product_rating">
                                                         <ul>
                                                             @php
-                                                            $averageRating = $product->reviews->avg('rating');
-                                                        @endphp
-                                                        
-                                                        @for ($i = 1; $i <= 5; $i++)
-                                                            @if ($i <= $averageRating)
-                                                            <li><a href=""><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                                            @elseif ($i - 0.5 <= $averageRating)
-                                                            <li><a href="javascript:void(0)"><i class="fa fa-star-half" aria-hidden="true"></i></a></li>
-                                                            @else
-                                                            <li><a href="javascript:void(0)"><i class="icon-star"></i></a></li>
-                                                            @endif
-                                                        @endfor
+                                                                $averageRating = $product->reviews->avg('rating');
+                                                            @endphp
+
+                                                            @for ($i = 1; $i <= 5; $i++)
+                                                                @if ($i <= $averageRating)
+                                                                    <li><a href=""><i class="fa fa-star"
+                                                                                aria-hidden="true"></i></a></li>
+                                                                @elseif ($i - 0.5 <= $averageRating)
+                                                                    <li><a href="javascript:void(0)"><i
+                                                                                class="fa fa-star-half"
+                                                                                aria-hidden="true"></i></a></li>
+                                                                @else
+                                                                    <li><a href="javascript:void(0)"><i
+                                                                                class="icon-star"></i></a></li>
+                                                                @endif
+                                                            @endfor
                                                         </ul>
                                                     </div>
                                                     <h4 class="product_name"><a
-                                                            href="{{ route('shop.detail',$product->id) }}">{{ $product->name }}</a></h4>
+                                                            href="{{ route('shop.detail', $product->id) }}">{{ $product->name }}</a>
+                                                    </h4>
                                                     <div class="price_box">
                                                         @if ($product->discount_percentage > 0)
                                                             <span class="current_price">PKR
@@ -220,90 +226,8 @@
                                                 <div class="product_thumb">
                                                     <a class="primary_img"
                                                         href="{{ route('shop.detail', $product->id) }}"><img
-                                                            src="{{asset('assets/backend/images/product/').'/'. $product->image_url }}" alt=""></a>
-                                                    <div class="label_product">
-                                                        @if ($product->discount_percentage > 0)
-                                                            <span
-                                                                class="label_sale">-{{ $product->discount_percentage }}%</span>
-                                                        @endif
-                                                    </div>
-                                                    <div class="action_links">
-                                                        <ul>
-                                                            <li class="add_to_cart" data-product-id="{{ $product->id }}"
-                                                                data-quantity="1"><a href="javascript:void(0)"
-                                                                    title="Add to cart"><i
-                                                                        class="icon-shopping-bag"></i></a>
-                                                            </li>
-                                                            {{-- <li class="compare"><a href="#" title="Add to Compare"><i
-                                                                class="icon-sliders"></i></a></li> --}}
-                                                            <li class="wishlist"><a href=""
-                                                                    title="Add to Wishlist"
-                                                                    data-product-id="{{ $product->id }}"
-                                                                    class="add-to-wishlist">
-                                                                    @if ($product->in_wishlist == 1)
-                                                                        <i class="fa fa-heart"></i>
-                                                                    @else
-                                                                        <i class="icon-heart"></i>
-                                                                    @endif
-                                                                </a>
-                                                            </li>
-                                                            <li class="quick_button"><a href="#"
-                                                                    data-bs-toggle="modal" data-bs-target="#modal_box"
-                                                                    title="quick view"> <i class="icon-eye"></i></a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <figcaption class="product_content">
-                                                    <div class="product_rating">
-                                                        <ul>
-                                                             @php
-                                                            $averageRating = $product->reviews->avg('rating');
-                                                        @endphp
-                                                        
-                                                        @for ($i = 1; $i <= 5; $i++)
-                                                            @if ($i <= $averageRating)
-                                                            <li><a href=""><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                                            @elseif ($i - 0.5 <= $averageRating)
-                                                            <li><a href="javascript:void(0)"><i class="fa fa-star-half" aria-hidden="true"></i></a></li>
-                                                            @else
-                                                            <li><a href="javascript:void(0)"><i class="icon-star"></i></a></li>
-                                                            @endif
-                                                        @endfor
-                                                        </ul>
-                                                    </div>
-                                                    <h4 class="product_name"><a
-                                                            href="product-details.html">{{ $product->name }}</a></h4>
-                                                    <div class="price_box">
-                                                        @if ($product->discount_percentage > 0)
-                                                            <span class="current_price">PKR
-                                                                {{ $product->price - $product->discount }}</span>
-                                                            <span class="old_price">PKR {{ $product->price }}</span>
-                                                        @else
-                                                            <span class="current_price">PKR {{ $product->price }}</span>
-                                                        @endif
-                                                    </div>
-                                                </figcaption>
-                                            </figure>
-                                        </article>
-                                    </div>
-                                </div>
-                            @endforeach
-
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="plant3" role="tabpanel">
-                    <div class="row">
-                        <div class="product_carousel product_column4 owl-carousel">
-                            @foreach ($Accessoriesproducts as $product)
-                                <div class="col-lg-3">
-                                    <div class="product_items">
-                                        <article class="single_product">
-                                            <figure>
-                                                <div class="product_thumb">
-                                                    <a class="primary_img"
-                                                        href="{{ route('shop.detail', $product->id) }}"><img
-                                                            src="{{asset('assets/backend/images/product/').'/'. $product->image_url }}" alt=""></a>
+                                                            src="{{ asset('assets/backend/images/product/') . '/' . $product->image_url }}"
+                                                            alt=""></a>
                                                     <div class="label_product">
                                                         @if ($product->discount_percentage > 0)
                                                             <span
@@ -340,19 +264,110 @@
                                                     <div class="product_rating">
                                                         <ul>
                                                             @php
-                                                           $averageRating = $product->reviews->avg('rating');
-                                                       @endphp
-                                                       
-                                                       @for ($i = 1; $i <= 5; $i++)
-                                                           @if ($i <= $averageRating)
-                                                           <li><a href=""><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                                           @elseif ($i - 0.5 <= $averageRating)
-                                                           <li><a href=""><i class="fa fa-star-half" aria-hidden="true"></i></a></li>
-                                                           @else
-                                                           <li><a href=""><i class="icon-star"></i></a></li>
-                                                           @endif
-                                                       @endfor
-                                                       </ul>
+                                                                $averageRating = $product->reviews->avg('rating');
+                                                            @endphp
+
+                                                            @for ($i = 1; $i <= 5; $i++)
+                                                                @if ($i <= $averageRating)
+                                                                    <li><a href=""><i class="fa fa-star"
+                                                                                aria-hidden="true"></i></a></li>
+                                                                @elseif ($i - 0.5 <= $averageRating)
+                                                                    <li><a href="javascript:void(0)"><i
+                                                                                class="fa fa-star-half"
+                                                                                aria-hidden="true"></i></a></li>
+                                                                @else
+                                                                    <li><a href="javascript:void(0)"><i
+                                                                                class="icon-star"></i></a></li>
+                                                                @endif
+                                                            @endfor
+                                                        </ul>
+                                                    </div>
+                                                    <h4 class="product_name"><a
+                                                            href="product-details.html">{{ $product->name }}</a></h4>
+                                                    <div class="price_box">
+                                                        @if ($product->discount_percentage > 0)
+                                                            <span class="current_price">PKR
+                                                                {{ $product->price - $product->discount }}</span>
+                                                            <span class="old_price">PKR {{ $product->price }}</span>
+                                                        @else
+                                                            <span class="current_price">PKR {{ $product->price }}</span>
+                                                        @endif
+                                                    </div>
+                                                </figcaption>
+                                            </figure>
+                                        </article>
+                                    </div>
+                                </div>
+                            @endforeach
+
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="plant3" role="tabpanel">
+                    <div class="row">
+                        <div class="product_carousel product_column4 owl-carousel">
+                            @foreach ($Accessoriesproducts as $product)
+                                <div class="col-lg-3">
+                                    <div class="product_items">
+                                        <article class="single_product">
+                                            <figure>
+                                                <div class="product_thumb">
+                                                    <a class="primary_img"
+                                                        href="{{ route('shop.detail', $product->id) }}"><img
+                                                            src="{{ asset('assets/backend/images/product/') . '/' . $product->image_url }}"
+                                                            alt=""></a>
+                                                    <div class="label_product">
+                                                        @if ($product->discount_percentage > 0)
+                                                            <span
+                                                                class="label_sale">-{{ $product->discount_percentage }}%</span>
+                                                        @endif
+                                                    </div>
+                                                    <div class="action_links">
+                                                        <ul>
+                                                            <li class="add_to_cart" data-product-id="{{ $product->id }}"
+                                                                data-quantity="1"><a href="javascript:void(0)"
+                                                                    title="Add to cart"><i
+                                                                        class="icon-shopping-bag"></i></a>
+                                                            </li>
+                                                            {{-- <li class="compare"><a href="#" title="Add to Compare"><i
+                                                                class="icon-sliders"></i></a></li> --}}
+                                                            <li class="wishlist"><a href=""
+                                                                    title="Add to Wishlist"
+                                                                    data-product-id="{{ $product->id }}"
+                                                                    class="add-to-wishlist">
+                                                                    @if ($product->in_wishlist == 1)
+                                                                        <i class="fa fa-heart"></i>
+                                                                    @else
+                                                                        <i class="icon-heart"></i>
+                                                                    @endif
+                                                                </a>
+                                                            </li>
+                                                            <li class="quick_button"><a href="#"
+                                                                    data-bs-toggle="modal" data-bs-target="#modal_box"
+                                                                    title="quick view"> <i class="icon-eye"></i></a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <figcaption class="product_content">
+                                                    <div class="product_rating">
+                                                        <ul>
+                                                            @php
+                                                                $averageRating = $product->reviews->avg('rating');
+                                                            @endphp
+
+                                                            @for ($i = 1; $i <= 5; $i++)
+                                                                @if ($i <= $averageRating)
+                                                                    <li><a href=""><i class="fa fa-star"
+                                                                                aria-hidden="true"></i></a></li>
+                                                                @elseif ($i - 0.5 <= $averageRating)
+                                                                    <li><a href=""><i class="fa fa-star-half"
+                                                                                aria-hidden="true"></i></a></li>
+                                                                @else
+                                                                    <li><a href=""><i class="icon-star"></i></a>
+                                                                    </li>
+                                                                @endif
+                                                            @endfor
+                                                        </ul>
                                                     </div>
                                                     <h4 class="product_name"><a
                                                             href="product-details.html">{{ $product->name }}</a></h4>
@@ -499,21 +514,19 @@
                                 <article class="single_product">
                                     <figure>
                                         <div class="product_thumb">
-                                            <a class="primary_img"
-                                                href="{{ route('shop.detail', $product->id) }}"><img
-                                                    src="{{asset('assets/backend/images/product/').'/'. $product->image_url }}" alt=""></a>
+                                            <a class="primary_img" href="{{ route('shop.detail', $product->id) }}"><img
+                                                    src="{{ asset('assets/backend/images/product/') . '/' . $product->image_url }}"
+                                                    alt=""></a>
                                             <div class="label_product">
                                                 @if ($product->discount_percentage > 0)
-                                                    <span
-                                                        class="label_sale">-{{ $product->discount_percentage }}%</span>
+                                                    <span class="label_sale">-{{ $product->discount_percentage }}%</span>
                                                 @endif
                                             </div>
                                             <div class="action_links">
                                                 <ul>
                                                     <li class="add_to_cart" data-product-id="{{ $product->id }}"
                                                         data-quantity="1"><a href="javascript:void(0)"
-                                                            title="Add to cart"><i
-                                                                class="icon-shopping-bag"></i></a>
+                                                            title="Add to cart"><i class="icon-shopping-bag"></i></a>
                                                     </li>
                                                     {{-- <li class="compare"><a href="#" title="Add to Compare"><i
                                                        class="icon-sliders"></i></a></li> --}}
@@ -527,8 +540,7 @@
                                                             @endif
                                                         </a>
                                                     </li>
-                                                    <li class="quick_button"><a href="#"
-                                                            data-bs-toggle="modal"
+                                                    <li class="quick_button"><a href="#" data-bs-toggle="modal"
                                                             data-bs-target="#modal_box{{ $product->id }}"
                                                             title="quick view"> <i class="icon-eye"></i></a></li>
                                                 </ul>
@@ -538,42 +550,41 @@
                                             <div class="product_rating">
                                                 <ul>
                                                     <@php
-                                                    $averageRating = $product->reviews->avg('rating');
-                                                @endphp
-                                                
-                                                @for ($i = 1; $i <= 5; $i++)
-                                                    @if ($i <= $averageRating)
-                                                    <li><a href=""><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                                    @elseif ($i - 0.5 <= $averageRating)
-                                                    <li><a href=""><i class="fa fa-star-half" aria-hidden="true"></i></a></li>
-                                                    @else
-                                                    <li><a href=""><i class="icon-star"></i></a></li>
-                                                    @endif
-                                                @endfor
-                                                </ul>
-                                            </div>
-                                            <h4 class="product_name"><a
-                                                    href="product-details.html">{{ $product->name }}</a></h4>
-                                            <div class="price_box">
-                                                @if ($product->discount_percentage > 0)
-                                                    <span class="current_price">PKR
-                                                        {{ $product->price - $product->discount }}</span>
-                                                    <span class="old_price">PKR {{ $product->price }}</span>
-                                                @else
-                                                    <span class="current_price">PKR {{ $product->price }}</span>
-                                                @endif
-                                            </div>
-                                        </figcaption>
-                                    </figure>
-                                </article>
-                            </div>
-                        @endforeach
-
-
+                                                        $averageRating = $product->reviews->avg('rating');
+                                                    @endphp @for ($i = 1; $i <= 5; $i++)
+                                                        @if ($i <= $averageRating)
+                                                            <li><a href=""><i class="fa fa-star"
+                                                                        aria-hidden="true"></i></a></li>
+                                                        @elseif ($i - 0.5 <= $averageRating)
+                                                            <li><a href=""><i class="fa fa-star-half"
+                                                                        aria-hidden="true"></i></a></li>
+                                                        @else
+                                                            <li><a href=""><i class="icon-star"></i></a></li>
+                                                        @endif
+                        @endfor
+                        </ul>
                     </div>
+                    <h4 class="product_name"><a href="product-details.html">{{ $product->name }}</a></h4>
+                    <div class="price_box">
+                        @if ($product->discount_percentage > 0)
+                            <span class="current_price">PKR
+                                {{ $product->price - $product->discount }}</span>
+                            <span class="old_price">PKR {{ $product->price }}</span>
+                        @else
+                            <span class="current_price">PKR {{ $product->price }}</span>
+                        @endif
+                    </div>
+                    </figcaption>
+                    </figure>
+                    </article>
                 </div>
+                @endforeach
+
+
             </div>
         </div>
+    </div>
+    </div>
     </div>
     <!--product area end-->
 
@@ -726,14 +737,16 @@
                                         <div class="tab-content product-details-large">
                                             <div class="tab-pane fade show active" id="tab1" role="tabpanel">
                                                 <div class="modal_tab_img">
-                                                    <a href="#"><img src="{{ asset('assets/backend/images/product/').'/'.$product->image_url }}"
+                                                    <a href="#"><img
+                                                            src="{{ asset('assets/backend/images/product/') . '/' . $product->image_url }}"
                                                             alt=""></a>
                                                 </div>
                                             </div>
                                             @foreach ($product->images as $image)
                                                 <div class="tab-pane fade" id="tab{{ $image->id }}" role="tabpanel">
                                                     <div class="modal_tab_img">
-                                                        <a href="#"><img src="{{asset('assets/backend/images/product/').'/'. $image->image_url }}"
+                                                        <a href="#"><img
+                                                                src="{{ asset('assets/backend/images/product/') . '/' . $image->image_url }}"
                                                                 alt=""></a>
                                                     </div>
                                                 </div>
@@ -744,7 +757,8 @@
                                                 <li>
                                                     <a class="nav-link active" data-bs-toggle="tab" href="#tab1"
                                                         role="tab" aria-controls="tab1" aria-selected="false"><img
-                                                            src="{{asset('assets/backend/images/product/').'/'. $product->image_url }}" alt=""></a>
+                                                            src="{{ asset('assets/backend/images/product/') . '/' . $product->image_url }}"
+                                                            alt=""></a>
 
 
                                                 </li>
@@ -753,7 +767,8 @@
                                                         <a class="nav-link" data-bs-toggle="tab{{ $image->id }}"
                                                             href="#tab{{ $image->id }}" role="tab"
                                                             aria-controls="tab{{ $image->id }}"
-                                                            aria-selected="false"><img src="{{asset('assets/backend/images/product/').'/'. $image->image_url }}"
+                                                            aria-selected="false"><img
+                                                                src="{{ asset('assets/backend/images/product/') . '/' . $image->image_url }}"
                                                                 alt=""></a>
                                                     </li>
                                                 @endforeach
@@ -835,14 +850,16 @@
                                         <div class="tab-content product-details-large">
                                             <div class="tab-pane fade show active" id="tab1" role="tabpanel">
                                                 <div class="modal_tab_img">
-                                                    <a href="#"><img src="{{ asset('assets/backend/images/product/').'/'.$product->image_url }}"
+                                                    <a href="#"><img
+                                                            src="{{ asset('assets/backend/images/product/') . '/' . $product->image_url }}"
                                                             alt=""></a>
                                                 </div>
                                             </div>
                                             @foreach ($product->images as $image)
                                                 <div class="tab-pane fade" id="tab{{ $image->id }}" role="tabpanel">
                                                     <div class="modal_tab_img">
-                                                        <a href="#"><img src="{{ asset('assets/backend/images/product/').'/'.$image->image_url }}"
+                                                        <a href="#"><img
+                                                                src="{{ asset('assets/backend/images/product/') . '/' . $image->image_url }}"
                                                                 alt=""></a>
                                                     </div>
                                                 </div>
@@ -853,7 +870,8 @@
                                                 <li>
                                                     <a class="nav-link active" data-bs-toggle="tab" href="#tab1"
                                                         role="tab" aria-controls="tab1" aria-selected="false"><img
-                                                            src="{{ asset('assets/backend/images/product/').'/'.$product->image_url }}" alt=""></a>
+                                                            src="{{ asset('assets/backend/images/product/') . '/' . $product->image_url }}"
+                                                            alt=""></a>
 
 
                                                 </li>
@@ -862,7 +880,8 @@
                                                         <a class="nav-link" data-bs-toggle="tab{{ $image->id }}"
                                                             href="#tab{{ $image->id }}" role="tab"
                                                             aria-controls="tab{{ $image->id }}"
-                                                            aria-selected="false"><img src="{{ asset('assets/backend/images/product/').'/'.$image->image_url }}"
+                                                            aria-selected="false"><img
+                                                                src="{{ asset('assets/backend/images/product/') . '/' . $image->image_url }}"
                                                                 alt=""></a>
                                                     </li>
                                                 @endforeach
@@ -944,14 +963,16 @@
                                         <div class="tab-content product-details-large">
                                             <div class="tab-pane fade show active" id="tab1" role="tabpanel">
                                                 <div class="modal_tab_img">
-                                                    <a href="#"><img src="{{ asset('assets/backend/images/product/').'/'.$product->image_url }}"
+                                                    <a href="#"><img
+                                                            src="{{ asset('assets/backend/images/product/') . '/' . $product->image_url }}"
                                                             alt=""></a>
                                                 </div>
                                             </div>
                                             @foreach ($product->images as $image)
                                                 <div class="tab-pane fade" id="tab{{ $image->id }}" role="tabpanel">
                                                     <div class="modal_tab_img">
-                                                        <a href="#"><img src="{{ asset('assets/backend/images/product/').'/'.$image->image_url }}"
+                                                        <a href="#"><img
+                                                                src="{{ asset('assets/backend/images/product/') . '/' . $image->image_url }}"
                                                                 alt=""></a>
                                                     </div>
                                                 </div>
@@ -962,7 +983,8 @@
                                                 <li>
                                                     <a class="nav-link active" data-bs-toggle="tab" href="#tab1"
                                                         role="tab" aria-controls="tab1" aria-selected="false"><img
-                                                            src="{{asset('assets/backend/images/product/').'/'. $product->image_url }}" alt=""></a>
+                                                            src="{{ asset('assets/backend/images/product/') . '/' . $product->image_url }}"
+                                                            alt=""></a>
 
 
                                                 </li>
@@ -971,7 +993,8 @@
                                                         <a class="nav-link" data-bs-toggle="tab{{ $image->id }}"
                                                             href="#tab{{ $image->id }}" role="tab"
                                                             aria-controls="tab{{ $image->id }}"
-                                                            aria-selected="false"><img src="{{asset('assets/backend/images/product/').'/'. $image->image_url }}"
+                                                            aria-selected="false"><img
+                                                                src="{{ asset('assets/backend/images/product/') . '/' . $image->image_url }}"
                                                                 alt=""></a>
                                                     </li>
                                                 @endforeach

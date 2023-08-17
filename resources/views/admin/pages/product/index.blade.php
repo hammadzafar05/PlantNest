@@ -71,7 +71,8 @@
                         @foreach($allproducts as $product)
                         <div class="col-xl-4 col-sm-2">
                                 <div class="product-box">
-                                    <div class="product-img pt-4 px-4">    
+                                    <div class="product-img pt-4 px-4">  
+                                          
                                         <img src="{{ asset('assets/backend/images/product/' . $product['image_url']) }}" alt="" class="img-fluid mx-auto d-block product_img" >
                                     </div>
     

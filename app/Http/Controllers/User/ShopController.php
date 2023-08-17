@@ -133,6 +133,7 @@ class ShopController extends Controller
             }
             $product->in_wishlist = in_array($product->id, $wishlistItems);
         }
+        
         $click = new ClickedItem();
         if (Auth::check()) {
             $click->user_id = Auth::user()->id;

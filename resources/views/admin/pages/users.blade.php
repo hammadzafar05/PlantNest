@@ -47,7 +47,11 @@
                                                                 class="btn btn-danger">Delete</a>
                                                                 {{-- <a href="{{url('admin/deleteUser/'.$user['id'])}}"
                                                                 class="btn btn-danger">Delete</a> --}}
+                                                                @if ($user['details'])
                                                                 <button type="button" class="btn btn-info" onclick="openModal({{json_encode($user)}})">Detail</button>    
+                                                                @else
+                                                                <button type="button" class="btn btn-info"  {{$user['details'] ? '' : 'disabled'}} disabled>Detail</button>    
+                                                                @endif
                                                             </td>
                                                             </tr>
                                                             @endforeach
@@ -149,21 +153,25 @@
 
 @section('script')
     <script>
-        function openModal(userDetail) {
-            
-            var address = userDetail.details[0]['shipping_city'] + ', ' + userDetail.details[0]['shipping_state'] + ', ' +
-                userDetail.details[0]['shipping_country'];
+    function openModal(userDetail) {
+    var address = userDetail.details[0]['shipping_city'] + ', ' + userDetail.details[0]['shipping_state'] + ', ' +
+        userDetail.details[0]['shipping_country'];
 
-            $('#myModal').modal('show')
-            $('#name').val(`${userDetail.name}`)
-            $('#email').val(`${userDetail.email}`)
-            $('#contact').val(`${userDetail.details[0]['shipping_phone_number']}`)
-            $('#city').val(`${userDetail.details[0]['shipping_city']}`)
-            $('#state').val(`${userDetail.details[0]['shipping_state']}`)
-            $('#country').val(`${userDetail.details[0]['shipping_country']}`)
-            $('#address').val(address)
+        if (!userDetail.details[0]['shipping_city'] || !userDetail.details[0]['shipping_state'] || !userDetail.details[0]['shipping_country']) {
+        address = 'Not Given';
+    }
+    
+    $('#myModal').modal('show');
+    $('#name').val(userDetail.name || 'Not Given');
+    $('#email').val(userDetail.email || 'Not Given');
+    $('#contact').val(userDetail.details[0]['shipping_phone_number'] || 'Not Given');
+    $('#city').val(userDetail.details[0]['shipping_city'] || 'Not Given');
+    $('#state').val(userDetail.details[0]['shipping_state'] || 'Not Given');
+    $('#country').val(userDetail.details[0]['shipping_country'] || 'Not Given');
+    $('#address').val(address);
 
-        }
+    // Additional code here...
+}
     </script>
     <script>
         $(document).ready(function() {
